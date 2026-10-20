@@ -27,6 +27,8 @@ Change one Session’s working directory while existing processes retain theirs.
 
 Mount alongside `fs`, `sessionProjections`, and `systemPrompt`. `defaultDirectory` selects an absolute fallback for Sessions without an original directory; omission uses the launch directory. See the [configuration catalog](../../../docs/config-catalog.md#deepseek-aidsh-working-directory).
 
+`includePromptContext: false` disables the directory context contribution for tool-free domain profiles while retaining directory validation. Directory changes still produce logged notices.
+
 ```yaml
 - name: '@deepseek-ai/dsh-working-directory'
 ```

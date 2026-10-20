@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import uuid
+import math
+import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
@@ -136,8 +138,17 @@ class DeepSeekHarness:
         *,
         session_id: str | None = None,
         on_notification: Callable[[Notification], None] | None = None,
+        timeout_seconds: float | None = None,
     ) -> RunResult:
-        return self.start_session(session_id).run(input, on_notification=on_notification)
+        """Run a turn; timeout covers prompt admission through idle after runtime startup.
+
+        A timeout leaves the remote outcome unknown. The caller owns closing
+        the runtime before reuse; it does not acknowledge physical cancellation.
+        """
+        _turn_deadline(timeout_seconds)
+        return self.start_session(session_id).run(
+            input, on_notification=on_notification, timeout_seconds=timeout_seconds
+        )
 
 
 class Session:
@@ -160,7 +171,13 @@ class Session:
         input: str | list[JsonObject],
         *,
         on_notification: Callable[[Notification], None] | None = None,
+        timeout_seconds: float | None = None,
     ) -> RunResult:
+        """Wait for this turn's receipt and idle within one monotonic deadline.
+
+        Raises TimeoutError without cancelling the provider or closing the runtime.
+        """
+        deadline = _turn_deadline(timeout_seconds)
         content_blocks = normalize_input(input)
         notifications: list[Notification] = []
         events: list[JsonObject] = []
@@ -182,11 +199,12 @@ class Session:
                 self.id,
                 content_blocks,
                 notification_subscription=subscription,
+                timeout_seconds=_remaining(deadline),
             )
 
             received = False
             while True:
-                notification = subscription.next()
+                notification = subscription.next(timeout_seconds=_remaining(deadline))
                 if not received:
                     if not _is_inbox_receipt(notification, self.id, message_id):
                         continue
@@ -206,6 +224,23 @@ class Session:
             events=events,
             notifications=notifications,
         )
+
+
+def _turn_deadline(timeout_seconds: float | None) -> float | None:
+    if timeout_seconds is None:
+        return None
+    if not math.isfinite(timeout_seconds) or timeout_seconds <= 0:
+        raise ValueError("timeout_seconds must be positive and finite")
+    return time.monotonic() + timeout_seconds
+
+
+def _remaining(deadline: float | None) -> float | None:
+    if deadline is None:
+        return None
+    remaining = deadline - time.monotonic()
+    if remaining <= 0:
+        raise TimeoutError("Harness turn deadline expired; runtime outcome is unknown")
+    return remaining
 
 
 def _is_inbox_receipt(notification: Notification, session_id: str, message_id: str) -> bool:

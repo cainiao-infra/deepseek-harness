@@ -8,6 +8,8 @@
 python -m pip install deepseek-harness-sdk
 ```
 
+`run(..., timeout_seconds=120)` 在运行时启动后，为 prompt 准入及等待本轮 idle 状态的通知过程设置统一时限。超时抛出 `TimeoutError`，使用方负责在复用前关闭运行时；它不代表 provider 或物理执行已取消。
+
 ## 可选 Office 操作
 
 显式下载 Office 运行时后，即可调用本地 API，无需 agent、Session、模型请求、API key 或 Harness home：

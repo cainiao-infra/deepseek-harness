@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write python/embodied/README.md
+/experimental-embodied-harness-adapter:
+  en: 7a336cc3c8c21c7e
+  zh: 2220b4e0e8f802aa
+/experimental-embodied-harness-adapter/install-and-launch:
+  en: bdd7d0efdb01a1f4
+  zh: 8425527c8be32218
+/experimental-embodied-harness-adapter/physicalrsi-integration:
+  en: 5c3e8b6f2de93ac1
+  zh: f6d4868167d4d1e3
+/experimental-embodied-harness-adapter/planning-and-evidence:
+  en: 822b6e7dbfe3bc69
+  zh: 15aae0dcb78f7ec8
+/experimental-embodied-harness-adapter/online-recovery-provider:
+  en: 6f5c7565f629ef17
+  zh: 9cb308d8d9d66300
+/experimental-embodied-harness-adapter/validation:
+  en: 707d1d1b8551ec33
+  zh: 09254c49872ebe77

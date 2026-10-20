@@ -27,6 +27,8 @@ kind: "package-reference"
 
 与 `fs`、`sessionProjections` 和 `systemPrompt` 一起挂载。`defaultDirectory` 为没有原始目录的 Session 指定绝对回退目录；省略时使用启动目录。参见[配置目录](../../../docs/config-catalog.zh.md#deepseek-aidsh-working-directory)。
 
+`includePromptContext: false` 为无工具的领域 profile 关闭目录上下文，但保留目录校验。目录变更仍生成已记录的通知。
+
 ```yaml
 - name: '@deepseek-ai/dsh-working-directory'
 ```

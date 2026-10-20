@@ -56,6 +56,8 @@ declare module '@deepseek-ai/dsh-session-projection/types' {
 export interface Config {
   /** Absolute execution-world fallback directory; omitted values use the launch directory. */
   defaultDirectory?: string
+  /** Include the effective directory in model context; disable for tool-free domain profiles. */
+  includePromptContext?: boolean
 }
 
 /** One owner for each Session's effective directory and its model-visible changes. */
@@ -64,6 +66,7 @@ export class WorkingDirectoryService extends Service {
 
   static Config: z<Config> = z.object({
     defaultDirectory: z.string(),
+    includePromptContext: z.boolean().default(true),
   })
 
   /** Absolute deployment fallback for Sessions with no recorded original directory. */
@@ -87,7 +90,7 @@ export class WorkingDirectoryService extends Service {
       apply: (state, event) => event.type === 'working-directory/change' ? event.data.cwd : state,
       wire: { viewSchema: directorySchema, view: state => state },
     })
-    ctx.systemPrompt.context({
+    if (config.includePromptContext ?? true) ctx.systemPrompt.context({
       name: 'working-directory:current',
       order: ctx.systemPrompt.getContextOrder('WORKING_DIRECTORY'),
       required: true,
@@ -99,6 +102,7 @@ export class WorkingDirectoryService extends Service {
       await this.ensure(context.agent, context.signal)
       const assembly = await next()
       this.lifecycle.signal.throwIfAborted()
+      if (config.includePromptContext === false) return assembly
       const text = this.contextText(context.agent.session)
       const contribution = assembly.contexts.find(entry => entry.name === 'working-directory:current')
       if (contribution === undefined) assembly.contexts.unshift({ name: 'working-directory:current', text, interpolate: false })

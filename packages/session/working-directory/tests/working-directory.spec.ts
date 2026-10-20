@@ -356,3 +356,10 @@ describe('Session working directories', () => {
     expect(f.ctx.tools.schemas().some(tool => tool.name === 'working_directory')).toBe(false)
   })
 })
+
+it('omits directory context for a tool-free profile while retaining directory validation', async () => {
+  await using f = await fixture(() => ({ includePromptContext: false }))
+  const assembly = await f.ctx.systemPrompt.assemble({ agent: f.agent, scope: f.agent })
+  expect(renderContextSnapshot(assembly)).toBe('')
+  await expect(f.ctx.workingDirectory.ensure(f.agent)).resolves.toBe(f.root)
+})

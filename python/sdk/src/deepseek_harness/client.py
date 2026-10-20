@@ -176,6 +176,7 @@ class HarnessClient:
         *,
         on_notification: Callable[[Notification], None] | None = None,
         notification_subscription: "NotificationSubscription | None" = None,
+        timeout_seconds: float | None = None,
     ) -> str:
         payload: JsonObject = {"sessionId": session_id, "contentBlocks": content_blocks}
         response = self.request(
@@ -185,6 +186,7 @@ class HarnessClient:
             on_notification=on_notification,
             notification_filter=self._notification_belongs_to_session_tree(session_id),
             notification_subscription=notification_subscription,
+            timeout_seconds=timeout_seconds,
         )
         return response.messageId
 
@@ -586,8 +588,12 @@ class NotificationSubscription:
         self._closed = True
         self._client._unsubscribe_notifications(self._subscription_id)
 
-    def next(self) -> Notification:
-        item = self._notifications.get()
+    def next(self, *, timeout_seconds: float | None = None) -> Notification:
+        """Read one notification, raising TimeoutError when the wait expires."""
+        try:
+            item = self._notifications.get(timeout=timeout_seconds)
+        except queue.Empty as error:
+            raise TimeoutError("Harness notification deadline expired; runtime outcome is unknown") from error
         if isinstance(item, BaseException):
             raise item
         return item

@@ -156,6 +156,10 @@ export interface PiAiProviderProfile {
   thinkingBudgets?: ThinkingBudgets
   /** Prompt-cache retention preference. */
   cacheRetention?: CacheRetention
+  /** JSON object output for routes whose models use OpenAI Chat Completions. */
+  responseFormat?: 'json_object'
+  /** Inline normalized source bytes without image handles, or annotated request versions (default). */
+  imagePresentation?: 'annotated' | 'inline'
   /** Streaming transport preference. */
   transport?: Transport
   /** HTTP/provider SDK timeout in milliseconds. */
@@ -189,6 +193,8 @@ export interface ResolvedPiAiProviderProfile
   provider: string
   /** Resolved display name for selectors and configuration surfaces. */
   displayName: string
+  /** Resolved source-image or annotated request-version presentation. */
+  imagePresentation: 'annotated' | 'inline'
   /** Validated credential reference, when one is configured. */
   apiKeyEnv?: CredentialRef
   /** Positive finite provider-idle interval after defaulting. */
@@ -338,6 +344,8 @@ const profile = z.object({
   reasoning: z.union(THINKING_LEVELS),
   thinkingBudgets,
   cacheRetention: z.union(['none', 'short', 'long']),
+  responseFormat: z.const('json_object'),
+  imagePresentation: z.union(['annotated', 'inline']).default('annotated'),
   transport: z.union(['sse', 'websocket', 'websocket-cached', 'auto']),
   timeoutMs: z.natural(),
   websocketConnectTimeoutMs: z.natural(),
@@ -426,6 +434,7 @@ export function resolveProfiles(
       throw new Error(`llm-pi-ai: provider "${provider}" has an empty displayName`)
     }
     assertValidHeaders(provider, source.headers)
+    const imagePresentation = source.imagePresentation ?? 'annotated'
     const streamIdleTimeoutMs = source.streamIdleTimeoutMs ?? DEFAULT_STREAM_IDLE_TIMEOUT_MS
     if (!Number.isFinite(streamIdleTimeoutMs)
       || streamIdleTimeoutMs <= 0
@@ -474,6 +483,9 @@ export function resolveProfiles(
         defaultContextWindow: source.defaultContextWindow ?? DEFAULT_CONTEXT_WINDOW,
         defaultMaxTokens: source.defaultMaxTokens ?? DEFAULT_MAX_TOKENS,
       }, validation)
+      if (source.responseFormat !== undefined && catalog.models.some(model => model.api !== 'openai-completions')) {
+        throw new Error(`llm-pi-ai: provider "${provider}" responseFormat requires openai-completions for every model`)
+      }
       catalogError = catalog.modelErrors.values().next().value
       piProvider = buildProvider({
         provider,
@@ -492,6 +504,7 @@ export function resolveProfiles(
       ...rest,
       provider,
       displayName,
+      imagePresentation,
       ...apiKeyEnv === undefined ? {} : { apiKeyEnv: credentialRef(apiKeyEnv) },
       streamIdleTimeoutMs,
       maxRequestImageBytes,

@@ -10,6 +10,7 @@ Python packages for driving DeepSeek Harness as a subprocess. The client SDK com
 |---|---|---|
 | [sdk](sdk/README.md) | `deepseek-harness-sdk` / `deepseek_harness` | High-level turns API and lower-level JSON-RPC client |
 | [sdk-runtime](sdk-runtime/README.md) | `deepseek-harness-runtime-bin` / `deepseek_harness_runtime` | Bundled `dsh` CLI executable and native sidecars |
+| [embodied](embodied/README.md) | `deepseek-harness-embodied` / `deepseek_harness_embodied` | Experimental PhysicalRSI planning and recovery coordination |
 
 ## Behavior
 

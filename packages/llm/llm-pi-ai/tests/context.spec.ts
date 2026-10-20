@@ -1,7 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
-import { AttachmentId, ImageVariantId } from '@deepseek-ai/dsh-attachment'
+import { Context } from '@deepseek-ai/cordis'
+import { AttachmentStore, AttachmentId, ImageVariantId } from '@deepseek-ai/dsh-attachment'
 import type {
-  AttachmentStore,
+  ImageAttachmentLimits,
+  SaveImageAttachment,
+  StoredImageAttachment,
   ImageAttachmentRef,
   ImageRequestTarget,
   RequestImageAttachment,
@@ -51,7 +54,25 @@ function projectionStore(
     Promise.resolve(requestImage(value, Uint8Array.of(1)))
   )),
 ): AttachmentStore {
-  return { readImageRequest, imageHostPath: () => undefined } as unknown as AttachmentStore
+  class ProjectionStore extends AttachmentStore {
+    readonly imageLimits: ImageAttachmentLimits = {
+      maxImageBytes: 1, maxImagesPerMessage: 1, maxMessageImageBytes: 1,
+      maxImagePixels: 1, maxImageDimension: 1, mediaTypes: ['image/png'],
+    }
+    validateImage(_input: SaveImageAttachment): Promise<void> {
+      return Promise.reject(new Error('Not used by request projection'))
+    }
+    saveImage(_input: SaveImageAttachment): Promise<ImageAttachmentRef> {
+      return Promise.reject(new Error('Not used by request projection'))
+    }
+    readImage(value: ImageAttachmentRef): Promise<StoredImageAttachment> {
+      return Promise.resolve({ ref: value, data: Uint8Array.of(7) })
+    }
+    override readImageRequest(value: ImageAttachmentRef, target: ImageRequestTarget, signal?: AbortSignal) {
+      return readImageRequest(value, target, signal)
+    }
+  }
+  return new ProjectionStore(new Context())
 }
 
 const attachments = projectionStore()
@@ -649,4 +670,27 @@ describe('pi-ai system prompt source', () => {
     await expect(toPiContext(options, imageContext(projectionStore(read)))).rejects.toThrow(error)
     expect(read).not.toHaveBeenCalled()
   })
+})
+
+it('preserves ordered source image bytes without adding handles in inline mode', async () => {
+  const readRequest = vi.fn((value: ImageAttachmentRef) => Promise.resolve(requestImage(value, Uint8Array.of(1))))
+  const store = projectionStore(readRequest)
+  const context = await toPiContext(request([user([
+    { type: 'text', text: 'camera zero' },
+    { type: 'image', attachment: ref },
+    { type: 'text', text: 'camera one' },
+    { type: 'image', attachment: ref },
+  ])]), imageContext(store, { imagePresentation: 'inline', maxRequestImageBytes: 8 }))
+  expect(context.messages).toEqual([{
+    role: 'user', timestamp: 0, content: [
+      { type: 'text', text: 'camera zero' },
+      { type: 'image', data: 'Bw==', mimeType: 'image/png' },
+      { type: 'text', text: 'camera one' },
+      { type: 'image', data: 'Bw==', mimeType: 'image/png' },
+    ],
+  }])
+  expect(readRequest).not.toHaveBeenCalled()
+  await expect(toPiContext(request([user([{ type: 'image', attachment: ref }])]),
+    imageContext(store, { imagePresentation: 'inline', maxRequestImageBytes: 3 })))
+    .rejects.toMatchObject({ code: 'IMAGE_OFFLOAD_REQUIRED' })
 })

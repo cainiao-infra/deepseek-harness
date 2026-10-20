@@ -1,0 +1,76 @@
+# Bilingual-pair consistency record for 2026-10-20-physicalrsi-phase-one-integration.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/proposed/architecture/2026-10-20-physicalrsi-phase-one-integration.md
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation:
+  en: 6fd34322f9c0db11
+  zh: 9d67147fa20dacc7
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/problem:
+  en: c2fcd1aca392e3df
+  zh: 80b7359de3168ed2
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal:
+  en: 136728e3f6eaaa80
+  zh: 95a2f5a909adb846
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/implementation-checkpoint-2026-10-21:
+  en: 6b2a659c1f73a0f1
+  zh: 3bb4fc56025a36ea
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/design-rationale-and-complementary-strengths:
+  en: 44c93079f7b66d54
+  zh: f71f1fca39cab955
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/remote-environment-assessment:
+  en: f5fccea398706e13
+  zh: eab4dc659541d8b3
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/phases-and-completion-conditions:
+  en: 3461869d75fed00a
+  zh: b18cd8c16b11d2f3
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/module-responsibilities:
+  en: 06d34458a6fae283
+  zh: 96d707c0ae420bd5
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/interface-design:
+  en: b8c6483773fce3c9
+  zh: 9ec9d063521af495
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/dsh-composition-and-runtime-lifecycle-for-compatibility:
+  en: a8c42940c93fad7f
+  zh: 269cbbd70477679b
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/enhanced-path-online-replanning-and-recovery:
+  en: c2c4a3d93e0e1468
+  zh: 517f56df31a75291
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/deriving-skills-from-historical-execution-sessions:
+  en: dff974a32fb8ebca
+  zh: 8591d4f0b07b2d0b
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/deriving-skills-from-historical-execution-sessions/evidence-and-handoff-records:
+  en: 7f3a705f8c496b56
+  zh: 2df8dfc95e7c8344
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/deriving-skills-from-historical-execution-sessions/coordination-of-offline-development-and-online-planning:
+  en: 3666d14d1920bab7
+  zh: 6f0f574cc250de0e
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/controlled-experiments-and-acceptance-metrics:
+  en: 3d5cf79d651ef7d2
+  zh: 476c6e8588bd98ff
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/controlled-experiments-and-acceptance-metrics/comparison-arms-and-fair-conditions:
+  en: f422015d59f09e56
+  zh: 0a866058e8583a47
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/controlled-experiments-and-acceptance-metrics/task-sets-and-capability-scope:
+  en: a58ed8bab44ee69a
+  zh: c49d487224fde413
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/controlled-experiments-and-acceptance-metrics/metrics-and-passing-thresholds:
+  en: 90f828fd83aba4c2
+  zh: 601b949542dc0908
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/controlled-experiments-and-acceptance-metrics/sampling-statistics-and-failure-accounting:
+  en: f250e37cf2fb9a49
+  zh: 703e093ca7c65fad
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/controlled-experiments-and-acceptance-metrics/engineering-verification-layers:
+  en: 119f9f1f2937f0c4
+  zh: 49166f9aba912264
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/proposal/implementation-tasks:
+  en: 64e76368d8333865
+  zh: 4b19d4a6e08592dd
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/alternatives-considered:
+  en: 214ed47620abc92d
+  zh: 7f5c26a6556f17bd
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/acceptance-criteria:
+  en: 18decbef01694a5a
+  zh: f52428f97463e7a0
+/agent-note-dsh-and-physicalrsi-embodied-harness-integration-and-evaluation/risks:
+  en: 0ea258b9a0c23d6c
+  zh: 41ce47e640734b14

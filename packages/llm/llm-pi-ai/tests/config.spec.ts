@@ -107,3 +107,15 @@ describe('request image policy bounds', () => {
     }).toThrow(message)
   })
 })
+
+describe('structured multimodal routes', () => {
+  it('accepts JSON objects on Chat Completions and refuses other protocols', () => {
+    expect(routeWith({ responseFormat: 'json_object', imagePresentation: 'inline' })).not.toThrow()
+    expect(routeWith({ responseFormat: 'xml' })).toThrow()
+    expect(routeWith({ imagePresentation: 'lossy' })).toThrow()
+    expect(() => resolveProfiles({ acme: {
+      api: 'anthropic-messages', baseURL: 'https://acme.test',
+      models: [{ id: 'm' }], responseFormat: 'json_object',
+    } })).toThrow(/requires openai-completions/)
+  })
+})

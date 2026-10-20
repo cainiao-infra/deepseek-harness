@@ -136,6 +136,14 @@ function profileOptions(
     ...profile.thinkingBudgets === undefined ? {} : { thinkingBudgets: profile.thinkingBudgets },
     ...profile.cacheRetention === undefined ? {} : { cacheRetention: profile.cacheRetention },
     ...profile.transport === undefined ? {} : { transport: profile.transport },
+    ...profile.responseFormat === undefined ? {} : {
+      onPayload: (payload: unknown) => {
+        if (typeof payload !== 'object' || payload === null || Array.isArray(payload)) {
+          throw new LlmError('JSON output requires an object provider payload', 'UNSUPPORTED_OPTION')
+        }
+        return { ...payload, response_format: { type: profile.responseFormat } }
+      },
+    },
     ...profile.timeoutMs === undefined ? {} : { timeoutMs: profile.timeoutMs },
     ...profile.websocketConnectTimeoutMs === undefined ? {} : { websocketConnectTimeoutMs: profile.websocketConnectTimeoutMs },
     // The agent recovery layer owns visible attempts; one adapter call is one SDK attempt.
@@ -239,6 +247,9 @@ export class PiAiAdapter extends LlmAdapter {
     const snapshot = this.current()
     this.modelOf(snapshot, provider, model)
     const profile = this.profileOf(snapshot, provider)
+    if (profile.imagePresentation === 'inline') {
+      return { width: image.width, height: image.height, maxBytes: image.bytes }
+    }
     return requestImageTarget(image, { maxPixels: profile.requestImagePixelBudget, maxBytes: profile.requestImageMaxBytes })
   }
 
@@ -408,6 +419,7 @@ export class PiAiAdapter extends LlmAdapter {
           attachments,
           resolveImageAccess: ref => this.config.resolveImageAccess?.(attachments, ref),
           maxRequestImageBytes: profile.maxRequestImageBytes,
+          imagePresentation: profile.imagePresentation,
           requestImagePolicy: {
             maxPixels: profile.requestImagePixelBudget,
             maxBytes: profile.requestImageMaxBytes,

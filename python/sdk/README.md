@@ -8,6 +8,8 @@ Python subprocess SDK for driving DeepSeek Harness over newline-delimited JSON-R
 python -m pip install deepseek-harness-sdk
 ```
 
+`run(..., timeout_seconds=120)` bounds prompt admission and notification waits through the matching idle status after runtime startup. A timeout raises `TimeoutError`; the caller owns closing the runtime before reuse. It does not acknowledge provider or physical cancellation.
+
 ## Optional Office operations
 
 Download the Office runtime explicitly, then call the local API without an agent, Session, model request, API key, or Harness home:

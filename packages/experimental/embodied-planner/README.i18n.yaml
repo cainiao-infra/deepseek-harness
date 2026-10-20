@@ -1,0 +1,46 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/experimental/embodied-planner/README.md
+/:
+  en: 26fcdd6b3e7286aa
+  zh: f91b61e873410f49
+/deepseek-ai-dsh-experimental-embodied-planner:
+  en: 5929cff9efb0f5b8
+  zh: 308457d9b8c87bb8
+/deepseek-ai-dsh-experimental-embodied-planner/summary:
+  en: f58fcc24767d8050
+  zh: de6d4ceeb852c68a
+/deepseek-ai-dsh-experimental-embodied-planner/table-of-contents:
+  en: 23386452a66b2fbd
+  zh: b8d879783e7edbe0
+/deepseek-ai-dsh-experimental-embodied-planner/use-this-package:
+  en: 8ff5c1657ae24a5a
+  zh: 2be4afd0afc4142b
+/deepseek-ai-dsh-experimental-embodied-planner/understand-the-implementation:
+  en: a0e9cec4d4920a1a
+  zh: 8c821070200980b9
+/deepseek-ai-dsh-experimental-embodied-planner/further-exploration:
+  en: 5025db00d74fac53
+  zh: fcd921ced2e314d3
+/deepseek-ai-dsh-experimental-embodied-planner/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/deepseek-ai-dsh-experimental-embodied-planner/model-experience/physicalrsi-compatibility-planning:
+  en: a63daa08a614d3e1
+  zh: a2cf30974c660699
+/deepseek-ai-dsh-experimental-embodied-planner/model-experience/physicalrsi-compatibility-planning/what-the-model-sees:
+  en: 7bbc39a019483a8a
+  zh: 3baf37810b5a1319
+/deepseek-ai-dsh-experimental-embodied-planner/model-experience/physicalrsi-compatibility-planning/token-effect:
+  en: bbd54e9fd81c9f6e
+  zh: ace7eb16ee341dfc
+/deepseek-ai-dsh-experimental-embodied-planner/model-experience/physicalrsi-compatibility-planning/kv-cache-effect:
+  en: f699769d6d808240
+  zh: 4c8bcf51c89bd0d4
+/deepseek-ai-dsh-experimental-embodied-planner/known-limitations-and-deferred-work:
+  en: 7492b990ab354e90
+  zh: 66cdb85f236b4504
+/deepseek-ai-dsh-experimental-embodied-planner/known-limitations-and-deferred-work/dev-note:
+  en: 9fe444fc8d428f8c
+  zh: 44cc8db4cbbdb5e0

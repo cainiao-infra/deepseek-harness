@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "deepseek-harness-embodied"
+version = "0.0.0.dev0"
+description = "Experimental PhysicalRSI planner bridge and recovery coordination"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["deepseek-harness-sdk==0.0.0.dev0"]
+
+[dependency-groups]
+test = ["pytest>=8.0"]
+
+[tool.uv.sources]
+deepseek-harness-sdk = { path = "../sdk", editable = true }
+deepseek-harness-runtime-bin = { path = "../sdk-runtime", editable = true }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/deepseek_harness_embodied"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

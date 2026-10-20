@@ -1043,6 +1043,22 @@ export type Config = CuaConfig
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-experimental-cua-macos -->
 
+<!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-experimental-embodied-planner -->
+<a id="deepseek-aidsh-experimental-embodied-planner"></a>
+
+## `@deepseek-ai/dsh-experimental-embodied-planner`
+
+- `source`: [`packages/experimental/embodied-planner/src/index.ts:12`](../packages/experimental/embodied-planner/src/index.ts)
+
+```ts config-catalog
+/** Explicit sampling controls shared by the native and DSH planner. */
+export interface Config {
+  /** Finite sampling temperature supported by the selected model. */
+  temperature: number
+}
+```
+<!-- END GENERATED config-catalog:@deepseek-ai/dsh-experimental-embodied-planner -->
+
 <!-- BEGIN GENERATED config-catalog:@deepseek-ai/dsh-experimental-inspector -->
 <a id="deepseek-aidsh-experimental-inspector"></a>
 
@@ -1777,7 +1793,7 @@ export interface Config extends ProtocolConfig {
 
 - `inject`: `llm`
 - `refs`: `Api` (`@earendil-works/pi-ai`) · `CacheRetention` (`@earendil-works/pi-ai`) · `Model` (`@earendil-works/pi-ai`) · `ModelThinkingLevel` (`@earendil-works/pi-ai`) · `OpenAICompletionsCompat` (`@earendil-works/pi-ai`) · [`RetryPolicyConfig`](../packages/llm/llm/src/index.ts) · `ThinkingBudgets` (`@earendil-works/pi-ai`) · `Transport` (`@earendil-works/pi-ai`) · `Volatile` (`@deepseek-ai/cordis`)
-- `source`: [`packages/llm/llm-pi-ai/src/config.ts:222`](../packages/llm/llm-pi-ai/src/config.ts)
+- `source`: [`packages/llm/llm-pi-ai/src/config.ts:228`](../packages/llm/llm-pi-ai/src/config.ts)
 
 ```ts config-catalog
 /** Plugin configuration: the provider routes this instance owns. */
@@ -1858,6 +1874,10 @@ export interface PiAiProviderProfile {
   thinkingBudgets?: ThinkingBudgets
   /** Prompt-cache retention preference. */
   cacheRetention?: CacheRetention
+  /** JSON object output for routes whose models use OpenAI Chat Completions. */
+  responseFormat?: 'json_object'
+  /** Inline normalized source bytes without image handles, or annotated request versions (default). */
+  imagePresentation?: 'annotated' | 'inline'
   /** Streaming transport preference. */
   transport?: Transport
   /** HTTP/provider SDK timeout in milliseconds. */
@@ -4551,6 +4571,8 @@ export interface Config {
 export interface Config {
   /** Absolute execution-world fallback directory; omitted values use the launch directory. */
   defaultDirectory?: string
+  /** Include the effective directory in model context; disable for tool-free domain profiles. */
+  includePromptContext?: boolean
 }
 ```
 <!-- END GENERATED config-catalog:@deepseek-ai/dsh-working-directory -->

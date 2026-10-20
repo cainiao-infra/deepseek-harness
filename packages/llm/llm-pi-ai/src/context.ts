@@ -66,7 +66,7 @@ function assertSupportedHistory(messages: readonly RequestMessage[]): void {
 
 function userContent(
   blocks: readonly ContentBlock[],
-  requestImages: ReadonlyMap<AttachmentId, RequestImageAttachment>,
+  requestImages: ReadonlyMap<AttachmentId, PiRequestImage>,
   resolveImageAccess: ImageAttachmentAccessResolver,
 ): string | (TextContent | ImageContent)[] {
   const content: (TextContent | ImageContent)[] = []
@@ -76,11 +76,13 @@ function userContent(
         if (block.text.length > 0) content.push({ type: 'text', text: block.text })
         break
       case 'image': {
-        const version = requestImages.get(block.attachment.attachmentId) as RequestImageAttachment
-        content.push({
-          type: 'text',
-          text: requestImageHandleText(block.attachment, version, resolveImageAccess(block.attachment)),
-        })
+        const version = requestImages.get(block.attachment.attachmentId) as PiRequestImage
+        if (version.kind === 'request') {
+          content.push({
+            type: 'text',
+            text: requestImageHandleText(block.attachment, version, resolveImageAccess(block.attachment)),
+          })
+        }
         content.push({
           type: 'image',
           data: Buffer.from(version.data).toString('base64'),
@@ -108,23 +110,31 @@ function collectImageRefs(
   }
 }
 
+type PiRequestImage = (RequestImageAttachment & { kind: 'request' }) | {
+  kind: 'source'
+  data: Uint8Array
+  mediaType: ImageAttachmentRef['mediaType']
+  bytes: number
+}
+
 async function prepareRequestImages(
   messages: readonly RequestMessage[],
   attachments: AttachmentStore,
   budget: PiImageRequestBudget,
+  presentation: 'annotated' | 'inline',
   signal?: AbortSignal,
-): Promise<Map<AttachmentId, RequestImageAttachment>> {
+): Promise<Map<AttachmentId, PiRequestImage>> {
   const refs = new Map<AttachmentId, ImageAttachmentRef>()
   for (const message of messages) collectImageRefs(message.content, refs)
   const orderedRefs = [...refs.values()]
-  const prepared = await Promise.all(orderedRefs.map(
-    ref => attachments.readImageRequest(ref, requestImageTarget(ref, budget), signal),
-  ))
-  const versions = new Map<AttachmentId, RequestImageAttachment>()
-  for (const [index, ref] of orderedRefs.entries()) {
-    versions.set(ref.attachmentId, prepared[index] as RequestImageAttachment)
-  }
-  return versions
+  const prepared = await Promise.all(orderedRefs.map(async (ref): Promise<[AttachmentId, PiRequestImage]> => {
+    if (presentation === 'inline') {
+      const source = await attachments.readImage(ref, signal)
+      return [ref.attachmentId, { kind: 'source', data: source.data, mediaType: ref.mediaType, bytes: ref.bytes }]
+    }
+    return [ref.attachmentId, { kind: 'request', ...await attachments.readImageRequest(ref, requestImageTarget(ref, budget), signal) }]
+  }))
+  return new Map(prepared)
 }
 
 /** Convert a projected declaration without its harness-owned activation marker. */
@@ -266,6 +276,8 @@ export interface PiImageRequestContext {
   maxRequestImageBytes?: number
   /** Route pixel and raw encoded-byte budgets. */
   requestImagePolicy?: PiImageRequestBudget
+  /** Inline source bytes omit the model-visible image handle and request-version conversion. */
+  imagePresentation?: 'annotated' | 'inline'
 }
 
 /** Per-route budgets from which each request image's target is derived. */
@@ -339,12 +351,12 @@ async function toPiContextWithImages(
   }
   assertSupportedHistory(options.messages)
   const split = splitSystemPrompt(options)
-  const requestImages = await prepareRequestImages(split.messages, attachments, requestImagePolicy, options.signal)
+  const requestImages = await prepareRequestImages(split.messages, attachments, requestImagePolicy, images.imagePresentation ?? 'annotated', options.signal)
   if (maxRequestImageBytes !== undefined) {
     const offloadImages = requiredImageOffload(
       split.messages,
       { representation: 'base64', maxBytes: maxRequestImageBytes },
-      block => (requestImages.get(block.attachment.attachmentId) as RequestImageAttachment).bytes,
+      block => (requestImages.get(block.attachment.attachmentId) as PiRequestImage).bytes,
     )
     if (offloadImages > 0) {
       throw new LlmError(

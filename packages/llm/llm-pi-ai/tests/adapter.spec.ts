@@ -1119,3 +1119,20 @@ it('resolves the exact pi-ai image budget for screenshot coordinates', () => {
     .toEqual({ width: 100, height: 100, maxBytes: 50_000 })
   expect(() => adapter.imageRequestTarget('missing', 'deepseek-flash', IMAGE_REF)).toThrow('does not own provider')
 })
+
+it('serializes the configured JSON response mode into the real provider request', async () => {
+  const server = await mockServer([{ events: textEvents }])
+  const adapter = adapterOf({ embodied: {
+    api: 'openai-completions', baseURL: server.url,
+    models: [{ id: 'vision', input: ['text', 'image'], reasoningEfforts: false }],
+    responseFormat: 'json_object', imagePresentation: 'inline',
+  } })
+  for await (const _chunk of adapter.stream({
+    provider: 'embodied', model: 'vision', temperature: 0,
+    messages: [createUserMessage({ content: [{ type: 'text', text: 'Return JSON' }],
+      source: { kind: 'model', provider: 'embodied', model: 'vision' } })],
+  })) { /* Consume the provider stream to capture its serialized request. */ }
+  expect(server.requests[0]).toMatchObject({ response_format: { type: 'json_object' }, temperature: 0 })
+  expect(adapter.imageRequestTarget('embodied', 'vision', { ...IMAGE_REF, width: 4096 }))
+    .toEqual({ width: 4096, height: 1, maxBytes: 1 })
+})

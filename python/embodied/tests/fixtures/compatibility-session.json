@@ -1,0 +1,16 @@
+{
+  "system": "Choose the next subgoal. Return only JSON with a subgoal string.",
+  "text": "Pick up the cup shown by camera zero.",
+  "png": "iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAIAAAD91JpzAAAAEklEQVR4nGPkUbJgYGBgYgADAATGAGqWLTkEAAAAAElFTkSuQmCC",
+  "response": {
+    "subgoal": "grasp the cup"
+  },
+  "expected": {
+    "model": "vision",
+    "temperature": 0,
+    "max_tokens": 512,
+    "response_format": {
+      "type": "json_object"
+    }
+  }
+}

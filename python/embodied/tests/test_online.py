@@ -327,6 +327,7 @@ def test_recovery_ablation_retains_initial_binding_and_native_outcome(tmp_path, 
     assert ('online_plan' in calls) is enabled
     assert any(row['type']=='observed_event' for row in records)
     assert records[-1]['type']=='native_outcome' and records[-1]['success']
+    assert 'online_observe' not in calls or calls.index('online_actions') < calls.index('online_observe')
     assert calls[-1] == 'reset' and runtime.blocked
 
 

@@ -1,0 +1,20 @@
+{
+  "scope": "Keyless loop structure with a synthetic physical environment; no benchmark outcome evidence",
+  "responses": [
+    {"composition": "pick", "rationale": "initial binding", "execution": "bind"},
+    {"composition": "pick", "rationale": "restart from restored current RGB", "execution": "restart"}
+  ],
+  "expected": {
+    "provider_calls": 2,
+    "one_session": true,
+    "request_phases": ["initial", "recovery"],
+    "observation_sequences": [1, 3],
+    "recovery_trigger_sequence": 2,
+    "rgb_available": [true, true],
+    "history_roles": ["system", "user", "assistant", "user"],
+    "native_observation_counts_at_first_action": [1, 1],
+    "dispatched_actions": [{"joint": [0.25]}, {"joint": [0.5]}],
+    "discarded_tail": 2,
+    "synthetic_terminal_success": true
+  }
+}

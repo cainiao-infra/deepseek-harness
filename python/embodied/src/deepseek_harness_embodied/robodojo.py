@@ -286,8 +286,6 @@ def eval_one_episode(TASK_ENV, model_client) -> None:
         coordinator = RecoveryCoordinator(runtime=Provider(), state=state, initial_revision=initial,
             budget=RecoveryBudget(deadline=runtime.deadline, **settings['recovery']),
             plan=runtime.replan, record=runtime.record)
-        coordinator.observe(runtime.capture())
-        model_client.call(func_name='online_observe', obs=runtime.packet(observation=runtime.observation))
         events.observe(runtime.observation, None, state.observation_seq)
         while coordinator.status == 'running':
             action = coordinator.actions()

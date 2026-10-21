@@ -3,9 +3,7 @@ from __future__ import annotations
 
 import json
 import os
-import threading
 from dataclasses import replace
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 import pytest
@@ -16,35 +14,16 @@ from test_bridge import spec
 
 @pytest.mark.skipif(os.environ.get('DSH_EMBODIED_INTEGRATION') != '1', reason='requires build:artifacts')
 @pytest.mark.parametrize('episode_session,reasoning', [(False,None), (True,None), (True,'off'), (True,'high')])
-def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, episode_session, reasoning):
+def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, episode_session, reasoning, recorded_provider):
     import time
     root = Path(__file__).resolve().parents[3]
     fixture = json.loads((Path(__file__).parent/'fixtures/compatibility-session.json').read_text())
-    requests = []
-    class Handler(BaseHTTPRequestHandler):
-        def log_message(self, *args):
-            pass
-        def do_POST(self):
-            requests.append(json.loads(self.rfile.read(int(self.headers['Content-Length']))))
-            self.send_response(200)
-            self.send_header('Content-Type', 'text/event-stream')
-            self.end_headers()
-            content = json.dumps(fixture['response'])
-            for frame in [
-                {'choices':[{'delta':{'role':'assistant','content':content},'index':0,'finish_reason':None}]},
-                {'choices':[{'delta':{},'index':0,'finish_reason':'stop'}],
-                 'usage':{'prompt_tokens':10,'completion_tokens':5}},
-            ]:
-                self.wfile.write(('data: '+json.dumps(frame)+'\n\n').encode())
-            self.wfile.write(b'data: [DONE]\n\n')
-            self.wfile.flush()
-    server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
-    worker = threading.Thread(target=server.serve_forever, daemon=True)
-    worker.start()
+    count = 3 if reasoning == 'off' else 2
+    url, requests = recorded_provider([fixture['response']]*count)
     home = tmp_path/'home'
     install_source_profile(home, root/'packages/experimental/embodied-planner')
     # Three image turns must fit pi-ai's conservative context-token estimate.
-    bridge = PlannerBridge(spec=replace(spec(), base_url=f'http://127.0.0.1:{server.server_port}/v1',
+    bridge = PlannerBridge(spec=replace(spec(), base_url=url,
         deepseek_reasoning=reasoning, calls_per_runtime=3, context_window=65536),
         dsh_home=home, evidence_root=tmp_path/'evidence', dsh_bin=str(root/'apps/cli/lib/bin.js'),
         runtime_cwd=str(root))
@@ -55,7 +34,6 @@ def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, ep
         {'type':'image_url','image_url':{'url':'data:image/png;base64,'+fixture['png']}}]}]
     try:
         generation = bridge.begin_episode(0, 'episode')
-        count = 3 if reasoning == 'off' else 2
         for number in range(count):
             identity = RequestIdentity('run','episode',f'request-{number}',0,generation,time.monotonic()+20)
             assert bridge.plan(messages=messages, identity=identity, mode='subgoal',
@@ -91,9 +69,6 @@ def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, ep
             assert not any(event.get('type') == 'tool/call' for event in events)
     finally:
         bridge.close()
-        server.shutdown()
-        server.server_close()
-        worker.join(2)
         if old_key is None:
             os.environ.pop('PHYSICALRSI_AGENT_API_KEY', None)
         else:

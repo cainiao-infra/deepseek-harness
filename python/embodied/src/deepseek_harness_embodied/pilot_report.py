@@ -79,6 +79,26 @@ def summarize(root: Path) -> dict:
         reserved = len(list((path.parent/'provider/attempts').glob('call-*.json')))
         observed[key] = episode_summary(result, episode_timeout=spec['episode_timeout_seconds'],
                                         reserved_attempts=reserved)
+        if 'layout_id' in result['case']:
+            selected = path.parent/'simulation/selected-layout.json'
+            layout = json.loads(selected.read_text()) if selected.exists() else None
+            if layout != result.get('selected_layout'):
+                raise ValueError('Launcher layout selection disagrees with native evidence')
+            if layout is None:
+                if observed[key]['success']:
+                    raise ValueError('Successful episode is missing its selected layout evidence')
+            elif (layout['native_layout_id'] != result['case']['layout_id']
+                    or layout['layout_sha256'] != result['case']['layout_sha256']):
+                raise ValueError('Native layout identity differs from the frozen case')
+            elif hashlib.sha256(selected.with_suffix('.snapshot.json').read_bytes()).hexdigest() != layout['layout_sha256']:
+                raise ValueError('Runtime layout snapshot differs from the frozen case')
+            if layout is not None and 'fresh_layout' in result['case']:
+                cohort, source = result['case']['fresh_layout'], layout.get('fresh_source', {})
+                if any(source.get(k) != v for k, v in {
+                    'manifest_path':cohort['manifest'],'manifest_sha256':cohort['manifest_sha256'],
+                    'index':cohort['index'],'split':cohort['split'],'task':result['case']['task']}.items()):
+                    raise ValueError('Fresh layout source differs from the frozen case')
+            observed[key]['selected_layout'] = layout
         observed[key]['artifact_directory'] = path.parent.name
         interruption = path.parent/'infrastructure-interruption.json'
         if interruption.is_file():

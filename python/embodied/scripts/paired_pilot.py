@@ -14,6 +14,7 @@ import json
 import math
 import os
 from pathlib import Path
+import re
 import secrets
 import shutil
 import signal
@@ -211,6 +212,13 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
                 '--host', '127.0.0.1', '--protocol', 'ws', '--policy_server_url', url,
                 '--additional_info', out.name, '--seed', str(case['seed']), '--headless',
                 '--kit_args=--enable isaacsim.replicator.behavior --enable isaacsim.sensors.camera']
+            if 'layout_id' in case:
+                command.extend(['--layout-id',str(case['layout_id']),'--layout-sha256',case['layout_sha256']])
+            if 'fresh_layout' in case:
+                cohort = case['fresh_layout']
+                command.extend(['--fresh-layout-manifest',cohort['manifest'],'--fresh-layout-task',case['task'],
+                    '--fresh-layout-manifest-sha256',cohort['manifest_sha256'],
+                    '--fresh-layout-index',str(cohort['index']),'--fresh-layout-split',cohort['split']])
             write_record(out/'launch.json', {'argv': command, 'mode': mode})
             client = subprocess.Popen(command, env=env, stdin=subprocess.DEVNULL,
                                       stdout=client_log, stderr=subprocess.STDOUT, start_new_session=True)
@@ -228,6 +236,9 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
                                     for p in sorted((out/'simulation').rglob('_result.json'))]
         result['timings'] = [json.loads(line) for p in (out/'simulation').glob('episode-timing.jsonl')
                              for line in p.read_text().splitlines()]
+        selected = out/'simulation/selected-layout.json'
+        if selected.exists():
+            result['selected_layout'] = json.loads(selected.read_text())
         write_record(out/'result.json', result)
     return result
 
@@ -276,6 +287,19 @@ def validate_spec(spec: dict) -> None:
                    for c in spec['cases'])):
         raise ValueError('Unique safe case identifiers required')
     for case in spec['cases']:
+        if 'fresh_layout' in case:
+            cohort = case['fresh_layout']
+            if (case.get('layout_id') != 0 or cohort.get('split') != 'development'
+                    or type(cohort.get('index')) is not int or cohort['index'] < 0
+                    or not isinstance(cohort.get('manifest'), str) or not Path(cohort['manifest']).is_absolute()
+                    or not isinstance(cohort.get('manifest_sha256'),str)
+                    or not re.fullmatch('[0-9a-f]{64}',cohort['manifest_sha256'])):
+                raise ValueError('Development fresh cohorts require an absolute frozen manifest, index and native layout zero')
+        if 'layout_id' in case or 'layout_sha256' in case:
+            if (type(case.get('layout_id')) is not int or case['layout_id'] < 0
+                    or not isinstance(case.get('layout_sha256'), str)
+                    or not re.fullmatch('[0-9a-f]{64}',case['layout_sha256'])):
+                raise ValueError('Explicit layout selection requires a nonnegative index and frozen SHA-256')
         if sorted(case['order']) != ['H0', 'H1', 'N']:
             raise ValueError('Each pilot case requires all three arms exactly once')
         if any(type(case[name]) is not int or case[name] < 0

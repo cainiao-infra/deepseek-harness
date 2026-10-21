@@ -1,5 +1,6 @@
 """Pilot denominators survive zero-exit failures, missing usage and incomplete runs."""
 from copy import deepcopy
+import hashlib
 import json
 
 import pytest
@@ -27,6 +28,27 @@ def retain(directory, row):
         root = directory/'provider'/f'http-{index:04d}'
         root.mkdir(parents=True)
         (root/'receipt.json').write_text(json.dumps(receipt))
+
+
+def test_pinned_layout_report_rejects_mutated_snapshot(tmp_path):
+    layout=b'{"position":[1,2,3]}'
+    case=dict(result()['case'],layout_id=2,layout_sha256=hashlib.sha256(layout).hexdigest())
+    spec={'schema':'dsh-paired-pilot/v1','partition':'development','episode_timeout_seconds':30,'cases':[case]}
+    (tmp_path/'spec.json').write_text(json.dumps(spec))
+    for arm in case['order']:
+        directory=tmp_path/arm
+        directory.mkdir()
+        row=result(arm)
+        row['case']=case
+        row['selected_layout']={'native_layout_id':2,'layout_sha256':case['layout_sha256']}
+        (directory/'result.json').write_text(json.dumps(row))
+        retain(directory,row)
+        (directory/'simulation/selected-layout.json').write_text(json.dumps(row['selected_layout']))
+        (directory/'simulation/selected-layout.snapshot.json').write_bytes(layout)
+    assert all(r['success'] for r in summarize(tmp_path)['rows'])
+    (tmp_path/'H1/simulation/selected-layout.snapshot.json').write_bytes(b'{}')
+    with pytest.raises(ValueError,match='snapshot differs'):
+        summarize(tmp_path)
 
 
 @pytest.mark.parametrize('change', [

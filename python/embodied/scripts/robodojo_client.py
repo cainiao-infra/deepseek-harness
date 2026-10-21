@@ -14,17 +14,49 @@ parser.add_argument('--output', type=Path, required=True)
 parser.add_argument('--hold-first-actions', type=int, default=0)
 parser.add_argument('--lose-rgb-after-action', type=int, default=0)
 parser.add_argument('--mode', choices=('online', 'native'), default='online')
+parser.add_argument('--layout-id', type=int)
+parser.add_argument('--layout-sha256')
+parser.add_argument('--fresh-layout-manifest', type=Path)
+parser.add_argument('--fresh-layout-manifest-sha256')
+parser.add_argument('--fresh-layout-task')
+parser.add_argument('--fresh-layout-index', type=int)
+parser.add_argument('--fresh-layout-split', choices=('development','validation'))
+parser.add_argument('--comparison-sha256')
 args, native_args = parser.parse_known_args()
+if (args.layout_id is None) != (args.layout_sha256 is None):
+    parser.error('--layout-id and --layout-sha256 must be supplied together')
+fresh_args = (args.fresh_layout_manifest, args.fresh_layout_manifest_sha256,
+              args.fresh_layout_task, args.fresh_layout_index, args.fresh_layout_split)
+if any(value is not None for value in fresh_args) and (any(value is None for value in fresh_args) or args.layout_id != 0):
+    parser.error('Fresh layouts require a manifest, task, cohort index, split and --layout-id 0')
 args.output.mkdir(parents=True, exist_ok=False)
 os.chdir(args.output)
 from deepseek_harness_embodied.robodojo import eval_one_episode
 from deepseek_harness_embodied.online_config import load_online_config
 from deepseek_harness_embodied.terminal_timing import TerminalTiming
+from deepseek_harness_embodied.layouts import bind_fresh_case, select_layout
 from PhysicalRSI_baselines.robodojo import evaluation
 from client_server.ws import model_client as native_client
 
 settings = load_online_config(Path(os.environ['DSH_ROBODOJO_ONLINE_CONFIG']))
 native_evaluate = evaluation.eval_one_episode
+if args.layout_id is not None:
+    from env.seed_manager import seed_manager
+    SeedManager = seed_manager.SeedManager
+    fresh_source = None
+    if args.fresh_layout_manifest is not None:
+        SeedManager, fresh_source = bind_fresh_case(SeedManager,
+            manifest_path=args.fresh_layout_manifest, task=args.fresh_layout_task,
+            index=args.fresh_layout_index, expected_sha256=args.layout_sha256,
+            expected_manifest_sha256=args.fresh_layout_manifest_sha256,
+            split=args.fresh_layout_split, comparison_sha256=args.comparison_sha256)
+        seed_manager.SeedManager = SeedManager
+    native_init_eval = SeedManager.init_eval
+    def selected_init_eval(manager, *init_args, **init_kwargs):
+        native_init_eval(manager, *init_args, **init_kwargs)
+        select_layout(manager, layout_id=args.layout_id, expected_sha256=args.layout_sha256,
+                      evidence=args.output/'selected-layout.json', fresh_source=fresh_source)
+    SeedManager.init_eval = selected_init_eval
 client_class = native_client.WsModelClient
 def configured_client(**kwargs):
     """Construct new native clients with the deployment's whole-RPC budget."""

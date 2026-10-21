@@ -105,6 +105,11 @@ def test_gateway_records_attempts_usage_and_reaps_listener(tmp_path):
     {'cases': []},
     {'cases': [{'case_id': '../escape', 'order': ['N', 'H0', 'H1']}]},
     {'cases': [{'case_id': 'valid', 'order': ['N', 'N', 'H1']}]},
+    {'deepseek_reasoning':'unsupported'},
+    {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':1}]},
+    {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':True,'layout_sha256':'0'*64}]},
+    {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':0,'layout_sha256':'0'*64,
+                'fresh_layout':{'manifest':'/frozen/manifest.json','manifest_sha256':'0'*64,'index':0,'split':'validation'}}]},
 ])
 def test_invalid_pilot_spec_fails_before_launch(change):
     root = Path(__file__).parents[1]

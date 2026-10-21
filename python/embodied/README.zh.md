@@ -63,6 +63,10 @@ python python/embodied/scripts/paired_pilot.py --spec /absolute/path/to/pilot.js
 
 `native-terminal.json` 单独记录首次既有原生终止检查及首次动作派发。它不增加环境查询，忽略终止前的 success 标志，并将评测收尾排除在完成时间外。冷启动仍计入；仅此记录不能完成要求中的预热或资源控制验收。
 
+case 可同时固定 `layout_id` 和 `layout_sha256`。该索引选择 CLI seed 目录中按数字排序的原生布局；仅更改 `--seed` 不会选择目录内其他文件。客户端验证原文件，保留逐字节相同的不可覆盖快照，并让原生加载器读取快照；保留原生恢复排除规则。报告按 case 检查所选索引和快照摘要；缺失选择证据不能支持固定布局 case 成功。布局文件和标识不进入模型输入。
+
+`scripts/generate_layout_cohort.py` 在隔离工作进程中复用已安装的 PhysicalRSI 配置目录生成器和输入限制，不调用模型、不读取 benchmark 布局。生成前冻结分配、采样器源码及按分区隔离的种子流。几何生成不代表物理或 benchmark 分布验证。validation 场景集要求已冻结的对照 SHA-256。开发 case 的 `fresh_layout` 包含绝对路径 `manifest`、其 `manifest_sha256`、原场景集 `index` 及 `split=development`，同时设置 `layout_id=0` 和场景文件 SHA-256。原生新布局执行端将该已验证条目绑定到索引零，保留的选择记录仍包含原场景集标识。开发预实验拒绝 validation 场景集。文件被改动、场景重复、场景集不完整或缺失回执时不能进入绑定。
+
 `scripts/paired_pilot_report.py /absolute/path/to/pilot-output` 在全部指定组结束后输出描述性报告。缺失或重复分配、源码版本混用会拒绝生成报告。原生结果、异常、共同期限及提供方预留名额分别检查；退出码为零的失败仍计入分母，缺失提供方回执使其用量保持未知。结果文件摘要支持与保留证据核验。报告始终将统计验收标记为证据不足。
 
 [验收记录](evaluations/2026-10-21-acceptance/report.zh.md)包含固定 case 的开发结果、证据摘要及尚未完成的正式验收条件。
@@ -72,6 +76,8 @@ python python/embodied/scripts/paired_pilot.py --spec /absolute/path/to/pilot.js
 `scripts/thinking_comparison.py` 校验证据归档的 SHA-256，在推理前冻结全部已存提供方请求及随机配对分配，再向 DeepSeek 官方端点逐一发送一次。两组保留相同消息文本、图像和历史，统一使用非流式传输。token 上限、重复次数、并发数、超时和种子均由 CLI 显式配置。开启 Thinking 使用 `high` 强度；两组请求保留 temperature，但提供方在开启 Thinking 时忽略该参数。可通过 `--key-file` 提供原始密钥文件，凭证不进入保存的请求或协议。
 
 判定器仅接纳已检查的单能力 pickup 目录，检查原生字段类型、已注册 ID 及初始/恢复执行选择，不评价物理任务成功或理由质量。缺失、失败、截断及无效请求均保留在分母。`--online-variants` 增加独立冻结的原始/澄清在线提示词对照，不改变历史轮次或图像。`scripts/thinking_comparison_report.py` 从原始响应重新计算决策，并拒绝与冻结分配不符的请求、回执或响应。在这些开发快照上的重复调用不能完成 G1–G4 验收。
+
+[Thinking 诊断](evaluations/2026-10-21-thinking/report.zh.md)记录模型配置及提示词对照、失败机制和证据摘要。
 
 ## 验证
 

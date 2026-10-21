@@ -23,6 +23,8 @@ The [integration patch](integrations/physicalrsi.patch) extracts `build_planner_
 
 The [remote source variant](integrations/physicalrsi-remote.patch) preserves the audited remote planner’s `api`, `codex` and `remote-codex` backends while adding DSH through the same domain builder and validator. Verify both `before_sha256` values in [its source manifest](integrations/physicalrsi-remote.sources.json), apply only in an isolated PhysicalRSI copy, then verify both `after_sha256` values. A source mismatch requires a new reviewed port.
 
+The optional [worker shutdown patch](integrations/physicalrsi-worker-close.patch) uses the native worker’s existing close message for healthy idle skills, then awaits exit. Busy or failed workers receive termination; expiry forces a kill and waits for exit and the active pipe consumer before closing handles. `shutdown_timeout_s` and `kill_timeout_s` are positive finite native code-policy settings, defaulting to 15 and 10 seconds. Apply only to the source hashes in [its manifest](integrations/physicalrsi-worker-close.sources.json), in the isolated copy. Use the same worker implementation in every comparison arm.
+
 Copy [the deployment example](configs/deepseek-flash.example.json), set absolute paths, and configure the native planner’s `max_tokens` to the same cap for comparisons. Export `PHYSICALRSI_PLANNER_BACKEND=dsh`, `PHYSICALRSI_DSH_CONFIG=/absolute/path/to/config.json`, and `PHYSICALRSI_AGENT_API_KEY` through your credential environment. The SDK process inherits the credential; neither configuration nor receipts contain it. Native transport remains the `api` backend.
 
 ## Planning and evidence
@@ -41,7 +43,7 @@ The single-environment `robodojo.py` consumer owns action dispatch and its cache
 
 Action evidence converts numeric arrays and scalars to JSON values before dispatch while passing the original command to the native executor. Unsupported or nonfinite values fail before the dispatch record and physical call. Evidence serialization does not change action units, coordinates or array types consumed by RoboDojo.
 
-`native_binding.py` defines the execution service and its synchronous code-policy provider. It owns native model creation, committed-plan delivery, observations, action chunks, cached tails and worker cleanup. Reopening must reproduce the captured configuration, catalog, operation registry and memory; a mismatch closes the replacement before actions. The online planner consumes this service and includes its provider identity in the execution binding revision.
+`native_binding.py` defines the execution service and its synchronous code-policy provider. It owns native model creation, committed-plan delivery, observations, action chunks, cached tails and worker cleanup. Reopening must reproduce the captured configuration, catalog, operation registry and memory; a mismatch closes the replacement before actions. The online planner consumes this service and includes its provider identity in the execution binding revision. A cleanup exception permanently prevents reuse and further stop acknowledgement, even if the native model sets its closed flag; replace the owning service after resolving worker state.
 
 Initial binding delivers its observation once. The next native observation update follows the first completed action, preserving the native observation/action cadence. Recovery still captures a newer observation after acknowledged stopping before binding the replacement.
 

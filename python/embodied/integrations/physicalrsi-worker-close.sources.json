@@ -1,0 +1,9 @@
+{
+  "schema": "dsh-physicalrsi-source-variant/v1",
+  "files": {
+    "PhysicalRSI_baselines/robodojo/skills/program_service.py": {
+      "before_sha256": "414103f48da371136b9e328508d2091053363a75eb882d5462197a90b9e3e2c3",
+      "after_sha256": "2e425fdefbabe53b21c43387df1943317dbf73395226b3188c7cabe305ea83cb"
+    }
+  }
+}

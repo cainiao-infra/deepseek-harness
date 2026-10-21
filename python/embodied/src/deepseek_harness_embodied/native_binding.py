@@ -62,6 +62,7 @@ class CodeBinding:
             raise ValueError('Online v1 supports synchronous code-policy workers only')
         self.factory, self.deployment = factory, deepcopy(deployment)
         self.bound = False
+        self.cleanup_error: BaseException | None = None
         self.model = factory(self.deployment)
         try:
             if self.model.preloaded:
@@ -74,6 +75,8 @@ class CodeBinding:
 
     def bind(self, plan: dict, observation: dict) -> dict:
         """Bind through the native planner consumer without resetting the physical scene."""
+        if self.cleanup_error is not None:
+            raise RuntimeError('Native worker cleanup is unconfirmed; replace the owning service') from self.cleanup_error
         if self.bound:
             raise RuntimeError('Stopping is required before native rebinding')
         try:
@@ -113,7 +116,13 @@ class CodeBinding:
             raise
 
     def close(self) -> None:
-        """Clear native tails and synchronously close the owned code-policy model."""
+        """Close native workers; an earlier cleanup failure permanently forbids reuse."""
         self.bound = False
         self.model.action_queues.clear()
-        self.model.close()
+        try:
+            self.model.close()
+        except BaseException as error:
+            self.cleanup_error = error
+            raise
+        if self.cleanup_error is not None:
+            raise RuntimeError('Native worker cleanup is unconfirmed; replace the owning service') from self.cleanup_error

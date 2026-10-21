@@ -84,6 +84,25 @@ def test_learned_policy_configuration_is_rejected_before_in_process_creation():
     assert models == []
 
 
+def test_native_closed_flag_cannot_acknowledge_an_earlier_failed_cleanup():
+    models = []
+    binding = CodeBinding(factory(models), {}, {'skills':{}})
+    binding.bind({'composition':'pick'}, {'instruction':'pick'})
+    def close():
+        if models[0].closed:
+            return
+        models[0].closed = True
+        raise TimeoutError('worker exit unconfirmed')
+    models[0].close = close
+    with pytest.raises(TimeoutError, match='unconfirmed'):
+        binding.close()
+    with pytest.raises(RuntimeError, match='cleanup is unconfirmed'):
+        binding.close()
+    with pytest.raises(RuntimeError, match='cleanup is unconfirmed'):
+        binding.bind({'composition':'pick'}, {'instruction':'pick'})
+    assert len(models)==1 and not binding.bound and models[0].action_queues=={}
+
+
 @pytest.mark.parametrize('method', ['observe','actions'])
 def test_policy_failure_discards_tail_and_disables_native_delivery(method):
     models = []

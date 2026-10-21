@@ -23,6 +23,8 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 [远端源码变体补丁](integrations/physicalrsi-remote.patch) 保留已审查远端规划器的 `api`、`codex` 和 `remote-codex` 后端，通过同一领域构造器和校验器接入 DSH。先核对[源码清单](integrations/physicalrsi-remote.sources.json)中的两个 `before_sha256`，仅在隔离的 PhysicalRSI 副本中应用，再核对两个 `after_sha256`。源码不匹配时需要重新审查移植。
 
+可选的[工作进程关闭补丁](integrations/physicalrsi-worker-close.patch)向健康且空闲的原生技能发送已有的关闭消息，并等待进程退出。正在执行或已失败的工作进程收到终止信号；超时后强制结束，并在进程退出、活动管道调用结束后关闭句柄。原生代码策略设置 `shutdown_timeout_s` 和 `kill_timeout_s` 必须为正有限数，默认分别为 15 和 10 秒。仅对[清单](integrations/physicalrsi-worker-close.sources.json)中哈希匹配的隔离副本应用补丁；所有对照组必须使用相同工作进程实现。
+
 复制[部署配置示例](configs/deepseek-flash.example.json)，设置绝对路径；进行对照时，将原生规划器的 `max_tokens` 配置为相同上限。通过凭证环境导出 `PHYSICALRSI_PLANNER_BACKEND=dsh`、`PHYSICALRSI_DSH_CONFIG=/absolute/path/to/config.json` 和 `PHYSICALRSI_AGENT_API_KEY`。SDK 进程继承凭证，配置和回执不包含密钥。原生传输仍使用 `api` 后端。
 
 ## 规划与证据
@@ -41,7 +43,7 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 动作证据在派发前将数值数组和标量转换为 JSON 值，原始命令仍直接传给原生执行器。不支持的值或非有限数值会在派发记录和物理调用前失败。证据序列化不改变 RoboDojo 消费的动作单位、坐标或数组类型。
 
-`native_binding.py` 定义执行服务及其同步代码策略提供方，负责原生模型创建、已准入计划传递、观测、动作分片、缓存尾部和工作进程清理。重新创建时必须复现已捕获的配置、目录、operation 注册表和记忆；不一致时在动作执行前关闭替代模型。在线规划器消费该服务，并将提供方身份纳入执行绑定版本。
+`native_binding.py` 定义执行服务及其同步代码策略提供方，负责原生模型创建、已准入计划传递、观测、动作分片、缓存尾部和工作进程清理。重新创建时必须复现已捕获的配置、目录、operation 注册表和记忆；不一致时在动作执行前关闭替代模型。在线规划器消费该服务，并将提供方身份纳入执行绑定版本。 清理异常后永久禁止复用及再次确认停止，即使原生模型已设置关闭标记也不例外；确认工作进程状态后必须替换所属服务。
 
 首次绑定只传递一次初始观测，下一次原生观测更新发生在首个动作完成后，保留原生观测/动作调用节奏。恢复仍必须在停止确认后采集更新观测，再绑定替换计划。
 

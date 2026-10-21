@@ -1,0 +1,123 @@
+--- a/PhysicalRSI_baselines/robodojo/skills/program_service.py
++++ b/PhysicalRSI_baselines/robodojo/skills/program_service.py
+@@ -1,10 +1,13 @@
+ """Owned code-skill process using a private pipe and the installed framework."""
+ import json
++import math
+ from multiprocessing import Pipe
+ import os
+ from pathlib import Path
+ import signal
+ import subprocess
++import threading
++import time
+ import uuid
+
+ from PhysicalRSI_core.infra.storage import file_digest
+@@ -38,6 +41,14 @@
+     def __init__(self, configuration):
+         self.process = self.pipe = self.log = None
+         self.closed = self.failed = False
++        self.shutdown_complete = False
++        self.call_lock = threading.Lock()
++        self.close_lock = threading.Lock()
++        self.shutdown_timeout = configuration.get('shutdown_timeout_s', 15)
++        self.kill_timeout = configuration.get('kill_timeout_s', 10)
++        for value in (self.shutdown_timeout, self.kill_timeout):
++            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
++                raise ValueError('Positive finite code worker shutdown budgets required')
+         # Batch initialization can create several isolated code-policy models.
+         # Match the declared public client budget instead of timing out inside
+         # the worker while that public request is still allowed to run.
+@@ -84,14 +95,15 @@
+         return value
+
+     def _call(self, method, obs=None):
+-        if self.closed or self.failed or self.process.poll() is not None:
+-            raise RuntimeError('Code skill worker is not running')
+-        try:
+-            self.pipe.send((method, () if obs is None else (obs,)))
+-            return self._receive(self.timeout)
+-        except BaseException:
+-            self.failed = True
+-            raise
++        with self.call_lock:
++            if self.closed or self.failed or self.process.poll() is not None:
++                raise RuntimeError('Code skill worker is not running')
++            try:
++                self.pipe.send((method, () if obs is None else (obs,)))
++                return self._receive(self.timeout)
++            except BaseException:
++                self.failed = True
++                raise
+
+     def update_obs_batch(self, observations):
+         # Frozen programs control fixed-base manipulators. Newer clients also
+@@ -125,19 +137,52 @@
+         return self._call('reset')
+
+     def close(self):
+-        if self.closed:
+-            return
+-        self.closed = True
++        """Stop admission, reap the worker, then release idle pipe consumers.
++
++        Healthy idle workers receive their existing close message. Failed or
++        busy workers are terminated; a missed grace deadline forces a kill.
++        Incomplete cleanup remains retryable and never acknowledges completion.
++        """
++        with self.close_lock:
++            if self.shutdown_complete:
++                return
++            self.closed = True
++            deadline = time.monotonic() + self.shutdown_timeout + self.kill_timeout
++            if self.process is not None and self.process.poll() is None:
++                idle = self.call_lock.acquire(blocking=False)
++                cooperative = False
++                if idle:
++                    try:
++                        if not self.failed:
++                            try:
++                                self.pipe.send(('close', ()))
++                                cooperative = True
++                            except (BrokenPipeError, EOFError, OSError) as error:
++                                # A closed transport requires process termination.
++                                self.failed = True
++                    finally:
++                        self.call_lock.release()
++                if not cooperative:
++                    self._signal(signal.SIGTERM)
++                try:
++                    self.process.wait(timeout=self.shutdown_timeout)
++                except subprocess.TimeoutExpired:
++                    self._signal(signal.SIGKILL)
++                    self.process.wait(timeout=max(0, deadline - time.monotonic()))
++            if not self.call_lock.acquire(timeout=max(0, deadline - time.monotonic())):
++                raise TimeoutError('Code skill RPC did not settle after worker exit')
++            try:
++                if self.pipe is not None:
++                    self.pipe.close()
++                if self.log is not None:
++                    self.log.close()
++                self.shutdown_complete = True
++            finally:
++                self.call_lock.release()
++
++    def _signal(self, sig):
+         try:
+-            if self.process is not None and self.process.poll() is None:
+-                os.killpg(self.process.pid, signal.SIGTERM)
+-                try:
+-                    self.process.wait(timeout=15)
+-                except subprocess.TimeoutExpired:
+-                    os.killpg(self.process.pid, signal.SIGKILL)
+-                    self.process.wait(timeout=10)
+-        finally:
+-            if self.pipe is not None:
+-                self.pipe.close()
+-            if self.log is not None:
+-                self.log.close()
++            os.killpg(self.process.pid, sig)
++        except ProcessLookupError as error:
++            # The owned worker may have exited between poll and signal.
++            pass

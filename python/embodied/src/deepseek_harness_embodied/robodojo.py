@@ -23,23 +23,48 @@ from .recovery import (
 
 class ObservedEvents:
     """Detect unavailable RGB, instruction changes and commanded-but-absent joint motion."""
-    def __init__(self, *, window: int, motion_epsilon: float, command_epsilon: float) -> None:
+    def __init__(self, *, window: int, motion_epsilon: float, command_epsilon: float,
+                 motion_guards: list[dict]) -> None:
         if type(window) is not int or window < 2 or any(
                 not math.isfinite(v) or v <= 0 for v in (motion_epsilon, command_epsilon)):
             raise ValueError('Explicit positive motion thresholds and window >= 2 required')
         self.window, self.motion_epsilon, self.command_epsilon = window, motion_epsilon, command_epsilon
         self.history = deque(maxlen=window)
         self.instruction = None
+        self.motion_guards = motion_guards
+
+    def _eligible(self, observation, action) -> bool:
+        packet = {'state':observation.get('state', {}), 'command':action}
+        for guard in self.motion_guards:
+            try:
+                value = packet
+                for part in guard['path']:
+                    value = value[part]
+                if hasattr(value, 'tolist'):
+                    value = value.tolist()
+                if isinstance(value, (list, tuple)) and len(value) == 1:
+                    value = value[0]
+                if (isinstance(value, bool) or not isinstance(value, (int, float))
+                        or not math.isfinite(value) or not guard['minimum'] <= value <= guard['maximum']):
+                    return False
+            except (KeyError, TypeError):
+                # Unknown preconditions cannot establish this particular trigger.
+                return False
+        return True
 
     def observe(self, observation: dict, action: dict | None, seq: int) -> ExecutionEvent | None:
         """Return one sensor-derived event, excluding intervention and benchmark labels."""
         vision = observation.get('vision')
         if not vision or any(row.get('color') is None for row in vision.values()):
-            return ExecutionEvent(f'vision-{seq}', seq, 'observation_lost')
+            return ExecutionEvent(f'vision-{seq}', seq, 'observation_lost', {'rgb_available':False})
         instruction = observation.get('instruction')
         previous, self.instruction = self.instruction, instruction
         if previous is not None and instruction != previous:
-            return ExecutionEvent(f'instruction-{seq}', seq, 'target_changed')
+            return ExecutionEvent(f'instruction-{seq}', seq, 'target_changed', {
+                'previous_instruction':previous, 'current_instruction':instruction})
+        if not self._eligible(observation, action):
+            self.history.clear()
+            return None
         state = observation.get('state', {})
         joints = {}
         for name, value in state.items():
@@ -69,7 +94,10 @@ class ObservedEvents:
         moved = max(abs(a-b) for name in commanded for a, b in zip(first[name], joints[name]))
         if demanded > self.command_epsilon and moved < self.motion_epsilon:
             self.history.clear()
-            return ExecutionEvent(f'motion-{seq}', seq, 'no_progress')
+            return ExecutionEvent(f'motion-{seq}', seq, 'no_progress', {
+                'window':self.window,'command_error':demanded,'observed_motion':moved,
+                'first_joints':{name:list(first[name]) for name in commanded},
+                'current_joints':{name:list(joints[name]) for name in commanded}})
         return None
 
 

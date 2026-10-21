@@ -35,7 +35,7 @@ def test_execution_key_ignores_history_and_rationale_but_consumes_sensors():
 
 
 def test_observed_events_require_command_error_and_measured_absence_of_motion():
-    detector = ObservedEvents(window=3, motion_epsilon=.01, command_epsilon=.1)
+    detector = ObservedEvents(window=3, motion_epsilon=.01, command_epsilon=.1, motion_guards=[])
     def obs(position=0):
         return {'instruction':'pick','vision':{'head':{'color':b'image'}},
                 'state':{'right_arm_joint_state':[position]}}
@@ -43,7 +43,7 @@ def test_observed_events_require_command_error_and_measured_absence_of_motion():
     assert detector.observe(obs(), {'right_arm_joint_state':[1]}, 2) is None
     assert detector.observe(obs(), {'right_arm_joint_state':[1]}, 3) is None
     assert detector.observe(obs(), {'right_arm_joint_state':[1]}, 4).kind == 'no_progress'
-    moving = ObservedEvents(window=3, motion_epsilon=.01, command_epsilon=.1)
+    moving = ObservedEvents(window=3, motion_epsilon=.01, command_epsilon=.1, motion_guards=[])
     for n in range(6):
         assert moving.observe(obs(n*.2), {'right_arm_joint_state':[1]}, n) is None
     assert moving.observe({'vision':{}}, None, 7).kind == 'observation_lost'
@@ -142,7 +142,7 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     skill_config.write_text(json.dumps(config))
     settings = {'schema':'dsh-robodojo-online/v1','call_budget':{'root':str(tmp_path/'budget'),'limit':2},
         'evidence_root':str(tmp_path/'evidence'), 'episode_timeout_seconds':30,'rpc_timeout_seconds':20,
-        'events':{'window':3,'motion_epsilon':.01,'command_epsilon':.1},
+        'events':{'window':3,'motion_epsilon':.01,'command_epsilon':.1,'motion_guards':[{'path':['state','gripper'],'minimum':.9,'maximum':1.0}]},
         'recovery':{'stop_timeout_seconds':5,'observation_max_age_seconds':30,'max_revisions':1,'max_events':1},
         'restart_guards':{'pick':[
             {'path':['state','gripper'],'minimum':.9,'maximum':1.0}]}}
@@ -231,3 +231,22 @@ def test_invalid_online_configuration_fails_before_model_start(tmp_path, change)
     path.write_text(json.dumps(config))
     with pytest.raises(ValueError):
         load_online_config(path)
+
+
+def test_expected_closed_gripper_contact_is_not_arm_motion_failure():
+    guards = [{'path':[source,'gripper'],'minimum':.9,'maximum':1.0} for source in ('state','command')]
+    detector = ObservedEvents(window=3,motion_epsilon=.01,command_epsilon=.1,motion_guards=guards)
+    def observe(seq, measured, commanded):
+        return detector.observe({'instruction':'pick','vision':{'head':{'color':b'rgb'}},
+            'state':{'right_arm_joint_state':[0.0],'gripper':[measured]}},
+            {'right_arm_joint_state':[1.0],'gripper':[commanded]},seq)
+    for seq in range(10):
+        assert observe(seq,0.0,0.0) is None
+    for seq in range(10,20):
+        assert observe(seq,1.0,0.0) is None
+    assert observe(20,1.0,1.0) is None
+    assert observe(21,1.0,1.0) is None
+    event = observe(22,1.0,1.0)
+    assert event.kind == 'no_progress'
+    assert event.facts['observed_motion']==0 and event.facts['command_error']==1
+    assert event.facts['first_joints']==event.facts['current_joints']=={'right_arm_joint_state':[0.0]}

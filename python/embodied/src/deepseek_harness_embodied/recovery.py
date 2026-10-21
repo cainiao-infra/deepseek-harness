@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Callable, Literal, Protocol
 
 from deepseek_harness import JsonObject
@@ -27,6 +27,8 @@ class ExecutionEvent:
     event_id: str
     observation_seq: int
     kind: Literal["grasp_failed", "target_changed", "observation_lost", "no_progress"]
+    facts: JsonObject = field(default_factory=dict)
+    """Observed trigger measurements, excluding benchmark intervention labels."""
 
 
 @dataclass(frozen=True)

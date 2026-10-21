@@ -1,15 +1,75 @@
 {
   "schema": "dsh-robodojo-online/v1",
   "evidence_root": "/absolute/path/to/online-evidence",
-  "call_budget": {"root": "/absolute/path/to/shared-six-call-budget", "limit": 6},
+  "call_budget": {
+    "root": "/absolute/path/to/shared-six-call-budget",
+    "limit": 6
+  },
   "episode_timeout_seconds": 600,
   "rpc_timeout_seconds": 180,
-  "events": {"window": 4, "motion_epsilon": 0.002, "command_epsilon": 0.05},
-  "recovery": {"stop_timeout_seconds": 30, "observation_max_age_seconds": 180, "max_revisions": 2, "max_events": 2},
+  "events": {
+    "window": 4,
+    "motion_epsilon": 0.002,
+    "command_epsilon": 0.05,
+    "motion_guards": [
+      {
+        "path": [
+          "state",
+          "left_ee_joint_state"
+        ],
+        "minimum": 0.9,
+        "maximum": 1.0
+      },
+      {
+        "path": [
+          "state",
+          "right_ee_joint_state"
+        ],
+        "minimum": 0.9,
+        "maximum": 1.0
+      },
+      {
+        "path": [
+          "command",
+          "left_ee_joint_state"
+        ],
+        "minimum": 0.9,
+        "maximum": 1.0
+      },
+      {
+        "path": [
+          "command",
+          "right_ee_joint_state"
+        ],
+        "minimum": 0.9,
+        "maximum": 1.0
+      }
+    ]
+  },
+  "recovery": {
+    "stop_timeout_seconds": 30,
+    "observation_max_age_seconds": 180,
+    "max_revisions": 2,
+    "max_events": 2
+  },
   "restart_guards": {
     "instruction-grounded-pickup": [
-      {"path": ["state", "left_ee_joint_state"], "minimum": 0.9, "maximum": 1.0},
-      {"path": ["state", "right_ee_joint_state"], "minimum": 0.9, "maximum": 1.0}
+      {
+        "path": [
+          "state",
+          "left_ee_joint_state"
+        ],
+        "minimum": 0.9,
+        "maximum": 1.0
+      },
+      {
+        "path": [
+          "state",
+          "right_ee_joint_state"
+        ],
+        "minimum": 0.9,
+        "maximum": 1.0
+      }
     ]
   }
 }

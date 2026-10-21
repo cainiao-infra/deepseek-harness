@@ -36,7 +36,7 @@ def load_online_config(path: Path) -> dict:
     guards = config['restart_guards']
     if not isinstance(guards, dict) or not guards:
         raise ValueError('Reviewed capability restart guards required')
-    for handle, rows in guards.items():
+    for handle, rows in [*guards.items(), ('observed motion', events['motion_guards'])]:
         if not isinstance(handle, str) or not isinstance(rows, list) or not rows:
             raise ValueError('Nonempty capability guard list required')
         for row in rows:

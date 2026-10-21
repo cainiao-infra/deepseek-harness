@@ -56,6 +56,9 @@ class OnlineModel:
         budget = self.settings['call_budget']
         self.call_budget = CallBudget(Path(budget['root']), budget['limit'])
         self.transport = PhysicalRSITransport(reserve_call=self.call_budget.reserve)
+        if self.settings['rpc_timeout_seconds'] <= self.transport.timeout:
+            self.transport.close()
+            raise ValueError('RPC timeout must exceed the model turn timeout')
         self.root = Path(self.settings['evidence_root'])
         frozen = json.loads(Path(os.environ['PHYSICALRSI_SKILL_CONFIG']).read_text())
         if any(entry.get('implementation', name) != 'code-policy'

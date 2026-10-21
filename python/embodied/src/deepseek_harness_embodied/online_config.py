@@ -22,6 +22,9 @@ def load_online_config(path: Path) -> dict:
     duration = config['episode_timeout_seconds']
     if isinstance(duration, bool) or not isinstance(duration, (int, float)) or not math.isfinite(duration) or duration <= 0:
         raise ValueError('Positive finite episode timeout required')
+    rpc = config['rpc_timeout_seconds']
+    if isinstance(rpc, bool) or not isinstance(rpc, (int, float)) or not math.isfinite(rpc) or rpc <= 0:
+        raise ValueError('Positive finite RPC timeout required')
     RecoveryBudget(deadline=duration, **config['recovery'])
     events = config['events']
     if type(events['window']) is not int or events['window'] < 2:

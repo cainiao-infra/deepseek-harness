@@ -15,7 +15,16 @@ args, native_args = parser.parse_known_args()
 args.output.mkdir(parents=True, exist_ok=False)
 os.chdir(args.output)
 from deepseek_harness_embodied.robodojo import eval_one_episode
+from deepseek_harness_embodied.online_config import load_online_config
 from PhysicalRSI_baselines.robodojo import evaluation
+from client_server.ws import model_client as native_client
+
+settings = load_online_config(Path(os.environ['DSH_ROBODOJO_ONLINE_CONFIG']))
+client_class = native_client.WsModelClient
+def configured_client(**kwargs):
+    """Construct new native clients with the deployment's whole-RPC budget."""
+    return client_class(**kwargs, request_timeout_s=settings['rpc_timeout_seconds'])
+native_client.WsModelClient = configured_client
 
 def evaluate(TASK_ENV, model_client):
     """Apply declared development faults outside the model-visible recovery input."""

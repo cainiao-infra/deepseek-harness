@@ -141,7 +141,7 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     skill_config = tmp_path/'skills.json'
     skill_config.write_text(json.dumps(config))
     settings = {'schema':'dsh-robodojo-online/v1','call_budget':{'root':str(tmp_path/'budget'),'limit':2},
-        'evidence_root':str(tmp_path/'evidence'), 'episode_timeout_seconds':30,
+        'evidence_root':str(tmp_path/'evidence'), 'episode_timeout_seconds':30,'rpc_timeout_seconds':20,
         'events':{'window':3,'motion_epsilon':.01,'command_epsilon':.1},
         'recovery':{'stop_timeout_seconds':5,'observation_max_age_seconds':30,'max_revisions':1,'max_events':1},
         'restart_guards':{'pick':[

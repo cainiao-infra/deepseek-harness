@@ -132,7 +132,8 @@ def test_unknown_stop_or_native_controls_prevent_planning_and_actions(tmp_path, 
     assert executed == []
 
 
-def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkeypatch):
+@pytest.mark.parametrize('stale', [False, True])
+def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkeypatch, stale):
     import sys
     from copy import deepcopy
     from types import ModuleType
@@ -201,13 +202,22 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     assert model.online_actions(packet(revision_id=first['revision_id']))['actions']==[{'x':1}]
     assert model.online_stop(packet())['worker_reaped']
     assert natives[0].closed
+    if stale:
+        with pytest.raises(ValueError,match='newer than the trigger'):
+            model.online_plan(packet(observation=observation,observation_seq=1,
+                event={'kind':'no_progress','observation_seq':1},executed_actions=3))
+        assert model.failed and model.stopped and len(seen)==1
+        model.close()
+        return
     second = model.online_plan(packet(observation=observation,observation_seq=2,
-        event={'kind':'no_progress'},executed_actions=3))
+        event={'kind':'no_progress','observation_seq':1},executed_actions=3))
     model.online_bind(packet(revision=second))
     assert len(natives)==2 and natives[0].closed and not natives[1].closed
     assert natives[1].chosen == {'composition':'pick','rationale':'restart'}
     assert model.online_actions(packet(revision_id=second['revision_id']))['actions']==[{'x':2}]
     assert seen[0]['episode_session'] and seen[1]['episode_session']
+    current = json.loads(seen[1]['messages'][1]['content'][0]['text'])['current_observation_status']
+    assert current == {'observation_seq':2,'rgb_available':True,'rgb_cameras':['head']}
     assert second['parent_id']==first['revision_id'] and second['execution_key'] != first['execution_key']
     with pytest.raises(RuntimeError,match='stale revision'):
         model.online_actions(packet(revision_id=first['revision_id']))
@@ -278,3 +288,12 @@ def test_online_response_schema_uses_string_handles_and_phase_specific_decisions
     assert not schema['additionalProperties']
     assert online_response_schema(catalog,program,initial=False)['properties']['execution']['enum']==['restart','switch','abort']
     assert 'operations' not in online_response_schema(catalog,None,initial=True)['properties']
+
+
+def test_current_rgb_status_does_not_use_historical_fault_facts():
+    from deepseek_harness_embodied.online_model import observation_status
+    supplied = {'vision':{'head':{'color':b'fresh'},'wrist':{'color':b'fresh'}}}
+    assert observation_status(supplied,9)['rgb_available'] is True
+    supplied['vision']['wrist']['color'] = None
+    assert observation_status(supplied,10)['rgb_available'] is False
+    assert observation_status({'vision':{}},11)['rgb_available'] is False

@@ -8,6 +8,7 @@
   "skill_config": "/absolute/path/to/frozen-skills.json",
   "runtime_config": "/absolute/path/to/dsh-runtime.json",
   "model": "deepseek-flash",
+  "deepseek_reasoning": "off",
   "embodiment": "arx_x5",
   "gpu_id": 0,
   "max_tokens": 2048,

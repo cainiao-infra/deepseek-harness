@@ -59,7 +59,25 @@ def online_prompt(native: str, *, operations: bool) -> str:
         'history may contain obsolete images. A restart is allowed only with the supplied '
         'restart preconditions. Operations must be an array of operation ID strings, never '
         'objects or parameter dictionaries. Runtime parameters are not accepted; the original '
-        'instruction is passed unchanged to the selected skill. Follow response_schema and return JSON only.')
+        'instruction is passed unchanged to the selected skill. Follow response_schema and return JSON only.'
+        + OBSERVATION_TIMING_GUIDANCE)
+
+
+OBSERVATION_TIMING_GUIDANCE = (
+    ' The previous_plan.execution_event describes the trigger BEFORE stopping and recapture; '
+    'its facts are historical, not the status of the current observation. '
+    'current_observation_status describes the newly supplied observation and images. '
+    'If its rgb_available is true, an earlier observation_lost event does not mean RGB is '
+    'currently missing. Evaluate restart using the current images and restart preconditions; '
+    'do not abort solely because the historical trigger had rgb_available=false.')
+
+
+def observation_status(observation: dict, sequence: int) -> dict:
+    """Describe only the current supplied camera availability, without benchmark state."""
+    vision = observation.get('vision', {})
+    cameras = sorted(name for name, camera in vision.items() if camera.get('color') is not None)
+    return {'observation_seq': sequence, 'rgb_available': bool(vision) and len(cameras) == len(vision),
+            'rgb_cameras': cameras}
 
 
 def online_response_schema(compositions: dict, operation_program: dict | None, *, initial: bool) -> dict:
@@ -175,6 +193,8 @@ class OnlineModel:
             if not self.stopped or self.proposal is not None:
                 raise RuntimeError('Planning requires a stopped execution with no pending proposal')
             observation = packet['observation']
+            if self.revision is not None and packet['observation_seq'] <= packet['event']['observation_seq']:
+                raise ValueError('Recovery planning requires an observation newer than the trigger')
             previous = None if self.revision is None else {
                 'plan': self.revision.plan, 'execution_event': packet['event'],
                 'executed_actions': packet['executed_actions'],
@@ -185,6 +205,7 @@ class OnlineModel:
             messages[0]['content'] = online_prompt(messages[0]['content'], operations=self.operation_program is not None)
             messages[1]['content'].insert(0, {'type': 'text', 'text': json.dumps({
                 'phase': 'initial' if self.revision is None else 'recovery',
+                'current_observation_status': observation_status(observation, packet['observation_seq']),
                 'response_schema': online_response_schema(self.catalog, self.operation_program,
                                                          initial=self.revision is None),
                 'restart_preconditions': self.settings['restart_guards']}, allow_nan=False)})

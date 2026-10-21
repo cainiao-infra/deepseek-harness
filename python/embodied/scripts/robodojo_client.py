@@ -19,6 +19,7 @@ args.output.mkdir(parents=True, exist_ok=False)
 os.chdir(args.output)
 from deepseek_harness_embodied.robodojo import eval_one_episode
 from deepseek_harness_embodied.online_config import load_online_config
+from deepseek_harness_embodied.terminal_timing import TerminalTiming
 from PhysicalRSI_baselines.robodojo import evaluation
 from client_server.ws import model_client as native_client
 
@@ -33,11 +34,12 @@ native_client.WsModelClient = configured_client
 def evaluate(TASK_ENV, model_client):
     """Apply declared development faults outside the model-visible recovery input."""
     env = TASK_ENV
-    take, observe = env.take_action, env.get_obs
+    take, observe, check_end = env.take_action, env.get_obs, env.is_episode_end
     count, lost = 0, False
     started = time.monotonic()
     initial = None
     error = None
+    terminal_timing = TerminalTiming()
     def check_deadline():
         if time.monotonic() - started >= settings['episode_timeout_seconds']:
             raise TimeoutError('Common evaluation episode deadline exceeded')
@@ -56,7 +58,12 @@ def evaluate(TASK_ENV, model_client):
             applied = {name:state[name].tolist() if hasattr(state[name], 'tolist') else list(state[name])
                        for name in value}
             fault({'type':'held_command','action_index':count,'requested':value,'applied':applied})
+        terminal_timing.dispatched()
         return take(applied)
+    def terminal():
+        ended = check_end()
+        terminal_timing.checked(bool(ended), bool(env.success[0]))
+        return ended
     def observation():
         nonlocal lost, initial
         check_deadline()
@@ -76,7 +83,7 @@ def evaluate(TASK_ENV, model_client):
             row = dict(row, vision={})
             fault({'type':'rgb_unavailable','action_index':count})
         return row
-    env.take_action, env.get_obs = action, observation
+    env.take_action, env.get_obs, env.is_episode_end = action, observation, terminal
     try:
         evaluate_episode = native_evaluate if args.mode == 'native' else eval_one_episode
         return evaluate_episode(env, model_client)
@@ -84,7 +91,8 @@ def evaluate(TASK_ENV, model_client):
         error = {'type': type(failure).__name__, 'message': str(failure)}
         raise
     finally:
-        env.take_action, env.get_obs = take, observe
+        env.take_action, env.get_obs, env.is_episode_end = take, observe, check_end
+        (args.output/'native-terminal.json').write_text(json.dumps(terminal_timing.snapshot(), allow_nan=False)+'\n')
         record = {'schema': 'dsh-robodojo-pilot-timing/v1', 'mode': args.mode,
                   'started': started, 'elapsed_seconds': time.monotonic()-started,
                   'actions': count, 'error': error,

@@ -66,7 +66,8 @@ class Gateway:
                     if not 0 < size <= spec['max_request_bytes']:
                         raise ValueError('Provider request size exceeds pilot cap')
                     original = json.loads(self.rfile.read(size))
-                    payload = provider_request(original, model=spec['model'], max_tokens=spec['max_tokens'])
+                    payload = provider_request(original, model=spec['model'], max_tokens=spec['max_tokens'],
+                                               reasoning=spec.get('deepseek_reasoning', 'off'))
                     slot = owner.budget.reserve({'received': receipt['started']})
                     directory = root/f'http-{slot:04d}'
                     write_record(directory/'received.json', original)
@@ -163,7 +164,7 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
             runtime = json.loads(Path(spec['runtime_config']).read_text())
             runtime.update(run_id=out.name, evidence_root=str(out/'model-evidence'))
             runtime['model_spec'].update(model=spec['model'], base_url=gateway.url,
-                max_tokens=spec['max_tokens'], deepseek_reasoning='off')
+                max_tokens=spec['max_tokens'], deepseek_reasoning=spec.get('deepseek_reasoning', 'off'))
             write_record(out/'runtime.json', runtime)
             online = json.loads((repo/'python/embodied/configs/robodojo-online.example.json').read_text())
             online.update(evidence_root=str(out/'runner'),
@@ -256,6 +257,8 @@ def validate_spec(spec: dict) -> None:
     """Reject incomplete development assignments and unbounded controls before launch."""
     if spec['schema'] != 'dsh-paired-pilot/v1' or spec['partition'] != 'development':
         raise ValueError('Only versioned development pilot specifications are accepted')
+    if spec.get('deepseek_reasoning', 'off') not in {'off', 'low', 'high', 'max'}:
+        raise ValueError('Unsupported DeepSeek pilot reasoning setting')
     for name in ('project_root', 'deployment_root', 'checkout', 'output', 'skill_config', 'runtime_config'):
         if not isinstance(spec[name], str) or not Path(spec[name]).is_absolute():
             raise ValueError('Absolute pilot paths required')

@@ -41,6 +41,8 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 `online_model.py` 保留 PhysicalRSI 的原生目录、记忆、领域提示词构造、校验和绑定实现。请求包含按阶段定义的 JSON Schema；operation 必须是已注册的 ID 字符串，不能附带自行构造的运行时参数。增强决策增加 `execution`：首次 `bind`、同能力 `restart`、不同能力 `switch`，或 `abort`。重启创建新的技能工作进程，依据新 RGB 和本体感知重新计算动作，不重置场景。配置的可观测重启前置条件必须成立；状态未知或夹爪闭合时可以拒绝恢复。执行摘要不含说明文字和历史。本版只接纳同步代码策略工作进程。
 
+在线请求区分历史触发事件和 `current_observation_status`，后者描述停止并重新采集后提供的相机状态。此前丢失 RGB 不代表当前仍无 RGB。恢复观测序列必须新于触发事件，过期数据包在推理前失败。状态只来自所提供的观测，不包含扰动标签或 benchmark 真值。
+
 两个进程均通过 `DSH_ROBODOJO_ONLINE_CONFIG` 使用[在线配置](configs/robodojo-online.example.json)。`scripts/robodojo_policy.py` 根据显式包含 `port`、`ready_file` 和 `model` 的 JSON 部署配置启动 RoboDojo 本地 WebSocket 服务；`scripts/robodojo_client.py` 从隔离输出目录向原生 RoboDojo main 提供在线评测执行端。两者均要求可导入已审查的 PhysicalRSI 和 RoboDojo Python 模块。观测事件检测器检查 RGB 缺失、指令变化，以及配置窗口内关节收到运动命令却没有移动；运动规则要求配置的观测和命令前置条件成立；pickup 示例要求两侧夹爪均保持张开，因此正常闭合接触不会触发。事件保留实测关节运动量和命令误差。不从 benchmark 状态推断抓取失败或目标位姿。
 
 初始规划和恢复请求共用一个持久化 DSH Session。episode 历史受修订次数、事件次数、provider 上下文限制和共同截止时间约束；活动链路中需要轮换运行时时直接失败，不丢弃历史。自动上下文摘要和离线历史到 skill 准入仍单独推进。不可覆盖的 runner 记录关联观测事件、停止确认、新观测序列、计划提交、原生绑定、已派发动作及原生终态；请求回执关联实际传感器输入和 Session。
@@ -55,13 +57,21 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 python python/embodied/scripts/paired_pilot.py --spec /absolute/path/to/pilot.json
 ```
 
-回环转发器使用系统分配端口及私有 token，转发至 DeepSeek 官方端点，并保留收到及发出的请求、响应字节、全部提供方尝试、耗时和用量。各组均显式关闭 thinking，其他消息及图像保持原样。冲突的模型或输出配置在推理前拒绝。原生传输重试分别消耗提供方名额。缺失用量保留为未知。子进程只收到转发 token；真实 API key 不写入证据。
+回环转发器使用系统分配端口及私有 token，转发至 DeepSeek 官方端点，并保留收到及发出的请求、响应字节、全部提供方尝试、耗时和用量。规格中的 `deepseek_reasoning` 对各组统一选择 `off`、`low`、`high` 或 `max`；缺省时保留原预实验的 `off`。其他消息及图像保持原样。冲突的模型或输出配置在推理前拒绝。原生传输重试分别消耗提供方名额。缺失用量保留为未知。子进程只收到转发 token；真实 API key 不写入证据。
 
 预实验保留原生结果文件、异常、进程期限、动作数及初始可观测状态/RGB 摘要。记录的评测函数耗时包含 skill 冷启动及各路径自身的收尾，不能用于正式原生终止时延的验收。失败 episode 保留且不自动重跑。运行顺序属于开发配置，不是统计随机化协议。执行器拒绝非 development 分区，且不宣布 G1–G4 通过；正式验收还要求经确认的最强原生配置、完整 S/L/U/X 覆盖、独立保留场景、功效计算、预登记配对区间及共同费用计量。
+
+`native-terminal.json` 单独记录首次既有原生终止检查及首次动作派发。它不增加环境查询，忽略终止前的 success 标志，并将评测收尾排除在完成时间外。冷启动仍计入；仅此记录不能完成要求中的预热或资源控制验收。
 
 `scripts/paired_pilot_report.py /absolute/path/to/pilot-output` 在全部指定组结束后输出描述性报告。缺失或重复分配、源码版本混用会拒绝生成报告。原生结果、异常、共同期限及提供方预留名额分别检查；退出码为零的失败仍计入分母，缺失提供方回执使其用量保持未知。结果文件摘要支持与保留证据核验。报告始终将统计验收标记为证据不足。
 
 [验收记录](evaluations/2026-10-21-acceptance/report.zh.md)包含固定 case 的开发结果、证据摘要及尚未完成的正式验收条件。
+
+## 固定输入 Thinking 对照
+
+`scripts/thinking_comparison.py` 校验证据归档的 SHA-256，在推理前冻结全部已存提供方请求及随机配对分配，再向 DeepSeek 官方端点逐一发送一次。两组保留相同消息文本、图像和历史，统一使用非流式传输。token 上限、重复次数、并发数、超时和种子均由 CLI 显式配置。开启 Thinking 使用 `high` 强度；两组请求保留 temperature，但提供方在开启 Thinking 时忽略该参数。可通过 `--key-file` 提供原始密钥文件，凭证不进入保存的请求或协议。
+
+判定器仅接纳已检查的单能力 pickup 目录，检查原生字段类型、已注册 ID 及初始/恢复执行选择，不评价物理任务成功或理由质量。缺失、失败、截断及无效请求均保留在分母。`--online-variants` 增加独立冻结的原始/澄清在线提示词对照，不改变历史轮次或图像。`scripts/thinking_comparison_report.py` 从原始响应重新计算决策，并拒绝与冻结分配不符的请求、回执或响应。在这些开发快照上的重复调用不能完成 G1–G4 验收。
 
 ## 验证
 

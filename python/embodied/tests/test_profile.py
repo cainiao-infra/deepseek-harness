@@ -15,7 +15,7 @@ from test_bridge import spec
 
 
 @pytest.mark.skipif(os.environ.get('DSH_EMBODIED_INTEGRATION') != '1', reason='requires build:artifacts')
-@pytest.mark.parametrize('episode_session,reasoning', [(False,None), (True,None), (True,'off')])
+@pytest.mark.parametrize('episode_session,reasoning', [(False,None), (True,None), (True,'off'), (True,'high')])
 def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, episode_session, reasoning):
     import time
     root = Path(__file__).resolve().parents[3]
@@ -74,6 +74,9 @@ def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, ep
             if reasoning == 'off':
                 assert request['thinking'] == {'type':'disabled'}
                 assert 'reasoning_effort' not in request
+            elif reasoning == 'high':
+                assert request['thinking'] == {'type':'enabled'}
+                assert request['reasoning_effort'] == 'high'
             else:
                 assert 'thinking' not in request
         receipts = [json.loads(file.read_text()) for file in (tmp_path/'evidence').rglob('receipt.json')]

@@ -8,23 +8,31 @@ from __future__ import annotations
 import json
 
 
-def provider_request(payload: dict, *, model: str, max_tokens: int) -> dict:
-    """Freeze model/output controls and disable thinking identically in every arm.
+def provider_request(payload: dict, *, model: str, max_tokens: int, reasoning: str = 'off') -> dict:
+    """Freeze model/output controls and the explicit thinking setting in every arm.
 
     Native requests omit the DeepSeek thinking option; the pilot explicitly
-    records its insertion. Other request fields, messages and images are retained.
+    records its insertion. Absent reasoning retains the original pilot's off
+    setting. Other request fields, messages and images are retained.
     Conflicting controls or tool use reject the request before provider inference.
     """
+    if reasoning not in {'off', 'low', 'high', 'max'}:
+        raise ValueError('Explicit supported DeepSeek reasoning setting required')
+    thinking = {'type': 'disabled' if reasoning == 'off' else 'enabled'}
+    effort = None if reasoning == 'off' else reasoning
     if (payload.get('model') != model or payload.get('max_tokens') != max_tokens
             or payload.get('temperature') != 0
             or payload.get('response_format') != {'type': 'json_object'}
             or payload.get('tools') or payload.get('tool_choice')
-            or payload.get('reasoning_effort') is not None
-            or payload.get('thinking', {'type': 'disabled'}) != {'type': 'disabled'}):
+            or payload.get('reasoning_effort', effort) != effort
+            or payload.get('thinking', thinking) != thinking):
         raise ValueError('Pilot request conflicts with frozen provider controls')
     if not isinstance(payload.get('messages'), list) or not payload['messages']:
         raise ValueError('Nonempty provider messages required')
-    return dict(payload, thinking={'type': 'disabled'})
+    result = dict(payload, thinking=thinking)
+    if effort is not None:
+        result['reasoning_effort'] = effort
+    return result
 
 
 def response_usage(body: bytes, *, streaming: bool) -> dict | None:

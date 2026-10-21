@@ -24,6 +24,16 @@ def test_native_and_dsh_provider_controls_agree():
     assert 'thinking' not in native
 
 
+@pytest.mark.parametrize('reasoning', ['low', 'high', 'max'])
+def test_thinking_controls_are_equal_for_native_and_dsh(reasoning):
+    native = request()
+    dsh = dict(native, thinking={'type': 'enabled'}, reasoning_effort=reasoning)
+    assert provider_request(native, model='deepseek-flash', max_tokens=2048, reasoning=reasoning) == dsh
+    assert provider_request(dsh, model='deepseek-flash', max_tokens=2048, reasoning=reasoning) == dsh
+    with pytest.raises(ValueError, match='frozen'):
+        provider_request(dict(dsh, reasoning_effort='off'), model='deepseek-flash', max_tokens=2048, reasoning=reasoning)
+
+
 @pytest.mark.parametrize('change', [
     {'model': 'different'}, {'max_tokens': 4096}, {'temperature': 1},
     {'thinking': {'type': 'enabled'}}, {'reasoning_effort': 'high'},

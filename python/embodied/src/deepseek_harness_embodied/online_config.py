@@ -29,6 +29,17 @@ def load_online_config(path: Path) -> dict:
     if isinstance(rpc, bool) or not isinstance(rpc, (int, float)) or not math.isfinite(rpc) or rpc <= 0:
         raise ValueError('Positive finite RPC timeout required')
     RecoveryBudget(deadline=duration, **config['recovery'])
+    if 'native_worker' in config:
+        from .process_binding import resolve_worker
+        worker = config['native_worker'] = resolve_worker(config['native_worker'])
+        # The audited native client's drain/join each has a five-second bound.
+        stop_bound = sum(worker[name] for name in ('request_timeout_seconds',
+            'exit_timeout_seconds','kill_timeout_seconds','client_close_timeout_seconds'))+10
+        if config['recovery']['stop_timeout_seconds'] < stop_bound:
+            raise ValueError('Recovery stop timeout must cover native worker and client cleanup')
+        start_bound = worker['startup_timeout_seconds']+worker['connect_timeout_seconds']+2*worker['request_timeout_seconds']
+        if rpc <= start_bound or rpc <= stop_bound:
+            raise ValueError('RPC timeout must cover native worker startup, binding and cleanup')
     events = config['events']
     if type(events['window']) is not int or events['window'] < 2:
         raise ValueError('Observed motion window must be at least two')

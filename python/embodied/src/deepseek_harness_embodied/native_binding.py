@@ -50,33 +50,28 @@ def metadata(model) -> dict:
                      'operation_program':model.operation_program, 'memory':model.memory.read()})
 
 
-class CodeBinding:
-    """Own a synchronous code-policy model and its acknowledged worker cleanup.
+class OwnedModelBinding:
+    """Own native binding inside a process whose caller also owns GPU teardown.
 
-    Learned-policy configurations are rejected before model creation. Reopening
-    after stopping must reproduce the captured capability and memory metadata.
+    Learned policies require an isolated worker process. The in-process online
+    consumer uses CodeBinding to reject them before construction.
     """
-    def __init__(self, factory, deployment: dict, config: dict) -> None:
-        if any(entry.get('implementation', name) != 'code-policy'
-               for name, entry in config['skills'].items()):
-            raise ValueError('Online v1 supports synchronous code-policy workers only')
+    def __init__(self, factory, deployment: dict) -> None:
         self.factory, self.deployment = factory, deepcopy(deployment)
         self.bound = False
         self.cleanup_error: BaseException | None = None
         self.model = factory(self.deployment)
         try:
-            if self.model.preloaded:
-                raise ValueError('Online v1 supports synchronous code-policy workers only')
             self.metadata = metadata(self.model)
         except BaseException:
             self.model.close()
             raise
-        self.identity = {'provider':'in-process-code'}
 
     def bind(self, plan: dict, observation: dict) -> dict:
         """Bind through the native planner consumer without resetting the physical scene."""
         if self.cleanup_error is not None:
             raise RuntimeError('Native worker cleanup is unconfirmed; replace the owning service') from self.cleanup_error
+
         if self.bound:
             raise RuntimeError('Stopping is required before native rebinding')
         try:
@@ -126,3 +121,19 @@ class CodeBinding:
             raise
         if self.cleanup_error is not None:
             raise RuntimeError('Native worker cleanup is unconfirmed; replace the owning service') from self.cleanup_error
+
+
+class CodeBinding(OwnedModelBinding):
+    """Reject learned policies before in-process creation; require stable metadata on reopen."""
+    def __init__(self, factory, deployment: dict, config: dict) -> None:
+        if any(entry.get('implementation', name) != 'code-policy'
+               for name, entry in config['skills'].items()):
+            raise ValueError('Online v1 supports synchronous code-policy workers only')
+        def code_factory(deployment):
+            model = factory(deployment)
+            if model.preloaded:
+                model.close()
+                raise ValueError('Online v1 supports synchronous code-policy workers only')
+            return model
+        super().__init__(code_factory, deployment)
+        self.identity = {'provider':'in-process-code'}

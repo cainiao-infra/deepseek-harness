@@ -85,9 +85,9 @@ def online_response_schema(compositions: dict, operation_program: dict | None, *
 
 
 class OnlineModel:
-    """Serialized WebSocket methods for one code-policy environment.
+    """Serialized WebSocket methods for one native-policy environment.
 
-    Initial code-policy bindings retain native validation. Replacements require
+    Initial bindings retain native validation. Replacements require
     explicit reviewed restart guards. Any service failure disables actions until
     reset. Rebinding reaps the old worker without resetting the physical scene.
     """
@@ -105,7 +105,13 @@ class OnlineModel:
             raise ValueError('RPC timeout must exceed the model turn timeout')
         self.root = Path(self.settings['evidence_root'])
         try:
-            self.binding: NativeBinding = CodeBinding(Model, model_cfg, frozen)
+            self.binding: NativeBinding
+            if 'native_worker' in self.settings:
+                from .process_binding import ProcessBinding
+                self.binding = ProcessBinding(model_cfg, frozen, self.settings['native_worker'],
+                                              self.root/'native-workers')
+            else:
+                self.binding = CodeBinding(Model, model_cfg, frozen)
         except BaseException:
             self.transport.close()
             raise

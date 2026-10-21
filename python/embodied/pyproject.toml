@@ -9,7 +9,7 @@ description = "Experimental PhysicalRSI planner bridge and recovery coordination
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-dependencies = ["deepseek-harness-sdk==0.0.0.dev0"]
+dependencies = ["deepseek-harness-sdk==0.0.0.dev0", "psutil>=7.0,<8"]
 
 [dependency-groups]
 test = ["pytest>=8.0", "numpy>=1.26"]

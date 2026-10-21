@@ -57,6 +57,11 @@ class OnlineModel:
         self.call_budget = CallBudget(Path(budget['root']), budget['limit'])
         self.transport = PhysicalRSITransport(reserve_call=self.call_budget.reserve)
         self.root = Path(self.settings['evidence_root'])
+        frozen = json.loads(Path(os.environ['PHYSICALRSI_SKILL_CONFIG']).read_text())
+        if any(entry.get('implementation', name) != 'code-policy'
+               for name, entry in frozen['skills'].items()):
+            self.transport.close()
+            raise ValueError('Online v1 supports synchronous code-policy workers only')
         self.native = self.factory(model_cfg)
         if self.native.preloaded:
             self.native.close()
@@ -173,7 +178,7 @@ class OnlineModel:
                 schema_version='dsh-robodojo-plan/v1', validate=validate, episode_session=True)
             revision = PlanRevision(uuid.uuid4().hex, '' if self.revision is None else self.revision.revision_id,
                 self.episode, self.generation, packet['observation_seq'], self.catalog_revision,
-                self.binding_revision, plan, execution_key(plan, messages))
+                self.binding_revision, plan, execution_key(plan, messages), identity.request_id)
             self.proposal = (revision, observation)
             return asdict(revision)
         except BaseException:

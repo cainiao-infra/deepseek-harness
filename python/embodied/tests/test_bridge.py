@@ -133,3 +133,27 @@ def test_duplicate_request_cannot_overwrite_success_evidence(setup):
         call()
     assert len(runtimes[0].inputs) == 1
     assert (folder/'request'/'receipt.json').read_bytes() == before
+
+
+def test_episode_session_reuses_history_and_refuses_rotation(setup):
+    bridge, runtimes, call, folder = setup
+    generation = bridge._episodes[0][1]
+    def plan(number):
+        return bridge.plan(messages=MESSAGES,
+            identity=RequestIdentity('run','episode',f'episode-{number}',0,generation,time.monotonic()+10),
+            mode='online',schema_version='v1',validate=lambda value:value,episode_session=True)
+    plan(0)
+    plan(1)
+    assert runtimes[0].inputs[0][1]['session_id'] == runtimes[0].inputs[1][1]['session_id']
+    with pytest.raises(PlanningFailure,match='cannot rotate'):
+        plan(2)
+    assert len(runtimes[0].inputs) == 2
+
+
+def test_exhausted_shared_budget_performs_no_inference(setup, tmp_path):
+    from deepseek_harness_embodied.budget import CallBudget
+    bridge, runtimes, call, folder = setup
+    bridge._reserve_call = CallBudget(tmp_path/'budget',0).reserve
+    with pytest.raises(RuntimeError,match='exhausted'):
+        call()
+    assert runtimes[0].inputs == [] and runtimes[0].closed

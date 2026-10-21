@@ -33,7 +33,8 @@ def evaluate(TASK_ENV, model_client):
             state = observe()['state']
             if any(not name.endswith(('arm_joint_state','ee_joint_state')) for name in value):
                 raise ValueError('Hold fault only supports joint actions')
-            applied = {name:list(state[name]) for name in value}
+            applied = {name:state[name].tolist() if hasattr(state[name], 'tolist') else list(state[name])
+                       for name in value}
             fault({'type':'held_command','action_index':count,'requested':value,'applied':applied})
         return take(applied)
     def observation():

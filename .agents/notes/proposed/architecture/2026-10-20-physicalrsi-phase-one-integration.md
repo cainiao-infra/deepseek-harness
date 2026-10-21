@@ -16,7 +16,7 @@ Keep observation filtering, domain rules, skill execution, physical state, and t
 
 This delivery requires phase-one compatibility comparison and phase-two online replanning, recovery, and outcome acceptance. Phase zero freezes baselines and evaluation protocols. Phase-three offline skill development may be prepared in parallel but is not a prerequisite for online gains. Basic tasks retain the existing execution path without extra planning calls when no domain trigger occurs.
 
-Implementation is partial; outcome acceptance remains open. Compatibility integration has local protocol evidence; enhanced runner integration and the frozen paired experiments remain required. Initial integration targets `general_pickup`, `arx_x5`, one environment, and the existing code-policy. Full acceptance must cover the basic, long-horizon composition, and recoverable-disturbance sets below. Conclusions exclude unvalidated policies, robots, and task scopes.
+Implementation is partial; outcome acceptance remains open. Compatibility integration has protocol evidence on macOS and Linux; the single-environment online runner is implemented, and simulator verification and frozen paired experiments have separate acceptance. Initial integration targets `general_pickup`, `arx_x5`, one environment, and the existing code-policy. Full acceptance must cover the basic, long-horizon composition, and recoverable-disturbance sets below. Conclusions exclude unvalidated policies, robots, and task scopes.
 
 ### Implementation checkpoint: 2026-10-21
 
@@ -24,7 +24,11 @@ The experimental [planner bundle](../../../../packages/experimental/embodied-pla
 
 Local evidence includes the actual built `dsh --profile embodied-planner` through the public Python SDK and a recorded local HTTP provider. It compares exact system/user text, ordered PNG bytes, JSON response mode, temperature and output cap, and checks persisted Session logs after runtime shutdown. Two live DeepSeek `deepseek-flash` calls completed using identical domain input: native and H0 both selected the registered `pick` capability. The input is synthetic, no robot actions occurred, and this is protocol evidence only. These calls use two of the ten model calls authorized for initial integration.
 
-The recovery coordinator implements the stop/observe/validate/commit/bind order and rejects unknown stop, stale observation/catalog, unchanged executable plans, late results and binding failures. Its deterministic provider tests do not supply RoboDojo stop semantics. T8–T14 remain open: observed-event detection, a real runner-owned stop provider, enhanced multi-turn planning and physical binding, linked native outcomes, pilot power analysis and formal G1–G4 paired acceptance. Offline skill development remains phase three. The proposal status must remain until the outcome criteria are met.
+The online runner now owns synchronous RoboDojo action checkpoints: it blocks dispatch, discards the runner tail, verifies the native interpolation queue is empty, reaps the old code-policy worker, and acquires fresh RGB/proprioception before a replacement. This is simulator quiescence between completed actions, not a physical-robot motion-stop guarantee. The model explicitly selects bind, restart, switch or abort; restart recreates the native skill from current sensors without resetting the scene. Observable preconditions gate binding, including configured open-gripper requirements for the pickup development configuration. Rationale and historical plans do not determine the execution digest.
+
+Initial and recovery requests use the same durable DSH Session with explicit revision/event/context/deadline bounds. The detector handles missing RGB, changed instructions and commanded-but-absent joint motion; grasp-failure and target-pose estimation are not implemented. Immutable runner records connect stop acknowledgement, observation sequence, committed plan, request receipt, native binding, action revision and native outcome. A cross-process ledger conservatively reserves the remaining six calls; recorded-model simulator runs use a separate ledger.
+
+T8–T12 have a scoped single-environment implementation for synchronous code-policy workers, with keyless lifecycle, native-binding doubles, quota contention and multi-turn Session replay evidence. Real simulator execution remains an independent check. Multi-subgoal orchestration, checkpoint-backed workers, richer domain detection, pilot power analysis and formal G1–G4 paired acceptance remain open. Offline skill development remains phase three. The proposal status must remain until the outcome criteria are met.
 
 ### Design rationale and complementary strengths
 
@@ -347,7 +351,7 @@ Zero temperature does not guarantee identical real generations. Deterministic te
 
 ### Implementation tasks
 
-Every task below is pending. Owners identify modules; this design work changes no code and starts no remote experiments. T0 pilots and formal outcome tests are later implementation work; existing remote successes cannot be added as statistical samples.
+The tasks below define acceptance scope; the implementation checkpoint records current delivery and evidence. Module ownership does not imply that formal outcome tests have passed. Existing remote successes and development smokes cannot be added as statistical samples.
 
 | ID | Phase/owner | Dependency | Deliverable and acceptance |
 |---|---|---|---|

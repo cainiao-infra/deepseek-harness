@@ -53,6 +53,8 @@ class PlanRevision:
     plan: JsonObject
     execution_key: str
     """Provider-validated digest of capability and executable parameters, excluding rationale."""
+    request_id: str = ""
+    """Planner receipt identity when the provider persists model requests."""
 
 
 @dataclass(frozen=True)
@@ -214,6 +216,7 @@ class RecoveryCoordinator:
             self.record({"type": "plan_committed", "revision_id": replacement.revision_id,
                          "parent_id": replacement.parent_id, "observation_seq": fresh.observation_seq,
                          "execution_key": replacement.execution_key,
+                         "request_id": replacement.request_id,
                          "plan": replacement.plan})
             self._revisions.add(replacement.revision_id)
             self.runtime.bind(replacement)

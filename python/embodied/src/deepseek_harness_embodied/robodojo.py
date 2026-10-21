@@ -52,16 +52,21 @@ class ObservedEvents:
         if len(self.history) < self.window or not joints:
             return None
         first = self.history[0][0]
+        commanded = set(joints)
+        for positions, command in self.history:
+            if not command:
+                return None
+            commanded &= set(positions) & set(command)
+        if not commanded:
+            return None
         demanded = 0.0
         for positions, command in self.history:
-            if not command or set(positions) != set(joints) or set(first) != set(joints):
-                return None
-            for name, values in positions.items():
-                target = command.get(name)
-                if target is None or len(target) != len(values):
+            for name in commanded:
+                values, target = positions[name], command[name]
+                if len(target) != len(values) or len(first[name]) != len(joints[name]):
                     return None
                 demanded = max(demanded, max(abs(float(a)-b) for a, b in zip(target, values)))
-        moved = max(abs(a-b) for name in joints for a, b in zip(first[name], joints[name]))
+        moved = max(abs(a-b) for name in commanded for a, b in zip(first[name], joints[name]))
         if demanded > self.command_epsilon and moved < self.motion_epsilon:
             self.history.clear()
             return ExecutionEvent(f'motion-{seq}', seq, 'no_progress')

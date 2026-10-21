@@ -213,3 +213,21 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
         model.online_actions(packet(revision_id=first['revision_id']))
     assert model.failed
     model.close()
+
+
+@pytest.mark.parametrize('change', [
+    lambda c:c.update(episode_timeout_seconds=-1),
+    lambda c:c['events'].update(window=1),
+    lambda c:c['call_budget'].update(limit=True),
+    lambda c:c['restart_guards']['instruction-grounded-pickup'][0].update(minimum=2),
+])
+def test_invalid_online_configuration_fails_before_model_start(tmp_path, change):
+    from pathlib import Path
+    from deepseek_harness_embodied.online_config import load_online_config
+    example = Path(__file__).parents[1]/'configs/robodojo-online.example.json'
+    config = json.loads(example.read_text())
+    change(config)
+    path = tmp_path/'config.json'
+    path.write_text(json.dumps(config))
+    with pytest.raises(ValueError):
+        load_online_config(path)

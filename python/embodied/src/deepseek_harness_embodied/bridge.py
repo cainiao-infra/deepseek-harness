@@ -131,7 +131,8 @@ class PlannerBridge:
     stopping; closing this bridge only reaps its SDK process.
     """
     def __init__(self, *, spec: ModelSpec, dsh_home: Path, evidence_root: Path,
-                 dsh_bin: str | None = None, runtime_cwd: str | None = None) -> None:
+                 dsh_bin: str | None = None, runtime_cwd: str | None = None,
+                 reserve_call: Callable[[dict], int] | None = None) -> None:
         self.spec = spec
         self.dsh_home = dsh_home.resolve()
         self.evidence_root = evidence_root.resolve()
@@ -144,12 +145,18 @@ class PlannerBridge:
         self._prompt: str | None = None
         self._calls = 0
         self._closed = False
+        self._reserve_call = reserve_call
+        self._sessions: dict[tuple[int, str, int], str] = {}
+        self._session_runtimes: dict[tuple[int, str, int], DeepSeekHarness] = {}
 
     def begin_episode(self, env_idx: int, episode_id: str) -> int:
         """Allocate a generation before planning; late requests cannot cross resets."""
         with self._state:
             if self._closed:
                 raise RuntimeError("Planner bridge is closed")
+            for key in [key for key in self._sessions if key[0] == env_idx]:
+                del self._sessions[key]
+                del self._session_runtimes[key]
             generation = self._episodes.get(env_idx, ("", -1))[1] + 1
             self._episodes[env_idx] = (episode_id, generation)
             return generation
@@ -203,7 +210,8 @@ class PlannerBridge:
         return self._runtime
 
     def plan(self, *, messages: list[JsonObject], identity: RequestIdentity,
-             mode: str, schema_version: str, validate: PlanValidator) -> JsonObject:
+             mode: str, schema_version: str, validate: PlanValidator,
+             episode_session: bool = False) -> JsonObject:
         """Commit only complete, validated plans with a current execution identity.
 
         Evidence is persisted before a successful return. No inference retry or
@@ -234,14 +242,26 @@ class PlannerBridge:
             remaining = identity.deadline - time.monotonic()
             if remaining <= 0:
                 raise PlanningFailure("cancelled", "Deadline expired before inference")
+            key = (identity.env_idx, identity.episode_id, identity.reset_generation)
+            if episode_session and key in self._sessions and (
+                    self._runtime is not self._session_runtimes[key] or self._prompt != system
+                    or self._calls >= self.spec.calls_per_runtime):
+                raise PlanningFailure("failed", "Episode Session cannot rotate; start a fresh episode")
             runtime = self._open(system, remaining)
             runtime.start()
-            session_id = "embodied-" + uuid.uuid4().hex
+            session_id = self._sessions.setdefault(key, "embodied-" + uuid.uuid4().hex) if episode_session else (
+                "embodied-" + uuid.uuid4().hex)
+            if episode_session:
+                self._session_runtimes[key] = runtime
             record["session_id"] = session_id
             self._calls += 1
             remaining = identity.deadline - time.monotonic()
             if remaining <= 0:
                 raise TimeoutError("Deadline expired during runtime startup")
+            if self._reserve_call is not None:
+                record["call_slot"] = self._reserve_call({
+                    "run_id": identity.run_id, "episode_id": identity.episode_id,
+                    "request_id": identity.request_id, "session_id": session_id})
             result = runtime.run(blocks, session_id=session_id, timeout_seconds=remaining, on_notification=collect)
             write_record(folder / "events.json", result.events)
             if result.finish_reason != "completed":

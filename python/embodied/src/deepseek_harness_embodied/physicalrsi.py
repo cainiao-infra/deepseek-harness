@@ -13,7 +13,8 @@ from .bridge import ModelSpec, PlannerBridge, RequestIdentity
 
 class PhysicalRSITransport:
     """Resolve deployment configuration once; reuse the native prompt and validator."""
-    def __init__(self, *, endpoint: str | None = None, model: str | None = None) -> None:
+    def __init__(self, *, endpoint: str | None = None, model: str | None = None,
+                 reserve_call=None) -> None:
         config = json.loads(Path(os.environ["PHYSICALRSI_DSH_CONFIG"]).read_text())
         if config.get("schema") != "dsh-physicalrsi-deployment/v1":
             raise ValueError("Versioned DSH deployment configuration required")
@@ -27,7 +28,7 @@ class PhysicalRSITransport:
             raise ValueError("Positive finite request timeout required")
         self.bridge = PlannerBridge(spec=spec, dsh_home=Path(config["dsh_home"]),
             evidence_root=Path(config["evidence_root"]), dsh_bin=config.get("dsh_bin"),
-            runtime_cwd=config.get("runtime_cwd"))
+            runtime_cwd=config.get("runtime_cwd"), reserve_call=reserve_call)
         self.run_id = config["run_id"]
         self._episodes: dict[int, tuple[str, int]] = {}
 

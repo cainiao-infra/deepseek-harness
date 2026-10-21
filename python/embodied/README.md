@@ -2,7 +2,7 @@
 
 English | [中文](README.zh.md)
 
-The adapter connects PhysicalRSI’s shared domain planner to the public DSH Python SDK. Compatibility planning preserves native messages and validation; execution remains with PhysicalRSI. Recovery coordination is available as an explicit provider interface, but the native RoboDojo runner does not yet supply a physical stop acknowledgement. No task-success or latency parity is qualified.
+The adapter connects PhysicalRSI’s shared domain planner to the public DSH Python SDK. Compatibility planning preserves native messages and validation; execution remains with PhysicalRSI. The online RoboDojo consumer checkpoints synchronous actions, discards cached tails, and binds model-selected recovery through native PhysicalRSI skills. No task-success or latency parity is qualified.
 
 ## Install and launch
 
@@ -35,7 +35,15 @@ Each request writes immutable `request.json`, `events.json` and a terminal `rece
 
 `recovery.py` defines `PhysicalRuntime`, `RuntimeState`, `StopReceipt`, `PlanRevision` and `RecoveryCoordinator`. The consumer routes every action chunk through the coordinator. An observed trigger disables dispatch, waits for a bounded acknowledgement with zero queued/in-flight actions, obtains a newer observation, and validates a replacement against pinned identities and current preconditions. It records the commit before binding, and a replacement must change the provider-validated `execution_key` derived from the capability and executable parameters, excluding rationale. Exceptions leave dispatch disabled. Only the native outcome marks success.
 
-Do not enable recovery by adapting `reset()` or `close()` into a stop receipt. The simulator/robot runner must own stop, observation sequencing and action delivery together. Multi-turn enhanced planning, observed-event detectors, runner integration, outcome-linked evaluation and offline history-to-skill admission remain separate work under the design note.
+The single-environment `robodojo.py` consumer owns action dispatch and its cached tail. At a recovery checkpoint it blocks dispatch, drops the tail, verifies the simulator control queue is empty, and asks `OnlineModel` to reap the synchronous skill worker. No simulator steps run during planning. This acknowledges quiescent simulator control at an action boundary; it does not acknowledge stopped motion on a physical robot. A pending native control queue or unknown RPC outcome prevents replacement.
+
+`online_model.py` preserves PhysicalRSI’s native catalog, memory, domain prompt construction, validation, and binding implementation. Enhanced decisions add `execution`: initial `bind`, same-capability `restart`, different-capability `switch`, or `abort`. Restart creates a new skill worker and recomputes actions from fresh RGB/proprioception without resetting the scene. Configured observable restart preconditions must hold; unknown or closed-gripper states can refuse recovery. Execution digests exclude rationale and history. This version admits synchronous code-policy workers only.
+
+Use [the online configuration](configs/robodojo-online.example.json) through `DSH_ROBODOJO_ONLINE_CONFIG` in both processes. `scripts/robodojo_policy.py` starts RoboDojo’s loopback WebSocket server with an explicit JSON deployment containing `port` and `model`; `scripts/robodojo_client.py` supplies the online evaluation consumer to native RoboDojo main from an isolated output directory. Both scripts require the audited PhysicalRSI and RoboDojo Python imports. The observed-event detector checks missing RGB, changed instructions, and commanded joint motion absent across a configured window. It does not infer grasp failure or target pose from benchmark state.
+
+Initial and recovery requests share one durable DSH Session. Episode history is bounded by revision/event counts, the provider context limit and a common deadline; runtime rotation during an active chain fails instead of losing history. Automatic context summarization and offline history-to-skill admission remain separate work. Immutable runner records link observed triggers, stop acknowledgement, fresh observation sequence, plan commit, native binding, dispatched actions and native terminal outcome; request receipts link the actual sensor input and Session.
+
+`CallBudget` reserves one immutable slot before each model turn across processes and restarts. Failed and unknown attempts consume their slots. All runs sharing a budget must use the same immutable limit; tools and provider retries remain disabled. A six-slot ledger limits this development batch to at most six new provider requests. Recorded local model tests use a separate ledger. Exhaustion blocks subsequent planning and actions.
 
 ## Validation
 

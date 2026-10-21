@@ -15,7 +15,8 @@ from test_bridge import spec
 
 
 @pytest.mark.skipif(os.environ.get('DSH_EMBODIED_INTEGRATION') != '1', reason='requires build:artifacts')
-def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path):
+@pytest.mark.parametrize('episode_session', [False, True])
+def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, episode_session):
     import time
     root = Path(__file__).resolve().parents[3]
     fixture = json.loads((Path(__file__).parent/'fixtures/compatibility-session.json').read_text())
@@ -55,17 +56,22 @@ def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path):
         for number in range(2):
             identity = RequestIdentity('run','episode',f'request-{number}',0,generation,time.monotonic()+20)
             assert bridge.plan(messages=messages, identity=identity, mode='subgoal',
-                schema_version='v1', validate=lambda value:value) == fixture['response']
+                schema_version='v1', validate=lambda value:value, episode_session=episode_session) == fixture['response']
         assert len(requests) == 2
-        for request in requests:
+        for number, request in enumerate(requests):
             assert {name:request.get(name) for name in fixture['expected']} == fixture['expected']
-            assert request['messages'] == messages
+            if episode_session and number == 1:
+                assert request['messages'][:2] == messages
+                assert request['messages'][-1] == messages[-1]
+                assert json.loads(request['messages'][2]['content']) == fixture['response']
+            else:
+                assert request['messages'] == messages
             assert not request.get('tools')
         receipts = [json.loads(file.read_text()) for file in (tmp_path/'evidence').rglob('receipt.json')]
-        assert len({receipt['session_id'] for receipt in receipts}) == 2
+        assert len({receipt['session_id'] for receipt in receipts}) == (1 if episode_session else 2)
         bridge.close()
         logs = list((home/'sessions').rglob('*.jsonl'))
-        assert len(logs) == 2
+        assert len(logs) == (1 if episode_session else 2)
         for log in logs:
             events = [json.loads(line) for line in log.read_text().splitlines()]
             assert any(event.get('type') == 'request/header' for event in events)

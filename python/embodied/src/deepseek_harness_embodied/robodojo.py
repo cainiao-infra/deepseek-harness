@@ -284,6 +284,7 @@ def eval_one_episode(TASK_ENV, model_client) -> None:
             event = events.observe(runtime.observation, action, state.observation_seq)
             if event is not None:
                 runtime.record({'type': 'observed_event', **asdict(event)})
+            if event is not None and settings['recovery_enabled']:
                 coordinator.recover(event)
                 events = ObservedEvents(**settings['events'])
                 events.observe(runtime.observation, None, runtime.seq)

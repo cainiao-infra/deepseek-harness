@@ -43,6 +43,8 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 在线请求区分历史触发事件和 `current_observation_status`，后者描述停止并重新采集后提供的相机状态。此前丢失 RGB 不代表当前仍无 RGB。恢复观测序列必须新于触发事件，过期数据包在推理前失败。状态只来自所提供的观测，不包含扰动标签或 benchmark 真值。
 
+`recovery_enabled=false` 选择 H1-R 恢复消融。初始规划、观测事件记录、当前原生绑定和原生结果检查仍然启用，但事件不能请求停止或替换计划。原生技能错误仍使 episode 失败。省略设置时解析为 `true`；其他类型在加载配置时失败。关闭恢复不能证明某项能力支持安全重启。
+
 两个进程均通过 `DSH_ROBODOJO_ONLINE_CONFIG` 使用[在线配置](configs/robodojo-online.example.json)。`scripts/robodojo_policy.py` 根据显式包含 `port`、`ready_file` 和 `model` 的 JSON 部署配置启动 RoboDojo 本地 WebSocket 服务；`scripts/robodojo_client.py` 从隔离输出目录向原生 RoboDojo main 提供在线评测执行端。两者均要求可导入已审查的 PhysicalRSI 和 RoboDojo Python 模块。观测事件检测器检查 RGB 缺失、指令变化，以及配置窗口内关节收到运动命令却没有移动；运动规则要求配置的观测和命令前置条件成立；pickup 示例要求两侧夹爪均保持张开，因此正常闭合接触不会触发。事件保留实测关节运动量和命令误差。不从 benchmark 状态推断抓取失败或目标位姿。
 
 初始规划和恢复请求共用一个持久化 DSH Session。episode 历史受修订次数、事件次数、provider 上下文限制和共同截止时间约束；活动链路中需要轮换运行时时直接失败，不丢弃历史。自动上下文摘要和离线历史到 skill 准入仍单独推进。不可覆盖的 runner 记录关联观测事件、停止确认、新观测序列、计划提交、原生绑定、已派发动作及原生终态；请求回执关联实际传感器输入和 Session。

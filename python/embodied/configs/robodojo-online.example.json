@@ -1,5 +1,6 @@
 {
   "schema": "dsh-robodojo-online/v1",
+  "recovery_enabled": true,
   "evidence_root": "/absolute/path/to/online-evidence",
   "call_budget": {
     "root": "/absolute/path/to/shared-six-call-budget",

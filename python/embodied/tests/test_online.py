@@ -229,6 +229,7 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     lambda c:c.update(episode_timeout_seconds=-1),
     lambda c:c['events'].update(window=1),
     lambda c:c['call_budget'].update(limit=True),
+    lambda c:c.update(recovery_enabled=1),
     lambda c:c['restart_guards']['instruction-grounded-pickup'][0].update(minimum=2),
 ])
 def test_invalid_online_configuration_fails_before_model_start(tmp_path, change):
@@ -241,6 +242,45 @@ def test_invalid_online_configuration_fails_before_model_start(tmp_path, change)
     path.write_text(json.dumps(config))
     with pytest.raises(ValueError):
         load_online_config(path)
+
+
+@pytest.mark.parametrize('enabled', [False, True])
+def test_recovery_ablation_retains_initial_binding_and_native_outcome(tmp_path, monkeypatch, enabled):
+    from pathlib import Path
+    from deepseek_harness_embodied import robodojo as module
+    runtime, initial_coordinator, executed, calls, records = setup_runtime(tmp_path)
+    runtime.env.is_episode_end = lambda:len(executed) == 2
+    runtime.env.success = [True]
+    lost = False
+    def observation():
+        nonlocal lost
+        missing = len(executed) == 1 and not lost
+        lost |= missing
+        return {'instruction':'pick','state':{'right_arm_joint_state':[len(executed)]},
+                'vision':{} if missing else {'head':{'color':b'image'}}}
+    runtime.env.get_obs = observation
+    runtime.initialize = lambda:(initial_coordinator.state, runtime.current)
+    original = runtime.client.call
+    def call(*, func_name, **kwargs):
+        if func_name in {'online_observe','reset'}:
+            calls.append(func_name)
+            return None
+        return original(func_name=func_name, **kwargs)
+    runtime.client.call = call
+    monkeypatch.setattr(module, 'RoboDojoRuntime', lambda *args, **kwargs:runtime)
+    config = json.loads((Path(__file__).parents[1]/'configs/robodojo-online.example.json').read_text())
+    config.update(recovery_enabled=enabled, evidence_root=str(tmp_path),
+                  call_budget={'root':str(tmp_path/'budget'),'limit':3})
+    path = tmp_path/'online.json'
+    path.write_text(json.dumps(config))
+    monkeypatch.setenv('DSH_ROBODOJO_ONLINE_CONFIG', str(path))
+    module.eval_one_episode(runtime.env, runtime.client)
+    assert executed == ['old-1', 'new-1' if enabled else 'old-2']
+    assert ('online_stop' in calls) is enabled
+    assert ('online_plan' in calls) is enabled
+    assert any(row['type']=='observed_event' for row in records)
+    assert records[-1]['type']=='native_outcome' and records[-1]['success']
+    assert calls[-1] == 'reset' and runtime.blocked
 
 
 def test_expected_closed_gripper_contact_is_not_arm_motion_failure():

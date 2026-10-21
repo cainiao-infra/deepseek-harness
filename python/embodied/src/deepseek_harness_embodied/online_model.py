@@ -96,9 +96,9 @@ def online_response_schema(compositions: dict, operation_program: dict | None, *
 class OnlineModel:
     """Serialized WebSocket methods for one code-policy environment.
 
-    Only reviewed code-policy configurations with explicit restart guards are
-    admitted. Any service failure disables actions until reset. Rebinding closes
-    and reaps the old inference worker; it does not reset the physical scene.
+    Initial code-policy bindings retain native validation. Replacements require
+    explicit reviewed restart guards. Any service failure disables actions until
+    reset. Rebinding reaps the old worker without resetting the physical scene.
     """
     def __init__(self, model_cfg: dict) -> None:
         from PhysicalRSI_baselines.robodojo.skill_model import Model
@@ -224,7 +224,8 @@ class OnlineModel:
                     same = {k: v for k, v in native.items() if k != 'rationale'} == before
                     if same != (execution == 'restart'):
                         raise ValueError('Restart must retain the capability; switch must change it')
-                self._guard(native, observation)
+                if self.revision is not None:
+                    self._guard(native, observation)
                 return value
             identity = RequestIdentity(self.transport.run_id, self.episode, uuid.uuid4().hex, 0,
                 self.generation, min(self.deadline, time.monotonic() + self.transport.timeout))
@@ -246,7 +247,8 @@ class OnlineModel:
             raise RuntimeError('Unknown or modified plan proposal')
         revision, observation = self.proposal
         self._native_plan({k: v for k, v in revision.plan.items() if k != 'execution'})
-        self._guard(revision.plan, observation)
+        if revision.parent_id:
+            self._guard(revision.plan, observation)
         return {'validated': revision.revision_id}
 
     def online_bind(self, packet: dict) -> dict:

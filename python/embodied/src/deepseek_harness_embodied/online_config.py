@@ -37,7 +37,7 @@ def load_online_config(path: Path) -> dict:
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
             raise ValueError('Positive finite observed motion thresholds required')
     guards = config['restart_guards']
-    if not isinstance(guards, dict) or not guards:
+    if not isinstance(guards, dict) or (config['recovery_enabled'] and not guards):
         raise ValueError('Reviewed capability restart guards required')
     for handle, rows in [*guards.items(), ('observed motion', events['motion_guards'])]:
         if not isinstance(handle, str) or not isinstance(rows, list) or not rows:

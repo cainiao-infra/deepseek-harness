@@ -133,7 +133,8 @@ def test_unknown_stop_or_native_controls_prevent_planning_and_actions(tmp_path, 
 
 
 @pytest.mark.parametrize('stale', [False, True])
-def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkeypatch, stale):
+@pytest.mark.parametrize('guarded', [False, True])
+def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkeypatch, stale, guarded):
     import sys
     from copy import deepcopy
     from types import ModuleType
@@ -148,6 +149,8 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
         'restart_guards':{'pick':[
             {'path':['state','gripper'],'minimum':.9,'maximum':1.0}]}}
     settings_file = tmp_path/'online.json'
+    if not guarded:
+        settings['restart_guards']['other'] = settings['restart_guards'].pop('pick')
     settings_file.write_text(json.dumps(settings))
     monkeypatch.setenv('PHYSICALRSI_SKILL_CONFIG',str(skill_config))
     monkeypatch.setenv('DSH_ROBODOJO_ONLINE_CONFIG',str(settings_file))
@@ -209,6 +212,13 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
         assert model.failed and model.stopped and len(seen)==1
         model.close()
         return
+    if not guarded:
+        with pytest.raises(ValueError, match='reviewed restart preconditions'):
+            model.online_plan(packet(observation=observation,observation_seq=2,
+                event={'kind':'no_progress','observation_seq':1},executed_actions=3))
+        assert model.failed and model.stopped and len(seen)==2 and len(natives)==1
+        model.close()
+        return
     second = model.online_plan(packet(observation=observation,observation_seq=2,
         event={'kind':'no_progress','observation_seq':1},executed_actions=3))
     model.online_bind(packet(revision=second))
@@ -230,6 +240,7 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     lambda c:c['events'].update(window=1),
     lambda c:c['call_budget'].update(limit=True),
     lambda c:c.update(recovery_enabled=1),
+    lambda c:c.update(restart_guards={}),
     lambda c:c['restart_guards']['instruction-grounded-pickup'][0].update(minimum=2),
 ])
 def test_invalid_online_configuration_fails_before_model_start(tmp_path, change):
@@ -242,6 +253,20 @@ def test_invalid_online_configuration_fails_before_model_start(tmp_path, change)
     path.write_text(json.dumps(config))
     with pytest.raises(ValueError):
         load_online_config(path)
+
+
+def test_recovery_ablation_needs_no_restart_guards(tmp_path):
+    from pathlib import Path
+    from deepseek_harness_embodied.online_config import load_online_config
+    config = json.loads((Path(__file__).parents[1]/'configs/robodojo-online.example.json').read_text())
+    config.update(recovery_enabled=False, restart_guards={})
+    path = tmp_path/'online.json'
+    path.write_text(json.dumps(config))
+    assert load_online_config(path)['restart_guards'] == {}
+    config.pop('recovery_enabled')
+    config['restart_guards'] = {'pick':[{'path':['state','gripper'],'minimum':.9,'maximum':1.0}]}
+    path.write_text(json.dumps(config))
+    assert load_online_config(path)['recovery_enabled'] is True
 
 
 @pytest.mark.parametrize('enabled', [False, True])

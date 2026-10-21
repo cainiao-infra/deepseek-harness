@@ -1,0 +1,13 @@
+{
+  "schema": "dsh-physicalrsi-source-variant/v1",
+  "files": {
+    "PhysicalRSI_baselines/robodojo/agent_planner.py": {
+      "before_sha256": "fd3ac5afe8c7b895550810222aca6c305c5192de63dd8f99376ca4d2c9c83557",
+      "after_sha256": "25c8cf2878cbb746d6b1899266e5fa75fba23d1e2d4ac93c7dcf7b837bf012ed"
+    },
+    "PhysicalRSI_baselines/robodojo/skill_model.py": {
+      "before_sha256": "a9a965538b15198df7b5a9521d45af92a205ead1ceba7bca659efabbe4aba9e5",
+      "after_sha256": "5facf1b14aaeeb2f97693415bf011177d3293a623ec2284d736be6e037228d5a"
+    }
+  }
+}

@@ -21,6 +21,8 @@ The installer creates a new profile and refuses to replace an existing one. It l
 
 The [integration patch](integrations/physicalrsi.patch) extracts `build_planner_messages` and `validate_planner_result`, adds the explicit `dsh` backend, and allocates the episode before planning. Apply it only after `git apply --check` succeeds against a copy of the audited local PhysicalRSI sources. Released copies and the remotely modified planner are separate inputs; a failed check requires a reviewed port, never a forced overwrite.
 
+The [remote source variant](integrations/physicalrsi-remote.patch) preserves the audited remote planner’s `api`, `codex` and `remote-codex` backends while adding DSH through the same domain builder and validator. Verify both `before_sha256` values in [its source manifest](integrations/physicalrsi-remote.sources.json), apply only in an isolated PhysicalRSI copy, then verify both `after_sha256` values. A source mismatch requires a new reviewed port.
+
 Copy [the deployment example](configs/deepseek-flash.example.json), set absolute paths, and configure the native planner’s `max_tokens` to the same cap for comparisons. Export `PHYSICALRSI_PLANNER_BACKEND=dsh`, `PHYSICALRSI_DSH_CONFIG=/absolute/path/to/config.json`, and `PHYSICALRSI_AGENT_API_KEY` through your credential environment. The SDK process inherits the credential; neither configuration nor receipts contain it. Native transport remains the `api` backend.
 
 ## Planning and evidence

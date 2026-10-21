@@ -21,6 +21,8 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 [集成补丁](integrations/physicalrsi.patch) 提取 `build_planner_messages` 和 `validate_planner_result`，增加显式 `dsh` 后端，并在规划前分配 episode。仅在已审查的本地 PhysicalRSI 源码副本上执行 `git apply --check` 成功后应用。已发布副本及远端修改过的规划器是不同输入；检查失败时需要审查后移植，不能强行覆盖。
 
+[远端源码变体补丁](integrations/physicalrsi-remote.patch) 保留已审查远端规划器的 `api`、`codex` 和 `remote-codex` 后端，通过同一领域构造器和校验器接入 DSH。先核对[源码清单](integrations/physicalrsi-remote.sources.json)中的两个 `before_sha256`，仅在隔离的 PhysicalRSI 副本中应用，再核对两个 `after_sha256`。源码不匹配时需要重新审查移植。
+
 复制[部署配置示例](configs/deepseek-flash.example.json)，设置绝对路径；进行对照时，将原生规划器的 `max_tokens` 配置为相同上限。通过凭证环境导出 `PHYSICALRSI_PLANNER_BACKEND=dsh`、`PHYSICALRSI_DSH_CONFIG=/absolute/path/to/config.json` 和 `PHYSICALRSI_AGENT_API_KEY`。SDK 进程继承凭证，配置和回执不包含密钥。原生传输仍使用 `api` 后端。
 
 ## 规划与证据

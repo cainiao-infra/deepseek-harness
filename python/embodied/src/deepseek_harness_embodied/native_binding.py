@@ -1,0 +1,119 @@
+"""Native execution service used after a DSH plan has been admitted.
+
+The provider owns policy creation, observation delivery, queued actions and
+worker cleanup. The online planner owns plan admission and episode history.
+"""
+from __future__ import annotations
+
+from copy import deepcopy
+from typing import Protocol
+
+
+class NativeBinding(Protocol):
+    """Execution metadata and lifecycle required by the online planning consumer."""
+    metadata: dict
+    identity: dict
+
+    def bind(self, plan: dict, observation: dict) -> dict:
+        """Apply a plan while stopped and return its root and skill description."""
+        ...
+
+    def observe(self, observation: dict) -> None:
+        """Deliver a current observation; reject calls before binding or after stopping."""
+        ...
+
+    def actions(self) -> list:
+        """Return a bound policy's chunk; reject calls while stopped."""
+        ...
+
+    def close(self) -> None:
+        """Discard queued inference and return only after owned workers are reaped."""
+        ...
+
+
+class CommittedPlanner:
+    """Supply an admitted native plan without making another model request."""
+    def __init__(self, plan: dict) -> None:
+        self.plan_value = deepcopy(plan)
+
+    def plan(self, **_kwargs) -> dict:
+        """Return the pinned plan to PhysicalRSI's unchanged binding implementation."""
+        return deepcopy(self.plan_value)
+
+    def close(self) -> None:
+        """Release no resources; this planner owns only the copied plan."""
+
+
+def metadata(model) -> dict:
+    """Capture native capabilities and memory, excluding the per-instance output root."""
+    return deepcopy({'config':model.config, 'catalog':model.catalog,
+                     'operation_program':model.operation_program, 'memory':model.memory.read()})
+
+
+class CodeBinding:
+    """Own a synchronous code-policy model and its acknowledged worker cleanup.
+
+    Learned-policy configurations are rejected before model creation. Reopening
+    after stopping must reproduce the captured capability and memory metadata.
+    """
+    def __init__(self, factory, deployment: dict, config: dict) -> None:
+        if any(entry.get('implementation', name) != 'code-policy'
+               for name, entry in config['skills'].items()):
+            raise ValueError('Online v1 supports synchronous code-policy workers only')
+        self.factory, self.deployment = factory, deepcopy(deployment)
+        self.bound = False
+        self.model = factory(self.deployment)
+        try:
+            if self.model.preloaded:
+                raise ValueError('Online v1 supports synchronous code-policy workers only')
+            self.metadata = metadata(self.model)
+        except BaseException:
+            self.model.close()
+            raise
+        self.identity = {'provider':'in-process-code'}
+
+    def bind(self, plan: dict, observation: dict) -> dict:
+        """Bind through the native planner consumer without resetting the physical scene."""
+        if self.bound:
+            raise RuntimeError('Stopping is required before native rebinding')
+        try:
+            if self.model.closed:
+                self.model = self.factory(self.deployment)
+                if metadata(self.model) != self.metadata:
+                    raise RuntimeError('Native capability or memory metadata changed after stopping')
+            self.model.planner.close()
+            self.model.planner = CommittedPlanner(plan)
+            self.model.update_obs_batch([dict(observation, env_idx=0)])
+            applied = {'native_root':str(self.model.root),
+                       'skill':self.model.sessions[0]['skill'].describe()}
+            self.bound = True
+            return applied
+        except BaseException:
+            self.close()
+            raise
+
+    def observe(self, observation: dict) -> None:
+        """Preserve the observation and add the native single-environment index."""
+        if not self.bound:
+            raise RuntimeError('Native observation delivery is disabled while stopped')
+        try:
+            self.model.update_obs_batch([dict(observation, env_idx=0)])
+        except BaseException:
+            self.close()
+            raise
+
+    def actions(self) -> list:
+        """Return the single environment's chunk without dispatching robot actions."""
+        if not self.bound:
+            raise RuntimeError('Native action delivery is disabled while stopped')
+        try:
+            return self.model.get_action_batch([0])[0]
+        except BaseException:
+            self.close()
+            raise
+
+    def close(self) -> None:
+        """Clear native tails and synchronously close the owned code-policy model."""
+        self.bound = False
+        self.model.action_queues.clear()
+        self.model.close()

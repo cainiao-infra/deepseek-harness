@@ -19,16 +19,7 @@ from .bridge import RequestIdentity, digest, write_record
 from .budget import CallBudget
 from .physicalrsi import PhysicalRSITransport
 from .recovery import PlanRevision
-
-
-class CommittedPlanner:
-    """Supply an admitted native plan without making another model request."""
-    def __init__(self, plan: dict) -> None:
-        self.plan_value = plan
-
-    def plan(self, **_kwargs):
-        """Return the pinned plan to PhysicalRSI's unchanged binding implementation."""
-        return deepcopy(self.plan_value)
+from .native_binding import CodeBinding, NativeBinding
 
 
 def execution_key(plan: dict, messages: list) -> str:
@@ -102,33 +93,29 @@ class OnlineModel:
     """
     def __init__(self, model_cfg: dict) -> None:
         from PhysicalRSI_baselines.robodojo.skill_model import Model
-        self.factory, self.model_cfg = Model, model_cfg
         self.settings = load_online_config(Path(os.environ['DSH_ROBODOJO_ONLINE_CONFIG']))
         if self.settings.get('schema') != 'dsh-robodojo-online/v1':
             raise ValueError('Versioned online configuration required')
         budget = self.settings['call_budget']
         self.call_budget = CallBudget(Path(budget['root']), budget['limit'])
+        frozen = json.loads(Path(os.environ['PHYSICALRSI_SKILL_CONFIG']).read_text())
         self.transport = PhysicalRSITransport(reserve_call=self.call_budget.reserve)
         if self.settings['rpc_timeout_seconds'] <= self.transport.timeout:
             self.transport.close()
             raise ValueError('RPC timeout must exceed the model turn timeout')
         self.root = Path(self.settings['evidence_root'])
-        frozen = json.loads(Path(os.environ['PHYSICALRSI_SKILL_CONFIG']).read_text())
-        if any(entry.get('implementation', name) != 'code-policy'
-               for name, entry in frozen['skills'].items()):
+        try:
+            self.binding: NativeBinding = CodeBinding(Model, model_cfg, frozen)
+        except BaseException:
             self.transport.close()
-            raise ValueError('Online v1 supports synchronous code-policy workers only')
-        self.native = self.factory(model_cfg)
-        if self.native.preloaded:
-            self.native.close()
-            self.transport.close()
-            raise ValueError('Online v1 supports synchronous code-policy workers only')
-        self.catalog = deepcopy(self.native.catalog)
-        self.operation_program = deepcopy(self.native.operation_program)
-        self.config = deepcopy(self.native.config)
-        self.memory = self.native.memory.read()
+            raise
+        self.catalog = deepcopy(self.binding.metadata['catalog'])
+        self.operation_program = deepcopy(self.binding.metadata['operation_program'])
+        self.config = deepcopy(self.binding.metadata['config'])
+        self.memory = deepcopy(self.binding.metadata['memory'])
         self.catalog_revision = digest({'config': self.config, 'catalog': self.catalog, 'memory': self.memory})
-        self.binding_revision = digest({'deployment': model_cfg, 'catalog': self.catalog_revision})
+        self.binding_revision = digest({'deployment': model_cfg, 'catalog': self.catalog_revision,
+                                        'provider': self.binding.identity})
         self.episode = None
         self.revision = None
         self.proposal = None
@@ -260,17 +247,11 @@ class OnlineModel:
             revision, observation = self.proposal
             if self.bound:
                 raise RuntimeError('Previous skill worker has not been reaped')
-            if self.native.closed:
-                self.native = self.factory(self.model_cfg)
-            if self.native.config != self.config or self.native.catalog != self.catalog:
-                raise RuntimeError('Native binding catalog changed')
-            self.native.planner.close()
-            self.native.planner = CommittedPlanner({k: v for k, v in revision.plan.items() if k != 'execution'})
-            self.native.update_obs_batch([dict(observation, env_idx=0)])
+            applied = self.binding.bind(
+                {k:v for k,v in revision.plan.items() if k != 'execution'}, observation)
             self._check(packet)
             write_record(self.root / self.episode / ('binding-' + revision.revision_id + '.json'), {
-                'revision': asdict(revision), 'native_root': str(self.native.root),
-                'skill': self.native.sessions[0]['skill'].describe()})
+                'revision': asdict(revision), **applied})
             self.revision, self.proposal = revision, None
             self.stopped, self.bound = False, True
             return {'bound': revision.revision_id}
@@ -283,8 +264,7 @@ class OnlineModel:
         self.stopped = True
         try:
             self._check(packet)
-            self.native.action_queues.clear()
-            self.native.close()
+            self.binding.close()
             self.bound = False
             return {'episode_id': self.episode, 'generation': self.generation,
                     'queued_actions': 0, 'in_flight_actions': 0, 'worker_reaped': True}
@@ -294,10 +274,14 @@ class OnlineModel:
 
     def online_observe(self, packet: dict) -> None:
         """Feed each observation to the currently bound native skill."""
-        self._check(packet)
-        if self.stopped:
-            raise RuntimeError('Cannot update an inactive skill')
-        self.native.update_obs_batch([dict(packet['observation'], env_idx=0)])
+        try:
+            self._check(packet)
+            if self.stopped:
+                raise RuntimeError('Cannot update an inactive skill')
+            self.binding.observe(packet['observation'])
+        except BaseException:
+            self.failed = True
+            raise
 
     def online_actions(self, packet: dict) -> dict:
         """Return one revision-tagged native chunk; stale revisions never produce actions."""
@@ -305,9 +289,9 @@ class OnlineModel:
             self._check(packet)
             if self.stopped or packet['revision_id'] != self.revision.revision_id:
                 raise RuntimeError('Action dispatch disabled or stale revision')
-            chunks = self.native.get_action_batch([0])
+            actions = self.binding.actions()
             self._check(packet)
-            return {'revision_id': self.revision.revision_id, 'actions': chunks[0]}
+            return {'revision_id': self.revision.revision_id, 'actions': actions}
         except BaseException:
             self.failed = True
             raise
@@ -315,7 +299,7 @@ class OnlineModel:
     def reset(self) -> None:
         """Invalidate old inference and release owned workers; no physical stop is asserted."""
         self.stopped = True
-        self.native.close()
+        self.binding.close()
         if self.episode is not None:
             self.transport.bridge.reset(0)
         self.episode, self.revision, self.proposal = None, None, None
@@ -324,6 +308,6 @@ class OnlineModel:
     def close(self) -> None:
         """Close owned skill and DSH processes after dispatch has stopped."""
         try:
-            self.native.close()
+            self.binding.close()
         finally:
             self.transport.close()

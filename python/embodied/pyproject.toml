@@ -12,7 +12,7 @@ license = "MIT"
 dependencies = ["deepseek-harness-sdk==0.0.0.dev0"]
 
 [dependency-groups]
-test = ["pytest>=8.0"]
+test = ["pytest>=8.0", "numpy>=1.26"]
 
 [tool.uv.sources]
 deepseek-harness-sdk = { path = "../sdk", editable = true }

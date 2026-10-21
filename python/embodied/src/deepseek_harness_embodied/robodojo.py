@@ -7,6 +7,7 @@ steps occur while the model plans; this is not a physical-robot stop provider.
 from __future__ import annotations
 
 import math
+import json
 import os
 import threading
 import time
@@ -19,6 +20,19 @@ from .online_config import load_online_config
 from .bridge import write_record
 from .recovery import (
     ExecutionEvent, PlanRevision, RecoveryBudget, RecoveryCoordinator, RuntimeState, StopReceipt)
+
+
+def action_record(action: dict) -> dict:
+    """Project numeric arrays/scalars to JSON for evidence without changing dispatch.
+
+    Unsupported values and nonfinite numbers fail before a dispatch record or
+    physical command. The original action remains the native executor's input.
+    """
+    def numeric(value):
+        if hasattr(value, 'tolist'):
+            return value.tolist()
+        raise TypeError('Native action evidence requires JSON or numeric array values')
+    return json.loads(json.dumps(action, default=numeric, allow_nan=False))
 
 
 class ObservedEvents:
@@ -232,7 +246,7 @@ class RoboDojoRuntime:
             self._thread()
             action = self.queue.popleft()
             self.record({'type': 'action_dispatched', 'revision_id': revision_id,
-                         'action_index': self.executed, 'action': action})
+                         'action_index': self.executed, 'action': action_record(action)})
             self.in_flight = True
             self.env.take_action(action)
             self.in_flight = False

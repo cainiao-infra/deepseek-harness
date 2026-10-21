@@ -120,6 +120,28 @@ def test_runner_reaps_old_skill_discards_tail_and_executes_new_revision(tmp_path
     assert kinds.index('fresh_observation') < kinds.index('plan_committed',1)
 
 
+def test_numeric_action_evidence_preserves_the_native_array_before_dispatch(tmp_path):
+    import numpy as np
+    runtime, coordinator, executed, _, records = setup_runtime(tmp_path)
+    vector = np.asarray([.1, .2], dtype=np.float32)
+    runtime.queue.append({'x':vector,'scalar':np.int64(3)})
+    action = coordinator.actions()
+    assert executed[0] is vector and action['x'] is vector
+    row = next(r for r in records if r['type']=='action_dispatched')
+    assert row['action'] == {'x':vector.tolist(),'scalar':3}
+    assert json.loads(json.dumps(row)) == row
+
+
+def test_nonfinite_native_actions_stop_before_evidence_or_dispatch(tmp_path):
+    import numpy as np
+    runtime, coordinator, executed, _, records = setup_runtime(tmp_path)
+    runtime.queue.append({'x':np.asarray([float('nan')])})
+    with pytest.raises(ValueError):
+        coordinator.actions()
+    assert executed == [] and runtime.blocked and coordinator.status=='failed'
+    assert not any(r['type']=='action_dispatched' for r in records)
+
+
 @pytest.mark.parametrize('fault',['stop','controls'])
 def test_unknown_stop_or_native_controls_prevent_planning_and_actions(tmp_path, fault):
     runtime, coordinator, executed, calls, records = setup_runtime(tmp_path, fault)

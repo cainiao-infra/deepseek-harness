@@ -1,0 +1,734 @@
+{
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "batches": [
+    {
+      "name": "paired-pilot-05-complex-capabilities",
+      "summary": {
+        "schema": "dsh-paired-pilot-report/v1",
+        "qualification": false,
+        "partition": "development",
+        "formal_heldout_runs": 0,
+        "statistical_acceptance": "insufficient_evidence",
+        "rows": [
+          {
+            "case_id": "stack-blocks-by-language-fresh-0-dev",
+            "arm": "N",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0000-stack-blocks-by-language-fresh-0-dev-N/skills/cb785394a19548eab4f047227c263c9b/service.log",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 24.925734988006297,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 11938,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "dce5b0c7b8d094f20e67ad4a676eebcb7be0beaf965c9ae92d8ed2cbfac598cb",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "stack_blocks_by_language"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/stack_blocks_by_language/0/layout.json",
+              "layout_sha256": "58fd69727406721d2e78c23c50d82160940b2fcebd00bbd6f1318a44e7e03c6e",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0000-stack-blocks-by-language-fresh-0-dev-N/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0000-stack-blocks-by-language-fresh-0-dev-N"
+          },
+          {
+            "case_id": "stack-blocks-by-language-fresh-0-dev",
+            "arm": "H1",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0001-stack-blocks-by-language-fresh-0-dev-H1/skills/c1b525c404524b5e8587555ba6c0837d/service.log",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 9.466226076998282,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 12296,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "dce5b0c7b8d094f20e67ad4a676eebcb7be0beaf965c9ae92d8ed2cbfac598cb",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "stack_blocks_by_language"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/stack_blocks_by_language/0/layout.json",
+              "layout_sha256": "58fd69727406721d2e78c23c50d82160940b2fcebd00bbd6f1318a44e7e03c6e",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0001-stack-blocks-by-language-fresh-0-dev-H1/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0001-stack-blocks-by-language-fresh-0-dev-H1"
+          },
+          {
+            "case_id": "stack-blocks-by-language-fresh-0-dev",
+            "arm": "H0",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0002-stack-blocks-by-language-fresh-0-dev-H0/skills/5fc8ee848d284bb59bce9a9fbd17adf0/service.log",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 9.199126887018792,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 11815,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "dce5b0c7b8d094f20e67ad4a676eebcb7be0beaf965c9ae92d8ed2cbfac598cb",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "stack_blocks_by_language"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/stack_blocks_by_language/0/layout.json",
+              "layout_sha256": "58fd69727406721d2e78c23c50d82160940b2fcebd00bbd6f1318a44e7e03c6e",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0002-stack-blocks-by-language-fresh-0-dev-H0/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0002-stack-blocks-by-language-fresh-0-dev-H0"
+          },
+          {
+            "case_id": "store-tools-in-toolbox-fresh-0-dev",
+            "arm": "H1",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Capability has no reviewed restart preconditions",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 6.460735452012159,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 12594,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "f4546290313895fed7e976cbf30620d1a3f23ecc60c860e28eadd37d3ce24285",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "store_tools_in_toolbox"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/store_tools_in_toolbox/0/layout.json",
+              "layout_sha256": "aeb2aba0db5410fb8eda9d3f937226e1938bd3a14d127a3af30834b42e0a0dc4",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0003-store-tools-in-toolbox-fresh-0-dev-H1/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0003-store-tools-in-toolbox-fresh-0-dev-H1"
+          },
+          {
+            "case_id": "store-tools-in-toolbox-fresh-0-dev",
+            "arm": "H0",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0004-store-tools-in-toolbox-fresh-0-dev-H0/skills/468bf1217f5d49d993a45410b598cb56/service.log",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 8.898545340984128,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 11889,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "f4546290313895fed7e976cbf30620d1a3f23ecc60c860e28eadd37d3ce24285",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "store_tools_in_toolbox"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/store_tools_in_toolbox/0/layout.json",
+              "layout_sha256": "aeb2aba0db5410fb8eda9d3f937226e1938bd3a14d127a3af30834b42e0a0dc4",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0004-store-tools-in-toolbox-fresh-0-dev-H0/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0004-store-tools-in-toolbox-fresh-0-dev-H0"
+          },
+          {
+            "case_id": "store-tools-in-toolbox-fresh-0-dev",
+            "arm": "N",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0005-store-tools-in-toolbox-fresh-0-dev-N/skills/aa2c763d7d4d4eb38e0c5570a74c7a7b/service.log",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 7.221479558036663,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 11836,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "f4546290313895fed7e976cbf30620d1a3f23ecc60c860e28eadd37d3ce24285",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "store_tools_in_toolbox"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/store_tools_in_toolbox/0/layout.json",
+              "layout_sha256": "aeb2aba0db5410fb8eda9d3f937226e1938bd3a14d127a3af30834b42e0a0dc4",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-05-complex-capabilities/0005-store-tools-in-toolbox-fresh-0-dev-N/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0005-store-tools-in-toolbox-fresh-0-dev-N"
+          }
+        ],
+        "assigned_episodes": 6,
+        "source_version_count": 1,
+        "result_sha256": {
+          "0000-stack-blocks-by-language-fresh-0-dev-N/result.json": "c3506a44e7143ba59ea59b946d5c279bff534f8a15494b236c49ffb5ed1bdbfa",
+          "0001-stack-blocks-by-language-fresh-0-dev-H1/result.json": "ac15ab65102490c3030ac4259f3aec5d06e373cd08769c80e63f471bdeae7236",
+          "0002-stack-blocks-by-language-fresh-0-dev-H0/result.json": "9ecffc84270bbbd98c7c85d72c4503c8def717e9a72481b6f11a28bab04c1cce",
+          "0003-store-tools-in-toolbox-fresh-0-dev-H1/result.json": "72b0103ab5886a4dbe3355fdd714c0d6d7451289a1badcc378807e922e624c0d",
+          "0004-store-tools-in-toolbox-fresh-0-dev-H0/result.json": "295082593b5e372d7a74227b1f539f6199016878a520df2ed9b29a06edd2a557",
+          "0005-store-tools-in-toolbox-fresh-0-dev-N/result.json": "478ce9a547aee22b857d6066ee39195218965b0f12dad386ba778f62ef94bde9"
+        },
+        "arms": {
+          "N": {
+            "successes": 0,
+            "assigned": 2
+          },
+          "H0": {
+            "successes": 0,
+            "assigned": 2
+          },
+          "H1": {
+            "successes": 0,
+            "assigned": 2
+          }
+        }
+      },
+      "calls": [
+        {
+          "path": "0000-stack-blocks-by-language-fresh-0-dev-N/provider/http-0000",
+          "response_sha256": "8470696c1c2f4c87d816d25ea6298a49ed4eccf21756a152dd539a3a73f8ff6c",
+          "usage": {
+            "completion_tokens": 785,
+            "completion_tokens_details": {
+              "reasoning_tokens": 705
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 11025,
+            "prompt_tokens": 11153,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "total_tokens": 11938
+          }
+        },
+        {
+          "path": "0001-stack-blocks-by-language-fresh-0-dev-H1/provider/http-0000",
+          "response_sha256": "2cea69d6b54a6d7385b33f06ea38350653ac1ceaa82126a67857e645e5798e7f",
+          "usage": {
+            "completion_tokens": 445,
+            "completion_tokens_details": {
+              "reasoning_tokens": 255
+            },
+            "prompt_cache_hit_tokens": 512,
+            "prompt_cache_miss_tokens": 11339,
+            "prompt_tokens": 11851,
+            "prompt_tokens_details": {
+              "cached_tokens": 512
+            },
+            "total_tokens": 12296
+          }
+        },
+        {
+          "path": "0002-stack-blocks-by-language-fresh-0-dev-H0/provider/http-0000",
+          "response_sha256": "709062317f7e028397f516628b556d48e5a273841e667730d166305321fa4434",
+          "usage": {
+            "completion_tokens": 662,
+            "completion_tokens_details": {
+              "reasoning_tokens": 572
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 785,
+            "prompt_tokens": 11153,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "total_tokens": 11815
+          }
+        },
+        {
+          "path": "0003-store-tools-in-toolbox-fresh-0-dev-H1/provider/http-0000",
+          "response_sha256": "2fddf38de65dd1d575bf5492f632b9ac244bf128fadae1010b975db665285aaa",
+          "usage": {
+            "completion_tokens": 757,
+            "completion_tokens_details": {
+              "reasoning_tokens": 654
+            },
+            "prompt_cache_hit_tokens": 768,
+            "prompt_cache_miss_tokens": 11069,
+            "prompt_tokens": 11837,
+            "prompt_tokens_details": {
+              "cached_tokens": 768
+            },
+            "total_tokens": 12594
+          }
+        },
+        {
+          "path": "0004-store-tools-in-toolbox-fresh-0-dev-H0/provider/http-0000",
+          "response_sha256": "82c618ffbef346cf354cbbdcca2019f382c8897008fa661160b4e58e5516a18b",
+          "usage": {
+            "completion_tokens": 750,
+            "completion_tokens_details": {
+              "reasoning_tokens": 671
+            },
+            "prompt_cache_hit_tokens": 128,
+            "prompt_cache_miss_tokens": 11011,
+            "prompt_tokens": 11139,
+            "prompt_tokens_details": {
+              "cached_tokens": 128
+            },
+            "total_tokens": 11889
+          }
+        },
+        {
+          "path": "0005-store-tools-in-toolbox-fresh-0-dev-N/provider/http-0000",
+          "response_sha256": "9d96a87b0703e23fd23021cb48f8f811314fed46c5b1f8a7b25d6611848665ad",
+          "usage": {
+            "completion_tokens": 697,
+            "completion_tokens_details": {
+              "reasoning_tokens": 608
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 771,
+            "prompt_tokens": 11139,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "total_tokens": 11836
+          }
+        }
+      ]
+    },
+    {
+      "name": "paired-pilot-06-complex-gpu-worker",
+      "summary": {
+        "schema": "dsh-paired-pilot-report/v1",
+        "qualification": false,
+        "partition": "development",
+        "formal_heldout_runs": 0,
+        "statistical_acceptance": "insufficient_evidence",
+        "rows": [
+          {
+            "case_id": "stack-blocks-by-language-fresh-0-dev",
+            "arm": "N",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 1,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": null,
+            "actions": 400,
+            "evaluator_seconds_including_cold_start_and_teardown": 153.87765929999296,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 11842,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "dce5b0c7b8d094f20e67ad4a676eebcb7be0beaf965c9ae92d8ed2cbfac598cb",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "stack_blocks_by_language"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/stack_blocks_by_language/0/layout.json",
+              "layout_sha256": "58fd69727406721d2e78c23c50d82160940b2fcebd00bbd6f1318a44e7e03c6e",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0000-stack-blocks-by-language-fresh-0-dev-N/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0000-stack-blocks-by-language-fresh-0-dev-N"
+          },
+          {
+            "case_id": "stack-blocks-by-language-fresh-0-dev",
+            "arm": "H1",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 1,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": null,
+            "actions": 400,
+            "evaluator_seconds_including_cold_start_and_teardown": 176.06850420398405,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 12145,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "dce5b0c7b8d094f20e67ad4a676eebcb7be0beaf965c9ae92d8ed2cbfac598cb",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "stack_blocks_by_language"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/stack_blocks_by_language/0/layout.json",
+              "layout_sha256": "58fd69727406721d2e78c23c50d82160940b2fcebd00bbd6f1318a44e7e03c6e",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0001-stack-blocks-by-language-fresh-0-dev-H1/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0001-stack-blocks-by-language-fresh-0-dev-H1"
+          },
+          {
+            "case_id": "stack-blocks-by-language-fresh-0-dev",
+            "arm": "H0",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 1,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": null,
+            "actions": 400,
+            "evaluator_seconds_including_cold_start_and_teardown": 151.62958339398028,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 11609,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "dce5b0c7b8d094f20e67ad4a676eebcb7be0beaf965c9ae92d8ed2cbfac598cb",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "stack_blocks_by_language"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/stack_blocks_by_language/0/layout.json",
+              "layout_sha256": "58fd69727406721d2e78c23c50d82160940b2fcebd00bbd6f1318a44e7e03c6e",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0002-stack-blocks-by-language-fresh-0-dev-H0/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0002-stack-blocks-by-language-fresh-0-dev-H0"
+          },
+          {
+            "case_id": "store-tools-in-toolbox-fresh-0-dev",
+            "arm": "H1",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Object of type ndarray is not JSON serializable",
+              "type": "TypeError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 31.00140869000461,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 12590,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "f4546290313895fed7e976cbf30620d1a3f23ecc60c860e28eadd37d3ce24285",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "store_tools_in_toolbox"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/store_tools_in_toolbox/0/layout.json",
+              "layout_sha256": "aeb2aba0db5410fb8eda9d3f937226e1938bd3a14d127a3af30834b42e0a0dc4",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0003-store-tools-in-toolbox-fresh-0-dev-H1/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0003-store-tools-in-toolbox-fresh-0-dev-H1"
+          },
+          {
+            "case_id": "store-tools-in-toolbox-fresh-0-dev",
+            "arm": "H0",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0004-store-tools-in-toolbox-fresh-0-dev-H0/skills/cc43d2c0b27b40f8901ae36a6c9c05c3/service.log",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 19.005965393967927,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 12310,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "f4546290313895fed7e976cbf30620d1a3f23ecc60c860e28eadd37d3ce24285",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "store_tools_in_toolbox"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/store_tools_in_toolbox/0/layout.json",
+              "layout_sha256": "aeb2aba0db5410fb8eda9d3f937226e1938bd3a14d127a3af30834b42e0a0dc4",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0004-store-tools-in-toolbox-fresh-0-dev-H0/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0004-store-tools-in-toolbox-fresh-0-dev-H0"
+          },
+          {
+            "case_id": "store-tools-in-toolbox-fresh-0-dev",
+            "arm": "N",
+            "success": false,
+            "native_success": false,
+            "native_result_count": 0,
+            "process_timeout": false,
+            "client_exit": 0,
+            "launcher_error": null,
+            "episode_error": {
+              "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0005-store-tools-in-toolbox-fresh-0-dev-N/skills/0e02596fd19141a599f24499b83c2b6a/service.log",
+              "type": "WsError"
+            },
+            "actions": 0,
+            "evaluator_seconds_including_cold_start_and_teardown": 14.315131595998537,
+            "capped_evaluator_seconds": 900,
+            "provider_receipts": 1,
+            "provider_attempts_reserved": 1,
+            "provider_usage_complete": true,
+            "total_tokens": 12047,
+            "selected_layout": {
+              "fresh_source": {
+                "content_sha256": "f4546290313895fed7e976cbf30620d1a3f23ecc60c860e28eadd37d3ce24285",
+                "index": 0,
+                "manifest_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/manifest.json",
+                "manifest_sha256": "2126d452b90abb06ab22aa4c42124404d55df3b93deba3fe731ffcab8bfc2ebe",
+                "split": "development",
+                "task": "store_tools_in_toolbox"
+              },
+              "layout_path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/fresh-development-cohort-03/store_tools_in_toolbox/0/layout.json",
+              "layout_sha256": "aeb2aba0db5410fb8eda9d3f937226e1938bd3a14d127a3af30834b42e0a0dc4",
+              "native_layout_id": 0,
+              "qualification": false,
+              "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-06-complex-gpu-worker/0005-store-tools-in-toolbox-fresh-0-dev-N/simulation/selected-layout.snapshot.json",
+              "schema": "dsh-native-layout-selection/v1"
+            },
+            "artifact_directory": "0005-store-tools-in-toolbox-fresh-0-dev-N"
+          }
+        ],
+        "assigned_episodes": 6,
+        "source_version_count": 1,
+        "result_sha256": {
+          "0000-stack-blocks-by-language-fresh-0-dev-N/result.json": "07911d1040fbc4f08c1f927c487594eecd10e51652cdb18f36ae7a6ba1bf3e9f",
+          "0001-stack-blocks-by-language-fresh-0-dev-H1/result.json": "953845f1fbf886841949386f2ffb91ff3c83b80e22f106791e4513d3686a746c",
+          "0002-stack-blocks-by-language-fresh-0-dev-H0/result.json": "7e393dff7f9be0c5d3e10e43e6475ae0856b13e95221bf3ecbfe30bcf02d4964",
+          "0003-store-tools-in-toolbox-fresh-0-dev-H1/result.json": "5e2b7c7af4aac6405a4ffcf1f04f9c152b961babdac1b164cb78ba5561b92a09",
+          "0004-store-tools-in-toolbox-fresh-0-dev-H0/result.json": "709db2f9f5770b8106c5cf6218dafcd2f8cf18edb1fc1c5d6dd56cdc968c6732",
+          "0005-store-tools-in-toolbox-fresh-0-dev-N/result.json": "5850bee7499bf27fe40be372026c06b2a45c9590205b94576fbd11ed0a644a0f"
+        },
+        "arms": {
+          "N": {
+            "successes": 0,
+            "assigned": 2
+          },
+          "H0": {
+            "successes": 0,
+            "assigned": 2
+          },
+          "H1": {
+            "successes": 0,
+            "assigned": 2
+          }
+        }
+      },
+      "calls": [
+        {
+          "path": "0000-stack-blocks-by-language-fresh-0-dev-N/provider/http-0000",
+          "response_sha256": "93c0e14b7af982eea3100694ff789f882288f380c21c01838a9228410147d98e",
+          "usage": {
+            "completion_tokens": 689,
+            "completion_tokens_details": {
+              "reasoning_tokens": 561
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 785,
+            "prompt_tokens": 11153,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "total_tokens": 11842
+          }
+        },
+        {
+          "path": "0001-stack-blocks-by-language-fresh-0-dev-H1/provider/http-0000",
+          "response_sha256": "98839804908f127fb5928c763e0a1f51ec76845aa51a495305097a5b5e16fbc6",
+          "usage": {
+            "completion_tokens": 434,
+            "completion_tokens_details": {
+              "reasoning_tokens": 324
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 11071,
+            "prompt_tokens": 11711,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "total_tokens": 12145
+          }
+        },
+        {
+          "path": "0002-stack-blocks-by-language-fresh-0-dev-H0/provider/http-0000",
+          "response_sha256": "4141f50a00817b1c2de65f63b79f39b6913764d91ce7abe874c9d022384418a0",
+          "usage": {
+            "completion_tokens": 456,
+            "completion_tokens_details": {
+              "reasoning_tokens": 353
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 785,
+            "prompt_tokens": 11153,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "total_tokens": 11609
+          }
+        },
+        {
+          "path": "0003-store-tools-in-toolbox-fresh-0-dev-H1/provider/http-0000",
+          "response_sha256": "3c8f46819a2552f593f8e175a5c0ba96f90a2c56dd15f45a28a4cb2c23dbd746",
+          "usage": {
+            "completion_tokens": 893,
+            "completion_tokens_details": {
+              "reasoning_tokens": 793
+            },
+            "prompt_cache_hit_tokens": 640,
+            "prompt_cache_miss_tokens": 11057,
+            "prompt_tokens": 11697,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "total_tokens": 12590
+          }
+        },
+        {
+          "path": "0004-store-tools-in-toolbox-fresh-0-dev-H0/provider/http-0000",
+          "response_sha256": "c07177755593125401be8599ed0778222becf7ac77bb6550f39961a6cb704aa8",
+          "usage": {
+            "completion_tokens": 1171,
+            "completion_tokens_details": {
+              "reasoning_tokens": 1062
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 771,
+            "prompt_tokens": 11139,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "total_tokens": 12310
+          }
+        },
+        {
+          "path": "0005-store-tools-in-toolbox-fresh-0-dev-N/provider/http-0000",
+          "response_sha256": "fb9c19f60f01b023fde1ef23606debaf262a2f57e995b0a6ed710b8729a2d177",
+          "usage": {
+            "completion_tokens": 908,
+            "completion_tokens_details": {
+              "reasoning_tokens": 816
+            },
+            "prompt_cache_hit_tokens": 10368,
+            "prompt_cache_miss_tokens": 771,
+            "prompt_tokens": 11139,
+            "prompt_tokens_details": {
+              "cached_tokens": 10368
+            },
+            "total_tokens": 12047
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Development only; 22 code capabilities; H1 label denotes recovery-disabled H1-R, not enhanced online recovery; the same two explored fresh scenes are repeated across separate implementation batches."
+}

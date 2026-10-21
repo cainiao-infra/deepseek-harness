@@ -1,0 +1,71 @@
+{
+  "qualification": false,
+  "robot_actions_dispatched": 0,
+  "provider_requests": 0,
+  "source_request_sha256": "7371486213f58b78b63fef55a2abad5447d9235d992c89f8fcf9d3d06e752013",
+  "camera_count": 3,
+  "skills": {
+    "pi05": {
+      "calls": [
+        {
+          "repeat": 0,
+          "seconds": 8.052257512987126,
+          "action_chunks": 50,
+          "sha256": "6af5b9bf7f2673fc6c6bea0b80956a548c981ae00a2b309c419a0f8b09e87901"
+        },
+        {
+          "repeat": 1,
+          "seconds": 0.07954619301017374,
+          "action_chunks": 50,
+          "sha256": "c67abf442c225d0611e789faa0e31d3915b9e383af64adde6d5b8f4caec98070"
+        }
+      ],
+      "skill": {
+        "name": "pi05",
+        "revision": "fc0e48f2ffddfa2de29935fd922941a03ea71be32fe74efdda381bc57e6c24ac",
+        "input": "robodojo.observation-batch/v1",
+        "output": "robodojo.action-chunks/v1",
+        "state": "ready"
+      }
+    },
+    "pi05-sparse-memory": {
+      "calls": [
+        {
+          "repeat": 0,
+          "seconds": 7.9776322320103645,
+          "action_chunks": 50,
+          "sha256": "25e362537916e4ecf78f529587ce31fc5bdc0911c25e58dbc46651eb962cccca"
+        },
+        {
+          "repeat": 1,
+          "seconds": 0.17506878799758852,
+          "action_chunks": 50,
+          "sha256": "df2ae822579807d9771550011fe7e352d448369fcd133bfd9452cf4a28843e27"
+        }
+      ],
+      "skill": {
+        "name": "pi05-sparse-memory",
+        "revision": "a8dfe5630a89e14bfc3a9679e3958bfbe24931f708259b26618037ca42ff15d3",
+        "input": "robodojo.observation-batch/v1",
+        "output": "robodojo.action-chunks/v1",
+        "state": "ready"
+      }
+    }
+  },
+  "versions": {
+    "jax": "0.5.3",
+    "jaxlib": "0.5.3",
+    "torch": "2.7.1+cpu",
+    "flax": "0.10.2",
+    "orbax-checkpoint": "0.11.13",
+    "lerobot": "0.4.4",
+    "numpy": "1.26.4",
+    "pyarrow": "20.0.0"
+  },
+  "devices": [
+    "cuda:0"
+  ],
+  "load_seconds": 6.676863886998035,
+  "status": "inferred_both_skills",
+  "total_seconds": 22.961495293013286
+}

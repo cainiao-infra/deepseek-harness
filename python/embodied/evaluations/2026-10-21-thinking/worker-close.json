@@ -1,0 +1,112 @@
+{
+  "qualification": false,
+  "provider_requests": 0,
+  "robot_actions_dispatched": 0,
+  "scope": "Two consecutive bindings per implementation on the same recorded pickup observation; component lifecycle evidence, not task outcome or formal performance acceptance.",
+  "before": {
+    "qualification": false,
+    "provider_requests": 0,
+    "robot_actions_dispatched": 0,
+    "source_sha256": "fa40c930b3a9876881c6388c6dd252800c6add732494615f207010cb5eeaa56b",
+    "request_sha256": "7371486213f58b78b63fef55a2abad5447d9235d992c89f8fcf9d3d06e752013",
+    "bindings": [
+      {
+        "binding": {
+          "native_root": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/worker-close-before-output-02/ee0c61b2332a4b25954adaf4ca6755f3",
+          "skill": {
+            "name": "general-pickup",
+            "revision": "65baa1b85627b0e66f9a8cd6cffd1389e8c1462ce7f18d188c7bed347a6497ed",
+            "input": "robodojo.observation-batch/v1",
+            "output": "robodojo.action-chunks/v1",
+            "state": "ready"
+          }
+        },
+        "action_chunk_size": 1,
+        "worker_pid": 715448,
+        "memory_before_close_kib": {
+          "VmHWM": 3529316,
+          "VmRSS": 3529316
+        },
+        "close_seconds": 15.11510601703776,
+        "worker_exit": -9
+      },
+      {
+        "binding": {
+          "native_root": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/worker-close-before-output-02/f6e559a85cdf4396b6716e38e1646fbe",
+          "skill": {
+            "name": "general-pickup",
+            "revision": "e0f2cdf65d48ceba8660478a1ccda83f7f1fba847a5d8ee8868ed3020bc617bb",
+            "input": "robodojo.observation-batch/v1",
+            "output": "robodojo.action-chunks/v1",
+            "state": "ready"
+          }
+        },
+        "action_chunk_size": 1,
+        "worker_pid": 715587,
+        "memory_before_close_kib": {
+          "VmHWM": 3531684,
+          "VmRSS": 3531684
+        },
+        "close_seconds": 15.114786864025518,
+        "worker_exit": -9
+      }
+    ],
+    "worker_source_sha256": "414103f48da371136b9e328508d2091053363a75eb882d5462197a90b9e3e2c3",
+    "status": "two_bindings_and_confirmed_worker_exits"
+  },
+  "after": {
+    "qualification": false,
+    "provider_requests": 0,
+    "robot_actions_dispatched": 0,
+    "source_sha256": "fa40c930b3a9876881c6388c6dd252800c6add732494615f207010cb5eeaa56b",
+    "request_sha256": "7371486213f58b78b63fef55a2abad5447d9235d992c89f8fcf9d3d06e752013",
+    "bindings": [
+      {
+        "binding": {
+          "native_root": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/worker-close-after-output-01/f55c79c0445a48279f1456b596b8c70a",
+          "skill": {
+            "name": "general-pickup",
+            "revision": "f87fb0b67e9825c6df8db3b48f67f8f9875ef429765ed1a8f7694244977f1e23",
+            "input": "robodojo.observation-batch/v1",
+            "output": "robodojo.action-chunks/v1",
+            "state": "ready"
+          }
+        },
+        "action_chunk_size": 1,
+        "worker_pid": 716011,
+        "memory_before_close_kib": {
+          "VmHWM": 3528728,
+          "VmRSS": 3528728
+        },
+        "close_seconds": 0.9648136679898016,
+        "worker_exit": 0
+      },
+      {
+        "binding": {
+          "native_root": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/worker-close-after-output-01/1ba604073b5c41159a68680bec2fdf65",
+          "skill": {
+            "name": "general-pickup",
+            "revision": "de73d62086b57eba4accadc39fd0d9d7a16ef92543a6798813a2d3870381d96c",
+            "input": "robodojo.observation-batch/v1",
+            "output": "robodojo.action-chunks/v1",
+            "state": "ready"
+          }
+        },
+        "action_chunk_size": 1,
+        "worker_pid": 716131,
+        "memory_before_close_kib": {
+          "VmHWM": 3530744,
+          "VmRSS": 3530744
+        },
+        "close_seconds": 1.0146922859712504,
+        "worker_exit": 0
+      }
+    ],
+    "worker_source_sha256": "2e425fdefbabe53b21c43387df1943317dbf73395226b3188c7cabe305ea83cb",
+    "status": "two_bindings_and_confirmed_worker_exits"
+  },
+  "raw_sha256": {
+    "worker-close-before.json": "54e01beee8a90355c31a52420494d4068df7fb795d9fc4f44cc2b45141a67441",
+    "worker-close-after.json": "81d89f7919aa280b84038676375d1f650b56f7a227584375fed5c960d7e3f99e"
+  }
+}

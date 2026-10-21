@@ -1,0 +1,16 @@
+{
+  "schema": "dsh-complex-development-evidence/v1",
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "completed_episodes": 12,
+  "provider_attempts": 12,
+  "successes": 0,
+  "summary": "complex-development.json",
+  "archive_bytes": 27667572,
+  "archive_sha256": "cb9874e31917e51d5405cf7b58e6ede3e79ef3434d39908ef041f3d190eafeba",
+  "manifest_sha256": "0fa3463654e38c7ea0e7dbf98a92f2de04c1827b302ae408ada8d7f3a47aa0e3",
+  "evidence_files": 950,
+  "credential_scan_matches": 0,
+  "source_identity_location": "Raw archive includes both implementation versions and the native framework before the shutdown patch."
+}

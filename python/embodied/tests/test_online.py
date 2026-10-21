@@ -265,3 +265,16 @@ def test_enhanced_prompt_has_one_consistent_json_field_instruction(operations):
     assert 'stable for the episode' not in result
     with pytest.raises(ValueError,match='Unrecognized native'):
         online_prompt('Different schema instruction',operations=operations)
+
+
+def test_online_response_schema_uses_string_handles_and_phase_specific_decisions():
+    from deepseek_harness_embodied.online_model import online_response_schema
+    catalog = {'registered-composition':{}}
+    program = {'operations':{'registered-operation':{}}}
+    schema = online_response_schema(catalog,program,initial=True)
+    assert schema['properties']['operations']['items']=={'type':'string','enum':['registered-operation']}
+    assert schema['properties']['execution']['enum']==['bind','abort']
+    assert set(schema['required'])=={'composition','operations','rationale','execution'}
+    assert not schema['additionalProperties']
+    assert online_response_schema(catalog,program,initial=False)['properties']['execution']['enum']==['restart','switch','abort']
+    assert 'operations' not in online_response_schema(catalog,None,initial=True)['properties']

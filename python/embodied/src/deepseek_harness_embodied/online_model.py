@@ -57,7 +57,22 @@ def online_prompt(native: str, *, operations: bool) -> str:
         'a different registered capability; abort when safe recovery is unsupported. '
         'Rationale alone never changes actions. Use current observations as physical truth; '
         'history may contain obsolete images. A restart is allowed only with the supplied '
-        'restart preconditions. Return JSON only.')
+        'restart preconditions. Operations must be an array of operation ID strings, never '
+        'objects or parameter dictionaries. Runtime parameters are not accepted; the original '
+        'instruction is passed unchanged to the selected skill. Follow response_schema and return JSON only.')
+
+
+def online_response_schema(compositions: dict, operation_program: dict | None, *, initial: bool) -> dict:
+    """Describe the exact native field types and admitted handles for this planning phase."""
+    properties = {
+        'composition':{'type':'string','enum':sorted(compositions)},
+        'rationale':{'type':'string','minLength':1},
+        'execution':{'type':'string','enum':['bind','abort'] if initial else ['restart','switch','abort']},
+    }
+    if operation_program is not None:
+        properties['operations'] = {'type':'array','maxItems':64,'uniqueItems':True,
+            'items':{'type':'string','enum':sorted(operation_program['operations'])}}
+    return {'type':'object','properties':properties,'required':list(properties),'additionalProperties':False}
 
 
 class OnlineModel:
@@ -170,6 +185,8 @@ class OnlineModel:
             messages[0]['content'] = online_prompt(messages[0]['content'], operations=self.operation_program is not None)
             messages[1]['content'].insert(0, {'type': 'text', 'text': json.dumps({
                 'phase': 'initial' if self.revision is None else 'recovery',
+                'response_schema': online_response_schema(self.catalog, self.operation_program,
+                                                         initial=self.revision is None),
                 'restart_preconditions': self.settings['restart_guards']}, allow_nan=False)})
             def validate(value):
                 if not isinstance(value, dict) or 'execution' not in value:

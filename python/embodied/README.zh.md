@@ -39,7 +39,7 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 单环境 `robodojo.py` 执行端管理动作派发及缓存尾部。恢复检查点先禁止派发、丢弃尾部、确认仿真控制队列为空，再请求 `OnlineModel` 回收同步技能工作进程。规划期间不推进仿真。这确认的是动作间隔处的仿真控制静默，不代表真机运动停止。原生控制队列未排空或 RPC 结果未知时，不能替换计划。
 
-`online_model.py` 保留 PhysicalRSI 的原生目录、记忆、领域提示词构造、校验和绑定实现。增强决策增加 `execution`：首次 `bind`、同能力 `restart`、不同能力 `switch`，或 `abort`。重启创建新的技能工作进程，依据新 RGB 和本体感知重新计算动作，不重置场景。配置的可观测重启前置条件必须成立；状态未知或夹爪闭合时可以拒绝恢复。执行摘要不含说明文字和历史。本版只接纳同步代码策略工作进程。
+`online_model.py` 保留 PhysicalRSI 的原生目录、记忆、领域提示词构造、校验和绑定实现。请求包含按阶段定义的 JSON Schema；operation 必须是已注册的 ID 字符串，不能附带自行构造的运行时参数。增强决策增加 `execution`：首次 `bind`、同能力 `restart`、不同能力 `switch`，或 `abort`。重启创建新的技能工作进程，依据新 RGB 和本体感知重新计算动作，不重置场景。配置的可观测重启前置条件必须成立；状态未知或夹爪闭合时可以拒绝恢复。执行摘要不含说明文字和历史。本版只接纳同步代码策略工作进程。
 
 两个进程均通过 `DSH_ROBODOJO_ONLINE_CONFIG` 使用[在线配置](configs/robodojo-online.example.json)。`scripts/robodojo_policy.py` 根据显式包含 `port`、`ready_file` 和 `model` 的 JSON 部署配置启动 RoboDojo 本地 WebSocket 服务；`scripts/robodojo_client.py` 从隔离输出目录向原生 RoboDojo main 提供在线评测执行端。两者均要求可导入已审查的 PhysicalRSI 和 RoboDojo Python 模块。观测事件检测器检查 RGB 缺失、指令变化，以及配置窗口内关节收到运动命令却没有移动；运动规则要求配置的观测和命令前置条件成立；pickup 示例要求两侧夹爪均保持张开，因此正常闭合接触不会触发。事件保留实测关节运动量和命令误差。不从 benchmark 状态推断抓取失败或目标位姿。
 

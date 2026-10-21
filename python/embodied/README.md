@@ -45,7 +45,19 @@ Use [the online configuration](configs/robodojo-online.example.json) through `DS
 
 Initial and recovery requests share one durable DSH Session. Episode history is bounded by revision/event counts, the provider context limit and a common deadline; runtime rotation during an active chain fails instead of losing history. Automatic context summarization and offline history-to-skill admission remain separate work. Immutable runner records link observed triggers, stop acknowledgement, fresh observation sequence, plan commit, native binding, dispatched actions and native terminal outcome; request receipts link the actual sensor input and Session.
 
-`CallBudget` reserves one immutable slot before each model turn across processes and restarts. Failed and unknown attempts consume their slots. All runs sharing a budget must use the same immutable limit; tools and provider retries remain disabled. A six-slot ledger limits this development batch to at most six new provider requests. Recorded local model tests use a separate ledger. Exhaustion blocks subsequent planning and actions.
+`CallBudget` reserves one immutable slot before each model turn across processes and restarts. Failed and unknown attempts consume their slots. All runs sharing a budget must use the same immutable limit; tools and provider retries remain disabled. Recorded local model tests use a separate ledger. Exhaustion blocks subsequent planning and actions.
+
+## Paired development pilot
+
+Copy [the pilot specification](configs/paired-pilot.example.json), set absolute deployment paths, and export `PHYSICALRSI_AGENT_API_KEY`. Each assigned case runs native API planning (N), DSH compatibility planning (H0), and online recovery (H1) in the declared order with independent simulator resets. The native planner and skill execution remain active in N/H0; `--mode native` selects them in both RoboDojo scripts. The example uses a previously explored pickup case and is development data.
+
+```sh
+python python/embodied/scripts/paired_pilot.py --spec /absolute/path/to/pilot.json
+```
+
+The loopback relay uses an ephemeral port and a private token; it forwards to the official DeepSeek endpoint and retains received/sent requests, response bytes, all provider attempts, elapsed time and usage. It applies the same explicit thinking-disabled setting to every arm, preserving other messages and images. Conflicting model/output controls fail before inference. Native transport retries consume separate provider slots. Missing usage remains unknown. Child processes receive the relay token; the real API key is not written to evidence.
+
+The pilot preserves native result files, exceptions, process deadlines, action counts and initial observable state/RGB digests. Reported episode time includes skill cold start; it cannot qualify the formal ready-state latency criterion. A failed episode is retained without automatic rerun. The assigned run order is development configuration, not a statistical randomization protocol. This runner refuses non-development partitions and never declares G1–G4 passed; formal acceptance additionally needs a qualified strongest-native configuration, complete S/L/U/X coverage, independent held-out cases, power calculation, preregistered paired intervals and common cost accounting.
 
 ## Validation
 

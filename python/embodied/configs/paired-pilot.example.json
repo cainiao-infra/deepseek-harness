@@ -1,0 +1,30 @@
+{
+  "schema": "dsh-paired-pilot/v1",
+  "partition": "development",
+  "project_root": "/absolute/path/to/projects",
+  "deployment_root": "/absolute/path/to/isolated-deployment",
+  "checkout": "/absolute/path/to/deepseek-harness",
+  "output": "/absolute/path/to/new-pilot-output",
+  "skill_config": "/absolute/path/to/frozen-skills.json",
+  "runtime_config": "/absolute/path/to/dsh-runtime.json",
+  "model": "deepseek-flash",
+  "embodiment": "arx_x5",
+  "gpu_id": 0,
+  "max_tokens": 2048,
+  "calls_per_episode": 3,
+  "max_request_bytes": 67108864,
+  "max_response_bytes": 16777216,
+  "provider_timeout_seconds": 120,
+  "skill_request_timeout_seconds": 120,
+  "skill_startup_timeout_seconds": 300,
+  "episode_timeout_seconds": 900,
+  "rpc_timeout_seconds": 480,
+  "cleanup_grace_seconds": 45,
+  "policy_startup_timeout_seconds": 60,
+  "process_timeout_seconds": 1200,
+  "cases": [
+    {"case_id": "pickup-basic-dev", "task": "general_pickup", "seed": 0, "hold_first_actions": 0, "lose_rgb_after_action": 0, "order": ["N", "H0", "H1"]},
+    {"case_id": "pickup-stall-dev", "task": "general_pickup", "seed": 0, "hold_first_actions": 4, "lose_rgb_after_action": 0, "order": ["H0", "H1", "N"]},
+    {"case_id": "pickup-vision-dev", "task": "general_pickup", "seed": 0, "hold_first_actions": 0, "lose_rgb_after_action": 3, "order": ["H1", "N", "H0"]}
+  ]
+}

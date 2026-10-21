@@ -45,7 +45,19 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 初始规划和恢复请求共用一个持久化 DSH Session。episode 历史受修订次数、事件次数、provider 上下文限制和共同截止时间约束；活动链路中需要轮换运行时时直接失败，不丢弃历史。自动上下文摘要和离线历史到 skill 准入仍单独推进。不可覆盖的 runner 记录关联观测事件、停止确认、新观测序列、计划提交、原生绑定、已派发动作及原生终态；请求回执关联实际传感器输入和 Session。
 
-`CallBudget` 在每次模型轮次前预留不可覆盖的槽位，跨进程和重启共享。失败或结果未知的尝试也占用槽位。共用预算的运行必须使用相同的不可变额度；工具和 provider 重试保持禁用。六槽账本将本轮开发批次限制为最多六次新增 provider 请求。记录的本地模型测试使用独立账本。额度耗尽后禁止继续规划和派发动作。
+`CallBudget` 在每次模型轮次前预留不可覆盖的槽位，跨进程和重启共享。失败或结果未知的尝试也占用槽位。共用预算的运行必须使用相同的不可变额度；工具和 provider 重试保持禁用。记录的本地模型测试使用独立账本。额度耗尽后禁止继续规划和派发动作。
+
+## 配对开发预实验
+
+复制[预实验规格](configs/paired-pilot.example.json)，设置绝对部署路径，并导出 `PHYSICALRSI_AGENT_API_KEY`。每个指定 case 按登记顺序分别运行原生 API 规划（N）、DSH 兼容规划（H0）及在线恢复（H1），各自独立重置仿真。N/H0 保留原生 planner 及 skill 执行；两个 RoboDojo 脚本通过 `--mode native` 选择原生路径。示例使用此前已探索的 pickup case，属于开发数据。
+
+```sh
+python python/embodied/scripts/paired_pilot.py --spec /absolute/path/to/pilot.json
+```
+
+回环转发器使用系统分配端口及私有 token，转发至 DeepSeek 官方端点，并保留收到及发出的请求、响应字节、全部提供方尝试、耗时和用量。各组均显式关闭 thinking，其他消息及图像保持原样。冲突的模型或输出配置在推理前拒绝。原生传输重试分别消耗提供方名额。缺失用量保留为未知。子进程只收到转发 token；真实 API key 不写入证据。
+
+预实验保留原生结果文件、异常、进程期限、动作数及初始可观测状态/RGB 摘要。记录的 episode 耗时包含 skill 冷启动，不能用于正式就绪状态下的时延验收。失败 episode 保留且不自动重跑。运行顺序属于开发配置，不是统计随机化协议。执行器拒绝非 development 分区，且不宣布 G1–G4 通过；正式验收还要求经确认的最强原生配置、完整 S/L/U/X 覆盖、独立保留场景、功效计算、预登记配对区间及共同费用计量。
 
 ## 验证
 

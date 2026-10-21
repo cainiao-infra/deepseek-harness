@@ -10,9 +10,14 @@ from deepseek_harness_embodied.bridge import write_record
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--deployment', type=Path, required=True)
+parser.add_argument('--mode', choices=('online', 'native'), default='online')
 args = parser.parse_args()
 config = json.loads(args.deployment.read_text())
-model = OnlineModel(config['model'])
+if args.mode == 'native':
+    from PhysicalRSI_baselines.robodojo.skill_model import Model
+    model = Model(config['model'])
+else:
+    model = OnlineModel(config['model'])
 server = PolicyServer(model, PolicyServerConfig(host='127.0.0.1', port=config['port']))
 
 async def serve():

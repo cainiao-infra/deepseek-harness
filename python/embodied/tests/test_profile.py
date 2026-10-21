@@ -15,8 +15,8 @@ from test_bridge import spec
 
 
 @pytest.mark.skipif(os.environ.get('DSH_EMBODIED_INTEGRATION') != '1', reason='requires build:artifacts')
-@pytest.mark.parametrize('episode_session', [False, True])
-def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, episode_session):
+@pytest.mark.parametrize('episode_session,reasoning', [(False,None), (True,None), (True,'off')])
+def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, episode_session, reasoning):
     import time
     root = Path(__file__).resolve().parents[3]
     fixture = json.loads((Path(__file__).parent/'fixtures/compatibility-session.json').read_text())
@@ -43,7 +43,9 @@ def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, ep
     worker.start()
     home = tmp_path/'home'
     install_source_profile(home, root/'packages/experimental/embodied-planner')
-    bridge = PlannerBridge(spec=replace(spec(), base_url=f'http://127.0.0.1:{server.server_port}/v1'),
+    # Three image turns must fit pi-ai's conservative context-token estimate.
+    bridge = PlannerBridge(spec=replace(spec(), base_url=f'http://127.0.0.1:{server.server_port}/v1',
+        deepseek_reasoning=reasoning, calls_per_runtime=3, context_window=65536),
         dsh_home=home, evidence_root=tmp_path/'evidence', dsh_bin=str(root/'apps/cli/lib/bin.js'),
         runtime_cwd=str(root))
     old_key = os.environ.get('PHYSICALRSI_AGENT_API_KEY')
@@ -53,20 +55,27 @@ def test_recorded_compatibility_session_preserves_actual_wire_input(tmp_path, ep
         {'type':'image_url','image_url':{'url':'data:image/png;base64,'+fixture['png']}}]}]
     try:
         generation = bridge.begin_episode(0, 'episode')
-        for number in range(2):
+        count = 3 if reasoning == 'off' else 2
+        for number in range(count):
             identity = RequestIdentity('run','episode',f'request-{number}',0,generation,time.monotonic()+20)
             assert bridge.plan(messages=messages, identity=identity, mode='subgoal',
                 schema_version='v1', validate=lambda value:value, episode_session=episode_session) == fixture['response']
-        assert len(requests) == 2
+        assert len(requests) == count
         for number, request in enumerate(requests):
             assert {name:request.get(name) for name in fixture['expected']} == fixture['expected']
-            if episode_session and number == 1:
+            if episode_session and number > 0:
+                assert len(request['messages']) == 2 * number + 2
                 assert request['messages'][:2] == messages
                 assert request['messages'][-1] == messages[-1]
                 assert json.loads(request['messages'][2]['content']) == fixture['response']
             else:
                 assert request['messages'] == messages
             assert not request.get('tools')
+            if reasoning == 'off':
+                assert request['thinking'] == {'type':'disabled'}
+                assert 'reasoning_effort' not in request
+            else:
+                assert 'thinking' not in request
         receipts = [json.loads(file.read_text()) for file in (tmp_path/'evidence').rglob('receipt.json')]
         assert len({receipt['session_id'] for receipt in receipts}) == (1 if episode_session else 2)
         bridge.close()

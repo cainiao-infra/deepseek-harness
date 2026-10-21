@@ -184,7 +184,7 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     native_module.Model = Native
     planner_module = ModuleType('PhysicalRSI_baselines.robodojo.agent_planner')
     def builder(**kwargs):
-        return [{'role':'system','content':'native'}, {'role':'user','content':[{
+        return [{'role':'system','content':'Return JSON with exactly composition and rationale as nonempty strings.'}, {'role':'user','content':[{
             'type':'text','text':json.dumps({'instruction':kwargs['instruction'],
                 'observation':kwargs['observation'],'previous_plan':kwargs['previous_plan']})}]}]
     planner_module.build_planner_messages = builder
@@ -250,3 +250,18 @@ def test_expected_closed_gripper_contact_is_not_arm_motion_failure():
     assert event.kind == 'no_progress'
     assert event.facts['observed_motion']==0 and event.facts['command_error']==1
     assert event.facts['first_joints']==event.facts['current_joints']=={'right_arm_joint_state':[0.0]}
+
+
+@pytest.mark.parametrize('operations',[False,True])
+def test_enhanced_prompt_has_one_consistent_json_field_instruction(operations):
+    from deepseek_harness_embodied.online_model import online_prompt
+    native = ('Return JSON with exactly composition, operations, and rationale.' if operations else
+              'Return JSON with exactly composition and rationale as nonempty strings.')
+    source = native+' Use capability geometry; keep the implementation stable for the episode.'
+    result = online_prompt(source,operations=operations)
+    assert native not in result and result.count('Return JSON with exactly') == 1
+    assert 'rationale, and execution' in result
+    assert 'Use capability geometry' in result
+    assert 'stable for the episode' not in result
+    with pytest.raises(ValueError,match='Unrecognized native'):
+        online_prompt('Different schema instruction',operations=operations)

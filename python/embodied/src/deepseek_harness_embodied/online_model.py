@@ -40,6 +40,26 @@ def execution_key(plan: dict, messages: list) -> str:
                    'images': blocks[2:]})
 
 
+def online_prompt(native: str, *, operations: bool) -> str:
+    """Retain native capability guidance with one consistent enhanced JSON field set."""
+    before = ('Return JSON with exactly composition, operations, and rationale.' if operations else
+              'Return JSON with exactly composition and rationale as nonempty strings.')
+    after = ('Return JSON with exactly composition, operations, rationale, and execution.' if operations else
+             'Return JSON with exactly composition, rationale, and execution as nonempty strings.')
+    if native.count(before) != 1:
+        raise ValueError('Unrecognized native planner schema instruction; review the source variant')
+    return native.replace(before, after).replace(
+        'keep the implementation stable for the episode.',
+        'keep the implementation stable until an admitted recovery checkpoint.') + (
+        ' Online execution permits a replacement only after acknowledged stopping and fresh observation. '
+        'Field execution must be bind for the first plan; restart to discard the old skill '
+        'state and recompute the same capability from current RGB/proprioception; switch to bind '
+        'a different registered capability; abort when safe recovery is unsupported. '
+        'Rationale alone never changes actions. Use current observations as physical truth; '
+        'history may contain obsolete images. A restart is allowed only with the supplied '
+        'restart preconditions. Return JSON only.')
+
+
 class OnlineModel:
     """Serialized WebSocket methods for one code-policy environment.
 
@@ -147,14 +167,7 @@ class OnlineModel:
             messages = build_planner_messages(instruction=observation['instruction'], observation=observation,
                 memory=self.memory, previous_plan=previous, compositions=self.catalog,
                 operation_program=self.operation_program)
-            messages[0]['content'] += (
-                ' Online execution permits a replacement only after acknowledged stopping and fresh observation. '
-                'Add exactly one field execution: bind for the first plan; restart to discard the old skill '
-                'state and recompute the same capability from current RGB/proprioception; switch to bind '
-                'a different registered capability; abort when safe recovery is unsupported. '
-                'Rationale alone never changes actions. Use current observations as physical truth; '
-                'history may contain obsolete images. A restart is allowed only with the supplied '
-                'restart preconditions. Return JSON only.')
+            messages[0]['content'] = online_prompt(messages[0]['content'], operations=self.operation_program is not None)
             messages[1]['content'].insert(0, {'type': 'text', 'text': json.dumps({
                 'phase': 'initial' if self.revision is None else 'recovery',
                 'restart_preconditions': self.settings['restart_guards']}, allow_nan=False)})

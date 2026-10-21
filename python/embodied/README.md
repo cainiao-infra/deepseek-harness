@@ -31,6 +31,8 @@ Copy [the deployment example](configs/deepseek-flash.example.json), set absolute
 
 Each request writes immutable `request.json`, `events.json` and a terminal `receipt.json` under run/episode/request IDs. Receipts bind input and model configuration digests to the SDK Session and validated plan. Successful events are flushed before returning the plan; close the bridge to flush the runtime’s complete JSONL Session logs. Physical observations, actions, binding revisions and native outcomes must still be linked by the runner before an episode qualifies as complete evidence.
 
+`ModelSpec.deepseek_reasoning` explicitly selects `off`, `low`, `high` or `max` through DSH’s existing DeepSeek compatibility settings. An absent value preserves the provider default; it does not disable thinking. `off` sends `thinking.type=disabled` without `reasoning_effort`. Freeze the same setting in every comparison arm; the [official thinking-mode guide](https://api-docs.deepseek.com/guides/thinking_mode/) describes its wire semantics.
+
 ## Online recovery provider
 
 `recovery.py` defines `PhysicalRuntime`, `RuntimeState`, `StopReceipt`, `PlanRevision` and `RecoveryCoordinator`. The consumer routes every action chunk through the coordinator. An observed trigger disables dispatch, waits for a bounded acknowledgement with zero queued/in-flight actions, obtains a newer observation, and validates a replacement against pinned identities and current preconditions. It records the commit before binding, and a replacement must change the provider-validated `execution_key` derived from the capability and executable parameters, excluding rationale. Exceptions leave dispatch disabled. Only the native outcome marks success.

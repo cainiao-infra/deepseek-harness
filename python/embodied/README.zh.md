@@ -31,6 +31,8 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 每次请求在 run/episode/request 标识下写入不可覆盖的 `request.json`、`events.json` 和终态 `receipt.json`。回执将输入和模型配置摘要关联到 SDK Session 及校验后的计划。成功事件在返回计划前刷盘；关闭 bridge 后，运行时的完整 JSONL Session 日志完成刷新。runner 仍须关联物理观测、动作、绑定版本及原生结果，才能构成完整 episode 证据。
 
+`ModelSpec.deepseek_reasoning` 通过 DSH 现有 DeepSeek 兼容配置显式选择 `off`、`low`、`high` 或 `max`。不提供该值时保留 provider 默认行为，不代表关闭思考。`off` 发送 `thinking.type=disabled`，且不发送 `reasoning_effort`。对照的每个实验组必须固定相同设置；[官方思考模式指南](https://api-docs.deepseek.com/guides/thinking_mode/)说明了对应 wire 语义。
+
 ## 在线恢复执行端
 
 `recovery.py` 定义 `PhysicalRuntime`、`RuntimeState`、`StopReceipt`、`PlanRevision` 和 `RecoveryCoordinator`。使用方必须将每个动作块经过协调器。观测触发异常后先禁止派发，在时限内等待队列和在途动作为零的确认，再获取更新的观测，并根据固定标识和当前前置条件校验替换计划。绑定前记录提交，替换计划必须改变由能力及可执行参数生成、经执行端校验的 `execution_key`，说明文字不参与该摘要。异常后保持禁止派发，只有原生结果才能标记成功。

@@ -55,6 +55,8 @@ class ModelSpec:
     stream_idle_ms: int
     calls_per_runtime: int
     max_output_bytes: int
+    deepseek_reasoning: str | None = None
+    """Explicit DeepSeek effort; None preserves the provider default, which may think."""
 
     def __post_init__(self) -> None:
         if not self.model or not self.base_url:
@@ -66,6 +68,8 @@ class ModelSpec:
                 raise ValueError(f"{name} must be a positive integer")
         if not math.isfinite(self.temperature) or not 0 <= self.temperature <= 2:
             raise ValueError("temperature must be finite and between zero and two")
+        if self.deepseek_reasoning not in {None, 'off', 'low', 'high', 'max'}:
+            raise ValueError('DeepSeek reasoning must be off, low, high, max or absent')
 
 
 @dataclass(frozen=True)
@@ -176,6 +180,7 @@ class PlannerBridge:
             self._runtime.close()
             self._runtime = None
         if self._runtime is None:
+            reasoning = self.spec.deepseek_reasoning
             patch = self.evidence_root / ".runtime-config" / (uuid.uuid4().hex + ".json")
             write_record(patch, [
                 {"id": "embodied-llm", "config": {"providers": {"embodied": {
@@ -185,10 +190,14 @@ class PlannerBridge:
                     "streamIdleTimeoutMs": self.spec.stream_idle_ms,
                     "retryPolicy": {"mode": "normal", "maxRetries": 0},
                     "compat": {"maxTokensField": "max_tokens", "supportsStore": False,
-                               "supportsDeveloperRole": False},
+                               "supportsDeveloperRole": False,
+                               **({"thinkingFormat":"deepseek", "supportsReasoningEffort":True}
+                                  if reasoning is not None else {})},
+                    **({"reasoning":reasoning} if reasoning is not None else {}),
                     "models": [{"id": self.spec.model, "input": ["text", "image"],
                                 "contextWindow": self.spec.context_window,
-                                "maxTokens": self.spec.max_tokens, "reasoningEfforts": False}],
+                                "maxTokens": self.spec.max_tokens, "reasoningEfforts": False if reasoning is None else {
+                                    "off":"none", "low":"low", "high":"high", "max":"max"}}],
                 }}}},
                 {"id": "system-prompt", "config": {"includeHarnessIdentity": False,
                     "includeRuntimeContext": False, "personaPrefix": system}},

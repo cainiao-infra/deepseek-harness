@@ -1,0 +1,21 @@
+{
+  "schema": "dsh-live-thinking-evidence/v1",
+  "qualification": false,
+  "partition": "development",
+  "physical_success_measured": true,
+  "formal_heldout_runs": 0,
+  "completed_episodes": 9,
+  "provider_attempts": 11,
+  "summary": "live-development.json",
+  "archive_file": "evidence.tar.xz",
+  "archive_bytes": 21445556,
+  "archive_sha256": "59b0f238d568ee8155f9eddae80b139165da97903d42655be550d2d346f28d77",
+  "manifest_sha256": "300f73494e02aeedce8f1b6fbdc61c43649d3f9a5000ccbfd6ad8af624f8293c",
+  "evidence_files": 859,
+  "credential_scan_matches": 0,
+  "aborted_batch": "paired-pilot-03-thinking-high",
+  "completed_batch": "paired-pilot-04-thinking-high-egl",
+  "source_version_count": 1,
+  "implementation_archive_sha256": "cc28919b34a047fedbc48232723d34a3194c2e0d713d5a7b2b273baf7540148f",
+  "source_identity_location": "Raw archive retains the commit identifier and exact implementation.tar; this maintained summary uses its content digest."
+}

@@ -63,6 +63,8 @@ python python/embodied/scripts/paired_pilot.py --spec /absolute/path/to/pilot.js
 
 `native-terminal.json` 单独记录首次既有原生终止检查及首次动作派发。它不增加环境查询，忽略终止前的 success 标志，并将评测收尾排除在完成时间外。冷启动仍计入；仅此记录不能完成要求中的预热或资源控制验收。
 
+可选的绝对路径 `online_config` 和 `policy_python` 为所有组选择经审查的恢复模板和策略解释器。省略时保留仓库示例和原有策略环境。启动器在创建分配或预留模型调用前验证两者，将模板一次性保存在 `resolved-inputs.json`，并记录模板及解释器文件的 SHA-256。每个 episode 的证据路径和统一期限替换模板中的占位值。检测阈值与重启条件保持为已捕获配置。可执行文件哈希不代表已安装依赖，也不能证明学习策略可用。
+
 case 可同时固定 `layout_id` 和 `layout_sha256`。该索引选择 CLI seed 目录中按数字排序的原生布局；仅更改 `--seed` 不会选择目录内其他文件。客户端验证原文件，保留逐字节相同的不可覆盖快照，并让原生加载器读取快照；保留原生恢复排除规则。报告按 case 检查所选索引和快照摘要；缺失选择证据不能支持固定布局 case 成功。布局文件和标识不进入模型输入。
 
 `scripts/generate_layout_cohort.py` 在隔离工作进程中复用已安装的 PhysicalRSI 配置目录生成器和输入限制，不调用模型、不读取 benchmark 布局。生成前冻结分配、采样器源码及按分区隔离的种子流。几何生成不代表物理或 benchmark 分布验证。validation 场景集要求已冻结的对照 SHA-256。开发 case 的 `fresh_layout` 包含绝对路径 `manifest`、其 `manifest_sha256`、原场景集 `index` 及 `split=development`，同时设置 `layout_id=0` 和场景文件 SHA-256。原生新布局执行端将该已验证条目绑定到索引零，保留的选择记录仍包含原场景集标识。开发预实验拒绝 validation 场景集。文件被改动、场景重复、场景集不完整或缺失回执时不能进入绑定。

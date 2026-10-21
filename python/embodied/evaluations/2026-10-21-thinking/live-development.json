@@ -1,0 +1,575 @@
+{
+  "qualification": false,
+  "online_audits": [
+    {
+      "checks_passed": true,
+      "episodes": [
+        {
+          "episode_id": "35808fab67f84280bcd1c604accaf663",
+          "actions": 110,
+          "replacements": 0,
+          "model_calls": 1,
+          "session_count": 1
+        }
+      ],
+      "native_score": 100.0,
+      "directory": "0002-pickup-basic-dev-H1"
+    },
+    {
+      "checks_passed": true,
+      "episodes": [
+        {
+          "episode_id": "6358230e232b47309ae1749044634c9c",
+          "actions": 114,
+          "replacements": 1,
+          "model_calls": 2,
+          "session_count": 1
+        }
+      ],
+      "native_score": 100.0,
+      "directory": "0004-pickup-stall-dev-H1"
+    },
+    {
+      "checks_passed": true,
+      "episodes": [
+        {
+          "episode_id": "f9bceddc31b849039c605b628f95617d",
+          "actions": 113,
+          "replacements": 1,
+          "model_calls": 2,
+          "session_count": 1
+        }
+      ],
+      "native_score": 100.0,
+      "directory": "0006-pickup-vision-dev-H1"
+    }
+  ],
+  "rows": [
+    {
+      "case_id": "pickup-basic-dev",
+      "arm": "N",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 43.79628457699437,
+      "capped_evaluator_seconds": 43.79628457699437,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3864,
+      "artifact_directory": "0000-pickup-basic-dev-N",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 29.31875804500305,
+        "native_terminal": {
+          "elapsed_seconds": 43.79071784298867,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "f851639d334140c84077694fb9d74f18f071f0ce5c5fd767dd0ec56b7f976559",
+          "response_sha256": "6339ec2b8754a546e9f2a272b800f8bc3c35c450ace801b485f17873b2e37f03",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 541,
+            "total_tokens": 3864,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 433
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-basic-dev",
+      "arm": "H0",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 42.48848005000036,
+      "capped_evaluator_seconds": 42.48848005000036,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3608,
+      "artifact_directory": "0001-pickup-basic-dev-H0",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.17521775199566,
+        "native_terminal": {
+          "elapsed_seconds": 42.48304453599849,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "b4528a844723b78a07ac43ad87120552f94411d0bf1ee13c755b08e53fdaa000",
+          "response_sha256": "a6f0d37f4d0039ea46ee0bd018aaaa1a56ae4180c2a4a9bc705c324b4a85686c",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 285,
+            "total_tokens": 3608,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 186
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-basic-dev",
+      "arm": "H1",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 58.62302085899864,
+      "capped_evaluator_seconds": 58.62302085899864,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 4159,
+      "artifact_directory": "0002-pickup-basic-dev-H1",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 27.184939958999166,
+        "native_terminal": {
+          "elapsed_seconds": 43.42856971101719,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "012ed2f7df280744e240479cb7bb092184fa6cfd2f39ee4b7c7436bfc05e53d2",
+          "response_sha256": "f078a4d7e8bdf05d300a509325626734bf3d0134e0e6aeff09a4690a5f7b50cf",
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 347,
+            "total_tokens": 4159,
+            "prompt_tokens_details": {
+              "cached_tokens": 256
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 233
+            },
+            "prompt_cache_hit_tokens": 256,
+            "prompt_cache_miss_tokens": 3556
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-stall-dev",
+      "arm": "H0",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 42.37255016100244,
+      "capped_evaluator_seconds": 42.37255016100244,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3800,
+      "artifact_directory": "0003-pickup-stall-dev-H0",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 27.84566511400044,
+        "native_terminal": {
+          "elapsed_seconds": 42.368019916990306,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "c76a104f8c3578fb56185050d34b65e9c671e4dd6bbf60178529afe0a00b971c",
+          "response_sha256": "1ade6e6db1847b72252eb802b5c1f46c91d7199ccb1006cdc395376b49783ee4",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 477,
+            "total_tokens": 3800,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 354
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-stall-dev",
+      "arm": "H1",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 114,
+      "evaluator_seconds_including_cold_start_and_teardown": 93.77174704897334,
+      "capped_evaluator_seconds": 93.77174704897334,
+      "provider_receipts": 2,
+      "provider_attempts_reserved": 2,
+      "provider_usage_complete": true,
+      "total_tokens": 12454,
+      "artifact_directory": "0004-pickup-stall-dev-H1",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.81161485798657,
+        "native_terminal": {
+          "elapsed_seconds": 78.56989685099688,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "4d6d038a697f28d32a3950be5221c1db699425f6b316598de938002da15451ab",
+          "response_sha256": "4ea454acefb66b04eafa49f54494c0c2f6ed59cd7238af87e7187d186223daa9",
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 458,
+            "total_tokens": 4270,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 346
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        },
+        {
+          "directory": "http-0001",
+          "sent_sha256": "70f9eb7e89eb4aa05e004fce33dbbdf099940c4b0b405c969374e60cf2598b2a",
+          "response_sha256": "8c3eb5fa1f11b01f6e71bc030933069b14888f394d1124897371ee91583defea",
+          "usage": {
+            "prompt_tokens": 7799,
+            "completion_tokens": 385,
+            "total_tokens": 8184,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 252
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 4087
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-stall-dev",
+      "arm": "N",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 41.4038477629947,
+      "capped_evaluator_seconds": 41.4038477629947,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3898,
+      "artifact_directory": "0005-pickup-stall-dev-N",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 26.795236667006975,
+        "native_terminal": {
+          "elapsed_seconds": 41.39867518900428,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "88154574a2cc343b337976b0618e3446511e0f85ee0f935a54b9df5999343814",
+          "response_sha256": "46bc8e865bc6a7f2a1f15ce121b4eaf40cabfa95b596209764320f9247a14ff7",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 575,
+            "total_tokens": 3898,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 453
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "H1",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 113,
+      "evaluator_seconds_including_cold_start_and_teardown": 92.19952371600084,
+      "capped_evaluator_seconds": 92.19952371600084,
+      "provider_receipts": 2,
+      "provider_attempts_reserved": 2,
+      "provider_usage_complete": true,
+      "total_tokens": 12137,
+      "artifact_directory": "0006-pickup-vision-dev-H1",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 27.613226179004414,
+        "native_terminal": {
+          "elapsed_seconds": 77.00289816301665,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "3eb5f373abf85410d0bded5ee26ab3361fadd7212c889b4bca0048d4f8adbeb2",
+          "response_sha256": "5b86b337035d2cd5ac708b0a212861f742c8b0e8aae5a61fe617e3f8b72cc895",
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 385,
+            "total_tokens": 4197,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 277
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        },
+        {
+          "directory": "http-0001",
+          "sent_sha256": "77a12f824e58604bfbc7d1bd82d2ae2c97dd61987048244bd9dd722a083fba20",
+          "response_sha256": "df111a7996b921eccd2959d3881932bdaacda3cc3d28c64e2f6083f706aa39cd",
+          "usage": {
+            "prompt_tokens": 7403,
+            "completion_tokens": 537,
+            "total_tokens": 7940,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 388
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 3691
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "N",
+      "success": false,
+      "native_success": false,
+      "native_result_count": 0,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": {
+        "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-04-thinking-high-egl/0007-pickup-vision-dev-N/skills/3ca4798504c84adfadfcbff12664a075/service.log",
+        "type": "WsError"
+      },
+      "actions": 3,
+      "evaluator_seconds_including_cold_start_and_teardown": 27.631451430992456,
+      "capped_evaluator_seconds": 900,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3734,
+      "artifact_directory": "0007-pickup-vision-dev-N",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 27.22276466101175,
+        "native_terminal": null,
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "131c6b57764edebe707e26fdda94fc771f215692e8c3fc50d56c67ce1ea1c863",
+          "response_sha256": "7f4958715b73d1ff2d0b12dcddef0e5c62cb987f2751b828551df3c418f9c88f",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 411,
+            "total_tokens": 3734,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 327
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "H0",
+      "success": false,
+      "native_success": false,
+      "native_result_count": 0,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": {
+        "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-04-thinking-high-egl/0008-pickup-vision-dev-H0/skills/dbb648cbc20f446f9eeb2b024b93d710/service.log",
+        "type": "WsError"
+      },
+      "actions": 3,
+      "evaluator_seconds_including_cold_start_and_teardown": 29.153561276005348,
+      "capped_evaluator_seconds": 900,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3812,
+      "artifact_directory": "0008-pickup-vision-dev-H0",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.746703946992056,
+        "native_terminal": null,
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "96ccb9b3028fd75c18ebe7f0bebeb6ba291ee74802a32f276353fdf71c362778",
+          "response_sha256": "abd01bd696e9167992671733a39fc081f11a5167da58282847d747952122786f",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 489,
+            "total_tokens": 3812,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 382
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    }
+  ],
+  "provider_calls": 11,
+  "system_fingerprints": [
+    "e72d3c7f663d3e1383b00b3884cb4501"
+  ],
+  "source_version_count": 1,
+  "implementation_archive_sha256": "cc28919b34a047fedbc48232723d34a3194c2e0d713d5a7b2b273baf7540148f",
+  "source_identity_location": "Raw archive retains the commit identifier and exact implementation.tar; this maintained summary uses its content digest."
+}

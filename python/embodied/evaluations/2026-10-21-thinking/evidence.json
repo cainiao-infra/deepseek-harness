@@ -14,5 +14,6 @@
   "manifest_sha256": "ba4b3a8eb94374105c0924d7b3b067bc83d4edf9dc1514f621eb2fc48aa7ee5f",
   "evidence_files": 1475,
   "credential_scan_matches": 0,
-  "archive_file": "2026-10-21-thinking-evidence.tar.xz"
+  "archive_file": "2026-10-21-thinking-evidence.tar.xz",
+  "live_development_evidence": "live-development-evidence.json"
 }

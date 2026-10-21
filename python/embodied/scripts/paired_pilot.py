@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 from contextlib import ExitStack
+from copy import deepcopy
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -27,6 +28,7 @@ import urllib.request
 from deepseek_harness_embodied.bridge import write_record
 from deepseek_harness_embodied.budget import CallBudget
 from deepseek_harness_embodied.evaluation import provider_request, response_usage
+from deepseek_harness_embodied.online_config import load_online_config
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -141,7 +143,7 @@ def stop(process: subprocess.Popen, grace: float) -> None:
         pass  # No descendant remains in this owned process group.
 
 
-def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
+def episode(spec: dict, case: dict, arm: str, index: int, key: str, inputs: dict) -> dict:
     """Retain one attempt, including launch failures; never retry a failed episode."""
     project, dev, repo = (Path(spec[name]) for name in ('project_root', 'deployment_root', 'checkout'))
     out = Path(spec['output'])/f'{index:04d}-{case["case_id"]}-{arm}'
@@ -167,7 +169,7 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
             runtime['model_spec'].update(model=spec['model'], base_url=gateway.url,
                 max_tokens=spec['max_tokens'], deepseek_reasoning=spec.get('deepseek_reasoning', 'off'))
             write_record(out/'runtime.json', runtime)
-            online = json.loads((repo/'python/embodied/configs/robodojo-online.example.json').read_text())
+            online = deepcopy(inputs['online'])
             online.update(evidence_root=str(out/'runner'),
                 call_budget={'root': str(out/'turn-reservations'), 'limit': spec['calls_per_episode']},
                 episode_timeout_seconds=spec['episode_timeout_seconds'],
@@ -187,7 +189,7 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
                 OMNI_KIT_ACCEPT_EULA='YES', OMNI_KIT_ALLOW_ROOT='1', EVAL_NUM='1', ROBODOJO_RUN_ID=out.name)
             mode = 'online' if arm == 'H1' else 'native'
             policy_log = stack.enter_context((out/'policy.log').open('w'))
-            policy = subprocess.Popen([str(project/'envs/robodojo-policy/bin/python'), '-u',
+            policy = subprocess.Popen([inputs['policy_python'], '-u',
                 str(repo/'python/embodied/scripts/robodojo_policy.py'), '--mode', mode,
                 '--deployment', str(out/'deployment.json')], env=env, stdin=subprocess.DEVNULL, stdout=policy_log,
                 stderr=subprocess.STDOUT, start_new_session=True)
@@ -243,6 +245,29 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
     return result
 
 
+def resolve_inputs(spec: dict) -> dict:
+    """Validate and retain the selected recovery template before any model request.
+
+    Omitted paths select the original pilot environment and repository example.
+    Every arm uses the same policy interpreter and captured template. Its file
+    hash identifies the executable, not its installed dependency environment.
+    """
+    template = Path(spec['online_config']) if 'online_config' in spec else (
+        Path(spec['checkout'])/'python/embodied/configs/robodojo-online.example.json')
+    interpreter = Path(spec['policy_python']) if 'policy_python' in spec else (
+        Path(spec['project_root'])/'envs/robodojo-policy/bin/python')
+    if not interpreter.is_file() or not os.access(interpreter, os.X_OK):
+        raise ValueError('Pilot policy interpreter must be an executable file')
+    raw = template.read_bytes()
+    online = load_online_config(template)
+    if template.read_bytes() != raw:
+        raise ValueError('Online configuration changed during resolution')
+    return {'online':online, 'online_config':str(template),
+            'online_config_sha256':hashlib.sha256(raw).hexdigest(),
+            'policy_python':str(interpreter),
+            'policy_python_sha256':hashlib.sha256(interpreter.read_bytes()).hexdigest()}
+
+
 def main() -> None:
     """Run the predeclared development order without outcome-based stopping."""
     parser = argparse.ArgumentParser(description=__doc__)
@@ -250,14 +275,16 @@ def main() -> None:
     args = parser.parse_args()
     spec = json.loads(args.spec.read_text())
     validate_spec(spec)
+    inputs = resolve_inputs(spec)
     output = Path(spec['output'])
     output.mkdir(parents=True, exist_ok=False)
     write_record(output/'spec.json', spec)
+    write_record(output/'resolved-inputs.json', inputs)
     key = os.environ['PHYSICALRSI_AGENT_API_KEY']
     index = 0
     for case in spec['cases']:
         for arm in case['order']:
-            result = episode(spec, case, arm, index, key)
+            result = episode(spec, case, arm, index, key, inputs)
             print(json.dumps({'index': index, 'case': case['case_id'], 'arm': arm,
                 'native_results': result['native_results'], 'error': result.get('error'),
                 'provider_attempts': len(result['provider_receipts']), 'qualification': False}), flush=True)
@@ -273,6 +300,9 @@ def validate_spec(spec: dict) -> None:
     for name in ('project_root', 'deployment_root', 'checkout', 'output', 'skill_config', 'runtime_config'):
         if not isinstance(spec[name], str) or not Path(spec[name]).is_absolute():
             raise ValueError('Absolute pilot paths required')
+    for name in ('online_config', 'policy_python'):
+        if name in spec and (not isinstance(spec[name], str) or not Path(spec[name]).is_absolute()):
+            raise ValueError('Absolute optional pilot paths required')
     for name in ('provider_timeout_seconds', 'skill_request_timeout_seconds', 'skill_startup_timeout_seconds',
                  'episode_timeout_seconds', 'rpc_timeout_seconds', 'cleanup_grace_seconds',
                  'policy_startup_timeout_seconds', 'process_timeout_seconds'):

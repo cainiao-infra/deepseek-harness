@@ -4,6 +4,7 @@ import io
 import http.client
 from pathlib import Path
 import runpy
+import sys
 
 import pytest
 
@@ -106,6 +107,7 @@ def test_gateway_records_attempts_usage_and_reaps_listener(tmp_path):
     {'cases': [{'case_id': '../escape', 'order': ['N', 'H0', 'H1']}]},
     {'cases': [{'case_id': 'valid', 'order': ['N', 'N', 'H1']}]},
     {'deepseek_reasoning':'unsupported'},
+    {'online_config':'relative.json'}, {'policy_python':None},
     {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':1}]},
     {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':True,'layout_sha256':'0'*64}]},
     {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':0,'layout_sha256':'0'*64,
@@ -118,3 +120,44 @@ def test_invalid_pilot_spec_fails_before_launch(change):
     validate(spec)
     with pytest.raises(ValueError):
         validate(dict(spec, **change))
+
+
+def test_pilot_captures_explicit_recovery_settings_before_model_calls(tmp_path):
+    root = Path(__file__).parents[1]
+    module = runpy.run_path(str(root/'scripts/paired_pilot.py'))
+    spec = json.loads((root/'configs/paired-pilot.example.json').read_text())
+    template = tmp_path/'online.json'
+    online = json.loads((root/'configs/robodojo-online.example.json').read_text())
+    online['events']['window'] = 8
+    online['restart_guards']['stack'] = online['restart_guards'].pop('instruction-grounded-pickup')
+    template.write_text(json.dumps(online))
+    spec.update(online_config=str(template), policy_python=sys.executable)
+    selected = module['resolve_inputs'](spec)
+    assert selected['online']['events']['window'] == 8
+    assert list(selected['online']['restart_guards']) == ['stack']
+    template.write_text('{}')
+    assert selected['online']['events']['window'] == 8
+    with pytest.raises((KeyError, ValueError)):
+        module['resolve_inputs'](spec)
+    spec['policy_python'] = str(tmp_path/'missing-python')
+    with pytest.raises(ValueError, match='executable'):
+        module['resolve_inputs'](spec)
+
+
+def test_invalid_recovery_template_leaves_no_pilot_or_model_attempt(tmp_path, monkeypatch):
+    root = Path(__file__).parents[1]
+    module = runpy.run_path(str(root/'scripts/paired_pilot.py'))
+    template = tmp_path/'online.json'
+    online = json.loads((root/'configs/robodojo-online.example.json').read_text())
+    online['events']['window'] = 1
+    template.write_text(json.dumps(online))
+    spec = json.loads((root/'configs/paired-pilot.example.json').read_text())
+    output = tmp_path/'pilot'
+    spec.update(online_config=str(template), policy_python=sys.executable, output=str(output))
+    path = tmp_path/'spec.json'
+    path.write_text(json.dumps(spec))
+    monkeypatch.setattr(sys, 'argv', ['paired_pilot.py', '--spec', str(path)])
+    monkeypatch.delenv('PHYSICALRSI_AGENT_API_KEY', raising=False)
+    with pytest.raises(ValueError, match='window'):
+        module['main']()
+    assert not output.exists()

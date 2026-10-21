@@ -40,6 +40,20 @@ The second batch freezes the five online snapshots and compares original versus 
 
 All calls return complete responses and usage with the same fingerprint as batch one. The three original/high failures misread historical RGB loss; the clarified/high condition has none in these 25 requests. This supports the combined timing/status clarification on these snapshots. It does not separate wording from explicit status, prove general reliability, or establish a simulator success-rate gain.
 
+## Live development check
+
+A subsequent simulator batch uses Thinking high and cap 8,192 in every arm: native N, compatibility H0 and online H1. It runs nine assigned episodes on the same explored pickup layout, covering normal execution, four held initial commands and one RGB omission after action three. The [audited results](live-development.json) retain two unsuccessful episodes. All 11 provider requests complete with usage and the same fingerprint as the fixed-input batches; all three H1 chains pass the stop/observe/commit/action audit.
+
+| Condition | N success / native seconds | H0 success / native seconds | H1 success / native seconds |
+|---|---|---|---|
+| Normal | Yes / 43.79 | Yes / 42.48 | Yes / 43.43 |
+| Four held commands | Yes / 41.40 | Yes / 42.37 | Yes / 78.57 |
+| One missing RGB observation | No / no terminal | No / no terminal | Yes / 77.00 |
+
+Native seconds include skill cold start and end at the first existing native terminal check, excluding teardown. Missing terminal checks do not become completion times. H1 performs one replacement in each disturbed episode; it makes one initial request on the normal episode. The short stall already recovers with the native controller, so H1's extra replan adds latency without increasing success. This needs detector calibration before performance acceptance. RGB recovery demonstrates an executable benefit on this one development case, not a population success-rate improvement, an L-task result or a Thinking effect isolated from the prompt correction.
+
+An earlier high-effort batch was interrupted after Vulkan initialization failures, before any provider request. Its failed and unfinished assignments remain in the raw archive. The completed batch separately records its EGL Vulkan configuration; it is not pooled with the interrupted batch. These are development results with zero formal held-out runs and an unqualified full native catalog.
+
 ## Integration and acceptance
 
 Online planning now labels current camera availability and refuses recovery observations whose sequence is not newer than the trigger. The development relay can freeze `off`, `low`, `high` or `max` identically for N/H0/H1. The runner separately records the first existing native terminal check, excluding teardown without adding environment queries. Keyless recorded-profile coverage checks the actual high-effort wire fields and retained Session history.
@@ -48,7 +62,7 @@ A separate zero-inference native full-catalog constructor probe fails because `o
 
 ## Evidence and reproduction
 
-[The evidence index](evidence.json) links the two audited batch summaries and the raw archive's SHA-256. Raw requests, responses, protocols, source inputs and implementation copies remain in an ignored evidence archive; credentials are excluded. The report tool verifies frozen messages, sent payloads, response digests, usage and recomputed decisions. It rejects modified raw responses rather than trusting launcher summaries.
+[The evidence index](evidence.json) links the two fixed-input summaries and their raw archive's SHA-256. The separate [live evidence index](live-development-evidence.json) records the simulator archive, including the interrupted batch, native scores, failures, timings, complete H1 Session chains and source commit. Both archives are locally verified against every file in their manifests and scanned for the actual credential with zero matches. Raw requests, responses, protocols, source inputs and implementation copies remain in ignored archives. The fixed-input report tool checks frozen messages, sent payloads, response digests, usage and recomputed decisions, rejecting modified raw responses rather than trusting launcher summaries.
 
 ```sh
 PYTHONPATH=python/embodied/src python python/embodied/scripts/thinking_comparison_report.py /absolute/path/to/extracted-batch

@@ -1,0 +1,88 @@
+{
+  "schema": "dsh-embodied-acceptance-summary/v1",
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "statistical_acceptance": "insufficient_evidence",
+  "rows": [
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "N",
+      "success": false,
+      "native_success": false,
+      "native_result_count": 0,
+      "process_timeout": false,
+      "client_exit": 0,
+      "actions": 3,
+      "evaluator_seconds_including_cold_start_and_teardown": 24.192172002978623,
+      "capped_evaluator_seconds": 900,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3453,
+      "artifact_directory": "0000-pickup-vision-dev-N",
+      "outcome_category": "native_code_skill_error_after_rgb_loss",
+      "normalized_peak_cost_usd": 0.000460392
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "H0",
+      "success": false,
+      "native_success": false,
+      "native_result_count": 0,
+      "process_timeout": false,
+      "client_exit": 0,
+      "actions": 3,
+      "evaluator_seconds_including_cold_start_and_teardown": 25.24838990299031,
+      "capped_evaluator_seconds": 900,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3446,
+      "artifact_directory": "0001-pickup-vision-dev-H0",
+      "outcome_category": "native_code_skill_error_after_rgb_loss",
+      "normalized_peak_cost_usd": 0.000451992
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "H1",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "actions": 113,
+      "evaluator_seconds_including_cold_start_and_teardown": 87.80449619100546,
+      "capped_evaluator_seconds": 87.80449619100546,
+      "provider_receipts": 2,
+      "provider_attempts_reserved": 2,
+      "provider_usage_complete": true,
+      "total_tokens": 11281,
+      "artifact_directory": "0002-pickup-vision-dev-H1",
+      "outcome_category": "native_success",
+      "normalized_peak_cost_usd": 0.001757568
+    }
+  ],
+  "assigned_episodes": 3,
+  "source_version_count": 1,
+  "result_sha256": {
+    "0000-pickup-vision-dev-N/result.json": "c8d6a6c062a80b1f0aa1cf34f2ee56226e5cada440777a91443f188bdeadc059",
+    "0001-pickup-vision-dev-H0/result.json": "a8bee5f848321ac1d2d9224447ac3e8b9b9fd18d255098cd846d1dcf9075013d",
+    "0002-pickup-vision-dev-H1/result.json": "b5fd39653ef51a74a560806e77effd9bf4937bb3c9ddd5cf49f712d787fbfb0e"
+  },
+  "arms": {
+    "N": {
+      "successes": 0,
+      "assigned": 1
+    },
+    "H0": {
+      "successes": 0,
+      "assigned": 1
+    },
+    "H1": {
+      "successes": 1,
+      "assigned": 1
+    }
+  },
+  "projection": "Diagnostics reduced to categories; complete records remain in the sealed archive"
+}

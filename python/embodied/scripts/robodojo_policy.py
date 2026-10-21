@@ -1,4 +1,4 @@
-"""Launch the existing RoboDojo WebSocket server with the online PhysicalRSI model."""
+"""Launch RoboDojo's loopback server with native or online PhysicalRSI execution."""
 import argparse
 import asyncio
 import json

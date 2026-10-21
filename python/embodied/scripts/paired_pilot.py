@@ -126,7 +126,7 @@ def stop(process: subprocess.Popen, grace: float) -> None:
     """Reap the owned process group; signal an exited leader's remaining workers."""
     try:
         os.killpg(process.pid, signal.SIGINT)
-    except ProcessLookupError:
+    except ProcessLookupError as missing_group:
         pass  # The entire owned process group has already exited.
     try:
         process.wait(timeout=grace)
@@ -135,7 +135,7 @@ def stop(process: subprocess.Popen, grace: float) -> None:
         process.wait()
     try:
         os.killpg(process.pid, signal.SIGKILL)
-    except ProcessLookupError:
+    except ProcessLookupError as missing_group:
         pass  # No descendant remains in this owned process group.
 
 
@@ -187,7 +187,7 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
             policy_log = stack.enter_context((out/'policy.log').open('w'))
             policy = subprocess.Popen([str(project/'envs/robodojo-policy/bin/python'), '-u',
                 str(repo/'python/embodied/scripts/robodojo_policy.py'), '--mode', mode,
-                '--deployment', str(out/'deployment.json')], env=env, stdout=policy_log,
+                '--deployment', str(out/'deployment.json')], env=env, stdin=subprocess.DEVNULL, stdout=policy_log,
                 stderr=subprocess.STDOUT, start_new_session=True)
             stack.callback(stop, policy, spec['cleanup_grace_seconds'])
             deadline = time.monotonic()+spec['policy_startup_timeout_seconds']
@@ -211,7 +211,8 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str) -> dict:
                 '--additional_info', out.name, '--seed', str(case['seed']), '--headless',
                 '--kit_args=--enable isaacsim.replicator.behavior --enable isaacsim.sensors.camera']
             write_record(out/'launch.json', {'argv': command, 'mode': mode})
-            client = subprocess.Popen(command, env=env, stdout=client_log, stderr=subprocess.STDOUT, start_new_session=True)
+            client = subprocess.Popen(command, env=env, stdin=subprocess.DEVNULL,
+                                      stdout=client_log, stderr=subprocess.STDOUT, start_new_session=True)
             stack.callback(stop, client, spec['cleanup_grace_seconds'])
             try:
                 result['client_exit'] = client.wait(timeout=spec['process_timeout_seconds'])

@@ -1,4 +1,4 @@
-"""Run native RoboDojo main with the online evaluation consumer in an isolated cwd."""
+"""Run RoboDojo main with native or online evaluation and passive pilot records."""
 import argparse
 import hashlib
 import json

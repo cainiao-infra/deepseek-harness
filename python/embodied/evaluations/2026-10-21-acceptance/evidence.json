@@ -1,0 +1,68 @@
+{
+  "schema": "dsh-embodied-acceptance-index/v1",
+  "qualification": false,
+  "decision": "insufficient_evidence",
+  "formal_heldout_runs": 0,
+  "development_episodes": 12,
+  "provider_attempts": 13,
+  "provider_usage_complete": true,
+  "total_tokens": 54533,
+  "normalized_peak_cost_usd": 0.009360084,
+  "cost_basis": {
+    "description": "Normalized public peak tariff, not invoice charges",
+    "source": "https://api-docs.deepseek.com/quick_start/pricing/",
+    "retrieved": "2026-10-21",
+    "usd_per_million": {
+      "cache_hit_input": 0.006,
+      "cache_miss_input": 0.3,
+      "output": 1.2
+    }
+  },
+  "archive_sha256": "b7e0d9d1b7c4a7ad4a4782a83e94ff0f64f797283581088960cf1ecfde50ed6b",
+  "manifest_sha256": "f991b81a8d84e0a93081f9fba181977ea10b416c4eaa3c4b1d22b8265886ddbe",
+  "archive_bytes": 51692355,
+  "evidence_files": 842,
+  "remote_archive": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/acceptance-2026-10-21/evidence.tar.gz",
+  "execution_revision_reference": "source_commit in the archived per-episode assigned.json records",
+  "preflight": {
+    "catalog_skills": 24,
+    "code_skills": 22,
+    "declared_code_files_checked": 109,
+    "declared_code_file_mismatches": 0,
+    "full_catalog_online_load": {
+      "status": "rejected",
+      "exception": "ValueError",
+      "message": "Online v1 supports synchronous code-policy workers only",
+      "reserved_calls": 0
+    }
+  },
+  "online_audits": [
+    {
+      "actions": 110,
+      "replacements": 0,
+      "model_calls": 1,
+      "session_count": 1,
+      "native_score": 100.0,
+      "checks_passed": true,
+      "qualification": false
+    },
+    {
+      "actions": 114,
+      "replacements": 1,
+      "model_calls": 2,
+      "session_count": 1,
+      "native_score": 100.0,
+      "checks_passed": true,
+      "qualification": false
+    },
+    {
+      "actions": 113,
+      "replacements": 1,
+      "model_calls": 2,
+      "session_count": 1,
+      "native_score": 100.0,
+      "checks_passed": true,
+      "qualification": false
+    }
+  ]
+}

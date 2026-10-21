@@ -1,0 +1,28 @@
+# Bilingual-pair consistency record for report.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write python/embodied/evaluations/2026-10-21-acceptance/report.md
+/robodojo-acceptance-record-2026-10-21:
+  en: 58481e29eb8950c6
+  zh: 232e30d3b2d28837
+/robodojo-acceptance-record-2026-10-21/summary:
+  en: 1e9da4b7a1828f0c
+  zh: e0b8a7732460feee
+/robodojo-acceptance-record-2026-10-21/conditions-and-scope:
+  en: 65556e0b5a93befe
+  zh: 1e7ba1b3fd5f3c3d
+/robodojo-acceptance-record-2026-10-21/original-batch:
+  en: 742aff6b2d7ba519
+  zh: 9304d03ff2f8538b
+/robodojo-acceptance-record-2026-10-21/separate-vision-diagnostic:
+  en: 8e6d424929a0507d
+  zh: 2a825caada1faefe
+/robodojo-acceptance-record-2026-10-21/acceptance-gates:
+  en: 032d0f51ed59c35a
+  zh: 4ca6a3a042eb350b
+/robodojo-acceptance-record-2026-10-21/evidence-and-reproduction:
+  en: fad2c11b9724598e
+  zh: d0c6dec0e7b98c71
+/robodojo-acceptance-record-2026-10-21/work-required-before-formal-acceptance:
+  en: e015cc8b67f97dd0
+  zh: d2ecd5bae1d134a8

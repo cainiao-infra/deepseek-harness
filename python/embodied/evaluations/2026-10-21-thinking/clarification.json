@@ -1,0 +1,100 @@
+{
+  "qualification": false,
+  "physical_success_measured": false,
+  "source_snapshots": 5,
+  "assigned_calls": 100,
+  "groups": {
+    "8192-off-clarified": {
+      "assigned": 25,
+      "categories": {
+        "matched": 25
+      },
+      "median_seconds": 1.928583832923323,
+      "p95_seconds": 2.406935999984853,
+      "usage_complete": true,
+      "prompt_tokens": 132975,
+      "completion_tokens": 4614,
+      "reasoning_tokens": 0,
+      "reasoning_observed_requests": 0,
+      "prompts": {
+        "online": {
+          "assigned": 25,
+          "matched": 25
+        }
+      }
+    },
+    "8192-on-clarified": {
+      "assigned": 25,
+      "categories": {
+        "matched": 25
+      },
+      "median_seconds": 2.982503499952145,
+      "p95_seconds": 4.043563041021116,
+      "usage_complete": true,
+      "prompt_tokens": 133600,
+      "completion_tokens": 9696,
+      "reasoning_tokens": 6385,
+      "reasoning_observed_requests": 25,
+      "prompts": {
+        "online": {
+          "assigned": 25,
+          "matched": 25
+        }
+      }
+    },
+    "8192-on-original": {
+      "assigned": 25,
+      "categories": {
+        "matched": 22,
+        "invalid_plan": 3
+      },
+      "median_seconds": 3.049743916024454,
+      "p95_seconds": 8.70176908292342,
+      "usage_complete": true,
+      "prompt_tokens": 130500,
+      "completion_tokens": 14359,
+      "reasoning_tokens": 10808,
+      "reasoning_observed_requests": 25,
+      "prompts": {
+        "online": {
+          "assigned": 25,
+          "matched": 22
+        }
+      }
+    },
+    "8192-off-original": {
+      "assigned": 25,
+      "categories": {
+        "matched": 25
+      },
+      "median_seconds": 1.8617881659884006,
+      "p95_seconds": 2.580754333990626,
+      "usage_complete": true,
+      "prompt_tokens": 129875,
+      "completion_tokens": 4547,
+      "reasoning_tokens": 0,
+      "reasoning_observed_requests": 0,
+      "prompts": {
+        "online": {
+          "assigned": 25,
+          "matched": 25
+        }
+      }
+    }
+  },
+  "paired_outcomes": {
+    "8192-clarified": {
+      "on=True,off=True": 25
+    },
+    "8192-original": {
+      "on=True,off=True": 22,
+      "on=False,off=True": 3
+    }
+  },
+  "models": {
+    "deepseek-flash": 100
+  },
+  "system_fingerprints": {
+    "e72d3c7f663d3e1383b00b3884cb4501": 100
+  }
+}

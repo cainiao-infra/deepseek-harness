@@ -1,0 +1,25 @@
+# Bilingual-pair consistency record for report.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write python/embodied/evaluations/2026-10-21-thinking/report.md
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs:
+  en: 59651b4b5ea8425b
+  zh: ba0c1a043d5abdc1
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/result:
+  en: f994e934417475c7
+  zh: 8bc6d3af579ad4df
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/frozen-comparison:
+  en: f5725a6ab433850b
+  zh: 66a9b1f097ad23ab
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/observed-failure-mechanisms:
+  en: a463b360378f2cf7
+  zh: 16110c96e1a14a01
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/independent-clarification-comparison:
+  en: 48fdf3bb0b4d3e3c
+  zh: 7d3a77bf71c29a75
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/integration-and-acceptance:
+  en: fed7487845e13c18
+  zh: f44222a1ab5593cc
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/evidence-and-reproduction:
+  en: a860863505dede26
+  zh: 8999716775d3e805

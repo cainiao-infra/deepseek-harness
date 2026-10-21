@@ -20,6 +20,8 @@ PhysicalRSI 已有运行时规划和开发阶段 System 2。DSH 提供模型调�
 
 [开发验收记录](../../../../python/embodied/evaluations/2026-10-21-acceptance/report.zh.md)保留十二次三组 pickup episode、十三次真实请求，包括无效规划与基础设施故障。单列视觉诊断中 N/H0 失败而 H1 恢复完成；停滞 case 则各组均成功，H1 增加开销。正式效果验收仍属证据不足：保留集矩阵尚未运行，更广策略路由及长程执行未确认可用，目标移动/抓取失败覆盖缺失。上述开发结果不能完成 T7/T14 或 A1–A11 验收清单。
 
+[固定输入 Thinking 诊断](../../../../python/embodied/evaluations/2026-10-21-thinking/report.zh.md)保留两个独立分配开发批次的 360 次请求。Thinking 提高了原生格式计划准入率，但在这些样本中未改善已有约束的在线提示词；较小输出上限可能截断推理，历史 RGB 缺失事实可能被误当成当前状态。独立的原始/澄清提示词对照支持明确当前观测状态和事件时间。这是规划器证据，不是物理任务成功验收。原生 checkpoint 加载还需依赖确认，目录存在并不足够。模型配置、提示词修改和 Harness 恢复必须作为不同实验因素。
+
 ### 实现检查点：2026-10-21
 
 实验性[规划 bundle](../../../../packages/experimental/embodied-planner/README.zh.md) 和 [Python 适配器](../../../../python/embodied/README.zh.md) 实现了无工具 JSON 规划、有序原始图像传递、整轮截止时间、兼容模式新 Session、reset generation 拒绝、运行时轮换，以及不可覆盖的请求、事件和终态回执。可移植补丁使 PhysicalRSI 的 API 与 DSH 后端共享请求构造和校验，并在规划前分配 episode 标识。本地 PhysicalRSI 改动限于规划器、skill-model 生命周期及受影响的测试夹具，保留其已有工作区改动。

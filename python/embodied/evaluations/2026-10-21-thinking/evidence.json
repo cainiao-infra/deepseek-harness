@@ -1,0 +1,18 @@
+{
+  "schema": "dsh-thinking-evidence/v1",
+  "qualification": false,
+  "physical_success_measured": false,
+  "provider_attempts": 360,
+  "source_snapshots": 13,
+  "formal_heldout_runs": 0,
+  "batches": [
+    "fixed-input.json",
+    "clarification.json"
+  ],
+  "archive_bytes": 50629516,
+  "archive_sha256": "1cf28aae4ba5e5b1b9b028113bf52e50f76698637c60af412dbc296211ee3e52",
+  "manifest_sha256": "ba4b3a8eb94374105c0924d7b3b067bc83d4edf9dc1514f621eb2fc48aa7ee5f",
+  "evidence_files": 1475,
+  "credential_scan_matches": 0,
+  "archive_file": "2026-10-21-thinking-evidence.tar.xz"
+}

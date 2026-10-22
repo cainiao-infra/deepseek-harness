@@ -1,0 +1,397 @@
+{
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "summary": {
+    "schema": "dsh-paired-pilot-report/v1",
+    "qualification": false,
+    "partition": "development",
+    "formal_heldout_runs": 0,
+    "statistical_acceptance": "insufficient_evidence",
+    "rows": [
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "N",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 200,
+        "evaluator_seconds_including_cold_start_and_teardown": 31.15087279799627,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0000-general-pickup-official-0-dev-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.246125001984183,
+          "native_terminal": {
+            "elapsed_seconds": 31.150537256966345,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "H0",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 200,
+        "evaluator_seconds_including_cold_start_and_teardown": 31.261921491997782,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0001-general-pickup-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0001-general-pickup-official-0-dev-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.141758534009568,
+          "native_terminal": {
+            "elapsed_seconds": 31.261540272040293,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "H1",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 200,
+        "evaluator_seconds_including_cold_start_and_teardown": 33.52482026803773,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0002-general-pickup-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0002-general-pickup-official-0-dev-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.500943646999076,
+          "native_terminal": {
+            "elapsed_seconds": 32.30919806397287,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "stack-blocks-by-language-official-0-dev",
+        "arm": "N",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 400,
+        "evaluator_seconds_including_cold_start_and_teardown": 50.79454993602121,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/stack_blocks_by_language_0.json",
+          "layout_sha256": "03aa18bd083b56acb34f383611255f50fd33aec3df07fef40c52f60f710f04a8",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0003-stack-blocks-by-language-official-0-dev-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.135349732008763,
+          "native_terminal": {
+            "elapsed_seconds": 50.7941987660015,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "stack-blocks-by-language-official-0-dev",
+        "arm": "H0",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 400,
+        "evaluator_seconds_including_cold_start_and_teardown": 50.524461277003866,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/stack_blocks_by_language_0.json",
+          "layout_sha256": "03aa18bd083b56acb34f383611255f50fd33aec3df07fef40c52f60f710f04a8",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0004-stack-blocks-by-language-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0004-stack-blocks-by-language-official-0-dev-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.07081059803022,
+          "native_terminal": {
+            "elapsed_seconds": 50.52411798702087,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "stack-blocks-by-language-official-0-dev",
+        "arm": "H1",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 400,
+        "evaluator_seconds_including_cold_start_and_teardown": 54.74340642703464,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/stack_blocks_by_language_0.json",
+          "layout_sha256": "03aa18bd083b56acb34f383611255f50fd33aec3df07fef40c52f60f710f04a8",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0005-stack-blocks-by-language-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0005-stack-blocks-by-language-official-0-dev-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.366877804975957,
+          "native_terminal": {
+            "elapsed_seconds": 53.425944027956575,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "H0",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 900,
+        "evaluator_seconds_including_cold_start_and_teardown": 110.59300016600173,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0006-store-tools-in-toolbox-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0006-store-tools-in-toolbox-official-0-dev-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.24189403100172,
+          "native_terminal": {
+            "elapsed_seconds": 110.5926856349688,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "H1",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 900,
+        "evaluator_seconds_including_cold_start_and_teardown": 117.767113007023,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0007-store-tools-in-toolbox-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0007-store-tools-in-toolbox-official-0-dev-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.505625981022604,
+          "native_terminal": {
+            "elapsed_seconds": 116.60209461598424,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "N",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 900,
+        "evaluator_seconds_including_cold_start_and_teardown": 108.94492996303597,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0008-store-tools-in-toolbox-official-0-dev-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 8.096270587993786,
+          "native_terminal": {
+            "elapsed_seconds": 108.94452819199068,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      }
+    ],
+    "assigned_episodes": 9,
+    "source_version_count": 1,
+    "result_sha256": {
+      "0000-general-pickup-official-0-dev-N/result.json": "d0ad472a67f3d9c55e559db9ee12fa9e10f01ed0175da25aaad536e5e3cafd5a",
+      "0001-general-pickup-official-0-dev-H0/result.json": "bbe48ed55fc94e353726a328641d25a92c0fc43c9c215461ca0bcdad134efd70",
+      "0002-general-pickup-official-0-dev-H1/result.json": "9e370194a88e878a6abf78c8faa22ffa2f7941f06887d6c781c006495ed7716f",
+      "0003-stack-blocks-by-language-official-0-dev-N/result.json": "12e7556c0f2f8314c721c0f7ca5b8a5e12ea1c227e640cc9dd0785226ff32a45",
+      "0004-stack-blocks-by-language-official-0-dev-H0/result.json": "2b08dcf847f1266a6704d8518fefbe71ce3469ea21b7f7f153949f7f37a5e2da",
+      "0005-stack-blocks-by-language-official-0-dev-H1/result.json": "a8d57e3acffa25255c452beb322ff542d5a43119c5e9d9375a94e68942c1b4bc",
+      "0006-store-tools-in-toolbox-official-0-dev-H0/result.json": "e188675abe84f11a74815d4c78394bdcb20169879d8a06c00ef86dd223597d35",
+      "0007-store-tools-in-toolbox-official-0-dev-H1/result.json": "3c9047ab724913fe36847fd974549e031aad876ba5020349fec7cc01c9e13f1d",
+      "0008-store-tools-in-toolbox-official-0-dev-N/result.json": "5bdc4da16057a4eb13c1f89e97d0c84db1ea70aea0c32f62568d323d1f7a9f33"
+    },
+    "arms": {
+      "N": {
+        "successes": 0,
+        "assigned": 3
+      },
+      "H0": {
+        "successes": 0,
+        "assigned": 3
+      },
+      "H1": {
+        "successes": 0,
+        "assigned": 3
+      }
+    }
+  },
+  "configured_initial_plan": {
+    "composition": "memory-guided-manipulation",
+    "operations": [],
+    "rationale": "Explicit general learned-policy preflight shared by all comparison arms."
+  },
+  "scope": "Explicit pi05 policy preflight, H1 recovery disabled; no learned-policy ranking or successful-chain qualification."
+}

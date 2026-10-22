@@ -1,0 +1,13 @@
+{
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "completed_episodes": 9,
+  "provider_attempts": 0,
+  "archive_bytes": 39522188,
+  "archive_sha256": "dc2e0f6b8977843bdf5512477281b0e3356737c9a4b653e81df050be44547ec9",
+  "manifest_sha256": "5c51c8b475c5a3c2328432c22c6cdb815cd743032383ea5e1502fc2be3c26acd",
+  "evidence_files": 1805,
+  "credential_scan_matches": 0,
+  "implementation_archive_sha256": "fd890293370af8cddb007f8050bbc4b37f1fdf75f169189d0b0fdb49184ebe06"
+}

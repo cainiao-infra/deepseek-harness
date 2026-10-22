@@ -104,6 +104,12 @@ A [nine-episode development matrix](full-catalog-development.json) exposes all 2
 
 Providing learned policies does not make the planner select them: all nine decisions use the code library. The stacking failure also occurs on an official scene, so fresh-scene generation alone does not explain it; controller/scene compatibility still needs diagnosis. The toolbox result identifies a capability-description mismatch and an absent recovery path for skill faults. H1 additionally reports its conservative post-fault cleanup failure. First-reset disposal also causes a second full policy load in H1, increasing overhead. This matrix is neither a strongest-native selection nor evidence of enhanced complex-task success.
 
+## Toolbox execution coverage
+
+[Inspection of the frozen skill and native evaluator](toolbox-skill-coverage.json) identifies an execution gap independent of model selection. Native success requires all four tools—pliers, hammer, tape measure and wrench—in their matching positions with containment/orientation checks and the robot back at origin. The inspected visual reader creates tape-measure and optional pliers moves; the executable program takes only `moves[:1]`, and its numerical stages use tape-specific geometry. All four tools are outside the box in the retained development RGB frame.
+
+Choosing `oriented-container-placement` correctly therefore cannot complete this whole task from that scene. Repeatedly selecting the same program does not add hammer, wrench or pliers execution. Improving its generic capability description can correct routing but cannot supply missing control behavior. Complex-task acceptance needs verified execution support for every required subgoal and a planner that can bind and observe those subgoals. This finding describes the inspected frozen release, not every PhysicalRSI implementation; evaluator truth stays outside model inputs.
+
 ## Learned-policy task preflight
 
 A [nine-episode pi05 preflight](learned-policy-development.json) uses the same three explored official scenes, an explicit `memory-guided-manipulation` initial plan in every arm, and zero planner calls. H1 disables recovery. Native evaluation completes in all nine episodes, but none succeeds: pickup exhausts 200 actions, stacking 400 and toolbox storage 900, all with native score zero. The [1,805-file verified archive](learned-policy-development-evidence.json) retains videos, observations, actions, frozen implementation and failures. This tests pi05 only; it does not rank the sparse-memory policy.

@@ -38,6 +38,9 @@
 /deepseek-thinking-diagnostic-frozen-robodojo-inputs/full-catalog-simulator-diagnosis:
   en: 98ba828bd8967c17
   zh: 090eb7aaf9653451
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/toolbox-execution-coverage:
+  en: 35136ea5fef9886d
+  zh: 194c26e461c15f9a
 /deepseek-thinking-diagnostic-frozen-robodojo-inputs/learned-policy-task-preflight:
   en: b243e2971f1202df
   zh: 6d15bdcf42b6430e

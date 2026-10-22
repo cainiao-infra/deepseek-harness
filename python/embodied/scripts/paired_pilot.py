@@ -178,6 +178,8 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str, inputs: dict
             write_record(out/'online.json', online)
             deployment = {'port': 0, 'ready_file': str(out/'ready.json'),
                           'model': {'task_name': case['task'], 'env_cfg_type': spec['embodiment'], 'action_type': 'joint'}}
+            if 'initial_plan' in online:
+                deployment['initial_plan'] = deepcopy(online['initial_plan'])
             write_record(out/'deployment.json', deployment)
             env = dict(os.environ, PYTHONPATH=':'.join(map(str, [dev/'PhysicalRSI', project/'RoboDojo',
                 project/'RoboDojo/XPolicyLab', repo/'python/sdk/src', repo/'python/sdk-runtime/src', repo/'python/embodied/src'])),

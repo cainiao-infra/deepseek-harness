@@ -119,6 +119,15 @@ class OnlineModel:
         self.operation_program = deepcopy(self.binding.metadata['operation_program'])
         self.config = deepcopy(self.binding.metadata['config'])
         self.memory = deepcopy(self.binding.metadata['memory'])
+        try:
+            self.initial_plan = (self._native_plan(deepcopy(self.settings['initial_plan']))
+                                 if 'initial_plan' in self.settings else None)
+        except BaseException:
+            try:
+                self.binding.close()
+            finally:
+                self.transport.close()
+            raise
         self.catalog_revision = digest({'config': self.config, 'catalog': self.catalog, 'memory': self.memory})
         self.binding_revision = digest({'deployment': model_cfg, 'catalog': self.catalog_revision,
                                         'provider': self.binding.identity})
@@ -222,8 +231,15 @@ class OnlineModel:
                 return value
             identity = RequestIdentity(self.transport.run_id, self.episode, uuid.uuid4().hex, 0,
                 self.generation, min(self.deadline, time.monotonic() + self.transport.timeout))
-            plan = self.transport.bridge.plan(messages=messages, identity=identity, mode='online',
-                schema_version='dsh-robodojo-plan/v1', validate=validate, episode_session=True)
+            if self.revision is None and self.initial_plan is not None:
+                plan = validate(dict(deepcopy(self.initial_plan), execution='bind'))
+                write_record(self.root/self.episode/('configured-plan-'+identity.request_id+'.json'), {
+                    'origin':'deployment','identity':asdict(identity),'plan':plan,
+                    'messages':messages,'catalog_revision':self.catalog_revision,
+                    'binding_revision':self.binding_revision,'model_calls':0})
+            else:
+                plan = self.transport.bridge.plan(messages=messages, identity=identity, mode='online',
+                    schema_version='dsh-robodojo-plan/v1', validate=validate, episode_session=True)
             revision = PlanRevision(uuid.uuid4().hex, '' if self.revision is None else self.revision.revision_id,
                 self.episode, self.generation, packet['observation_seq'], self.catalog_revision,
                 self.binding_revision, plan, execution_key(plan, messages), identity.request_id)
@@ -304,6 +320,8 @@ class OnlineModel:
 
     def reset(self) -> None:
         """Invalidate old inference and release owned workers; no physical stop is asserted."""
+        if self.episode is None and not self.failed and not self.bound:
+            return
         self.stopped = True
         self.binding.close()
         if self.episode is not None:

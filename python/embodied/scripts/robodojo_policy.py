@@ -16,6 +16,15 @@ config = json.loads(args.deployment.read_text())
 if args.mode == 'native':
     from PhysicalRSI_baselines.robodojo.skill_model import Model
     model = Model(config['model'])
+    try:
+        if 'initial_plan' in config:
+            from deepseek_harness_embodied.native_binding import install_initial_plan
+            plan = install_initial_plan(model, config['initial_plan'])
+            write_record(Path(config['ready_file']).with_name('configured-initial-plan.json'),
+                         {'origin':'deployment','plan':plan,'model_calls':0})
+    except BaseException:
+        model.close()
+        raise
 else:
     model = OnlineModel(config['model'])
 server = PolicyServer(model, PolicyServerConfig(host='127.0.0.1', port=config['port']))

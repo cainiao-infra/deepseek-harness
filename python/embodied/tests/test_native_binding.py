@@ -116,3 +116,35 @@ def test_policy_failure_discards_tail_and_disables_native_delivery(method):
     assert models[0].closed and models[0].action_queues=={} and not binding.bound
     with pytest.raises(RuntimeError, match='stopped'):
         binding.actions()
+
+
+@pytest.mark.parametrize('invalid', [False, True])
+def test_configured_plan_uses_native_validation_before_disposing_planner(monkeypatch, invalid):
+    import sys
+    from types import ModuleType
+    from deepseek_harness_embodied.native_binding import install_initial_plan
+    calls = []
+    model = factory([])({})
+    previous = model.planner
+    previous.close = lambda:calls.append('closed')
+    module = ModuleType('PhysicalRSI_baselines.robodojo.agent_planner')
+    def validate(value, *, compositions, operation_program):
+        assert compositions == model.catalog and operation_program is None
+        calls.append('validated')
+        if value['composition'] not in compositions:
+            raise ValueError('Unregistered capability')
+        value['rationale'] = 'normalized by native'
+        return value
+    module.validate_planner_result = validate
+    monkeypatch.setitem(sys.modules, module.__name__, module)
+    plan = {'composition':'missing' if invalid else 'pick','rationale':'deployment'}
+    if invalid:
+        with pytest.raises(ValueError, match='Unregistered capability'):
+            install_initial_plan(model, plan)
+        assert calls==['validated'] and model.planner is previous
+    else:
+        result = install_initial_plan(model, plan)
+        assert calls==['validated','closed'] and plan['rationale']=='deployment'
+        assert model.planner.plan()==result and result['rationale']=='normalized by native'
+        result['composition']='changed'
+        assert model.planner.plan()['composition']=='pick'

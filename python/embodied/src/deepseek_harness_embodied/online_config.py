@@ -16,6 +16,8 @@ def load_online_config(path: Path) -> dict:
     config.setdefault('recovery_enabled', True)
     if type(config['recovery_enabled']) is not bool:
         raise ValueError('Recovery enablement must be a boolean')
+    if 'initial_plan' in config and not isinstance(config['initial_plan'], dict):
+        raise ValueError('Configured initial plan must be an object')
     for value in (config['evidence_root'], config['call_budget']['root']):
         if not isinstance(value, str) or not Path(value).is_absolute():
             raise ValueError('Absolute online evidence and shared budget paths required')

@@ -49,7 +49,9 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 工作进程配置默认解析为 `startup_timeout_seconds=300`、`request_timeout_seconds=120`、`exit_timeout_seconds=10`、`kill_timeout_seconds=5`、`connect_timeout_seconds=10`、`client_close_timeout_seconds=5` 和 `poll_interval_seconds=0.05`；各项均可配置，且必须为正有限数。在线 RPC 超时须覆盖启动、连接、元数据和绑定请求；恢复停止超时须覆盖请求、进程退出/强制结束、客户端关闭及原生客户端十秒的 drain/join 时限。外层策略服务启动时限也须覆盖工作进程启动。运行前必须配置这些参数；示例原有的较短停止/RPC 时限不能直接沿用。
 
-首次绑定只传递一次初始观测，下一次原生观测更新发生在首个动作完成后，保留原生观测/动作调用节奏。恢复仍必须在停止确认后采集更新观测，再绑定替换计划。
+在线配置中的可选 `initial_plan` 为首次绑定指定显式原生计划，不调用模型。服务就绪前先执行原生校验。试验器将相同计划复制到 N 和 H0 部署中；任务标识不会选择隐藏计划。H1 将配置提案及其输入、目录和绑定摘要写入证据，并遵循正常的校验、提交和绑定流程。后续恢复仍通过 DSH 调用模型，提供已提交计划、当前观测和原始任务指令。配置式初始绑定不会创建助手轮次或模型调用回执。零调用运行需要部署和原生绑定证据；仅缺少模型回执不能证明使用了这条路径。
+
+任何 episode 开始前，对就绪服务执行 reset 会保留尚未使用的策略工作进程；它不能绕过活动或失败执行状态的清理。首次绑定只传递一次初始观测，下一次原生观测更新发生在首个动作完成后，保留原生观测/动作调用节奏。恢复仍必须在停止确认后采集更新观测，再绑定替换计划。
 
 `online_model.py` 保留 PhysicalRSI 的原生目录、记忆、领域提示词构造、校验和绑定实现。请求包含按阶段定义的 JSON Schema；operation 必须是已注册的 ID 字符串，不能附带自行构造的运行时参数。增强决策增加 `execution`：首次 `bind`、同能力 `restart`、不同能力 `switch`，或 `abort`。重启创建新的技能工作进程，依据新 RGB 和本体感知重新计算动作，不重置场景。首次绑定沿用原生校验；缺少重启条件不应将能力排除在初始选择之外。替换计划要求配置的可观测重启前置条件成立；状态未知或夹爪闭合时可以拒绝恢复。执行摘要不含说明文字和历史。默认进程内提供方仅接纳代码策略；显式配置 `native_worker` 可为完整原生目录选择进程隔离。
 
@@ -65,7 +67,7 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 ## 配对开发预实验
 
-复制[预实验规格](configs/paired-pilot.example.json)，设置绝对部署路径，并导出 `PHYSICALRSI_AGENT_API_KEY`。每个指定 case 按登记顺序分别运行原生 API 规划（N）、DSH 兼容规划（H0）及在线恢复（H1），各自独立重置仿真。N/H0 保留原生 planner 及 skill 执行；两个 RoboDojo 脚本通过 `--mode native` 选择原生路径。示例使用此前已探索的 pickup case，属于开发数据。
+复制[预实验规格](configs/paired-pilot.example.json)，设置绝对部署路径，并导出 `PHYSICALRSI_AGENT_API_KEY`。每个指定 case 按登记顺序分别运行原生规划（N）、DSH 兼容规划（H0）及在线恢复（H1），各自独立重置仿真。N/H0 保留原生 planner 及 skill 执行；两个 RoboDojo 脚本通过 `--mode native` 选择原生路径。示例使用此前已探索的 pickup case，属于开发数据。
 
 ```sh
 python python/embodied/scripts/paired_pilot.py --spec /absolute/path/to/pilot.json

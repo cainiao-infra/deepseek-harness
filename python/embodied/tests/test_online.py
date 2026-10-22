@@ -154,9 +154,10 @@ def test_unknown_stop_or_native_controls_prevent_planning_and_actions(tmp_path, 
     assert executed == []
 
 
+@pytest.mark.parametrize('configured', ['absent', 'valid', 'invalid'])
 @pytest.mark.parametrize('stale', [False, True])
 @pytest.mark.parametrize('guarded', [False, True])
-def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkeypatch, stale, guarded):
+def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkeypatch, stale, guarded, configured):
     import sys
     from copy import deepcopy
     from types import ModuleType
@@ -173,10 +174,12 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     settings_file = tmp_path/'online.json'
     if not guarded:
         settings['restart_guards']['other'] = settings['restart_guards'].pop('pick')
+    if configured != 'absent':
+        settings['initial_plan'] = {'composition':'pick' if configured=='valid' else 'missing','rationale':'deployment'}
     settings_file.write_text(json.dumps(settings))
     monkeypatch.setenv('PHYSICALRSI_SKILL_CONFIG',str(skill_config))
     monkeypatch.setenv('DSH_ROBODOJO_ONLINE_CONFIG',str(settings_file))
-    natives, seen = [], []
+    natives, seen, closed = [], [], []
     class Native:
         def __init__(self, model_cfg):
             self.preloaded, self.operation_program = {}, None
@@ -199,12 +202,12 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
             return 0
         def plan(self, **kwargs):
             seen.append(kwargs)
-            phase = 'bind' if len(seen)==1 else 'restart'
+            phase = 'bind' if json.loads(kwargs['messages'][1]['content'][0]['text'])['phase']=='initial' else 'restart'
             return kwargs['validate']({'composition':'pick','rationale':phase,'execution':phase})
         def reset(self, *args):
             pass
     def transport(**kwargs):
-        return SimpleNamespace(bridge=Bridge(), run_id='run',timeout=10,close=lambda:None)
+        return SimpleNamespace(bridge=Bridge(), run_id='run',timeout=10,close=lambda:closed.append(True))
     monkeypatch.setattr(module,'PhysicalRSITransport',transport)
     native_module = ModuleType('PhysicalRSI_baselines.robodojo.skill_model')
     native_module.Model = Native
@@ -214,9 +217,19 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
             'type':'text','text':json.dumps({'instruction':kwargs['instruction'],
                 'observation':kwargs['observation'],'previous_plan':kwargs['previous_plan']})}]}]
     planner_module.build_planner_messages = builder
-    planner_module.validate_planner_result = lambda value, **kwargs:value
+    def validate(value, **kwargs):
+        if set(value) != {'composition','rationale'} or value['composition'] not in kwargs['compositions']:
+            raise ValueError('Invalid native plan')
+        return value
+    planner_module.validate_planner_result = validate
     monkeypatch.setitem(sys.modules,native_module.__name__,native_module)
     monkeypatch.setitem(sys.modules,planner_module.__name__,planner_module)
+    if configured=='invalid':
+        with pytest.raises(ValueError,match='Invalid native plan'):
+            module.OnlineModel({})
+        assert natives[0].closed and closed==[True] and seen==[]
+        return
+    initial_calls = int(configured=='absent')
     model = module.OnlineModel({})
     def packet(**kwargs):
         return dict(episode_id='episode',generation=0,**kwargs)
@@ -231,14 +244,14 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
         with pytest.raises(ValueError,match='newer than the trigger'):
             model.online_plan(packet(observation=observation,observation_seq=1,
                 event={'kind':'no_progress','observation_seq':1},executed_actions=3))
-        assert model.failed and model.stopped and len(seen)==1
+        assert model.failed and model.stopped and len(seen)==initial_calls
         model.close()
         return
     if not guarded:
         with pytest.raises(ValueError, match='reviewed restart preconditions'):
             model.online_plan(packet(observation=observation,observation_seq=2,
                 event={'kind':'no_progress','observation_seq':1},executed_actions=3))
-        assert model.failed and model.stopped and len(seen)==2 and len(natives)==1
+        assert model.failed and model.stopped and len(seen)==initial_calls+1 and len(natives)==1
         model.close()
         return
     second = model.online_plan(packet(observation=observation,observation_seq=2,
@@ -247,8 +260,8 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     assert len(natives)==2 and natives[0].closed and not natives[1].closed
     assert natives[1].chosen == {'composition':'pick','rationale':'restart'}
     assert model.online_actions(packet(revision_id=second['revision_id']))['actions']==[{'x':2}]
-    assert seen[0]['episode_session'] and seen[1]['episode_session']
-    current = json.loads(seen[1]['messages'][1]['content'][0]['text'])['current_observation_status']
+    assert len(seen)==initial_calls+1 and all(row['episode_session'] for row in seen)
+    current = json.loads(seen[-1]['messages'][1]['content'][0]['text'])['current_observation_status']
     assert current == {'observation_seq':2,'rgb_available':True,'rgb_cameras':['head']}
     assert second['parent_id']==first['revision_id'] and second['execution_key'] != first['execution_key']
     with pytest.raises(RuntimeError,match='stale revision'):
@@ -262,6 +275,7 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     lambda c:c['events'].update(window=1),
     lambda c:c['call_budget'].update(limit=True),
     lambda c:c.update(recovery_enabled=1),
+    lambda c:c.update(initial_plan=[]),
     lambda c:c.update(restart_guards={}),
     lambda c:c['restart_guards']['instruction-grounded-pickup'][0].update(minimum=2),
 ])

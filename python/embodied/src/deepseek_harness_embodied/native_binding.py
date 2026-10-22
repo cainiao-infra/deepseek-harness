@@ -50,6 +50,20 @@ def metadata(model) -> dict:
                      'operation_program':model.operation_program, 'memory':model.memory.read()})
 
 
+def install_initial_plan(model, plan: dict) -> dict:
+    """Install one explicit deployment plan through native validation, without inference.
+
+    The caller owns model cleanup if validation or planner disposal fails.
+    PhysicalRSI still binds and executes the selected capability normally.
+    """
+    from PhysicalRSI_baselines.robodojo.agent_planner import validate_planner_result
+    validated = validate_planner_result(deepcopy(plan), compositions=model.catalog,
+                                        operation_program=model.operation_program)
+    model.planner.close()
+    model.planner = CommittedPlanner(validated)
+    return validated
+
+
 class OwnedModelBinding:
     """Own native binding inside a process whose caller also owns GPU teardown.
 

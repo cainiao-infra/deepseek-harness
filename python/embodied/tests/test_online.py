@@ -399,3 +399,37 @@ def test_current_rgb_status_does_not_use_historical_fault_facts():
     supplied['vision']['wrist']['color'] = None
     assert observation_status(supplied,10)['rgb_available'] is False
     assert observation_status({'vision':{}},11)['rgb_available'] is False
+
+
+@pytest.mark.parametrize('operation_fails', [False, True])
+def test_cleanup_failure_preserves_original_error_and_never_certifies_success(tmp_path, monkeypatch, operation_fails):
+    from pathlib import Path
+    from deepseek_harness_embodied import robodojo as module
+    runtime, initial, executed, calls, records = setup_runtime(tmp_path)
+    runtime.initialize = lambda:(initial.state, runtime.current)
+    runtime.env.is_episode_end = lambda:len(executed)==1
+    runtime.env.success = [True]
+    original = runtime.client.call
+    operation_error = ValueError('native skill inference failed')
+    cleanup_error = TimeoutError('owned worker exit unconfirmed')
+    def call(*, func_name, **kwargs):
+        if func_name=='reset':
+            raise cleanup_error
+        if func_name=='online_actions' and operation_fails:
+            raise operation_error
+        return original(func_name=func_name, **kwargs)
+    runtime.client.call = call
+    monkeypatch.setattr(module, 'RoboDojoRuntime', lambda *args, **kwargs:runtime)
+    config=json.loads((Path(__file__).parents[1]/'configs/robodojo-online.example.json').read_text())
+    config.update(evidence_root=str(tmp_path),call_budget={'root':str(tmp_path/'budget'),'limit':3})
+    path=tmp_path/'online.json';path.write_text(json.dumps(config))
+    monkeypatch.setenv('DSH_ROBODOJO_ONLINE_CONFIG',str(path))
+    with pytest.raises(module.ExecutionCleanupFailure) as caught:
+        module.eval_one_episode(runtime.env,runtime.client)
+    assert caught.value.kind=='execution_cleanup_failed' and caught.value.cleanup_error is cleanup_error
+    assert caught.value.operation_error is (operation_error if operation_fails else None)
+    assert runtime.blocked and not runtime.queue
+    assert 'owned worker exit unconfirmed' in str(caught.value)
+    if operation_fails:
+        assert 'native skill inference failed' in str(caught.value) and executed==[]
+        assert records[-1]['type']=='execution_failed' and records[-1]['detail']==str(operation_error)

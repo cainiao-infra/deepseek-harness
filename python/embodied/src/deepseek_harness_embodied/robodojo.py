@@ -22,6 +22,18 @@ from .recovery import (
     ExecutionEvent, PlanRevision, RecoveryBudget, RecoveryCoordinator, RuntimeState, StopReceipt)
 
 
+class ExecutionCleanupFailure(RuntimeError):
+    """Retain both episode failure and unknown cleanup; dispatch stays disabled."""
+    kind = 'execution_cleanup_failed'
+
+    def __init__(self, operation_error: BaseException | None, cleanup_error: BaseException) -> None:
+        self.operation_error, self.cleanup_error = operation_error, cleanup_error
+        original = ('Native evaluation finished' if operation_error is None else
+                    f'Episode failed with {type(operation_error).__name__}: {operation_error}')
+        super().__init__(f'{original}; cleanup failed with {type(cleanup_error).__name__}: '
+                         f'{cleanup_error}. Dispatch remains disabled; inspect owned worker state.')
+
+
 def action_record(action: dict) -> dict:
     """Project numeric arrays/scalars to JSON for evidence without changing dispatch.
 
@@ -274,6 +286,7 @@ def eval_one_episode(TASK_ENV, model_client) -> None:
         deadline=time.monotonic() + settings['episode_timeout_seconds'])
     events = ObservedEvents(**settings['events'])
     coordinator = None
+    operation_error = None
     try:
         state, initial = runtime.initialize()
         # initialize has already validated and consumed the initial proposal.
@@ -308,6 +321,7 @@ def eval_one_episode(TASK_ENV, model_client) -> None:
                         'success': bool(TASK_ENV.success[0]), 'actions': runtime.executed,
                         'status': coordinator.status})
     except BaseException as error:
+        operation_error = error
         runtime.blocked = True
         runtime.queue.clear()
         runtime.record({'type': 'execution_failed', 'error_type': type(error).__name__,
@@ -316,4 +330,7 @@ def eval_one_episode(TASK_ENV, model_client) -> None:
     finally:
         runtime.blocked = True
         # Reset releases inference processes only; unknown robot effects stay failed.
-        model_client.call(func_name='reset')
+        try:
+            model_client.call(func_name='reset')
+        except BaseException as cleanup_error:
+            raise ExecutionCleanupFailure(operation_error, cleanup_error) from cleanup_error

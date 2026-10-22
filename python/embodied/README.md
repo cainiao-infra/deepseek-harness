@@ -63,6 +63,8 @@ Use [the online configuration](configs/robodojo-online.example.json) through `DS
 
 Initial and recovery requests share one durable DSH Session. Episode history is bounded by revision/event counts, the provider context limit and a common deadline; runtime rotation during an active chain fails instead of losing history. Automatic context summarization and offline history-to-skill admission remain separate work. Immutable runner records link observed triggers, stop acknowledgement, fresh observation sequence, plan commit, native binding, dispatched actions and native terminal outcome; request receipts link the actual sensor input and Session.
 
+If evaluation and subsequent worker cleanup both fail, `ExecutionCleanupFailure` retains both errors and reports that dispatch remains disabled. A cleanup failure after native task success still fails the episode; the native terminal record does not certify worker exit.
+
 `CallBudget` reserves one immutable slot before each model turn across processes and restarts. Failed and unknown attempts consume their slots. All runs sharing a budget must use the same immutable limit; tools and provider retries remain disabled. Recorded local model tests use a separate ledger. Exhaustion blocks subsequent planning and actions.
 
 ## Paired development pilot

@@ -195,6 +195,25 @@ def test_recorded_loop_preserves_cadence_arrays_and_recovery_history(tmp_path, m
         with pytest.raises(ValueError, match='differs from frozen deployment'):
             audit_online_episode(episode, tmp_path/'evidence', initial_plan={'composition':'different'})
 
+    # A forged early terminal pair cannot certify an unbound committed proposal.
+    originals = {p:p.read_bytes() for p in numeric}
+    first = json.loads(originals[numeric[0]])
+    terminal_rows = [first,
+        dict(first,type='native_success'),
+        dict(first,type='native_outcome',terminal=True,success=True,actions=0)]
+    try:
+        for path in numeric:
+            path.unlink()
+        for number, row in enumerate(terminal_rows,1):
+            (episode/f'{number:06d}.json').write_text(json.dumps(row))
+        with pytest.raises(ValueError, match='bypassed binding'):
+            audit_online_episode(episode, tmp_path/'evidence', initial_plan=config.get('initial_plan'))
+    finally:
+        for path in episode.glob('[0-9]*.json'):
+            path.unlink()
+        for path, data in originals.items():
+            path.write_bytes(data)
+
     if fault_operation:
         failure = next(r for r in rows if r['type']=='skill_failure')
         assert failure['discarded_runner_actions']==(2 if fault_operation=='observe' else 0)

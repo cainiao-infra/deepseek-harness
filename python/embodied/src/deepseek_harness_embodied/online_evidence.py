@@ -2,6 +2,7 @@
 
 This verifies retained records, not the simulator or statistical acceptance.
 Failed and incomplete episodes remain in the pilot denominator and cannot pass.
+Native success requires an applied binding or a fresh post-stop observation.
 """
 from __future__ import annotations
 
@@ -154,6 +155,8 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
         elif kind=='native_success':
             require(current and row['revision_id']==current['revision_id'] and not success_observed,
                     'Native success has no current revision or repeats')
+            require((bound and not waiting) or (waiting and ack and fresh),
+                    'Native success bypassed binding or post-stop observation')
             success_observed = True
         elif kind=='native_outcome':
             require(success_observed and row['terminal'] and row['success'] and row['actions']==actions,

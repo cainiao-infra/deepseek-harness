@@ -88,5 +88,31 @@
     ],
     "discarded_tail": 2,
     "synthetic_terminal_success": true
+  },
+  "zero_call_expected": {
+    "provider_calls": 0,
+    "one_session": false,
+    "request_phases": [],
+    "observation_sequences": [],
+    "recovery_trigger_sequence": null,
+    "rgb_available": [],
+    "history_roles": [],
+    "native_observation_counts_at_first_action": [
+      1
+    ],
+    "dispatched_actions": [
+      {
+        "joint": [
+          0.25
+        ]
+      },
+      {
+        "joint": [
+          0.25
+        ]
+      }
+    ],
+    "discarded_tail": 0,
+    "synthetic_terminal_success": true
   }
 }

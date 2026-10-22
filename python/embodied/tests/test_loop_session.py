@@ -14,17 +14,18 @@ import pytest
 from deepseek_harness_embodied import PlannerBridge
 from deepseek_harness_embodied import online_model, robodojo
 from deepseek_harness_embodied.profile import install_source_profile
+from deepseek_harness_embodied.online_evidence import audit_online_episode
 from test_bridge import spec
 
 
 @pytest.mark.skipif(os.environ.get('DSH_EMBODIED_INTEGRATION') != '1', reason='requires build:artifacts')
-@pytest.mark.parametrize('configured', [False, True])
-def test_recorded_loop_preserves_cadence_arrays_and_recovery_history(tmp_path, monkeypatch, recorded_provider, configured):
+@pytest.mark.parametrize('configured,lost_rgb', [(False, True),(True, True),(True, False)])
+def test_recorded_loop_preserves_cadence_arrays_and_recovery_history(tmp_path, monkeypatch, recorded_provider, configured, lost_rgb):
     root = Path(__file__).resolve().parents[3]
     fixture = json.loads((Path(__file__).parent/'fixtures/online-loop-session.json').read_text())
     png = json.loads((Path(__file__).parent/'fixtures/compatibility-session.json').read_text())['png']
     pixels = base64.b64decode(png)
-    url, requests = recorded_provider(fixture['responses'][1:] if configured else fixture['responses'])
+    url, requests = recorded_provider(fixture['responses'][1:] if configured and lost_rgb else ([] if configured else fixture['responses']))
     home = tmp_path/'home'
     install_source_profile(home, root/'packages/experimental/embodied-planner')
     frozen = {'skills':{}}
@@ -94,7 +95,7 @@ def test_recorded_loop_preserves_cadence_arrays_and_recovery_history(tmp_path, m
         robot_manager = SimpleNamespace(control_manager=SimpleNamespace(
             control_queue=[SimpleNamespace(is_empty=lambda:True)]))
         def get_obs(self):
-            missing = len(executed)==1 and not self.lost
+            missing = lost_rgb and len(executed)==1 and not self.lost
             self.lost |= missing
             return {'instruction':'pick','state':{'joint':[len(executed)],'gripper':1},
                     'vision':{} if missing else {'head':{'color':pixels}}}
@@ -114,35 +115,69 @@ def test_recorded_loop_preserves_cadence_arrays_and_recovery_history(tmp_path, m
         robodojo.eval_one_episode(World(), Client())
     finally:
         model.close()
-    assert len(models)==2 and all(m.closed for m in models)
+    assert len(models)==(2 if lost_rgb else 1) and all(m.closed for m in models)
     rows = [json.loads(p.read_text()) for p in sorted((tmp_path/'runner').glob('*/[0-9]*.json'))]
     controls = [json.loads(r['messages'][-1]['content'][0]['text']) for r in requests]
     receipts = [json.loads(p.read_text()) for p in (tmp_path/'evidence').rglob('receipt.json')]
     logs = list((home/'sessions').rglob('*.jsonl'))
-    assert len(logs)==1 and len(receipts)==(1 if configured else 2) and all(r['status']=='completed' for r in receipts)
-    events = [json.loads(line) for line in logs[0].read_text().splitlines()]
-    assert sum(e.get('type')=='assistant/message' for e in events)==(1 if configured else 2)
+    assert len(logs)==int(lost_rgb or not configured) and len(receipts)==(int(lost_rgb) if configured else 2) and all(r['status']=='completed' for r in receipts)
+    events = [json.loads(line) for log in logs for line in log.read_text().splitlines()]
+    assert sum(e.get('type')=='assistant/message' for e in events)==(int(lost_rgb) if configured else 2)
     assert not any(e.get('type')=='tool/call' for e in events)
     assert all(r['thinking']=={'type':'enabled'} and r['reasoning_effort']=='high' for r in requests)
     actual = {
         'provider_calls':len(requests), 'one_session':len({r['session_id'] for r in receipts})==1,
         'request_phases':[c['phase'] for c in controls],
         'observation_sequences':[c['current_observation_status']['observation_seq'] for c in controls],
-        'recovery_trigger_sequence':next(r['observation_seq'] for r in rows if r['type']=='observed_event'),
+        'recovery_trigger_sequence':next((r['observation_seq'] for r in rows if r['type']=='observed_event'), None),
         'rgb_available':[c['current_observation_status']['rgb_available'] for c in controls],
-        'history_roles':[m['role'] for m in requests[-1]['messages']],
+        'history_roles':[m['role'] for m in requests[-1]['messages']] if requests else [],
         'native_observation_counts_at_first_action':observation_counts,
         'dispatched_actions':[r['action'] for r in rows if r['type']=='action_dispatched'],
-        'discarded_tail':next(r['discarded_runner_actions'] for r in rows if r['type']=='stop_acknowledged'),
+        'discarded_tail':next((r['discarded_runner_actions'] for r in rows if r['type']=='stop_acknowledged'), 0),
         'synthetic_terminal_success':rows[-1]['type']=='native_outcome' and rows[-1]['success'],
     }
-    assert actual == fixture['configured_expected' if configured else 'expected']
+    assert actual == fixture['zero_call_expected' if not lost_rgb else ('configured_expected' if configured else 'expected')]
     configured_records = [json.loads(p.read_text()) for p in (tmp_path/'runner').glob('*/configured-plan-*.json')]
     assert len(configured_records)==int(configured)
     if configured:
         receipt = configured_records[0]
         assert receipt['origin']=='deployment' and receipt['model_calls']==0
         assert receipt['plan']==dict(config['initial_plan'], execution='bind')
-        context = json.loads(requests[0]['messages'][-1]['content'][1]['text'])
-        assert context['instruction']=='pick' and context['previous_plan']['plan']==receipt['plan']
-        assert len(list((tmp_path/'budget').glob('call-*.json')))==1
+        if lost_rgb:
+            context = json.loads(requests[0]['messages'][-1]['content'][1]['text'])
+            assert context['instruction']=='pick' and context['previous_plan']['plan']==receipt['plan']
+        assert len(list((tmp_path/'budget').glob('call-*.json')))==int(lost_rgb)
+
+    episode = next(p for p in (tmp_path/'runner').iterdir() if p.is_dir())
+    audit = audit_online_episode(episode, tmp_path/'evidence', initial_plan=config.get('initial_plan'))
+    assert audit['model_calls']==len(requests) and audit['replacements']==int(lost_rgb)
+    assert audit['configured_plans']==int(configured) and audit['session_count']==int(lost_rgb or not configured)
+    numeric = sorted(episode.glob('[0-9]*.json'))
+    mutations = {
+        'stop_acknowledged':lambda row:row.update(queued_actions=1),
+        'fresh_observation':lambda row:row['state'].update(observation_seq=1),
+        'action_dispatched':lambda row:row.update(revision_id='uncommitted'),
+        'binding_applied':lambda row:row.update(revision_id='uncommitted'),
+        'native_outcome':lambda row:row.update(success=False),
+        'native_success':lambda row:row.update(type='unrecognized_success'),
+        'plan_committed':lambda row:row.update(request_id='../different'),
+    }
+    for kind, change in mutations.items():
+        matches = [p for p in numeric if json.loads(p.read_text())['type']==kind]
+        if not matches:
+            assert not lost_rgb and kind in {'stop_acknowledged','fresh_observation'}
+            continue
+        path = matches[0]
+        original = path.read_bytes()
+        row = json.loads(original)
+        change(row)
+        try:
+            path.write_text(json.dumps(row))
+            with pytest.raises(ValueError):
+                audit_online_episode(episode, tmp_path/'evidence', initial_plan=config.get('initial_plan'))
+        finally:
+            path.write_bytes(original)
+    if configured:
+        with pytest.raises(ValueError, match='differs from frozen deployment'):
+            audit_online_episode(episode, tmp_path/'evidence', initial_plan={'composition':'different'})

@@ -14,6 +14,7 @@ import signal
 
 from .bridge import write_record
 from .native_binding import OwnedModelBinding
+from .skill_failure import SkillInferenceFailure
 
 
 class WorkerModel:
@@ -24,21 +25,28 @@ class WorkerModel:
 
     def binding_metadata(self) -> dict:
         """Return the frozen capability snapshot and actual child process identity."""
-        return {'metadata':self.binding.metadata,'pid':os.getpid()}
+        return {'protocol':'dsh-native-binding/v2','metadata':self.binding.metadata,'pid':os.getpid()}
+
+    def _reply(self, call, *args):
+        try:
+            return {'status':'completed','value':call(*args)}
+        except SkillInferenceFailure as error:
+            self.closed = True
+            return {'status':'skill_failed','failure':error.record()}
 
     def binding_apply(self, packet: dict) -> dict:
         """Apply the parent's admitted plan through unchanged native validation."""
         if self.closed:
             raise RuntimeError('A stopped native worker cannot be rebound')
-        return self.binding.bind(packet['plan'], packet['observation'])
+        return self._reply(self.binding.bind, packet['plan'], packet['observation'])
 
-    def binding_observe(self, observation: dict) -> None:
+    def binding_observe(self, observation: dict) -> dict:
         """Forward the current observation without advancing physical simulation."""
-        self.binding.observe(observation)
+        return self._reply(self.binding.observe, observation)
 
-    def binding_actions(self) -> list:
+    def binding_actions(self) -> dict:
         """Return native action arrays through the existing numerical wire codec."""
-        return self.binding.actions()
+        return self._reply(self.binding.actions)
 
     def binding_close(self) -> dict:
         """Close native skills; the parent must additionally await this process exit."""

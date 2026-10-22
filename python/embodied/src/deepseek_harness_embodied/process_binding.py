@@ -17,6 +17,7 @@ import uuid
 import psutil
 
 from .bridge import write_record
+from .skill_failure import SkillInferenceFailure, decode_result
 
 
 def bounded_client_type(base):
@@ -122,8 +123,9 @@ class ProcessBinding:
                 max_connect_attempts=1,max_connect_seconds=cfg['connect_timeout_seconds'],
                 close_timeout_s=cfg['client_close_timeout_seconds'])
             info = self.client.call(func_name='binding_metadata')
-            if not isinstance(info,dict) or not isinstance(info.get('metadata'),dict) or set(info['metadata']) != {
-                    'config','catalog','operation_program','memory'}:
+            if (not isinstance(info,dict) or info.get('protocol')!='dsh-native-binding/v2'
+                    or not isinstance(info.get('metadata'),dict) or set(info['metadata']) != {
+                    'config','catalog','operation_program','memory'}):
                 raise ValueError('Native worker metadata fields are invalid')
             if info['pid'] != self.process.pid or info['metadata']['config'] != self.frozen:
                 raise ValueError('Native worker returned a different identity or configuration')
@@ -136,16 +138,24 @@ class ProcessBinding:
             self._dispose(cooperative=False)
             raise
 
-    def _rpc(self, method: str, observation=None):
+    def _rpc(self, method: str, observation=None, *, operation=None):
         if self.failure is not None:
             raise RuntimeError('Native worker failed; replace the owning service') from self.failure
         try:
-            return self.client.call(func_name=method, obs=observation)
+            result = self.client.call(func_name=method, obs=observation)
+            return decode_result(result, operation) if operation is not None else result
         except BaseException as error:
             self.failure = error
             self.bound = False
             self._dispose(cooperative=False)
             raise
+
+    def _infer(self, method, operation, observation=None):
+        result = self._rpc(method, observation, operation=operation)
+        if isinstance(result, SkillInferenceFailure):
+            self.close()
+            raise result
+        return result
 
     def bind(self, plan: dict, observation: dict) -> dict:
         """Bind only after confirmed prior exit and matching native metadata."""
@@ -155,7 +165,7 @@ class ProcessBinding:
             raise RuntimeError('Stopping is required before native rebinding')
         if self.process is None:
             self._start()
-        result = self._rpc('binding_apply', {'plan':plan,'observation':observation})
+        result = self._infer('binding_apply', 'bind', {'plan':plan,'observation':observation})
         self.bound = True
         return result
 
@@ -163,13 +173,13 @@ class ProcessBinding:
         """Deliver current sensor arrays through RoboDojo's native wire codec."""
         if not self.bound:
             raise RuntimeError('Native observation delivery is disabled while stopped')
-        self._rpc('binding_observe', observation)
+        self._infer('binding_observe', 'observe', observation)
 
     def actions(self) -> list:
         """Fetch native chunks without physical dispatch or conversion to evidence JSON."""
         if not self.bound:
             raise RuntimeError('Native action delivery is disabled while stopped')
-        return self._rpc('binding_actions')
+        return self._infer('binding_actions', 'actions')
 
     def close(self) -> None:
         """Require native cleanup acknowledgement, root exit and descendant quiescence."""

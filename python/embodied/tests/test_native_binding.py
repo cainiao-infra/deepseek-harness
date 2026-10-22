@@ -5,6 +5,7 @@ from types import SimpleNamespace
 import pytest
 
 from deepseek_harness_embodied.native_binding import CodeBinding, CommittedPlanner
+from deepseek_harness_embodied.skill_failure import SkillInferenceFailure
 
 
 def factory(models, change=None):
@@ -111,7 +112,7 @@ def test_policy_failure_discards_tail_and_disables_native_delivery(method):
     def fail(*args):
         raise ValueError('policy failure')
     setattr(models[0], 'update_obs_batch' if method=='observe' else 'get_action_batch', fail)
-    with pytest.raises(ValueError, match='policy failure'):
+    with pytest.raises(SkillInferenceFailure, match='policy failure'):
         binding.observe({'instruction':'pick'}) if method=='observe' else binding.actions()
     assert models[0].closed and models[0].action_queues=={} and not binding.bound
     with pytest.raises(RuntimeError, match='stopped'):

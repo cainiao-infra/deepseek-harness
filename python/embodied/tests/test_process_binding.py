@@ -12,6 +12,7 @@ import pytest
 
 from deepseek_harness_embodied import process_binding as module
 from deepseek_harness_embodied.native_worker import WorkerModel
+from deepseek_harness_embodied.skill_failure import SkillInferenceFailure
 from test_native_binding import factory
 
 
@@ -47,9 +48,11 @@ while True:signal.pause()
             clients.append(self)
         def call(self,func_name,obs=None):
             if mode['fault']==func_name:raise TimeoutError('recorded RPC failure')
-            if func_name=='binding_metadata':return {'pid':self.pid,'metadata':deepcopy(info)}
-            if func_name=='binding_apply':return {'native_root':'root','skill':{'name':'learned'}}
-            if func_name=='binding_actions':return [{'joint':np.array([0.1])}]
+            if mode.get('reply_for')==func_name:return deepcopy(mode['reply'])
+            if func_name=='binding_metadata':return {'protocol':mode.get('protocol','dsh-native-binding/v2'),'pid':self.pid,'metadata':deepcopy(info)}
+            if func_name=='binding_apply':return {'status':'completed','value':{'native_root':'root','skill':{'name':'learned'}}}
+            if func_name=='binding_actions':return {'status':'completed','value':[{'joint':np.array([0.1])}]}
+            if func_name=='binding_observe':return {'status':'completed','value':None}
             if func_name=='binding_close':return {'closed':True,'pid':self.pid}
         def close(self):self.closed=True
     settings=module.resolve_worker({'python':sys.executable,'startup_timeout_seconds':10,
@@ -113,7 +116,7 @@ def test_worker_consumes_admitted_plan_and_close_is_terminal():
     plan={'composition':'pick'}
     worker.binding_apply({'plan':plan,'observation':{'instruction':'pick'}})
     assert models[0].chosen==plan
-    assert worker.binding_actions()==[{'joint':[1]}]
+    assert worker.binding_actions()=={'status':'completed','value':[{'joint':[1]}]}
     assert worker.binding_close()=={'closed':True,'pid':os.getpid()}
     with pytest.raises(RuntimeError,match='cannot be rebound'):
         worker.binding_apply({'plan':plan,'observation':{}})
@@ -130,7 +133,8 @@ def test_native_observation_failure_closes_service_before_any_later_actions():
     worker.binding_apply({'plan':{'composition':'pick'},'observation':{'instruction':'pick'}})
     def fail(*args):raise ValueError('native observation failure')
     models[0].update_obs_batch=fail
-    with pytest.raises(ValueError,match='observation failure'):worker.binding_observe({})
+    assert worker.binding_observe({})=={'status':'skill_failed','failure':{
+        'operation':'observe','error_type':'ValueError','detail':'native observation failure'}}
     assert models[0].closed
     with pytest.raises(RuntimeError,match='stopped'):worker.binding_actions()
 
@@ -203,3 +207,65 @@ def test_whole_rpc_deadline_cancels_pending_native_coroutine_before_loop_release
         assert asyncio.run_coroutine_threadsafe(drained(),client._loop).result(timeout=10)
         assert not entered.is_set() or cancelled.is_set()
     finally:client.close()
+
+
+@pytest.mark.parametrize('operation', ['bind','observe','actions'])
+def test_declared_skill_fault_requires_acknowledged_worker_exit_before_rebinding(worker,operation):
+    binding,children,clients,mode,*_=worker
+    method={'bind':'binding_apply','observe':'binding_observe','actions':'binding_actions'}[operation]
+    if operation!='bind':binding.bind({}, {})
+    mode.update(reply_for=method,reply={'status':'skill_failed','failure':{
+        'operation':operation,'error_type':'RuntimeError','detail':'native inference failure'}})
+    with pytest.raises(SkillInferenceFailure) as caught:
+        if operation=='bind':binding.bind({}, {})
+        elif operation=='observe':binding.observe({})
+        else:binding.actions()
+    assert caught.value.operation==operation and binding.failure is None
+    assert children[0].returncode==0 and clients[0].closed and not binding.bound
+    mode.pop('reply_for')
+    binding.bind({}, {})
+    assert len(children)==2 and children[1].pid!=children[0].pid
+
+
+def test_declared_fault_with_unknown_cleanup_does_not_authorize_reuse(worker):
+    binding,children,clients,mode,*_=worker
+    mode.update(reply_for='binding_apply',reply={'status':'skill_failed','failure':{
+        'operation':'bind','error_type':'RuntimeError','detail':'native inference failure'}},fault='binding_close')
+    with pytest.raises(RuntimeError,match='cleanup failed') as caught:
+        binding.bind({}, {})
+    assert not isinstance(caught.value,SkillInferenceFailure) and binding.failure is not None
+    assert children[0].poll() is not None
+    with pytest.raises(RuntimeError,match='failed'):binding.bind({}, {})
+
+
+@pytest.mark.parametrize('reply', [None, {'status':'completed'}, {'status':'unexpected','value':None},
+    {'status':'skill_failed','failure':{'operation':'observe','error_type':'RuntimeError','detail':'wrong phase'}},
+    {'status':'skill_failed','failure':{'operation':'bind','error_type':'','detail':'missing type'}},
+    {'status':'skill_failed','failure':{'operation':'bind','error_type':'RuntimeError','detail':None}},
+])
+def test_malformed_worker_response_is_unknown_and_permanently_disables_binding(worker,reply):
+    binding,children,clients,mode,*_=worker
+    mode.update(reply_for='binding_apply',reply=reply)
+    with pytest.raises(ValueError):binding.bind({}, {})
+    assert binding.failure is not None and children[0].poll() is not None
+    with pytest.raises(RuntimeError,match='unconfirmed'):binding.close()
+
+
+def test_failed_native_cleanup_cannot_be_encoded_as_a_confirmed_skill_fault():
+    models=[];worker=WorkerModel(factory(models),{})
+    worker.binding_apply({'plan':{'composition':'pick'},'observation':{}})
+    def fail(*args):raise ValueError('native inference failed')
+    def unknown():raise TimeoutError('cleanup unconfirmed')
+    models[0].get_action_batch=fail;models[0].close=unknown
+    with pytest.raises(TimeoutError,match='cleanup unconfirmed'):
+        worker.binding_actions()
+    assert worker.binding.cleanup_error is not None
+
+
+def test_legacy_worker_protocol_is_rejected_before_binding(worker):
+    binding,children,clients,mode,*_=worker
+    binding.close()
+    mode['protocol']='dsh-native-binding/v1'
+    with pytest.raises(ValueError,match='metadata fields'):
+        binding.bind({}, {})
+    assert binding.failure is not None and all(p.poll() is not None for p in children)

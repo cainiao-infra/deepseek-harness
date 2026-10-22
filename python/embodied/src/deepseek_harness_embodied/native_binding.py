@@ -8,6 +8,8 @@ from __future__ import annotations
 from copy import deepcopy
 from typing import Protocol
 
+from .skill_failure import SkillInferenceFailure
+
 
 class NativeBinding(Protocol):
     """Execution metadata and lifecycle required by the online planning consumer."""
@@ -95,11 +97,13 @@ class OwnedModelBinding:
                     raise RuntimeError('Native capability or memory metadata changed after stopping')
             self.model.planner.close()
             self.model.planner = CommittedPlanner(plan)
-            self.model.update_obs_batch([dict(observation, env_idx=0)])
+            self._infer('bind', self.model.update_obs_batch, [dict(observation, env_idx=0)])
             applied = {'native_root':str(self.model.root),
                        'skill':self.model.sessions[0]['skill'].describe()}
             self.bound = True
             return applied
+        except SkillInferenceFailure:
+            raise
         except BaseException:
             self.close()
             raise
@@ -108,20 +112,27 @@ class OwnedModelBinding:
         """Preserve the observation and add the native single-environment index."""
         if not self.bound:
             raise RuntimeError('Native observation delivery is disabled while stopped')
-        try:
-            self.model.update_obs_batch([dict(observation, env_idx=0)])
-        except BaseException:
-            self.close()
-            raise
+        self._infer('observe', self.model.update_obs_batch, [dict(observation, env_idx=0)])
 
     def actions(self) -> list:
         """Return the single environment's chunk without dispatching robot actions."""
         if not self.bound:
             raise RuntimeError('Native action delivery is disabled while stopped')
         try:
-            return self.model.get_action_batch([0])[0]
+            return self._infer('actions', self.model.get_action_batch, [0])[0]
+        except SkillInferenceFailure:
+            raise
         except BaseException:
             self.close()
+            raise
+
+    def _infer(self, operation, call, value):
+        try:
+            return call(value)
+        except BaseException as error:
+            self.close()
+            if isinstance(error, Exception):
+                raise SkillInferenceFailure(operation, type(error).__name__, str(error)) from error
             raise
 
     def close(self) -> None:

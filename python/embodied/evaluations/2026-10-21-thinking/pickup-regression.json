@@ -1,0 +1,915 @@
+{
+  "qualification": false,
+  "online_audits": [
+    {
+      "checks_passed": true,
+      "episodes": [
+        {
+          "episode_id": "a782d874e3ea44b590ac7539023fd636",
+          "actions": 110,
+          "replacements": 0,
+          "model_calls": 1,
+          "session_count": 1
+        }
+      ],
+      "native_score": 100.0,
+      "directory": "0002-pickup-basic-dev-H1"
+    },
+    {
+      "checks_passed": true,
+      "episodes": [
+        {
+          "episode_id": "089eab772f39428c95030cb6d0a37175",
+          "actions": 114,
+          "replacements": 1,
+          "model_calls": 2,
+          "session_count": 1
+        }
+      ],
+      "native_score": 100.0,
+      "directory": "0004-pickup-stall-dev-H1"
+    },
+    {
+      "checks_passed": true,
+      "episodes": [
+        {
+          "episode_id": "33227de4d054423395df30d1bccedb2f",
+          "actions": 113,
+          "replacements": 1,
+          "model_calls": 2,
+          "session_count": 1
+        }
+      ],
+      "native_score": 100.0,
+      "directory": "0006-pickup-vision-dev-H1"
+    }
+  ],
+  "rows": [
+    {
+      "case_id": "pickup-basic-dev",
+      "arm": "N",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 51.50157526205294,
+      "capped_evaluator_seconds": 51.50157526205294,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 5719,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "3423f76280c2270562c3b2786a49453609f7c93a1142e9b9bddf37d91b711ec1",
+            "sent.json": "11a9d6249d7ab7219fcc83261ab2cce102fcdb855743b5444c263ca3c0ea3446",
+            "response.bin": "5dbcc435437b76699204471d03f5a822b40e510b49973ff5035b03d69667ca7c",
+            "receipt.json": "6837ffdfaad3d3e9ec0b3bc0ffd9ae9ebd3797942c085c589b422fb81aeeed42"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 2396,
+            "total_tokens": 5719,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 2297
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0000-pickup-basic-dev-N/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0000-pickup-basic-dev-N",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 37.13005683297524,
+        "native_terminal": {
+          "elapsed_seconds": 51.48962025297806,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "11a9d6249d7ab7219fcc83261ab2cce102fcdb855743b5444c263ca3c0ea3446",
+          "response_sha256": "5dbcc435437b76699204471d03f5a822b40e510b49973ff5035b03d69667ca7c",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 2396,
+            "total_tokens": 5719,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 2297
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-basic-dev",
+      "arm": "H0",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 43.44775003497489,
+      "capped_evaluator_seconds": 43.44775003497489,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3934,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "3e549631abe67417c672ac4192c4c06c34ec191b823c679fb1c6e9adc854b69c",
+            "sent.json": "3e549631abe67417c672ac4192c4c06c34ec191b823c679fb1c6e9adc854b69c",
+            "response.bin": "09e0524ece0043b9ddd7a528ecc58f1cbfffd6743823ec5e4566e34a006ef441",
+            "receipt.json": "a615844a7e5f95f298fdf5dcbc210db5964201d263a5e863b374f96120579e5e"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 611,
+            "total_tokens": 3934,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 517
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0001-pickup-basic-dev-H0/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0001-pickup-basic-dev-H0",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.996129792009015,
+        "native_terminal": {
+          "elapsed_seconds": 43.441450070007704,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "3e549631abe67417c672ac4192c4c06c34ec191b823c679fb1c6e9adc854b69c",
+          "response_sha256": "09e0524ece0043b9ddd7a528ecc58f1cbfffd6743823ec5e4566e34a006ef441",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 611,
+            "total_tokens": 3934,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 517
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-basic-dev",
+      "arm": "H1",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 45.176986397011206,
+      "capped_evaluator_seconds": 45.176986397011206,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 4127,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "3b0502592effd14c6a0e5bbf613037dfc97914cf8a6b3d1832c67802a55b0f11",
+            "sent.json": "3b0502592effd14c6a0e5bbf613037dfc97914cf8a6b3d1832c67802a55b0f11",
+            "response.bin": "1fa28abd97f0c82c7ce41033ee72c9d25335c3cd5cee04bdfc5c736cb843dd32",
+            "receipt.json": "386198ba3f71e7c4ac3be6ba931ee6c37fd68cf0c88ebccc640d610ac7fb28b1"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 315,
+            "total_tokens": 4127,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 215
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0002-pickup-basic-dev-H1/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0002-pickup-basic-dev-H1",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 26.873704077966977,
+        "native_terminal": {
+          "elapsed_seconds": 44.127359800972044,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "3b0502592effd14c6a0e5bbf613037dfc97914cf8a6b3d1832c67802a55b0f11",
+          "response_sha256": "1fa28abd97f0c82c7ce41033ee72c9d25335c3cd5cee04bdfc5c736cb843dd32",
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 315,
+            "total_tokens": 4127,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 215
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-stall-dev",
+      "arm": "H0",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 44.86741632100893,
+      "capped_evaluator_seconds": 44.86741632100893,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 4344,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "ca1561a03944d2f3d5d96dfd19fa58f2cc9fd68bb2422bfebf4c3cc1f0586b13",
+            "sent.json": "ca1561a03944d2f3d5d96dfd19fa58f2cc9fd68bb2422bfebf4c3cc1f0586b13",
+            "response.bin": "afd6a4dbe8cb3e6d79622e3f10c82ecaab2934d6e99d8823463c0609c05da7b8",
+            "receipt.json": "3613b73a59e641b6226614afb74061a378bcf5afad2e8819a6299e6f58a687d7"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 1021,
+            "total_tokens": 4344,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 923
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0003-pickup-stall-dev-H0/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0003-pickup-stall-dev-H0",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 30.238828692003153,
+        "native_terminal": {
+          "elapsed_seconds": 44.861648116027936,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "ca1561a03944d2f3d5d96dfd19fa58f2cc9fd68bb2422bfebf4c3cc1f0586b13",
+          "response_sha256": "afd6a4dbe8cb3e6d79622e3f10c82ecaab2934d6e99d8823463c0609c05da7b8",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 1021,
+            "total_tokens": 4344,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 923
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-stall-dev",
+      "arm": "H1",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 114,
+      "evaluator_seconds_including_cold_start_and_teardown": 64.01337330503156,
+      "capped_evaluator_seconds": 64.01337330503156,
+      "provider_receipts": 2,
+      "provider_attempts_reserved": 2,
+      "provider_usage_complete": true,
+      "total_tokens": 12344,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "eaae862ff84a22b6320070c675515680444286f990c97a53b956c293c975a3b5",
+            "sent.json": "eaae862ff84a22b6320070c675515680444286f990c97a53b956c293c975a3b5",
+            "response.bin": "04378d7a098eb4342f4ffede4d7298359abee22a8403e3cddef72a1fb89dec3a",
+            "receipt.json": "3cd91a6524de392e06d006a7c37a1bccf03cfef210f57e4a5b116617a2d7c0eb"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 382,
+            "total_tokens": 4194,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 281
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          }
+        },
+        {
+          "directory": "http-0001",
+          "file_sha256": {
+            "received.json": "81f66fcbc2ced84d0b4de8ed25ea4a78187d32a59d935bb7e3df26c460c8ebe6",
+            "sent.json": "81f66fcbc2ced84d0b4de8ed25ea4a78187d32a59d935bb7e3df26c460c8ebe6",
+            "response.bin": "88c44bbfd3566206f31556c933fab458dc03064050a32129f6cb4b0c6ea67cb4",
+            "receipt.json": "9334728fc66547bf7f4b71887ba87dbe4875e137dd0d48d417715c1ae1ec2d83"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 7777,
+            "completion_tokens": 373,
+            "total_tokens": 8150,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 252
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 4065
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0004-pickup-stall-dev-H1/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0004-pickup-stall-dev-H1",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.032544563990086,
+        "native_terminal": {
+          "elapsed_seconds": 62.919712567003444,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "eaae862ff84a22b6320070c675515680444286f990c97a53b956c293c975a3b5",
+          "response_sha256": "04378d7a098eb4342f4ffede4d7298359abee22a8403e3cddef72a1fb89dec3a",
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 382,
+            "total_tokens": 4194,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 281
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        },
+        {
+          "directory": "http-0001",
+          "sent_sha256": "81f66fcbc2ced84d0b4de8ed25ea4a78187d32a59d935bb7e3df26c460c8ebe6",
+          "response_sha256": "88c44bbfd3566206f31556c933fab458dc03064050a32129f6cb4b0c6ea67cb4",
+          "usage": {
+            "prompt_tokens": 7777,
+            "completion_tokens": 373,
+            "total_tokens": 8150,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 252
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 4065
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-stall-dev",
+      "arm": "N",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 110,
+      "evaluator_seconds_including_cold_start_and_teardown": 43.11722865398042,
+      "capped_evaluator_seconds": 43.11722865398042,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3937,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "9a36969f3dcc3ad74a4482ccbb13107d171ed493eb383e380b1a5f9c33d92635",
+            "sent.json": "f31a256d77244d6b23f97322b752e3fc66fd4a0547a951801c1ff5a18054fbe3",
+            "response.bin": "7bc371f353a05d15c16a276e4ed9e1b9366036315da103336643430488778498",
+            "receipt.json": "d45b49011d393e2cf2561f2637ee9e63c6c3caba546007dddb8376ccb893c41c"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 614,
+            "total_tokens": 3937,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0005-pickup-stall-dev-N/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0005-pickup-stall-dev-N",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.6414584669983,
+        "native_terminal": {
+          "elapsed_seconds": 43.11119018000318,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "f31a256d77244d6b23f97322b752e3fc66fd4a0547a951801c1ff5a18054fbe3",
+          "response_sha256": "7bc371f353a05d15c16a276e4ed9e1b9366036315da103336643430488778498",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 614,
+            "total_tokens": 3937,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 512
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "H1",
+      "success": true,
+      "native_success": true,
+      "native_result_count": 1,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": null,
+      "actions": 113,
+      "evaluator_seconds_including_cold_start_and_teardown": 68.60264464101056,
+      "capped_evaluator_seconds": 68.60264464101056,
+      "provider_receipts": 2,
+      "provider_attempts_reserved": 2,
+      "provider_usage_complete": true,
+      "total_tokens": 12372,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "0c9362da637f7c95e3fcee8b432932a8e767638b42ce35096edfab80159a26e1",
+            "sent.json": "0c9362da637f7c95e3fcee8b432932a8e767638b42ce35096edfab80159a26e1",
+            "response.bin": "066ee58fc275b4d93120e909250b150c2f8902947b493ff4d5c651e9ff500b22",
+            "receipt.json": "081190a9d80cb918847307ccfa8a6fa71f9e832bbc23d0c86ffa4a7487bc37bf"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 795,
+            "total_tokens": 4607,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 687
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          }
+        },
+        {
+          "directory": "http-0001",
+          "file_sha256": {
+            "received.json": "03cdc172c35441b29452d6d434b96db970896b9907403ce58ac108559e0884c1",
+            "sent.json": "03cdc172c35441b29452d6d434b96db970896b9907403ce58ac108559e0884c1",
+            "response.bin": "abe0c79b0f5a7e220e45c1dad44a36940eed3c829785c0a6b65f3892216f1919",
+            "receipt.json": "3bb448be3f2f8362162bc844882a35c6155bd9c285cbba1653fcaaa10e344d61"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 7404,
+            "completion_tokens": 361,
+            "total_tokens": 7765,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 209
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 3692
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0006-pickup-vision-dev-H1/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0006-pickup-vision-dev-H1",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 31.175204447994474,
+        "native_terminal": {
+          "elapsed_seconds": 67.45510889403522,
+          "success": true
+        },
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "0c9362da637f7c95e3fcee8b432932a8e767638b42ce35096edfab80159a26e1",
+          "response_sha256": "066ee58fc275b4d93120e909250b150c2f8902947b493ff4d5c651e9ff500b22",
+          "usage": {
+            "prompt_tokens": 3812,
+            "completion_tokens": 795,
+            "total_tokens": 4607,
+            "prompt_tokens_details": {
+              "cached_tokens": 2944
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 687
+            },
+            "prompt_cache_hit_tokens": 2944,
+            "prompt_cache_miss_tokens": 868
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        },
+        {
+          "directory": "http-0001",
+          "sent_sha256": "03cdc172c35441b29452d6d434b96db970896b9907403ce58ac108559e0884c1",
+          "response_sha256": "abe0c79b0f5a7e220e45c1dad44a36940eed3c829785c0a6b65f3892216f1919",
+          "usage": {
+            "prompt_tokens": 7404,
+            "completion_tokens": 361,
+            "total_tokens": 7765,
+            "prompt_tokens_details": {
+              "cached_tokens": 3712
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 209
+            },
+            "prompt_cache_hit_tokens": 3712,
+            "prompt_cache_miss_tokens": 3692
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "N",
+      "success": false,
+      "native_success": false,
+      "native_result_count": 0,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": {
+        "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0007-pickup-vision-dev-N/skills/3e3242e290844e48a814a53cff020504/service.log",
+        "type": "WsError"
+      },
+      "actions": 3,
+      "evaluator_seconds_including_cold_start_and_teardown": 28.49967380304588,
+      "capped_evaluator_seconds": 900,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3859,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "638b40f2482a13425524008ccc60e13a15db41dd9eaed0362b52b5608688d512",
+            "sent.json": "78c288b3db02923e2e01052f3cdd319c52ecee5c3debcae38d1490f0f62e094d",
+            "response.bin": "7c14a12d198057b3a91d209149165e694718b0496b9cb6a5f6e37ff8e0518b83",
+            "receipt.json": "d5e9f838a246905d5fc64ccd45f8f2edc8180790a71330e8b711180136f9e125"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 536,
+            "total_tokens": 3859,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 446
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0007-pickup-vision-dev-N/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0007-pickup-vision-dev-N",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.089652433991432,
+        "native_terminal": null,
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "78c288b3db02923e2e01052f3cdd319c52ecee5c3debcae38d1490f0f62e094d",
+          "response_sha256": "7c14a12d198057b3a91d209149165e694718b0496b9cb6a5f6e37ff8e0518b83",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 536,
+            "total_tokens": 3859,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 446
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "pickup-vision-dev",
+      "arm": "H0",
+      "success": false,
+      "native_success": false,
+      "native_result_count": 0,
+      "process_timeout": false,
+      "client_exit": 0,
+      "launcher_error": null,
+      "episode_error": {
+        "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0008-pickup-vision-dev-H0/skills/bc31c78b18c64d168a0a7dfa3dd5a646/service.log",
+        "type": "WsError"
+      },
+      "actions": 3,
+      "evaluator_seconds_including_cold_start_and_teardown": 28.49513971200213,
+      "capped_evaluator_seconds": 900,
+      "provider_receipts": 1,
+      "provider_attempts_reserved": 1,
+      "provider_usage_complete": true,
+      "total_tokens": 3743,
+      "provider_evidence": [
+        {
+          "directory": "http-0000",
+          "file_sha256": {
+            "received.json": "57b45825d175e2501dc65a8b23cdf3a1e3d3ce5a4a874a57d1febb22b8ef868e",
+            "sent.json": "57b45825d175e2501dc65a8b23cdf3a1e3d3ce5a4a874a57d1febb22b8ef868e",
+            "response.bin": "14323af63cc681598ecdb358dd1f0e99f2c908e75d0a5a58fba0a297e7b40a28",
+            "receipt.json": "f537939c296e9407678093d40b1ad1eb3af3e05649a4d796f1143acc5bf8e805"
+          },
+          "complete": true,
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 420,
+            "total_tokens": 3743,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 317
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          }
+        }
+      ],
+      "selected_layout": {
+        "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+        "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+        "native_layout_id": 0,
+        "qualification": false,
+        "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-07-cadence-worker-close/0008-pickup-vision-dev-H0/simulation/selected-layout.snapshot.json",
+        "schema": "dsh-native-layout-selection/v1"
+      },
+      "artifact_directory": "0008-pickup-vision-dev-H0",
+      "native_terminal": {
+        "schema": "dsh-native-terminal-timing/v1",
+        "qualification": false,
+        "first_action_seconds": 28.091921597952023,
+        "native_terminal": null,
+        "includes_skill_cold_start": true,
+        "includes_evaluator_teardown": false
+      },
+      "calls": [
+        {
+          "directory": "http-0000",
+          "sent_sha256": "57b45825d175e2501dc65a8b23cdf3a1e3d3ce5a4a874a57d1febb22b8ef868e",
+          "response_sha256": "14323af63cc681598ecdb358dd1f0e99f2c908e75d0a5a58fba0a297e7b40a28",
+          "usage": {
+            "prompt_tokens": 3323,
+            "completion_tokens": 420,
+            "total_tokens": 3743,
+            "prompt_tokens_details": {
+              "cached_tokens": 2560
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 317
+            },
+            "prompt_cache_hit_tokens": 2560,
+            "prompt_cache_miss_tokens": 763
+          },
+          "finish_reason": [
+            "stop"
+          ]
+        }
+      ]
+    }
+  ],
+  "provider_calls": 11,
+  "system_fingerprints": [
+    "e72d3c7f663d3e1383b00b3884cb4501"
+  ]
+}

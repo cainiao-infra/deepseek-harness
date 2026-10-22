@@ -1,0 +1,671 @@
+{
+  "name": "paired-pilot-08-full-catalog-official-development",
+  "summary": {
+    "schema": "dsh-paired-pilot-report/v1",
+    "qualification": false,
+    "partition": "development",
+    "formal_heldout_runs": 0,
+    "statistical_acceptance": "insufficient_evidence",
+    "rows": [
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "N",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 47.82378699799301,
+        "capped_evaluator_seconds": 47.82378699799301,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13010,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "110302293f31daa8174782dd086ec47dc3107d5425eb65f15af01646182d1ed4",
+              "sent.json": "83cab41f9ce1f2f0865e8f01bf0a3d96f681d259237a87fc81d8c14af7195171",
+              "response.bin": "cd0d4f01bdc0d260d827db9ef40cb50ddf0a16286cf8258e5b3581010fd70413",
+              "receipt.json": "529ee2909c5c0a37d0b83004f41212d0cf0ab8085b17c4ddb5fd134d448b8def"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11806,
+              "completion_tokens": 1204,
+              "total_tokens": 13010,
+              "prompt_tokens_details": {
+                "cached_tokens": 2048
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 1100
+              },
+              "prompt_cache_hit_tokens": 2048,
+              "prompt_cache_miss_tokens": 9758
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0000-general-pickup-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0000-general-pickup-official-0-dev-N"
+      },
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "H0",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 45.953424923005514,
+        "capped_evaluator_seconds": 45.953424923005514,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 12718,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "428b10c36c978f1c66f5375f1b72bcf25456fbbd24f5ed3c63eb6baca5527469",
+              "sent.json": "428b10c36c978f1c66f5375f1b72bcf25456fbbd24f5ed3c63eb6baca5527469",
+              "response.bin": "7c17608272290bcc5a8c7cc007b5b64ad1ec1f647f3d98e5d7d1fe530d051b7b",
+              "receipt.json": "3bab81a10d9476defe0edad70ce4761d1508d63702c174998dd7829a69c6d3c8"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11806,
+              "completion_tokens": 912,
+              "total_tokens": 12718,
+              "prompt_tokens_details": {
+                "cached_tokens": 11008
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 798
+              },
+              "prompt_cache_hit_tokens": 11008,
+              "prompt_cache_miss_tokens": 798
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0001-general-pickup-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0001-general-pickup-official-0-dev-H0"
+      },
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "H1",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 78.06993135000812,
+        "capped_evaluator_seconds": 78.06993135000812,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 17671,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "069516916e2301900eae6cd286b667bf2f6677f2f0c561c65d7ebd6068e1ceaa",
+              "sent.json": "069516916e2301900eae6cd286b667bf2f6677f2f0c561c65d7ebd6068e1ceaa",
+              "response.bin": "80d50f3a861930d3cbcede9f401f78f599a2007294f763ec7b9b6286ebae7cf7",
+              "receipt.json": "be26dcaebd9f7fc72d6ab4ec4359d3c22e6219bec77869c4574e4fe0d46eba95"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 12378,
+              "completion_tokens": 5293,
+              "total_tokens": 17671,
+              "prompt_tokens_details": {
+                "cached_tokens": 384
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 4944
+              },
+              "prompt_cache_hit_tokens": 384,
+              "prompt_cache_miss_tokens": 11994
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0002-general-pickup-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0002-general-pickup-official-0-dev-H1"
+      },
+      {
+        "case_id": "stack-blocks-by-language-official-0-dev",
+        "arm": "N",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 400,
+        "evaluator_seconds_including_cold_start_and_teardown": 149.40318772400497,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 12514,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "7a59615b4f228655fd261668db42871a2133a3270fe7870a0cafdd6f79114018",
+              "sent.json": "22ad9f3d21e64b89294e17481e6de69f3d091e4eac73e7bb57a16c6e3c9c4a9d",
+              "response.bin": "d0b654877c1b32a0f01e3a56973f7c60eb3bf0d505ec1e1d72c00f75b2f6f98a",
+              "receipt.json": "2e1860d8a5ed1f80980678638fe0f07c39f2c0392a2792022aa2ad5457fa742f"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11832,
+              "completion_tokens": 682,
+              "total_tokens": 12514,
+              "prompt_tokens_details": {
+                "cached_tokens": 128
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 563
+              },
+              "prompt_cache_hit_tokens": 128,
+              "prompt_cache_miss_tokens": 11704
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/stack_blocks_by_language_0.json",
+          "layout_sha256": "03aa18bd083b56acb34f383611255f50fd33aec3df07fef40c52f60f710f04a8",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0003-stack-blocks-by-language-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0003-stack-blocks-by-language-official-0-dev-N"
+      },
+      {
+        "case_id": "stack-blocks-by-language-official-0-dev",
+        "arm": "H0",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 400,
+        "evaluator_seconds_including_cold_start_and_teardown": 153.05856880400097,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13064,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "2b2c8e6236986acdffbcffdfa041c86f012f4cd9621ec665760819b87b996d34",
+              "sent.json": "2b2c8e6236986acdffbcffdfa041c86f012f4cd9621ec665760819b87b996d34",
+              "response.bin": "b4d813b2aebbda9f76d9cae3a8634f493129a27fd7bb1d91cf07997e407a464f",
+              "receipt.json": "1a3daccc9794f5f5fb2b5a5670d2c9ff63f610acc5f6360cad1e2f26e48a4fb9"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11832,
+              "completion_tokens": 1232,
+              "total_tokens": 13064,
+              "prompt_tokens_details": {
+                "cached_tokens": 11008
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 1081
+              },
+              "prompt_cache_hit_tokens": 11008,
+              "prompt_cache_miss_tokens": 824
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/stack_blocks_by_language_0.json",
+          "layout_sha256": "03aa18bd083b56acb34f383611255f50fd33aec3df07fef40c52f60f710f04a8",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0004-stack-blocks-by-language-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0004-stack-blocks-by-language-official-0-dev-H0"
+      },
+      {
+        "case_id": "stack-blocks-by-language-official-0-dev",
+        "arm": "H1",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 400,
+        "evaluator_seconds_including_cold_start_and_teardown": 171.35795707901707,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13035,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "265c806787ec6c85b67d3c6a22d7372aa534288f5214c7c9ff3d819e80f70cf9",
+              "sent.json": "265c806787ec6c85b67d3c6a22d7372aa534288f5214c7c9ff3d819e80f70cf9",
+              "response.bin": "0929d0065ea47763ee212d6bf1b3ee0216908a8a8d9172f37eabdf6523ed64f8",
+              "receipt.json": "8522a940adcb9e0e247fb827f56a80482f4a14c2dee6db629ec881087333a956"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 12404,
+              "completion_tokens": 631,
+              "total_tokens": 13035,
+              "prompt_tokens_details": {
+                "cached_tokens": 640
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 530
+              },
+              "prompt_cache_hit_tokens": 640,
+              "prompt_cache_miss_tokens": 11764
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/stack_blocks_by_language_0.json",
+          "layout_sha256": "03aa18bd083b56acb34f383611255f50fd33aec3df07fef40c52f60f710f04a8",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0005-stack-blocks-by-language-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0005-stack-blocks-by-language-official-0-dev-H1"
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "H0",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 0,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": {
+          "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0006-store-tools-in-toolbox-official-0-dev-H0/skills/2271ed18f3b64a8585cb9777869e1c43/service.log",
+          "type": "WsError"
+        },
+        "actions": 0,
+        "evaluator_seconds_including_cold_start_and_teardown": 16.88001376198372,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 12770,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "a7beb126634c5e3fd77430667c0bae01d2bdee7ab6d8354c2fa3d6486b5d4bf8",
+              "sent.json": "a7beb126634c5e3fd77430667c0bae01d2bdee7ab6d8354c2fa3d6486b5d4bf8",
+              "response.bin": "b3af054658ca2637d7406e50fa01c6d87aee4c4f32fa81142b650f4d6066948a",
+              "receipt.json": "0cc9b6910999e7dc36191d3062390030c37c4de3de0f09c1ea3faf2f254d20b7"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11818,
+              "completion_tokens": 952,
+              "total_tokens": 12770,
+              "prompt_tokens_details": {
+                "cached_tokens": 2048
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 831
+              },
+              "prompt_cache_hit_tokens": 2048,
+              "prompt_cache_miss_tokens": 9770
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0006-store-tools-in-toolbox-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0006-store-tools-in-toolbox-official-0-dev-H0"
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "H1",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 0,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": {
+          "message": "Native cleanup outcome is unconfirmed; replace the owning service",
+          "type": "WsError"
+        },
+        "actions": 0,
+        "evaluator_seconds_including_cold_start_and_teardown": 25.069252813991625,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13355,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "6c73aac687182f3f9fc9503f4e2783aa9aa2e5096a7fe46ef26ae84a81ac1f1f",
+              "sent.json": "6c73aac687182f3f9fc9503f4e2783aa9aa2e5096a7fe46ef26ae84a81ac1f1f",
+              "response.bin": "f7f092035487c4e57d8554c7224a34a6a6ef76cf466ad2244dbd79b47319c1e6",
+              "receipt.json": "7c806878756c94c72df4b945a4774cd7cc0a5225a5cf0567ddc2719d6de53e47"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 12390,
+              "completion_tokens": 965,
+              "total_tokens": 13355,
+              "prompt_tokens_details": {
+                "cached_tokens": 640
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 848
+              },
+              "prompt_cache_hit_tokens": 640,
+              "prompt_cache_miss_tokens": 11750
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0007-store-tools-in-toolbox-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0007-store-tools-in-toolbox-official-0-dev-H1"
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "N",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 0,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": {
+          "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0008-store-tools-in-toolbox-official-0-dev-N/skills/6fe98e17f0ac4532a3a48f7ccaf97dfa/service.log",
+          "type": "WsError"
+        },
+        "actions": 0,
+        "evaluator_seconds_including_cold_start_and_teardown": 17.293086605030112,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13285,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "19bcb46a1352f55f0bbe4a7b0d1ad0ec3339fb020ccaafe66ea1751b3425681c",
+              "sent.json": "e78a2cfd01e2d253f27c278d30624169d0b76014f495cb13369471835ea17617",
+              "response.bin": "ddf80dd0732bdae43f3075c4f6ad2376f5fe4ff80c1ebdfb9e9f45444504b915",
+              "receipt.json": "25943ecfe78cede5377ac71b646e5d994f695ab547c833d6fd13f393cc1fd860"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11818,
+              "completion_tokens": 1467,
+              "total_tokens": 13285,
+              "prompt_tokens_details": {
+                "cached_tokens": 11008
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 1309
+              },
+              "prompt_cache_hit_tokens": 11008,
+              "prompt_cache_miss_tokens": 810
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-08-full-catalog-official-development/0008-store-tools-in-toolbox-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0008-store-tools-in-toolbox-official-0-dev-N"
+      }
+    ],
+    "assigned_episodes": 9,
+    "source_version_count": 1,
+    "result_sha256": {
+      "0000-general-pickup-official-0-dev-N/result.json": "dab68bc615d8467ac92e2be80cbe879846d68e33332ab4d186e5166c17edf80c",
+      "0001-general-pickup-official-0-dev-H0/result.json": "0c419f51d00c3c9bac46cae7d8916d8a8f1df0f0a4f709485dd9c2f1e5f067c6",
+      "0002-general-pickup-official-0-dev-H1/result.json": "9a19873c9a3065594e3f92d2a8ddf3b53a8b492b75794cd010c38ee7bcb80c57",
+      "0003-stack-blocks-by-language-official-0-dev-N/result.json": "00b8287e87e8e8d51ca43aa810695ef3d73a8a18686036b559567e18310ddc5a",
+      "0004-stack-blocks-by-language-official-0-dev-H0/result.json": "64ed8e68aba2f92efc1ac0cb02fc6f43df0e45cd1a5ddad30adb718f3c78d15f",
+      "0005-stack-blocks-by-language-official-0-dev-H1/result.json": "90d3d5aa6f8a95c1f186e0b87cb2ca34b40cbd542b03341cd622042ea0222aff",
+      "0006-store-tools-in-toolbox-official-0-dev-H0/result.json": "4a3ca0fee839e81f93db387996d82e348db4b3ecce85d5277e115a5687c2dc33",
+      "0007-store-tools-in-toolbox-official-0-dev-H1/result.json": "ceb3e85d4f967d2f02acdd89a74a79e9341fe6202facaab3593f5a99c27202b4",
+      "0008-store-tools-in-toolbox-official-0-dev-N/result.json": "62d2ede909a5a333055c701e37d04fa0edb9505ed05da270596cf4238a1b1781"
+    },
+    "arms": {
+      "N": {
+        "successes": 1,
+        "assigned": 3
+      },
+      "H0": {
+        "successes": 1,
+        "assigned": 3
+      },
+      "H1": {
+        "successes": 1,
+        "assigned": 3
+      }
+    }
+  },
+  "calls": [
+    {
+      "path": "0000-general-pickup-official-0-dev-N/provider/http-0000",
+      "response_sha256": "cd0d4f01bdc0d260d827db9ef40cb50ddf0a16286cf8258e5b3581010fd70413",
+      "usage": {
+        "completion_tokens": 1204,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1100
+        },
+        "prompt_cache_hit_tokens": 2048,
+        "prompt_cache_miss_tokens": 9758,
+        "prompt_tokens": 11806,
+        "prompt_tokens_details": {
+          "cached_tokens": 2048
+        },
+        "total_tokens": 13010
+      }
+    },
+    {
+      "path": "0001-general-pickup-official-0-dev-H0/provider/http-0000",
+      "response_sha256": "7c17608272290bcc5a8c7cc007b5b64ad1ec1f647f3d98e5d7d1fe530d051b7b",
+      "usage": {
+        "completion_tokens": 912,
+        "completion_tokens_details": {
+          "reasoning_tokens": 798
+        },
+        "prompt_cache_hit_tokens": 11008,
+        "prompt_cache_miss_tokens": 798,
+        "prompt_tokens": 11806,
+        "prompt_tokens_details": {
+          "cached_tokens": 11008
+        },
+        "total_tokens": 12718
+      }
+    },
+    {
+      "path": "0002-general-pickup-official-0-dev-H1/provider/http-0000",
+      "response_sha256": "80d50f3a861930d3cbcede9f401f78f599a2007294f763ec7b9b6286ebae7cf7",
+      "usage": {
+        "completion_tokens": 5293,
+        "completion_tokens_details": {
+          "reasoning_tokens": 4944
+        },
+        "prompt_cache_hit_tokens": 384,
+        "prompt_cache_miss_tokens": 11994,
+        "prompt_tokens": 12378,
+        "prompt_tokens_details": {
+          "cached_tokens": 384
+        },
+        "total_tokens": 17671
+      }
+    },
+    {
+      "path": "0003-stack-blocks-by-language-official-0-dev-N/provider/http-0000",
+      "response_sha256": "d0b654877c1b32a0f01e3a56973f7c60eb3bf0d505ec1e1d72c00f75b2f6f98a",
+      "usage": {
+        "completion_tokens": 682,
+        "completion_tokens_details": {
+          "reasoning_tokens": 563
+        },
+        "prompt_cache_hit_tokens": 128,
+        "prompt_cache_miss_tokens": 11704,
+        "prompt_tokens": 11832,
+        "prompt_tokens_details": {
+          "cached_tokens": 128
+        },
+        "total_tokens": 12514
+      }
+    },
+    {
+      "path": "0004-stack-blocks-by-language-official-0-dev-H0/provider/http-0000",
+      "response_sha256": "b4d813b2aebbda9f76d9cae3a8634f493129a27fd7bb1d91cf07997e407a464f",
+      "usage": {
+        "completion_tokens": 1232,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1081
+        },
+        "prompt_cache_hit_tokens": 11008,
+        "prompt_cache_miss_tokens": 824,
+        "prompt_tokens": 11832,
+        "prompt_tokens_details": {
+          "cached_tokens": 11008
+        },
+        "total_tokens": 13064
+      }
+    },
+    {
+      "path": "0005-stack-blocks-by-language-official-0-dev-H1/provider/http-0000",
+      "response_sha256": "0929d0065ea47763ee212d6bf1b3ee0216908a8a8d9172f37eabdf6523ed64f8",
+      "usage": {
+        "completion_tokens": 631,
+        "completion_tokens_details": {
+          "reasoning_tokens": 530
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 11764,
+        "prompt_tokens": 12404,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "total_tokens": 13035
+      }
+    },
+    {
+      "path": "0006-store-tools-in-toolbox-official-0-dev-H0/provider/http-0000",
+      "response_sha256": "b3af054658ca2637d7406e50fa01c6d87aee4c4f32fa81142b650f4d6066948a",
+      "usage": {
+        "completion_tokens": 952,
+        "completion_tokens_details": {
+          "reasoning_tokens": 831
+        },
+        "prompt_cache_hit_tokens": 2048,
+        "prompt_cache_miss_tokens": 9770,
+        "prompt_tokens": 11818,
+        "prompt_tokens_details": {
+          "cached_tokens": 2048
+        },
+        "total_tokens": 12770
+      }
+    },
+    {
+      "path": "0007-store-tools-in-toolbox-official-0-dev-H1/provider/http-0000",
+      "response_sha256": "f7f092035487c4e57d8554c7224a34a6a6ef76cf466ad2244dbd79b47319c1e6",
+      "usage": {
+        "completion_tokens": 965,
+        "completion_tokens_details": {
+          "reasoning_tokens": 848
+        },
+        "prompt_cache_hit_tokens": 640,
+        "prompt_cache_miss_tokens": 11750,
+        "prompt_tokens": 12390,
+        "prompt_tokens_details": {
+          "cached_tokens": 640
+        },
+        "total_tokens": 13355
+      }
+    },
+    {
+      "path": "0008-store-tools-in-toolbox-official-0-dev-N/provider/http-0000",
+      "response_sha256": "ddf80dd0732bdae43f3075c4f6ad2376f5fe4ff80c1ebdfb9e9f45444504b915",
+      "usage": {
+        "completion_tokens": 1467,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1309
+        },
+        "prompt_cache_hit_tokens": 11008,
+        "prompt_cache_miss_tokens": 810,
+        "prompt_tokens": 11818,
+        "prompt_tokens_details": {
+          "cached_tokens": 11008
+        },
+        "total_tokens": 13285
+      }
+    }
+  ]
+}

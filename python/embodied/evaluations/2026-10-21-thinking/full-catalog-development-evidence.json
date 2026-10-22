@@ -1,0 +1,16 @@
+{
+  "schema": "dsh-full-catalog-development-evidence/v1",
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "completed_episodes": 9,
+  "provider_attempts": 9,
+  "summary": "full-catalog-development.json",
+  "archive_bytes": 25744620,
+  "archive_sha256": "a28f3722c3fdb0d9b7a455c98c966c66880e90e0d0d142b8d671498fb68af6c9",
+  "manifest_sha256": "88b5f954bf3575c4c19b94fdc495d93d4d33adec25c9fd8553fb937b47070f8b",
+  "evidence_files": 993,
+  "credential_scan_matches": 0,
+  "implementation_archive_sha256": "a896170bd7148699f84339d35587a7ca65de304d593c3a85b4e80e1a8e0f68d4",
+  "source_identity_location": "Exact implementation identifier and files remain in the raw archive."
+}

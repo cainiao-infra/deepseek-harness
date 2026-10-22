@@ -1,0 +1,94 @@
+{
+  "qualification": false,
+  "provider_requests": 0,
+  "robot_actions_dispatched": 0,
+  "source_request_sha256": "7371486213f58b78b63fef55a2abad5447d9235d992c89f8fcf9d3d06e752013",
+  "rows": [
+    {
+      "composition": "memory-guided-manipulation",
+      "applied": {
+        "native_root": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/process-binding-full-catalog-02/workers/102d9c4f69ba409f869ba071aeb3d431/native/ce076214f14744a688064c00a4f8517a",
+        "skill": {
+          "name": "pi05",
+          "revision": "c88b39f3450a02f996300ba363b3fa703b986a0c98257300fffaa97a3903b822",
+          "input": "robodojo.observation-batch/v1",
+          "output": "robodojo.action-chunks/v1",
+          "state": "ready"
+        }
+      },
+      "pid": 725161,
+      "action_chunk_size": 50,
+      "action_value_types": {
+        "left_arm_joint_state": "ndarray",
+        "left_ee_joint_state": "ndarray",
+        "right_arm_joint_state": "ndarray",
+        "right_ee_joint_state": "ndarray"
+      },
+      "bind_and_infer_seconds": 8.022060304007027,
+      "close_seconds": 1.331094728957396,
+      "process_exit": 0
+    },
+    {
+      "composition": "memory-guided-visual-history",
+      "applied": {
+        "native_root": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/process-binding-full-catalog-02/workers/caef1d831f7345a887e6e9794e8cc5aa/native/502acdd01b154676ae89bb295ad20cfa",
+        "skill": {
+          "name": "pi05-sparse-memory",
+          "revision": "3ba923e9a1510cb46706ff82227570297878978184b9a04eab482c1b8bc00b06",
+          "input": "robodojo.observation-batch/v1",
+          "output": "robodojo.action-chunks/v1",
+          "state": "ready"
+        }
+      },
+      "pid": 726100,
+      "action_chunk_size": 50,
+      "action_value_types": {
+        "left_arm_joint_state": "ndarray",
+        "left_ee_joint_state": "ndarray",
+        "right_arm_joint_state": "ndarray",
+        "right_ee_joint_state": "ndarray"
+      },
+      "bind_and_infer_seconds": 16.274025046033785,
+      "close_seconds": 1.1684195440029725,
+      "process_exit": 0
+    }
+  ],
+  "load_seconds": 6.684208695020061,
+  "provider": {
+    "provider": "owned-native-process",
+    "python": "/root/.cache/dsh-physicalrsi-dev/native-policy-env/bin/python",
+    "worker_sha256": "004eba182ff943102852803124c586098a651fb262ba7bfaeddc949969170c5b"
+  },
+  "catalog": [
+    "memory-guided-manipulation",
+    "memory-guided-visual-history",
+    "memory-guided-program-library"
+  ],
+  "skills": [
+    "pi05",
+    "pi05-sparse-memory",
+    "align-blocks",
+    "arrange-largest-number-random",
+    "classify-objects",
+    "classify-objects-by-language",
+    "cover-blocks",
+    "deposit-coin",
+    "general-pickup",
+    "insert-key",
+    "insert-tubes",
+    "make-kong",
+    "play-tic-tac-toe",
+    "plug-in-charger",
+    "pour-balls-into-vase",
+    "pour-by-language",
+    "pour-liquid-into-cup",
+    "press-by-number",
+    "push-t",
+    "solve-equation",
+    "sort-nesting-dolls-by-size",
+    "stack-blocks-by-language",
+    "store-tools-in-toolbox",
+    "swap-t"
+  ],
+  "status": "both_learned_bindings_inferred_and_exited"
+}

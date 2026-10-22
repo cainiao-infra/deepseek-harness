@@ -1,0 +1,16 @@
+{
+  "schema": "dsh-pickup-regression-evidence/v1",
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "completed_episodes": 9,
+  "provider_attempts": 11,
+  "summary": "pickup-regression.json",
+  "archive_bytes": 18503208,
+  "archive_sha256": "8b4509a696d35968827c028074b4d709f8d0d720b7a79f90f417d01a908d9917",
+  "manifest_sha256": "f94a5f5bdafd89202c7c4093dc80418265755d3136e2a592b670c8cd7dd01e50",
+  "evidence_files": 801,
+  "credential_scan_matches": 0,
+  "implementation_archive_sha256": "627bf92c7469a2661c2f8b7f52be3cd00e854736178626a25f9c882a363b7d11",
+  "source_identity_location": "Exact implementation identifier and files remain in the raw archive."
+}

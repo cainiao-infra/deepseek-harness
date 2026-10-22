@@ -20,15 +20,21 @@
 /deepseek-thinking-diagnostic-frozen-robodojo-inputs/live-development-check:
   en: 642d8260f9ffdbae
   zh: 3bca3dc3eb372d17
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/regression-after-cadence-and-shutdown-fixes:
+  en: de19c8813a3a5e00
+  zh: f209b0925110c37c
 /deepseek-thinking-diagnostic-frozen-robodojo-inputs/complex-task-development-diagnosis:
   en: c7a5265d24e1d90c
   zh: fbfcee0d34b9faf6
 /deepseek-thinking-diagnostic-frozen-robodojo-inputs/worker-shutdown-diagnosis:
   en: a9e209cfe9cdcd13
   zh: f4d5c0243a4ee014
+/deepseek-thinking-diagnostic-frozen-robodojo-inputs/full-catalog-simulator-diagnosis:
+  en: 98ba828bd8967c17
+  zh: 090eb7aaf9653451
 /deepseek-thinking-diagnostic-frozen-robodojo-inputs/integration-and-acceptance:
-  en: 3556bdeb9baa9c3e
-  zh: b4c3ddc5145cf570
+  en: a9b5e63f686ae707
+  zh: f813556695d46947
 /deepseek-thinking-diagnostic-frozen-robodojo-inputs/evidence-and-reproduction:
   en: 3bd99c1d3e17d599
   zh: a949927e3df3dc16

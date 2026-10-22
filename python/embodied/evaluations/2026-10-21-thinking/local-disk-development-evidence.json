@@ -1,0 +1,14 @@
+{
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "completed_episodes": 12,
+  "provider_attempts": 2,
+  "archive_bytes": 14238728,
+  "archive_sha256": "d93acbeb94d935786e4abfbd1d0c17fb071639cbfe0d91ad2c949450c4d4b86a",
+  "manifest_sha256": "e3ea25f52169df1181ba4f2b97d1e071d38e72f9f7f2fe2184b6a83ffbfa5bbe",
+  "evidence_files": 989,
+  "credential_scan_matches": 0,
+  "implementation_archive_sha256": "fd890293370af8cddb007f8050bbc4b37f1fdf75f169189d0b0fdb49184ebe06",
+  "source_identity_location": "Exact implementation and frozen inputs remain in the raw archive."
+}

@@ -75,6 +75,19 @@ N and H0 each succeed in three of four assigned episodes with zero model calls; 
 
 A separate [control-path probe](control-path-profile.json) measures 500 warm configuration checks at about 2.7 ms each. Fifty writes per location through the unchanged synchronous immutable-record function have median latency 14.74 ms on NAS and 0.55 ms on local disk. This identifies a storage cost worth testing at episode level. The probe excludes model inference and physical execution; its component speed ratio is not an end-to-end speedup.
 
+## Output-storage comparison
+
+A [second 12-episode matrix](local-disk-development.json) retains the zero-call configuration, source, scenes, arm order and recovery controls, and moves every arm’s evidence output from NAS to local disk. Synchronous immutable recording stays enabled. All four H1 chains and both model calls pass independent audits; the [989-file archive](local-disk-development-evidence.json) preserves failures and frozen inputs.
+
+| Condition | N native seconds | H0 native seconds | H1 native seconds | H1 model calls |
+|---|---:|---:|---:|---:|
+| Normal | 35.65 | 34.89 | 36.74 | 0 |
+| Four held commands | 34.68 | 36.05 | 37.62 | 0 |
+| Eight held commands | 35.12 | 35.26 | 67.92 | 1 |
+| One missing RGB observation | Failure / no terminal | Failure / no terminal | 68.57 | 1 |
+
+H1 again succeeds in four of four episodes, N and H0 in three each. Normal H1 completion is 3.0% slower than N in this single cold-start comparison; four held commands give an 8.5% difference. These point estimates support local storage as a practical deployment choice, but uncontrolled cross-batch timing and one explored scene cannot establish G2. The eight-command stall still triggers unnecessary recovery. Formal held-out runs remain zero.
+
 ## Complex-task development diagnosis
 
 Two additional batches run the same explored development scenes for language-conditioned stacking and toolbox storage, with high Thinking and cap 8,192. Each batch assigns N/H0/H1 once per scene; all 12 episodes are retained and none succeeds. Here H1 explicitly disables recovery (H1-R); all arms use 22 code capabilities and exclude the two learned policies. These runs diagnose execution and routing, not enhanced recovery or the strongest native baseline. See [the complete summaries](complex-development.json) and [archive verification](complex-development-evidence.json).

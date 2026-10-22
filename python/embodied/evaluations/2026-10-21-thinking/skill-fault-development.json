@@ -1,0 +1,920 @@
+{
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "summary": {
+    "schema": "dsh-paired-pilot-report/v1",
+    "qualification": false,
+    "partition": "development",
+    "formal_heldout_runs": 0,
+    "statistical_acceptance": "insufficient_evidence",
+    "rows": [
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "N",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 40.943136192974634,
+        "capped_evaluator_seconds": 40.943136192974634,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 12338,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "c97343712a2a594d6ae0d8929feda3b702811c665a0c6fb73d5d75edd7d815ec",
+              "sent.json": "6c86b94fe5858beb1665a1fb6feb93d1c11e6c7ccd31d9160b8d129cad6a71a1",
+              "response.bin": "f48e742cc3cdb017b6e6a6c99165669a2dba92209cf128dc9da9178af6bcd39b",
+              "receipt.json": "15f6cd0ffb90c753b7556bc4f7c2b5092b6cfc2d61bebcd45e3589b0bc7d8026"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11806,
+              "completion_tokens": 532,
+              "total_tokens": 12338,
+              "prompt_tokens_details": {
+                "cached_tokens": 11008
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 428
+              },
+              "prompt_cache_hit_tokens": 11008,
+              "prompt_cache_miss_tokens": 798
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0000-general-pickup-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0000-general-pickup-official-0-dev-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 28.509400045964867,
+          "native_terminal": {
+            "elapsed_seconds": 40.94279074296355,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        },
+        "native_decisions": [
+          {
+            "composition": "memory-guided-program-library",
+            "operations": [
+              "instruction-grounded-pickup"
+            ],
+            "rationale": "The instruction requests picking up the mint green scissors and lifting them by 10 cm. Current RGB shows the scissors near the right arm, and the instruction-grounded-pickup operation matches the manipulation objective with instruction-grounded object localization, appearance-conditioned grasp, and reachable lifting. Its observation-batch input and action-chunk output match the episode contracts, so no other structured operation is needed."
+          }
+        ]
+      },
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "H0",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 42.60025723197032,
+        "capped_evaluator_seconds": 42.60025723197032,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 12843,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "2fda61ed40f7aaa1574ecea26d6c9519112c12cad76072e90b407c69a7507b23",
+              "sent.json": "2fda61ed40f7aaa1574ecea26d6c9519112c12cad76072e90b407c69a7507b23",
+              "response.bin": "b9d1c722d177a3fa72ab9a32768a6d6a888db92a2b1dd250999bc113742930d0",
+              "receipt.json": "aecf9ab59024ab5ec389d302e1ca2279cc086765fcebb1b2f430f8fde8d4d78d"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11806,
+              "completion_tokens": 1037,
+              "total_tokens": 12843,
+              "prompt_tokens_details": {
+                "cached_tokens": 11008
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 887
+              },
+              "prompt_cache_hit_tokens": 11008,
+              "prompt_cache_miss_tokens": 798
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0001-general-pickup-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0001-general-pickup-official-0-dev-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 30.368566290999297,
+          "native_terminal": {
+            "elapsed_seconds": 42.60000358201796,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        },
+        "native_decisions": [
+          {
+            "composition": "memory-guided-program-library",
+            "operations": [
+              "instruction-grounded-pickup"
+            ],
+            "rationale": "The instruction is a single-object grasp-and-lift task: locate the mint green scissors, grasp them, and lift by 10 cm. Current RGB shows scissors on the tabletop with pale mint-green handles, so the scene has the required target object. Among the structured operations, instruction-grounded-pickup explicitly provides instruction grounding, appearance-conditioned grasp, and reachable lifting, matching the requested manipulation. Other structured operations target placement, insertion, pouring/transfer, button pressing, or tool-mediated alignment rather than pickup. A learned composition could produce actions, but the structured pickup capability has explicit compatible support for this manipulation objective."
+          }
+        ]
+      },
+      {
+        "case_id": "general-pickup-official-0-dev",
+        "arm": "H1",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 46.49316589999944,
+        "capped_evaluator_seconds": 46.49316589999944,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13472,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "995a418dd75f01d15ccd349c1493045d61fd6cf00c09e9479747ff366e5409d2",
+              "sent.json": "995a418dd75f01d15ccd349c1493045d61fd6cf00c09e9479747ff366e5409d2",
+              "response.bin": "7cf97792775a622726c5ecb1cbad649f45a0eb17abbb0d1cbec8a5f031ebed4c",
+              "receipt.json": "595c078d79be751e0f2529df40d0304a636e5c17cc619bccb2a49aefe0de2bdf"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 12589,
+              "completion_tokens": 883,
+              "total_tokens": 13472,
+              "prompt_tokens_details": {
+                "cached_tokens": 640
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 777
+              },
+              "prompt_cache_hit_tokens": 640,
+              "prompt_cache_miss_tokens": 11949
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0002-general-pickup-official-0-dev-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 30.461160207050852,
+          "native_terminal": {
+            "elapsed_seconds": 44.20975045504747,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        },
+        "native_decisions": [
+          {
+            "composition": "memory-guided-program-library",
+            "operations": [
+              "instruction-grounded-pickup"
+            ],
+            "rationale": "The instruction requests a visual grounding, grasp, and lift of the mint green scissors. The instruction-grounded-pickup capability explicitly covers instruction-grounded localization, appearance-conditioned grasp, and reachable lifting, and its nonempty-instruction condition is satisfied with current RGB and robot state. The scissors are visible, so the structured capability fits better than an unspecialized learned composition."
+          }
+        ]
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "H0",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 900,
+        "evaluator_seconds_including_cold_start_and_teardown": 141.52963930903934,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 14667,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "2845eed0b624edf75185f939c272a47fb6998a234b20722ed9b100527725014a",
+              "sent.json": "2845eed0b624edf75185f939c272a47fb6998a234b20722ed9b100527725014a",
+              "response.bin": "89b1bed4aab871791afefc6911a374f79b40fa5d80466262e54eac10771e6285",
+              "receipt.json": "0fec8a42d29846ffb070ed1f39f27abdc232c2e507ee99bbb172a6203e88af81"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11818,
+              "completion_tokens": 2849,
+              "total_tokens": 14667,
+              "prompt_tokens_details": {
+                "cached_tokens": 11008
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 2705
+              },
+              "prompt_cache_hit_tokens": 11008,
+              "prompt_cache_miss_tokens": 810
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0003-store-tools-in-toolbox-official-0-dev-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0003-store-tools-in-toolbox-official-0-dev-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 40.53861731698271,
+          "native_terminal": {
+            "elapsed_seconds": 141.52937640895834,
+            "success": false
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        },
+        "native_decisions": [
+          {
+            "composition": "memory-guided-program-library",
+            "operations": [
+              "footprint-relative-placement"
+            ],
+            "rationale": "The structured operation library contains a compatible capability: footprint-relative-placement explicitly covers visual shape grounding and footprint-relative placement with grasp-and-place control, matching the instruction to put each visible tool into its corresponding shaped position in the toolbox. Its observation-batch input and action-chunk output contracts match the episode, and the nonempty instruction plus 480x640x3 head RGB condition are satisfied. Missing structured tool/toolbox labels are not a mismatch; the current RGB and instruction provide the object roles. The final arm reset is a shared lifecycle action and does not disqualify this manipulation operation."
+          }
+        ]
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "H1",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 0,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": {
+          "message": "Capability has no reviewed restart preconditions",
+          "type": "WsError"
+        },
+        "actions": 0,
+        "evaluator_seconds_including_cold_start_and_teardown": 40.01486841903534,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 3,
+        "provider_attempts_reserved": 3,
+        "provider_usage_complete": true,
+        "total_tokens": 77114,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "27f8db49cea6de6d7d706089fa4a62743a0942311e2efa034900cc55c5c4c96b",
+              "sent.json": "27f8db49cea6de6d7d706089fa4a62743a0942311e2efa034900cc55c5c4c96b",
+              "response.bin": "b900c52a2fba389c903a3f9f4d8da8908eac42e459581c2b8fa061af3a7bcb53",
+              "receipt.json": "2fa5a5bf3a19af2b8463d2acf331c9d4fb33d561a996270149be81cbbf765531"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 12601,
+              "completion_tokens": 639,
+              "total_tokens": 13240,
+              "prompt_tokens_details": {
+                "cached_tokens": 896
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 507
+              },
+              "prompt_cache_hit_tokens": 896,
+              "prompt_cache_miss_tokens": 11705
+            }
+          },
+          {
+            "directory": "http-0001",
+            "file_sha256": {
+              "received.json": "927d4545ddf961d601ea76c54b8c82b6155a9c2a25318c0bccc86519e3dcba9c",
+              "sent.json": "927d4545ddf961d601ea76c54b8c82b6155a9c2a25318c0bccc86519e3dcba9c",
+              "response.bin": "36de7007f2801c08104797d467d5ee8720ae551d4b616eb56aaaeddb5c4245b8",
+              "receipt.json": "8cc72b08d2947a65f2d83d8f9e4f10112412866f555f9ef9c960fe2352844bd5"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 25072,
+              "completion_tokens": 358,
+              "total_tokens": 25430,
+              "prompt_tokens_details": {
+                "cached_tokens": 12544
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 194
+              },
+              "prompt_cache_hit_tokens": 12544,
+              "prompt_cache_miss_tokens": 12528
+            }
+          },
+          {
+            "directory": "http-0002",
+            "file_sha256": {
+              "received.json": "743a2f62edfc362e5a9fd7b176c489b229c752dc4f9384d0db2fa58c24cc1251",
+              "sent.json": "743a2f62edfc362e5a9fd7b176c489b229c752dc4f9384d0db2fa58c24cc1251",
+              "response.bin": "6db4aac1b824c1a56655e310ecfcca67ca98d7e9dd20d4ec59d8f018ce736a83",
+              "receipt.json": "327caa0f1bb60ee40239d34462027db29b4d114a09126b8bd22a891700a9305f"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 37610,
+              "completion_tokens": 834,
+              "total_tokens": 38444,
+              "prompt_tokens_details": {
+                "cached_tokens": 24960
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 619
+              },
+              "prompt_cache_hit_tokens": 24960,
+              "prompt_cache_miss_tokens": 12650
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0004-store-tools-in-toolbox-official-0-dev-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0004-store-tools-in-toolbox-official-0-dev-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": null,
+          "native_terminal": null,
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        },
+        "native_decisions": [
+          {
+            "composition": "memory-guided-program-library",
+            "operations": [
+              "slot-insertion"
+            ],
+            "rationale": "The prior bind failed at inference with zero executed actions, and the current observation shows RGB available on all three cameras with both end-effector joint states at 1.0, satisfying the slot-insertion restart preconditions. Because no physical motion occurred, the scene is unchanged, and slot-insertion remains the capability whose declared contract (object-slot geometry grounding, reachable assignment, alignment refresh, insertion, release) matches the instruction to place each tool into its matching toolbox position; the arm reset is shared lifecycle behavior. Restart discards the stale skill state and recomputes the same capability from the current RGB and proprioception rather than switching capabilities or aborting."
+          },
+          {
+            "composition": "memory-guided-program-library",
+            "operations": [
+              "slot-insertion"
+            ],
+            "rationale": "The current RGB observations show a toolbox with molded matching positions and several tools (hammer, wrench, tape measure, pliers). The instruction requires assigning each tool to its corresponding toolbox slot and inserting/releasing it. The slot-insertion capability explicitly covers object-slot geometry grounding, reachable assignment, alignment refresh, insertion, and release, which fits the visible scene better than generic pickup or placement capabilities. The requested arm reset is a shared lifecycle action and does not require a separate operation or disqualify slot-insertion."
+          }
+        ]
+      },
+      {
+        "case_id": "store-tools-in-toolbox-official-0-dev",
+        "arm": "N",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 0,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": {
+          "message": "Code skill failed; inspect /root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0005-store-tools-in-toolbox-official-0-dev-N/skills/7d1bf4b0ad5e47b7a81a026fc494b583/service.log",
+          "type": "WsError"
+        },
+        "actions": 0,
+        "evaluator_seconds_including_cold_start_and_teardown": 17.93253198004095,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13131,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "aabad53c4aa8a423866bdb25111e6b6a09e9476c74296b4ad1bc832daf7227de",
+              "sent.json": "6bc9ff831fe07209547046ef19f2c9ddfa210c31a46202fd6fbcd5032b8b4bc4",
+              "response.bin": "669f8e03d159b334bcd7ccb6fb335bd17a7164fec84341d2a60e41c7fa512df5",
+              "receipt.json": "23d812f86a1e1ec2d3368a5520014c91bf38263020dbea6ae5f723f1d7e2eb45"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 11818,
+              "completion_tokens": 1313,
+              "total_tokens": 13131,
+              "prompt_tokens_details": {
+                "cached_tokens": 11008
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 1198
+              },
+              "prompt_cache_hit_tokens": 11008,
+              "prompt_cache_miss_tokens": 810
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/store_tools_in_toolbox_0.json",
+          "layout_sha256": "e5afcda29f1d149bd9637e6f466c86a429b0486e4d6a63d6307926b8c56b662b",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0005-store-tools-in-toolbox-official-0-dev-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0005-store-tools-in-toolbox-official-0-dev-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": null,
+          "native_terminal": null,
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        },
+        "native_decisions": [
+          {
+            "composition": "memory-guided-program-library",
+            "operations": [
+              "slot-insertion"
+            ],
+            "rationale": "The instruction requires matching tools to molded toolbox positions. The slot-insertion operation explicitly covers object-slot geometry grounding, reachable assignment, alignment refresh, insertion, and release, which matches the visible toolbox/tool geometry and observation/action contracts. Resetting the robot arm is a shared lifecycle action and does not disqualify this manipulation capability. Other listed operations address unrelated behaviors such as pouring, stacking, pushing, board-cell placement, or connector/keyed insertion."
+          }
+        ]
+      }
+    ],
+    "assigned_episodes": 6,
+    "source_version_count": 1,
+    "result_sha256": {
+      "0000-general-pickup-official-0-dev-N/result.json": "980d1a1f8b7597fb49f1b1994e930f9f9db3cbd888a967141a57a955bb9d6fd2",
+      "0001-general-pickup-official-0-dev-H0/result.json": "2b0014372ac17b1f2b22b0ee5ac0fc1fd74969e5d24d0a76f691a55e18ba9284",
+      "0002-general-pickup-official-0-dev-H1/result.json": "f8d07b783d66c33f309e079286ed135909e426f3b3e19027c010a2b57142c706",
+      "0003-store-tools-in-toolbox-official-0-dev-H0/result.json": "47b390bc50473e8ca50911a9c1ecb407606a7ff4ece726f3b2ffeff17e132ace",
+      "0004-store-tools-in-toolbox-official-0-dev-H1/result.json": "dc96e1e15a6ff8eff0093bd938e9e079c1f3151cb8574cc727862d2a9b83f11c",
+      "0005-store-tools-in-toolbox-official-0-dev-N/result.json": "e9344e471b87affcae6102d5bbf98eee097d9bc0836b78c92392a071450664d1"
+    },
+    "arms": {
+      "N": {
+        "successes": 1,
+        "assigned": 2
+      },
+      "H0": {
+        "successes": 1,
+        "assigned": 2
+      },
+      "H1": {
+        "successes": 1,
+        "assigned": 2
+      }
+    }
+  },
+  "successful_online_chains": [
+    {
+      "qualification": false,
+      "confirmed_successful_chain": true,
+      "actions": 110,
+      "replacements": 0,
+      "model_calls": 1,
+      "configured_plans": 0,
+      "skill_failures": 0,
+      "session_count": 1,
+      "files": {
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000001.json": "1af581ed32974db1456ef7b8f4abb377bf2b8f45a065729783bef1b287a913b3",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/revision-510e67ec9e424b3f8eebd23c7fd0a14d.json": "e46b6d6c6b34734482683836156d5657f91a8fc15ef9d93646365f3c03f3813d",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/model-evidence/0002-general-pickup-official-0-dev-H1/666d5559f2a1497ebe686df47ee03648/5d8e41352b094de6875af745dc906714/receipt.json": "c125afb39fc8bc89e8fb93ea22b799e3f8f9bd64b307b8ebad3870809e3fa980",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/model-evidence/0002-general-pickup-official-0-dev-H1/666d5559f2a1497ebe686df47ee03648/5d8e41352b094de6875af745dc906714/request.json": "f1b2ff6d0662e138c2f5d86af4e1b6458c97cf327522aa8d7225cbed5911a627",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000002.json": "f2db907cc7d57ef0629dc09be5d053aa26e903669154ce5e44056a0897bd8a8d",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/binding-510e67ec9e424b3f8eebd23c7fd0a14d.json": "b809df8ae6f69a95ffe34d2948e01655b1256538f7cbde91c35a2d981351738f",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000003.json": "89952d4e74f1a4a7e929165f443ca86b31db8bf87bc343b39a7f7f894fc762f5",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000004.json": "fd8df936b31bca2e0494b85ac1876be7eca1fafecc2f1707bb1b896901a678da",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000005.json": "4ddbe04cf00e0337f6361b8b3963f63bd6e577454b7f558f81a7fb12d53162f9",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000006.json": "521317501773d32d12d696b468f3c9233c55a05fbb69e5bf4d6f2228ba9b27e2",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000007.json": "d623329ddbd9b4e42ff118e4068d4443d474156aaebfd4c3a073633f61f7263f",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000008.json": "6ac3062c9716847875be0c7ae645413e88c0420b9bd43118977af56ac063b1a2",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000009.json": "73a0ae31fcf565ffdc37b51e40bd00dbf2160efa0271eb3bb4e86606c2cfd300",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000010.json": "b0bbb5c5f42f450a4d748279062e335a05b98449346604d07c1f49f6ef343503",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000011.json": "e131a28b1ea063188c32fc09d84b23297c3a0d0804935dacadb2c9a6fbe18ce9",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000012.json": "df017dd6403f6ec499ca2bde185824377c2b45723fff0fbb565df858409c96fb",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000013.json": "0082070097db0fa66e010bd0e6814c6b71b8d6eba3561bdc8edf37c0f54b63ba",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000014.json": "4f7e4434381628716581453d2260c087a25a83358fbe49e140a8fe2a7a437004",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000015.json": "1ea93b56a1e1b0e716b6774900b2285389ad97169955d11fb531b8901f1edafa",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000016.json": "ea1145c4eed0edac4377f453020359b240abf6a5da1e0d26e90bfcf01a2449de",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000017.json": "849f047407cf724cb639e5c2d3b039671caf2e0ee674dae631ebf97c28026f20",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000018.json": "6ecfaa365d2155e23602c3e716c627fb965f8fae083486ce53a21de01a4669ca",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000019.json": "e6eafa983857c658baaa5e0c378544e7a5708c3df9389cd9cf1702fb7bca157c",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000020.json": "8b3ab5e44e2efb727654ec8fa6023e59788d0e932bce43352e0225ffa6419eed",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000021.json": "049301f1e007462e6b9220562607fc13aab41daad524ff87f6b8b12adcce0f90",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000022.json": "1e39a22a59adb1c519e5526617ed3702dd2a5e87cfa4bcf2b87f6376088a4665",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000023.json": "4f029ee3b288c1656c6f4af8ec5b4a500017e884fe0602ffce556621798a2919",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000024.json": "3d194f71e0cf1347da22e26b014ed000832c3a581299b6026193c30a76c7300c",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000025.json": "07747941b2ee49a678498c5ee12669c45aab0df0b8412730163fb84c9a16050d",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000026.json": "15bf9cb241a99a0aa6bbf9fac82d549d18995e1e243d9a8a08aa544f5acd297f",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000027.json": "ce7b4dfeaf4774dd8e204b5db03cb305ba8b6a5853dfcf9f9eecb63df130fdf9",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000028.json": "559bb80c3ce984d4d4817cda17f93825cf47691e3821858a5ae563142047925a",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000029.json": "5f436aac6cd4885e06a3edf94748fb83f0e590df9f33f6f93e5890068b78059b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000030.json": "740fe748b1836f0d67e61c0cf8d2998f6d412bc54ab8b5661a1046ec59abcf86",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000031.json": "d4c1ae1f2b5a791aa771fbec13e195b5fea508f753c4023c690c018005129c2b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000032.json": "91285c7dd5f6b18f08c1de87fc407fb2e9e02b68327577b69d755e0df6363fc8",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000033.json": "3a6a1f00c64cf873b775fa4074585e6abb6cc802f360e888d6482ed0196a9455",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000034.json": "feda173c66d13b02a25dcd60a2dd9794edfe5ec6100a665d5d1e486d5285438b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000035.json": "8076254336ccf773e7153e9180f338e012c98bbbd2b5501c249351f1fc087cde",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000036.json": "a85ff2467b46bff3b720204c81d651e165184a75dc537e45820d46d0903ece91",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000037.json": "e4e0cc47d1e1cbc7623e229d18d09347a6e9bc21b61369647f94fb8706288322",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000038.json": "63023ab01afdff7d16aae17c8faf5c7094e98e25def1edce911711a5fbc8ec3d",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000039.json": "9b12e1510d6f2201b5e7ba83a9c5ceddcbb1bc3bd3dc83d490a5aa2a48223482",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000040.json": "8f27a8cc15f1b32cea6b94883808ef613e17830ac4e67453de2a9030a967c6aa",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000041.json": "4067875f0be7e2f782e5946823da717a18e9732899f010e8cafc81c5ed9313e3",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000042.json": "66335ecd072eaeb6d477e11913f452d4e6bd494992b2816c54819c2cc32d9528",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000043.json": "e0a09c1652f8f673822a3b011c3c51f09aa31b577b5d45fcf47c7e5dbd412ecc",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000044.json": "3404770d1560c7e1573dda161a004221a46c98c8e79c954bc07a91c744a5f8c6",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000045.json": "11c1b7d04ea8ddbd628355635a66834fc6f73449f13fe35936764964a582c4bd",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000046.json": "7251ad045217a507c7294ce970f615ced3f09bea8a78db4b4a8e80e9094b76b1",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000047.json": "01bf4c37bb0c592ca582bf7f7fc4d1cf5b897bf9a330c9364a0f110b39eccf52",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000048.json": "d5e5917a58dfbaae35dde2c7c06eb7ecf6d5109092d7de955d9cd250404782a0",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000049.json": "c4ff488cfab65daf1bf7c1b9466cb95986bb9bf19959247459d9feafdd09016a",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000050.json": "2f7693d8d26335e7b54af83a7ac7fb91c1945b60cb8841288a88bf90aa284e91",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000051.json": "9b317240ee8977bbdc0905226f809c4534044d4ba4ea3df938b04d279e17a0f7",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000052.json": "1b75c10a2d37cdf84e4ca86e84e06159ac7becae73e07a53ba9d0238eaa223d4",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000053.json": "22131c405c4ae910211c5996882b9a7cf93511b96a55c7467a7421a6610a3a9a",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000054.json": "1c1912104aff530c34077be007d88b67c439d37d579b1ee7f4883cb1e00e2834",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000055.json": "9a1644d28e00a36f2aca5c2c34c68244d5300047a65cbab62746c8721e04ff73",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000056.json": "b5ecc6c8be23031a69daf03e2631d6daa9768df2bbf0446b63518646527d33a3",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000057.json": "239c49761b333de0af0c0ece3bad62d8c3057b0320f6e02d79e8c16db7218530",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000058.json": "343445af3dcd5b7f3b624a15ec35a5aa03bee2718a1f220e473f9562bceea181",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000059.json": "9c91c4ad7596bb4e7aa236de652d934a60e3329015566e68412c090fb7b42640",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000060.json": "3c85b5963cf4be3623a64e596fad8205f8cd8c10c09f93a9409d3d394fa1bc95",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000061.json": "c8eabec7fac79b31cf7084975f63342b024eb647c2573edbf0e026f7d0dcb027",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000062.json": "d2e0585f85bf04cce27a29a32f746e84776bdf6628ac14a9f84a1716ff4abcbe",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000063.json": "57569e96df04d7238cd6c0b3a530ceb0faef449506cc61bc0431c5453fa78649",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000064.json": "41429b6d29585439796dd2339de0aa418307e76a9899b8aaf974bf8ca4de94d3",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000065.json": "f87cbf33e89cb27f86ef71ac47ec1a093ff9783aa13c716d15a31f78b88c7e9e",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000066.json": "03bd593da300400d75328acd6c755fcd261ec56cec552bd1c44ecd78ff906d60",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000067.json": "e3e94aae7787d4477e4828b42f27b0e60a8a3b7419949d95113803cf1b72edba",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000068.json": "0b3dcf0165fff4d97c891b9f3655fefc525c534573776f51982b9cafaf0cac65",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000069.json": "630f93222e3ad71820d29fad54ce5efd8bd8eb19e36aa0f9354e44813ccbe834",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000070.json": "52be723d6529ec1563db06c64735c6e6fd611df5a1e08abec125f0a0edadf07a",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000071.json": "5331b79483dd2a079024d546eee0ba8eef1b1e9c55a9ccb6ca6719da0fd629aa",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000072.json": "a68048c52911a2764bf3dcbb8c563f4c2ac046c8274b9745aa50da2de282652d",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000073.json": "fb699f2189a3136327a03250d8abaf5c9d938681f718bc7e2e4d415d75342cc4",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000074.json": "c92e5252a7f24ece5ee5e7f2499c3e9d4c7b4e5155152fb2ee09f4a004b1f029",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000075.json": "c4eb7f0f1f98e68ddf1aca459793c42fe46e47096793d029aa6409e6cd6dcfc4",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000076.json": "1e06d17dac29f646ce1d082bdf7f758897523fba34f1552ddec7b06462790133",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000077.json": "8f579e061d8f0fbaff61b73dc8cf6204021a43dfaa9deb389740558c308a444b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000078.json": "4a6a1ed1b6d8ea01929aa8740565912b0d50d0bbcc41eeaf4720dcecbf8b11e4",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000079.json": "851257a3d79e041612f04d7dc80064f88de29523899a723d8a2b0f53336ba702",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000080.json": "ee98e63bd9195fe2bd1dd8a9e393e52c905dadb2a60f757942f5a89aff5f5d0b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000081.json": "4fb49614c6a02a5e536e73898e294cca0f0428112bdefda16ff3090ff05b2c4e",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000082.json": "9a4c509d635fb15772de81ae5fbd566a26eab0507db1fc8464e74b89b2863cfe",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000083.json": "67a5d4c046559c85ea9ac08433f808a3b743a5d4354c0487f1b69ce089524b44",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000084.json": "b114cd3938081f175b7de70be99946fcbdb7da993798d76901a1e37a05bebaeb",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000085.json": "bb15f9b32b72a5a0fb69ffc21ab6c2962e0439a5b8178e087b8d02783df4ddab",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000086.json": "5b7aab3b6361107e5c7c6530efa0e69c112db757ef96ec1afc6d1c842ff5e33e",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000087.json": "d4f0f70adba2dfe8f938d2f4d3e1e0940aee7bd6bd847c9aae5643064d6c8d15",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000088.json": "13acfae89abba8de75ea6264bb2266f3f5ecf0702b27cfbe0f74d531f2500ace",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000089.json": "adc4a36db8c10fe9215d7980def417bf6bb72a77f40d4583ccf44012ddcd6b76",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000090.json": "f47e95ecb65e88468b3ef1d5a5f50b4468e439f617d5e1cbeff0e0d1f881d8a6",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000091.json": "a02b4ee6bc38e60b026df062407e3a2c22afa53b6c541908b2a93e1f16cf9452",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000092.json": "d95df5529b398b17b40dc7cdff847e3a3e4028561576c959ab05663d62aa3474",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000093.json": "51b4bd285ec0c193c8190cbe299a46ffd02a63233c7686d4816fe3a72932ffab",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000094.json": "7fc46cb8f38436d9096c99dfb780f9d480538c649e8ee1529cf1ada6a4e5e231",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000095.json": "d406d680ea922ba8aa6f0b754678dddea92c8960f646c1a8c40806f43c5a2098",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000096.json": "747645424249e31e9d046bb79eeb9510537ba190595058d3f5a541b5c383630b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000097.json": "f244bdf80932dbb997f23e085eb0d5ea53c1a440c72462865e5f44a6cc424e24",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000098.json": "36585a4f2f7a0be98b82d76c727ba559d28d7a9deb02f488ca0b48120a807657",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000099.json": "b7f40f862207f4feeb7f68e58ea18f1d9bde2ffebf5bcceeb3a82fc254c737be",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000100.json": "2738e46a774c90303f4826ef5893edae16739158c8a56eb19ddabf4f83869ab0",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000101.json": "7201ef70ec89de6d6700d0e436b653c15c8c98bb8062c03c5001602f70405498",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000102.json": "a6f4defc4421f761a69b3b3addb89fb2b2f96efd6c426fa19c6034cfb4c66c51",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000103.json": "ff4dadbf308abc313a5c38123835989c58a761411013e578f8113d6f0d53c84b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000104.json": "8a6cf299e741fe9ffc2813a2df8db50f26856de142772bf87b7917709f5c24f7",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000105.json": "98baeb5f41eb51e31698520f60e67ccd05c92a51a1a99368ece2d5c111959e0b",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000106.json": "472d6974147b8fc275e1bdd18d3e0c61452c5cdbe18f1989301dec8cb585c3cf",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000107.json": "88a03cd7cd7364938fb7a5db9a82fbf2faa78b9208330f681513bca8d060cd7e",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000108.json": "99b8b42d0ff663bee847b22eace0d1178cda1aa9ce409cb829b0b9db919e7edb",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000109.json": "2718abe934acfc6d2df0ceb5b3910f23f262a4360906a66c5abb66a2f768c275",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000110.json": "4db9eb61fe1fa4ea1eabe422bdb9b6932f8490599ca03011ef82a20f9f9f021d",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000111.json": "648f90304727ecbbfa46e13cfbbf1c9b036499ffa08571ec07a67b00da36a3c7",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000112.json": "b15e3b9044483549fa728ccf0f2f93f1594c8940977631a4eb6e6b18fc3aafe0",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000113.json": "847cf2ebc2aa96a91db5de88769cd8b2a6e9ede710c47117f9eefcb5892569c2",
+        "/root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0002-general-pickup-official-0-dev-H1/runner/666d5559f2a1497ebe686df47ee03648/000114.json": "04fe5f46b17cc843c3de9452a52f794c959b0077ee0fba6fecc8a9fb842ab3d4"
+      },
+      "artifact_directory": "0002-general-pickup-official-0-dev-H1"
+    }
+  ],
+  "online_trace_diagnostics": [
+    {
+      "artifact_directory": "0002-general-pickup-official-0-dev-H1",
+      "qualification": false,
+      "successful_chain_audit": true,
+      "non_action_records": [
+        {
+          "binding_revision": "e36f0518c9b428e8bb65d28ac4bf04b4accddfc1e8cc469e8a663bdd847f933d",
+          "catalog_revision": "2affb248625601ac55f8e44a236a8c43ae4cef031beceefccb06166b1417aab1",
+          "episode_id": "666d5559f2a1497ebe686df47ee03648",
+          "execution_key": "c5e506257ca02b1dba69709e4566d73b496ccfbb0b95e2953387c2e559215d2e",
+          "generation": 0,
+          "observation_seq": 1,
+          "parent_id": "",
+          "plan": {
+            "composition": "memory-guided-program-library",
+            "execution": "bind",
+            "operations": [
+              "instruction-grounded-pickup"
+            ],
+            "rationale": "The instruction requests a visual grounding, grasp, and lift of the mint green scissors. The instruction-grounded-pickup capability explicitly covers instruction-grounded localization, appearance-conditioned grasp, and reachable lifting, and its nonempty-instruction condition is satisfied with current RGB and robot state. The scissors are visible, so the structured capability fits better than an unspecialized learned composition."
+          },
+          "request_id": "5d8e41352b094de6875af745dc906714",
+          "revision_id": "510e67ec9e424b3f8eebd23c7fd0a14d",
+          "time": 375149.679775656,
+          "type": "plan_committed"
+        },
+        {
+          "episode_id": "666d5559f2a1497ebe686df47ee03648",
+          "generation": 0,
+          "revision_id": "510e67ec9e424b3f8eebd23c7fd0a14d",
+          "time": 375172.2204185,
+          "type": "binding_applied"
+        },
+        {
+          "episode_id": "666d5559f2a1497ebe686df47ee03648",
+          "generation": 0,
+          "revision_id": "510e67ec9e424b3f8eebd23c7fd0a14d",
+          "time": 375186.025587885,
+          "type": "native_success"
+        },
+        {
+          "actions": 110,
+          "episode_id": "666d5559f2a1497ebe686df47ee03648",
+          "generation": 0,
+          "status": "completed",
+          "success": true,
+          "terminal": true,
+          "time": 375186.026956316,
+          "type": "native_outcome"
+        }
+      ],
+      "action_records": 110,
+      "skill_diagnostics": []
+    },
+    {
+      "artifact_directory": "0004-store-tools-in-toolbox-official-0-dev-H1",
+      "qualification": false,
+      "successful_chain_audit": false,
+      "non_action_records": [
+        {
+          "binding_revision": "b4ff724770d6dadcaa4276201894e1b694623b4c96ac0578aa4ae2d1a065b608",
+          "catalog_revision": "cb460708aa0240e20c95c21bcb6d962f0b49ffcae53c6b8e49d88293abc4cc21",
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "execution_key": "4077b8d0e6d45d216c4ee651f1820f7b1ca69842d958b006a29eaa79030587c0",
+          "generation": 0,
+          "observation_seq": 1,
+          "parent_id": "",
+          "plan": {
+            "composition": "memory-guided-program-library",
+            "execution": "bind",
+            "operations": [
+              "slot-insertion"
+            ],
+            "rationale": "The current RGB observations show a toolbox with molded matching positions and several tools (hammer, wrench, tape measure, pliers). The instruction requires assigning each tool to its corresponding toolbox slot and inserting/releasing it. The slot-insertion capability explicitly covers object-slot geometry grounding, reachable assignment, alignment refresh, insertion, and release, which fits the visible scene better than generic pickup or placement capabilities. The requested arm reset is a shared lifecycle action and does not require a separate operation or disqualify slot-insertion."
+          },
+          "request_id": "d9d0e3b6681e448090b3d877eb7072ac",
+          "revision_id": "2c3affed9eeb4584820a036f54ab6a77",
+          "time": 375509.679078935,
+          "type": "plan_committed"
+        },
+        {
+          "diagnostic_id": "1318245242ea4bae95429bdffafe90bd",
+          "discarded_runner_actions": 0,
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "kind": "skill_inference_failed",
+          "operation": "bind",
+          "revision_id": "2c3affed9eeb4584820a036f54ab6a77",
+          "time": 375519.198144449,
+          "type": "skill_failure"
+        },
+        {
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "event_id": "skill-1318245242ea4bae95429bdffafe90bd",
+          "facts": {
+            "kind": "skill_inference_failed",
+            "operation": "bind"
+          },
+          "generation": 0,
+          "kind": "skill_failed",
+          "observation_seq": 1,
+          "time": 375519.19918934,
+          "type": "observed_event"
+        },
+        {
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "event_id": "skill-1318245242ea4bae95429bdffafe90bd",
+          "generation": 0,
+          "revision_id": "2c3affed9eeb4584820a036f54ab6a77",
+          "time": 375519.199939381,
+          "type": "stop_requested"
+        },
+        {
+          "discarded_runner_actions": 0,
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "in_flight_actions": 0,
+          "observation_seq": 1,
+          "queued_actions": 0,
+          "stopped_at": 375519.204880395,
+          "time": 375519.204936785,
+          "type": "stop_acknowledged"
+        },
+        {
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "state": {
+            "binding_revision": "b4ff724770d6dadcaa4276201894e1b694623b4c96ac0578aa4ae2d1a065b608",
+            "catalog_revision": "cb460708aa0240e20c95c21bcb6d962f0b49ffcae53c6b8e49d88293abc4cc21",
+            "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+            "facts": {
+              "executed_actions": 0
+            },
+            "generation": 0,
+            "native_success": false,
+            "observation_seq": 2,
+            "observed_at": 375519.255542978
+          },
+          "time": 375519.255593078,
+          "type": "fresh_observation"
+        },
+        {
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "execution_key": "90dd3199daf5e1b2239e7b7f1f63cdd46d36186eaace110107121f3d75ed57dd",
+          "generation": 0,
+          "observation_seq": 2,
+          "parent_id": "2c3affed9eeb4584820a036f54ab6a77",
+          "plan": {
+            "composition": "memory-guided-program-library",
+            "execution": "restart",
+            "operations": [
+              "slot-insertion"
+            ],
+            "rationale": "The prior bind failed at inference with zero executed actions, and the current observation shows RGB available on all three cameras with both end-effector joint states at 1.0, satisfying the slot-insertion restart preconditions. Because no physical motion occurred, the scene is unchanged, and slot-insertion remains the capability whose declared contract (object-slot geometry grounding, reachable assignment, alignment refresh, insertion, release) matches the instruction to place each tool into its matching toolbox position; the arm reset is shared lifecycle behavior. Restart discards the stale skill state and recomputes the same capability from the current RGB and proprioception rather than switching capabilities or aborting."
+          },
+          "request_id": "ab869e896678478d824644cd28b61cda",
+          "revision_id": "fe52b766335e4d70a17867ffd045fe32",
+          "time": 375524.129436065,
+          "type": "plan_committed"
+        },
+        {
+          "diagnostic_id": "99ba04095baf430da673f22b1f9d2491",
+          "discarded_runner_actions": 0,
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "kind": "skill_inference_failed",
+          "operation": "bind",
+          "revision_id": "fe52b766335e4d70a17867ffd045fe32",
+          "time": 375536.038036827,
+          "type": "skill_failure"
+        },
+        {
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "event_id": "skill-99ba04095baf430da673f22b1f9d2491",
+          "facts": {
+            "kind": "skill_inference_failed",
+            "operation": "bind"
+          },
+          "generation": 0,
+          "kind": "skill_failed",
+          "observation_seq": 2,
+          "time": 375536.039371778,
+          "type": "observed_event"
+        },
+        {
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "event_id": "skill-99ba04095baf430da673f22b1f9d2491",
+          "generation": 0,
+          "revision_id": "fe52b766335e4d70a17867ffd045fe32",
+          "time": 375536.040249688,
+          "type": "stop_requested"
+        },
+        {
+          "discarded_runner_actions": 0,
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "in_flight_actions": 0,
+          "observation_seq": 2,
+          "queued_actions": 0,
+          "stopped_at": 375536.045268113,
+          "time": 375536.045317093,
+          "type": "stop_acknowledged"
+        },
+        {
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "state": {
+            "binding_revision": "b4ff724770d6dadcaa4276201894e1b694623b4c96ac0578aa4ae2d1a065b608",
+            "catalog_revision": "cb460708aa0240e20c95c21bcb6d962f0b49ffcae53c6b8e49d88293abc4cc21",
+            "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+            "facts": {
+              "executed_actions": 0
+            },
+            "generation": 0,
+            "native_success": false,
+            "observation_seq": 3,
+            "observed_at": 375536.097257407
+          },
+          "time": 375536.097324907,
+          "type": "fresh_observation"
+        },
+        {
+          "actions": 0,
+          "detail": "Capability has no reviewed restart preconditions",
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "error_type": "WsError",
+          "generation": 0,
+          "time": 375543.384673124,
+          "type": "execution_failed"
+        }
+      ],
+      "action_records": 0,
+      "skill_diagnostics": [
+        {
+          "diagnostic": {
+            "detail": "Code skill failed; inspect /root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0004-store-tools-in-toolbox-official-0-dev-H1/skills/e8aeef371cec46c3a80dc06575e1edb9/service.log",
+            "error_type": "RuntimeError",
+            "operation": "bind"
+          },
+          "diagnostic_id": "1318245242ea4bae95429bdffafe90bd",
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "inference_cleanup_confirmed": true,
+          "kind": "skill_inference_failed",
+          "operation": "bind",
+          "revision_id": "2c3affed9eeb4584820a036f54ab6a77"
+        },
+        {
+          "diagnostic": {
+            "detail": "Code skill failed; inspect /root/.cache/dsh-physicalrsi-dev/artifacts/paired-pilot-13-skill-fault-recovery-development/0004-store-tools-in-toolbox-official-0-dev-H1/skills/5b67676916e14b3a9fca9a40d9ceec72/service.log",
+            "error_type": "RuntimeError",
+            "operation": "bind"
+          },
+          "diagnostic_id": "99ba04095baf430da673f22b1f9d2491",
+          "episode_id": "32f9869116e043ed8e4f7581c4642c5f",
+          "generation": 0,
+          "inference_cleanup_confirmed": true,
+          "kind": "skill_inference_failed",
+          "operation": "bind",
+          "revision_id": "fe52b766335e4d70a17867ffd045fe32"
+        }
+      ]
+    }
+  ]
+}

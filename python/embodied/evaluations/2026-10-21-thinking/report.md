@@ -116,6 +116,14 @@ A [nine-episode pi05 preflight](learned-policy-development.json) uses the same t
 
 These failures occur without DeepSeek inference and therefore cannot be attributed to its Thinking switch. The pickup video shows robot motion without completing the target grasp. Loading the checkpoint and producing numeric action chunks is insufficient evidence of task compatibility; checkpoint/data preprocessing, controller conventions and task coverage still need diagnosis. The same failure across N/H0/H1 does not establish a DSH-specific regression or qualify this configuration as the strongest native baseline.
 
+## Real confirmed-fault recovery
+
+A [six-assignment development batch](skill-fault-development.json) runs the new private worker protocol and opt-in confirmed skill-failure recovery on pickup and toolbox storage. All arms expose the full catalog, use real initial planning with high Thinking and cap 8,192, and retain the same source and output-storage configuration. All eight provider calls pass raw-control, response-byte and usage audits. The [435-file archive](skill-fault-development-evidence.json) retains every failure and rejected proposal.
+
+Pickup succeeds in N/H0/H1 with 110 actions each and native completion times 40.94/42.60/44.21 seconds. H1’s successful chain passes independent audit; this single case does not pass G1 or G2. Toolbox storage fails in every arm: N selects `slot-insertion` and fails before dispatch; H0 selects `footprint-relative-placement`, executes 900 actions and finishes with score zero. H1 initially selects `slot-insertion`, records a cleanup-confirmed binding failure, acknowledges zero queued/in-flight actions, captures a fresh observation and makes a real recovery call. It restarts the same capability, encounters a second confirmed fault, stops and replans again. The final proposal has no reviewed restart preconditions and is refused. H1 dispatches zero actions and consumes three calls, including the rejected proposal.
+
+This establishes that a real native fault reaches bounded online replanning without admitting an unreviewed replacement. It does not establish successful skill switching or higher task success. The generic capability descriptions still permit incorrect selection, and the four-tool execution gap remains. Successful replanning mechanics cannot substitute for successful task outcomes. Formal held-out runs remain zero; “basic parity and complex superiority” is unproven.
+
 ## Integration and acceptance
 
 Online planning now labels current camera availability and refuses recovery observations whose sequence is not newer than the trigger. The development relay can freeze `off`, `low`, `high` or `max` identically for N/H0/H1. The runner separately records the first existing native terminal check, excluding teardown without adding environment queries. Keyless recorded-profile coverage checks the actual high-effort wire fields and retained Session history.

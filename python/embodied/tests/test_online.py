@@ -275,6 +275,8 @@ def test_native_binding_restarts_worker_without_resetting_scene(tmp_path, monkey
     lambda c:c['events'].update(window=1),
     lambda c:c['call_budget'].update(limit=True),
     lambda c:c.update(recovery_enabled=1),
+    lambda c:c.update(recover_skill_failures=1),
+    lambda c:c.update(recover_skill_failures=True,recovery_enabled=False),
     lambda c:c.update(initial_plan=[]),
     lambda c:c.update(restart_guards={}),
     lambda c:c['restart_guards']['instruction-grounded-pickup'][0].update(minimum=2),
@@ -433,3 +435,61 @@ def test_cleanup_failure_preserves_original_error_and_never_certifies_success(tm
     if operation_fails:
         assert 'native skill inference failed' in str(caught.value) and executed==[]
         assert records[-1]['type']=='execution_failed' and records[-1]['detail']==str(operation_error)
+
+
+@pytest.mark.parametrize('change', [
+    lambda f:f.update(generation=99),
+    lambda f:f.update(revision_id='old'),
+    lambda f:f.update(operation='bind'),
+    lambda f:f.update(diagnostic_id='../escape'),
+    lambda f:f.update(detail='untrusted diagnostic'),
+])
+def test_untrusted_skill_failure_blocks_dispatch_without_planning(tmp_path, change):
+    runtime, coordinator, executed, calls, records = setup_runtime(tmp_path)
+    failure = runtime.packet(revision_id=runtime.current.revision_id,
+        kind='skill_inference_failed',operation='actions',diagnostic_id='a'*32)
+    change(failure)
+    with pytest.raises(ValueError, match='Malformed or stale'):
+        runtime.accept_skill_failure({'skill_failure':failure},runtime.current.revision_id,'actions')
+    assert runtime.blocked and runtime.pending_fault is None and executed==[]
+    with pytest.raises(RuntimeError, match='disabled'):
+        coordinator.actions()
+    assert 'online_plan' not in calls
+
+
+@pytest.mark.parametrize('enabled,confirmed', [(False,True),(True,False)])
+def test_service_faults_require_enablement_and_confirmed_cleanup(tmp_path, enabled, confirmed):
+    from deepseek_harness_embodied.online_model import OnlineModel
+    from deepseek_harness_embodied.skill_failure import SkillInferenceFailure
+    runtime, _, _, _, _ = setup_runtime(tmp_path)
+    model = OnlineModel.__new__(OnlineModel)
+    model.settings, model.root = {'recover_skill_failures':enabled}, tmp_path
+    model.episode, model.generation = runtime.episode, runtime.generation
+    model.revision, model.failed, model.stopped = runtime.current, False, False
+    model._check = lambda packet:None
+    error = SkillInferenceFailure('actions','ValueError','private detail') if confirmed else TimeoutError('cleanup unknown')
+    def fail():
+        raise error
+    model.binding = SimpleNamespace(actions=fail)
+    with pytest.raises(type(error)) as caught:
+        model.online_actions(runtime.packet(revision_id=runtime.current.revision_id))
+    assert caught.value is error and model.failed
+    assert not list(tmp_path.rglob('skill-failure-*.json'))
+
+
+def test_repeated_skill_failure_exhausts_budget_before_another_model_call(tmp_path):
+    runtime, coordinator, executed, calls, records = setup_runtime(tmp_path)
+    from dataclasses import replace
+    coordinator.budget = replace(coordinator.budget,max_revisions=1)
+    for index in range(2):
+        failure = runtime.packet(revision_id=runtime.current.revision_id,
+            kind='skill_inference_failed',operation='actions',diagnostic_id=str(index)*32)
+        assert runtime.accept_skill_failure({'skill_failure':failure},runtime.current.revision_id,'actions')
+        event = runtime.take_skill_event()
+        if index==0:
+            assert coordinator.recover(event)
+        else:
+            with pytest.raises(RuntimeError, match='budget exhausted'):
+                coordinator.recover(event)
+    assert calls.count('online_plan')==1 and executed==[] and runtime.blocked
+    assert coordinator.status=='failed'

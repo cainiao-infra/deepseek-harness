@@ -47,7 +47,7 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 `native_worker` 指定具备完整 PhysicalRSI 推理依赖的 Python 解释器绝对路径。所拥有的工作进程复用 RoboDojo 的 WebSocket 协议，为包含重连的完整调用设置时限，接收已准入计划，不再调用规划器，并保留原生数值动作数组。停止要求原生关闭确认、进程退出及后代进程静默；新绑定启动新进程，并必须复现能力/记忆快照。任何 RPC 或清理结果不确定都会永久禁用提供方。工作进程的凭证环境经过过滤；就绪记录、身份及日志保存在在线证据目录。该接口仍需通过真实学习策略仿真验证。
 
-私有 `dsh-native-binding/v2` 协议区分已完成的推理和已声明的技能失败。仅在原生清理成功后才抛出 `SkillInferenceFailure`；进程提供方还要求匹配的关闭确认、工作进程退出及子进程静止。无效消息、协议版本不匹配、传输中断或无法确认的清理会永久禁用提供方。诊断错误文本保留用于排查，不会成为模型可见的事件输入。这一区分不代表物理停止已确认，也不授权自动重试；在线消费者目前仍会因这些故障结束 episode。
+私有 `dsh-native-binding/v2` 协议区分已完成的推理和已声明的技能失败。仅在原生清理成功后才抛出 `SkillInferenceFailure`；进程提供方还要求匹配的关闭确认、工作进程退出及子进程静止。无效消息、协议版本不匹配、传输中断或无法确认的清理会永久禁用提供方。诊断错误文本保留用于排查，不会成为模型可见的事件输入。这一区分不代表物理停止已确认。可选的 `recover_skill_failures=true` 将这类故障接入在线停止、重新观测和规划循环；默认值为 `false`，且要求 `recovery_enabled=true`。运行器先丢弃缓存动作，再检查物理控制队列；替换计划仍须满足已审核的重启条件以及既有 episode、事件和修订预算。未知清理、过期故障消息或缺失前置条件都不能授权派发。诊断文件将失败的绑定或推理关联到已提交修订；仅故障类别和操作名称进入模型输入。
 
 工作进程配置默认解析为 `startup_timeout_seconds=300`、`request_timeout_seconds=120`、`exit_timeout_seconds=10`、`kill_timeout_seconds=5`、`connect_timeout_seconds=10`、`client_close_timeout_seconds=5` 和 `poll_interval_seconds=0.05`；各项均可配置，且必须为正有限数。在线 RPC 超时须覆盖启动、连接、元数据和绑定请求；恢复停止超时须覆盖请求、进程退出/强制结束、客户端关闭及原生客户端十秒的 drain/join 时限。外层策略服务启动时限也须覆盖工作进程启动。运行前必须配置这些参数；示例原有的较短停止/RPC 时限不能直接沿用。
 

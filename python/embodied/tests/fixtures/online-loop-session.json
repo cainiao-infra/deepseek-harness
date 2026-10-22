@@ -114,5 +114,120 @@
     ],
     "discarded_tail": 0,
     "synthetic_terminal_success": true
+  },
+  "skill_failure_response": {
+    "composition": "place",
+    "rationale": "switch after confirmed inference failure",
+    "execution": "switch"
+  },
+  "skill_failure_expected": {
+    "bind": {
+      "provider_calls": 1,
+      "one_session": true,
+      "request_phases": [
+        "recovery"
+      ],
+      "observation_sequences": [
+        2
+      ],
+      "recovery_trigger_sequence": 1,
+      "rgb_available": [
+        true
+      ],
+      "history_roles": [
+        "system",
+        "user"
+      ],
+      "native_observation_counts_at_first_action": [
+        1,
+        2
+      ],
+      "dispatched_actions": [
+        {
+          "joint": [
+            0.5
+          ]
+        },
+        {
+          "joint": [
+            0.5
+          ]
+        }
+      ],
+      "discarded_tail": 0,
+      "synthetic_terminal_success": true
+    },
+    "observe": {
+      "provider_calls": 1,
+      "one_session": true,
+      "request_phases": [
+        "recovery"
+      ],
+      "observation_sequences": [
+        3
+      ],
+      "recovery_trigger_sequence": 2,
+      "rgb_available": [
+        true
+      ],
+      "history_roles": [
+        "system",
+        "user"
+      ],
+      "native_observation_counts_at_first_action": [
+        1,
+        1
+      ],
+      "dispatched_actions": [
+        {
+          "joint": [
+            0.25
+          ]
+        },
+        {
+          "joint": [
+            0.5
+          ]
+        }
+      ],
+      "discarded_tail": 0,
+      "synthetic_terminal_success": true
+    },
+    "actions": {
+      "provider_calls": 1,
+      "one_session": true,
+      "request_phases": [
+        "recovery"
+      ],
+      "observation_sequences": [
+        2
+      ],
+      "recovery_trigger_sequence": 1,
+      "rgb_available": [
+        true
+      ],
+      "history_roles": [
+        "system",
+        "user"
+      ],
+      "native_observation_counts_at_first_action": [
+        1,
+        2
+      ],
+      "dispatched_actions": [
+        {
+          "joint": [
+            0.5
+          ]
+        },
+        {
+          "joint": [
+            0.5
+          ]
+        }
+      ],
+      "discarded_tail": 0,
+      "synthetic_terminal_success": true
+    }
   }
 }

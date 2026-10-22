@@ -21,9 +21,9 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
     outcome files, provider bytes, assignments and implementation identities.
     """
     files, sessions, revisions = {}, set(), set()
-    current = ack = fresh = trigger = None
+    current = ack = fresh = trigger = fault = None
     bound = waiting = terminal = success_observed = False
-    actions = replacements = model_calls = configured_plans = 0
+    actions = replacements = model_calls = configured_plans = skill_failures = 0
     requested = last_time = float('-inf')
 
     def require(value, message):
@@ -53,7 +53,8 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
         if kind=='plan_committed':
             revision_id, request_id = identifier(row['revision_id']), identifier(row['request_id'])
             require(revision_id not in revisions, 'Duplicate committed revision')
-            revision = read(root/('binding-'+revision_id+'.json'))['revision']
+            proposal = root/('revision-'+revision_id+'.json')
+            revision = read(proposal) if proposal.exists() else read(root/('binding-'+revision_id+'.json'))['revision']
             require(all(revision[k]==row[k] for k in (
                 'revision_id','request_id','parent_id','plan','execution_key','observation_seq')),
                 'Native binding and committed revision disagree')
@@ -100,18 +101,39 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
                 require(not row['parent_id'], 'Initial revision has a parent')
             revisions.add(revision_id)
             current, bound = revision, False
+            waiting, ack, fresh, trigger = False, None, None, None
         elif kind=='binding_applied':
             require(current and not bound and row['revision_id']==current['revision_id'], 'Unknown or duplicate native binding')
+            require(read(root/('binding-'+identifier(row['revision_id'])+'.json'))['revision']==current,
+                    'Applied native binding differs from committed revision')
             bound, waiting, ack, fresh, trigger = True, False, None, None, None
+            fault = None
+        elif kind=='skill_failure':
+            require(current and not fault and row['revision_id']==current['revision_id']
+                    and row['operation'] in {'bind','observe','actions'}
+                    and (bound or row['operation']=='bind'), 'Skill failure has no active binding attempt')
+            diagnostic = read(root/('skill-failure-'+identifier(row['diagnostic_id'])+'.json'))
+            require(all(diagnostic[k]==row[k] for k in (
+                'episode_id','generation','revision_id','diagnostic_id','kind','operation'))
+                and diagnostic['kind']=='skill_inference_failed'
+                and diagnostic['inference_cleanup_confirmed'] is True
+                and diagnostic['diagnostic']['operation']==row['operation'],
+                'Skill failure lacks correlated cleanup confirmation')
+            fault, bound = row, False
+            skill_failures += 1
         elif kind=='action_dispatched':
             require(not success_observed and bound and not waiting and current and row['revision_id']==current['revision_id'],
                     'Action bypassed stopped or current revision')
             require(row['action_index']==actions, 'Duplicate or missing action index')
             actions += 1
         elif kind=='observed_event':
+            if fault:
+                require(row['event_id']=='skill-'+fault['diagnostic_id'] and row['kind']=='skill_failed'
+                        and row['facts']=={'kind':fault['kind'],'operation':fault['operation']},
+                        'Skill recovery trigger differs from confirmed fault')
             trigger = row
         elif kind=='stop_requested':
-            require(bound and current and row['revision_id']==current['revision_id'] and trigger
+            require((bound or fault) and current and row['revision_id']==current['revision_id'] and trigger
                     and row['event_id']==trigger['event_id'], 'Stopping has no current binding or observed trigger')
             bound, waiting, requested = False, True, row['time']
         elif kind=='stop_acknowledged':
@@ -120,6 +142,7 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
                     'Stop has another generation or remaining actions')
             require(requested<=row['stopped_at']<=row['time'], 'Invalid stop timing')
             ack = row
+            fault = None
         elif kind=='fresh_observation':
             require(ack is not None and fresh is None, 'Observation preceded stopping or duplicates recapture')
             fresh = row['state']
@@ -142,4 +165,5 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
     require(len(sessions)==int(model_calls>0), 'Episode history split across Sessions')
     return {'qualification':False,'confirmed_successful_chain':True,'actions':actions,
             'replacements':replacements,'model_calls':model_calls,'configured_plans':configured_plans,
+            'skill_failures':skill_failures,
             'session_count':len(sessions),'files':files}

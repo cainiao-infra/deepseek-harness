@@ -9,6 +9,7 @@ from __future__ import annotations
 import math
 import json
 import os
+import re
 import threading
 import time
 import uuid
@@ -144,6 +145,7 @@ class RoboDojoRuntime:
         self.in_flight, self.blocked = False, True
         self.observation = None
         self.current = None
+        self.pending_fault = None
 
     def _thread(self) -> None:
         if threading.get_ident() != self.owner:
@@ -238,10 +240,42 @@ class RoboDojoRuntime:
             raise RuntimeError('Binding requires stopped dispatch with no old tail')
         result = self.client.call(func_name='online_bind', obs=self.packet(revision=asdict(revision)))
         self._thread()
+        if self.accept_skill_failure(result, revision.revision_id, 'bind'):
+            self.current = revision
+            return
         if result != {'bound': revision.revision_id}:
             raise RuntimeError('Native plan binding outcome is unknown')
         self.current, self.blocked = revision, False
         self.record({'type': 'binding_applied', 'revision_id': revision.revision_id})
+
+    def accept_skill_failure(self, result, revision_id: str, operation: str) -> bool:
+        """Block dispatch on a correlated, cleanup-confirmed inference failure packet."""
+        if not isinstance(result, dict) or 'skill_failure' not in result:
+            return False
+        self.blocked = True
+        failure = result['skill_failure']
+        if (set(result)!={'skill_failure'} or not isinstance(failure, dict) or set(failure)!={
+                'kind','operation','diagnostic_id','episode_id','generation','revision_id'}
+                or any(failure[k]!=v for k,v in self.packet(revision_id=revision_id,
+                    kind='skill_inference_failed',operation=operation).items())
+                or not isinstance(failure['diagnostic_id'],str)
+                or not re.fullmatch('[0-9a-f]{32}',failure['diagnostic_id'])
+                or self.in_flight or self.pending_fault is not None):
+            raise ValueError('Malformed or stale native skill failure')
+        discarded = len(self.queue)
+        self.queue.clear()
+        self.record({'type':'skill_failure', **failure, 'discarded_runner_actions':discarded})
+        self.pending_fault = failure
+        return True
+
+    def take_skill_event(self) -> ExecutionEvent:
+        """Consume one inference trigger without exposing diagnostic text to the model."""
+        failure = self.pending_fault
+        if failure is None:
+            raise RuntimeError('No pending native skill failure')
+        self.pending_fault = None
+        return ExecutionEvent('skill-'+failure['diagnostic_id'],self.seq,'skill_failed',
+                              {'kind':failure['kind'],'operation':failure['operation']})
 
     def actions(self, revision_id: str):
         """Execute at most one native action, retaining only revision-tagged cached tails."""
@@ -251,6 +285,8 @@ class RoboDojoRuntime:
         try:
             if not self.queue:
                 reply = self.client.call(func_name='online_actions', obs=self.packet(revision_id=revision_id))
+                if self.accept_skill_failure(reply, revision_id, 'actions'):
+                    return None
                 if (reply.get('revision_id') != revision_id or not isinstance(reply.get('actions'), list)
                         or not reply['actions'] or any(not isinstance(a, dict) for a in reply['actions'])):
                     raise ValueError('Malformed or stale native action chunk')
@@ -301,7 +337,18 @@ def eval_one_episode(TASK_ENV, model_client) -> None:
             plan=runtime.replan, record=runtime.record)
         events.observe(runtime.observation, None, state.observation_seq)
         while coordinator.status == 'running':
+            if runtime.pending_fault is not None:
+                if not settings['recover_skill_failures']:
+                    raise RuntimeError('Native skill failure recovery is disabled')
+                event = runtime.take_skill_event()
+                runtime.record({'type':'observed_event', **asdict(event)})
+                coordinator.recover(event)
+                events = ObservedEvents(**settings['events'])
+                events.observe(runtime.observation, None, runtime.seq)
+                continue
             action = coordinator.actions()
+            if runtime.pending_fault is not None:
+                continue
             state = runtime.capture()
             coordinator.observe(state)
             if coordinator.status == 'completed' or TASK_ENV.is_episode_end():
@@ -314,7 +361,9 @@ def eval_one_episode(TASK_ENV, model_client) -> None:
                 events = ObservedEvents(**settings['events'])
                 events.observe(runtime.observation, None, runtime.seq)
             else:
-                model_client.call(func_name='online_observe', obs=runtime.packet(observation=runtime.observation))
+                reply = model_client.call(func_name='online_observe', obs=runtime.packet(observation=runtime.observation))
+                if reply is not None and not runtime.accept_skill_failure(reply, runtime.current.revision_id, 'observe'):
+                    raise ValueError('Malformed native observation acknowledgement')
         runtime.blocked = True
         runtime.queue.clear()
         runtime.record({'type': 'native_outcome', 'terminal': bool(TASK_ENV.is_episode_end()),

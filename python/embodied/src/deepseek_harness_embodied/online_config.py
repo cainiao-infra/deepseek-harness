@@ -16,6 +16,11 @@ def load_online_config(path: Path) -> dict:
     config.setdefault('recovery_enabled', True)
     if type(config['recovery_enabled']) is not bool:
         raise ValueError('Recovery enablement must be a boolean')
+    config.setdefault('recover_skill_failures', False)
+    if type(config['recover_skill_failures']) is not bool:
+        raise ValueError('Skill failure recovery enablement must be a boolean')
+    if config['recover_skill_failures'] and not config['recovery_enabled']:
+        raise ValueError('Skill failure recovery requires online recovery')
     if 'initial_plan' in config and not isinstance(config['initial_plan'], dict):
         raise ValueError('Configured initial plan must be an object')
     for value in (config['evidence_root'], config['call_budget']['root']):

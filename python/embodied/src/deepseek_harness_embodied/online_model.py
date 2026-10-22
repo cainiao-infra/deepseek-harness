@@ -20,6 +20,7 @@ from .budget import CallBudget
 from .physicalrsi import PhysicalRSITransport
 from .recovery import PlanRevision
 from .native_binding import CodeBinding, NativeBinding
+from .skill_failure import SkillInferenceFailure
 
 
 def execution_key(plan: dict, messages: list) -> str:
@@ -88,8 +89,9 @@ class OnlineModel:
     """Serialized WebSocket methods for one native-policy environment.
 
     Initial bindings retain native validation. Replacements require
-    explicit reviewed restart guards. Any service failure disables actions until
-    reset. Rebinding reaps the old worker without resetting the physical scene.
+    explicit reviewed restart guards. Unconfirmed service failures disable actions
+    until reset. Opt-in confirmed skill faults require the runner stop checkpoint
+    before recovery. Rebinding never resets the physical scene.
     """
     def __init__(self, model_cfg: dict) -> None:
         from PhysicalRSI_baselines.robodojo.skill_model import Model
@@ -243,6 +245,7 @@ class OnlineModel:
             revision = PlanRevision(uuid.uuid4().hex, '' if self.revision is None else self.revision.revision_id,
                 self.episode, self.generation, packet['observation_seq'], self.catalog_revision,
                 self.binding_revision, plan, execution_key(plan, messages), identity.request_id)
+            write_record(self.root/self.episode/('revision-'+revision.revision_id+'.json'), asdict(revision))
             self.proposal = (revision, observation)
             return asdict(revision)
         except BaseException:
@@ -269,8 +272,11 @@ class OnlineModel:
             revision, observation = self.proposal
             if self.bound:
                 raise RuntimeError('Previous skill worker has not been reaped')
-            applied = self.binding.bind(
-                {k:v for k,v in revision.plan.items() if k != 'execution'}, observation)
+            try:
+                applied = self.binding.bind(
+                    {k:v for k,v in revision.plan.items() if k != 'execution'}, observation)
+            except SkillInferenceFailure as error:
+                return self._skill_failure(error, revision)
             self._check(packet)
             write_record(self.root / self.episode / ('binding-' + revision.revision_id + '.json'), {
                 'revision': asdict(revision), **applied})
@@ -280,6 +286,18 @@ class OnlineModel:
         except BaseException:
             self.failed = True
             raise
+
+    def _skill_failure(self, error: SkillInferenceFailure, revision: PlanRevision) -> dict:
+        if not self.settings['recover_skill_failures']:
+            raise error
+        diagnostic_id = uuid.uuid4().hex
+        failure = {'kind':error.kind,'operation':error.operation,'diagnostic_id':diagnostic_id,
+                   'episode_id':self.episode,'generation':self.generation,'revision_id':revision.revision_id}
+        self.stopped, self.bound = True, False
+        self.revision, self.proposal = revision, None
+        write_record(self.root/self.episode/('skill-failure-'+diagnostic_id+'.json'), {
+            **failure,'diagnostic':error.record(),'inference_cleanup_confirmed':True})
+        return {'skill_failure':failure}
 
     def online_stop(self, packet: dict) -> dict:
         """Reap inference workers and discard policy tails; runner must stop robot dispatch."""
@@ -294,13 +312,16 @@ class OnlineModel:
             self.failed = True
             raise
 
-    def online_observe(self, packet: dict) -> None:
+    def online_observe(self, packet: dict) -> dict | None:
         """Feed each observation to the currently bound native skill."""
         try:
             self._check(packet)
             if self.stopped:
                 raise RuntimeError('Cannot update an inactive skill')
-            self.binding.observe(packet['observation'])
+            try:
+                self.binding.observe(packet['observation'])
+            except SkillInferenceFailure as error:
+                return self._skill_failure(error, self.revision)
         except BaseException:
             self.failed = True
             raise
@@ -311,7 +332,10 @@ class OnlineModel:
             self._check(packet)
             if self.stopped or packet['revision_id'] != self.revision.revision_id:
                 raise RuntimeError('Action dispatch disabled or stale revision')
-            actions = self.binding.actions()
+            try:
+                actions = self.binding.actions()
+            except SkillInferenceFailure as error:
+                return self._skill_failure(error, self.revision)
             self._check(packet)
             return {'revision_id': self.revision.revision_id, 'actions': actions}
         except BaseException:

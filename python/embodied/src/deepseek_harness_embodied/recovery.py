@@ -26,7 +26,7 @@ class ExecutionEvent:
     """Deduplicated observed trigger; benchmark intervention labels are not accepted."""
     event_id: str
     observation_seq: int
-    kind: Literal["grasp_failed", "target_changed", "observation_lost", "no_progress"]
+    kind: Literal["grasp_failed", "target_changed", "observation_lost", "no_progress", "skill_failed"]
     facts: JsonObject = field(default_factory=dict)
     """Observed trigger measurements, excluding benchmark intervention labels."""
 
@@ -183,7 +183,7 @@ class RecoveryCoordinator:
                 raise RuntimeError("Trigger does not match the current observation")
             if len(self._events) >= self.budget.max_events or len(self._revisions) > self.budget.max_revisions:
                 raise RuntimeError("Recovery budget exhausted")
-            if event.kind not in {"grasp_failed", "target_changed", "observation_lost", "no_progress"}:
+            if event.kind not in {"grasp_failed", "target_changed", "observation_lost", "no_progress", "skill_failed"}:
                 raise ValueError("Unknown observed trigger")
             self._events.add(event.event_id)
             requested_at = self.clock()

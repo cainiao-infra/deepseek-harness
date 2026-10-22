@@ -6,6 +6,8 @@ import json
 import math
 from pathlib import Path
 
+from .provider_evidence import audit_provider
+
 
 def episode_summary(result: dict, *, episode_timeout: float, reserved_attempts: int) -> dict:
     """Count assigned failures even when RoboDojo exits zero without a native result.
@@ -79,6 +81,7 @@ def summarize(root: Path) -> dict:
         reserved = len(list((path.parent/'provider/attempts').glob('call-*.json')))
         observed[key] = episode_summary(result, episode_timeout=spec['episode_timeout_seconds'],
                                         reserved_attempts=reserved)
+        observed[key]['provider_evidence'] = audit_provider(path.parent/'provider', spec)
         if 'layout_id' in result['case']:
             selected = path.parent/'simulation/selected-layout.json'
             layout = json.loads(selected.read_text()) if selected.exists() else None

@@ -15,7 +15,9 @@ def result(arm='N'):
             'native_results': [{'path': 'simulation/_result.json', 'result': {'eval_time': 1, 'success_rate': 1, 'score': 100,
                 'details': {'0': {'success': True, 'score': 1}}}}],
             'timings': [{'elapsed_seconds': 30, 'actions': 110, 'error': None}],
-            'provider_receipts': [{'status': 'completed', 'usage': {'total_tokens': 12}}]}
+            'provider_receipts': [{'status':'completed','http_status':200,
+                'usage':{'prompt_tokens':10,'completion_tokens':2,'total_tokens':12},
+                'response_sha256':hashlib.sha256(json.dumps({'usage':{'prompt_tokens':10,'completion_tokens':2,'total_tokens':12}}).encode()).hexdigest()}]}
 
 
 def retain(directory, row):
@@ -28,12 +30,17 @@ def retain(directory, row):
         root = directory/'provider'/f'http-{index:04d}'
         root.mkdir(parents=True)
         (root/'receipt.json').write_text(json.dumps(receipt))
+        request={'model':'deepseek-flash','max_tokens':2048,'temperature':0,
+                 'response_format':{'type':'json_object'},'messages':[{'role':'user','content':'pick'}]}
+        (root/'received.json').write_text(json.dumps(request))
+        (root/'sent.json').write_text(json.dumps(dict(request,thinking={'type':'disabled'})))
+        (root/'response.bin').write_text(json.dumps({'usage':receipt['usage']}))
 
 
 def test_pinned_layout_report_rejects_mutated_snapshot(tmp_path):
     layout=b'{"position":[1,2,3]}'
     case=dict(result()['case'],layout_id=2,layout_sha256=hashlib.sha256(layout).hexdigest())
-    spec={'schema':'dsh-paired-pilot/v1','partition':'development','episode_timeout_seconds':30,'cases':[case]}
+    spec={'schema':'dsh-paired-pilot/v1','partition':'development','model':'deepseek-flash','max_tokens':2048,'episode_timeout_seconds':30,'cases':[case]}
     (tmp_path/'spec.json').write_text(json.dumps(spec))
     for arm in case['order']:
         directory=tmp_path/arm
@@ -87,7 +94,7 @@ def test_missing_attempt_receipt_is_unknown_cost():
 
 def test_report_requires_all_assignments_and_never_qualifies_development(tmp_path):
     spec = {'schema': 'dsh-paired-pilot/v1', 'partition': 'development',
-            'episode_timeout_seconds': 30, 'cases': [result()['case']]}
+            'episode_timeout_seconds': 30, 'model':'deepseek-flash','max_tokens':2048,'cases': [result()['case']]}
     (tmp_path/'spec.json').write_text(json.dumps(spec))
     for arm in ['N', 'H0']:
         d = tmp_path/arm

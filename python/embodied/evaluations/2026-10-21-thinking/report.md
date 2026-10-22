@@ -60,6 +60,21 @@ A separate [nine-episode regression](pickup-regression.json) reuses the same exp
 
 The stall replan remains unnecessary and slower than native recovery. Its completion time is lower than the earlier 78.57 seconds, but cross-batch cold-start variation prevents attributing the entire difference to cleanup. The separate worker probe isolates that mechanism. These repeated development cases add no independent held-out scenes and establish neither G2 nor general superiority.
 
+## Zero-call initial binding and detector calibration
+
+A [12-episode development matrix](zero-call-development.json) gives every arm the same explicit native pickup plan and exposes all 24 skills. H1 preserves the unused worker across the initial reset and uses a motion window of eight instead of four. This compares deployable configurations; it does not isolate either code change or detector threshold by itself. The same explored pickup scene supplies four conditions. All four H1 chains pass the configured-plan/model-receipt, stop, fresh-observation, binding and dispatch audit. The [990-file archive](zero-call-development-evidence.json) also retains a prior launch that failed on missing Python import paths before any episode or model call.
+
+| Condition | N native seconds | H0 native seconds | H1 native seconds | H1 model calls |
+|---|---:|---:|---:|---:|
+| Normal | 38.22 | 37.02 | 42.46 | 0 |
+| Four held commands | 38.77 | 38.56 | 42.72 | 0 |
+| Eight held commands | 36.05 | 37.78 | 72.34 | 1 |
+| One missing RGB observation | Failure / no terminal | Failure / no terminal | 71.04 | 1 |
+
+N and H0 each succeed in three of four assigned episodes with zero model calls; H1 succeeds in four. The short-stall negative control no longer causes a replan, while the longer stall still causes unnecessary recovery because native execution succeeds unaided. Normal H1 completion remains 11.1% slower than N in this single cold-start sample, above the proposed 10% point-ratio target; no formal interval or acceptance claim follows from these data.
+
+A separate [control-path probe](control-path-profile.json) measures 500 warm configuration checks at about 2.7 ms each. Fifty writes per location through the unchanged synchronous immutable-record function have median latency 14.74 ms on NAS and 0.55 ms on local disk. This identifies a storage cost worth testing at episode level. The probe excludes model inference and physical execution; its component speed ratio is not an end-to-end speedup.
+
 ## Complex-task development diagnosis
 
 Two additional batches run the same explored development scenes for language-conditioned stacking and toolbox storage, with high Thinking and cap 8,192. Each batch assigns N/H0/H1 once per scene; all 12 episodes are retained and none succeeds. Here H1 explicitly disables recovery (H1-R); all arms use 22 code capabilities and exclude the two learned policies. These runs diagnose execution and routing, not enhanced recovery or the strongest native baseline. See [the complete summaries](complex-development.json) and [archive verification](complex-development-evidence.json).

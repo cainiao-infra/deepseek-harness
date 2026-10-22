@@ -1,0 +1,14 @@
+{
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "completed_episodes": 12,
+  "provider_attempts": 2,
+  "archive_bytes": 14206524,
+  "archive_sha256": "0a374f89caba777a097a08bfab48f0fda752ff11cc6bc10b0a55a45d96b8d5e7",
+  "manifest_sha256": "3607807f8f3219baaa4bf739f2e90e559bd6cf37b72cebffd3607b80a5f7e49f",
+  "evidence_files": 990,
+  "credential_scan_matches": 0,
+  "implementation_archive_sha256": "fd890293370af8cddb007f8050bbc4b37f1fdf75f169189d0b0fdb49184ebe06",
+  "source_identity_location": "Exact implementation identifier and files remain in the raw archive. The committed online_chain_audit command independently checks the retained H1 chains."
+}

@@ -1,0 +1,609 @@
+{
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "summary": {
+    "schema": "dsh-paired-pilot-report/v1",
+    "qualification": false,
+    "partition": "development",
+    "formal_heldout_runs": 0,
+    "statistical_acceptance": "insufficient_evidence",
+    "rows": [
+      {
+        "case_id": "pickup-zero-call-normal",
+        "arm": "H1",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 44.777226721984334,
+        "capped_evaluator_seconds": 44.777226721984334,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0000-pickup-zero-call-normal-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0000-pickup-zero-call-normal-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 25.27321757399477,
+          "native_terminal": {
+            "elapsed_seconds": 42.462548965995666,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-normal",
+        "arm": "H0",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 37.02982917398913,
+        "capped_evaluator_seconds": 37.02982917398913,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0001-pickup-zero-call-normal-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0001-pickup-zero-call-normal-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 22.821619393012952,
+          "native_terminal": {
+            "elapsed_seconds": 37.0243941390072,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-normal",
+        "arm": "N",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 38.22203583695227,
+        "capped_evaluator_seconds": 38.22203583695227,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0002-pickup-zero-call-normal-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0002-pickup-zero-call-normal-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 23.835987653990742,
+          "native_terminal": {
+            "elapsed_seconds": 38.216651392984204,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-hold4",
+        "arm": "N",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 38.78245181002421,
+        "capped_evaluator_seconds": 38.78245181002421,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0003-pickup-zero-call-hold4-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0003-pickup-zero-call-hold4-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 24.025885301001836,
+          "native_terminal": {
+            "elapsed_seconds": 38.77347827202175,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-hold4",
+        "arm": "H0",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 38.56866168300621,
+        "capped_evaluator_seconds": 38.56866168300621,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0004-pickup-zero-call-hold4-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0004-pickup-zero-call-hold4-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 23.93286216299748,
+          "native_terminal": {
+            "elapsed_seconds": 38.56073143600952,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-hold4",
+        "arm": "H1",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 44.995047133998014,
+        "capped_evaluator_seconds": 44.995047133998014,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0005-pickup-zero-call-hold4-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0005-pickup-zero-call-hold4-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 24.758716244017705,
+          "native_terminal": {
+            "elapsed_seconds": 42.72101521200966,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-hold8",
+        "arm": "N",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 36.05190181097714,
+        "capped_evaluator_seconds": 36.05190181097714,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0006-pickup-zero-call-hold8-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0006-pickup-zero-call-hold8-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 21.529175725008827,
+          "native_terminal": {
+            "elapsed_seconds": 36.04722656699596,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-hold8",
+        "arm": "H0",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 110,
+        "evaluator_seconds_including_cold_start_and_teardown": 37.790020293032285,
+        "capped_evaluator_seconds": 37.790020293032285,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0007-pickup-zero-call-hold8-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0007-pickup-zero-call-hold8-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 23.176310922019184,
+          "native_terminal": {
+            "elapsed_seconds": 37.78455630899407,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-hold8",
+        "arm": "H1",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 118,
+        "evaluator_seconds_including_cold_start_and_teardown": 74.70891295804176,
+        "capped_evaluator_seconds": 74.70891295804176,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13735,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "86cdd75b40cf5dbb8978b05c91a6571626fb3499d3e942307e495b8a28ff07de",
+              "sent.json": "86cdd75b40cf5dbb8978b05c91a6571626fb3499d3e942307e495b8a28ff07de",
+              "response.bin": "488aa88fb0c395ffcf1e479f2f9fba08bfb161662bf7dd5aaa99d196594b7dd5",
+              "receipt.json": "e2e13537d8636248c0d764b68cc810f9785c0a8d6eba469e1d4d8cb54cf8c1fb"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 12926,
+              "completion_tokens": 809,
+              "total_tokens": 13735,
+              "prompt_tokens_details": {
+                "cached_tokens": 256
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 701
+              },
+              "prompt_cache_hit_tokens": 256,
+              "prompt_cache_miss_tokens": 12670
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0008-pickup-zero-call-hold8-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0008-pickup-zero-call-hold8-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 23.42634550697403,
+          "native_terminal": {
+            "elapsed_seconds": 72.34447937097866,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-rgb-loss",
+        "arm": "N",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 0,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": {
+          "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0009-pickup-zero-call-rgb-loss-N/skills/9d6ad4e71d4747278b950ed8416968f0/service.log",
+          "type": "WsError"
+        },
+        "actions": 3,
+        "evaluator_seconds_including_cold_start_and_teardown": 22.694921317044646,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0009-pickup-zero-call-rgb-loss-N/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0009-pickup-zero-call-rgb-loss-N",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 22.301775561005343,
+          "native_terminal": null,
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-rgb-loss",
+        "arm": "H1",
+        "success": true,
+        "native_success": true,
+        "native_result_count": 1,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": null,
+        "actions": 113,
+        "evaluator_seconds_including_cold_start_and_teardown": 73.26243532798253,
+        "capped_evaluator_seconds": 73.26243532798253,
+        "provider_receipts": 1,
+        "provider_attempts_reserved": 1,
+        "provider_usage_complete": true,
+        "total_tokens": 13539,
+        "provider_evidence": [
+          {
+            "directory": "http-0000",
+            "file_sha256": {
+              "received.json": "d91174a50b4b1c20213178051cd48566e5e18b3d9a44c58b5cc424e516986a80",
+              "sent.json": "d91174a50b4b1c20213178051cd48566e5e18b3d9a44c58b5cc424e516986a80",
+              "response.bin": "96ac6175ba42cfa77ac6a8d065b3e9262aacac1e18240ad336e8a12efa3d303d",
+              "receipt.json": "64a913e023613f681a5d522d038df7a298efd52409a6fe4e558bec8135cc8984"
+            },
+            "complete": true,
+            "usage": {
+              "prompt_tokens": 12536,
+              "completion_tokens": 1003,
+              "total_tokens": 13539,
+              "prompt_tokens_details": {
+                "cached_tokens": 256
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 849
+              },
+              "prompt_cache_hit_tokens": 256,
+              "prompt_cache_miss_tokens": 12280
+            }
+          }
+        ],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0010-pickup-zero-call-rgb-loss-H1/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0010-pickup-zero-call-rgb-loss-H1",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 22.204972420004196,
+          "native_terminal": {
+            "elapsed_seconds": 71.04284954600735,
+            "success": true
+          },
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      },
+      {
+        "case_id": "pickup-zero-call-rgb-loss",
+        "arm": "H0",
+        "success": false,
+        "native_success": false,
+        "native_result_count": 0,
+        "process_timeout": false,
+        "client_exit": 0,
+        "launcher_error": null,
+        "episode_error": {
+          "message": "Code skill failed; inspect /mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0011-pickup-zero-call-rgb-loss-H0/skills/1d9cd23e92a948039df59bb54427c59a/service.log",
+          "type": "WsError"
+        },
+        "actions": 3,
+        "evaluator_seconds_including_cold_start_and_teardown": 23.971920066978782,
+        "capped_evaluator_seconds": 900,
+        "provider_receipts": 0,
+        "provider_attempts_reserved": 0,
+        "provider_usage_complete": true,
+        "total_tokens": 0,
+        "provider_evidence": [],
+        "selected_layout": {
+          "layout_path": "/mnt/nas/qingning/projects/RoboDojo/env/../Assets/Eval_Layout/RoboDojo/arx_x5/0/general_pickup_0.json",
+          "layout_sha256": "7a3ecf189e248f99a75ef8f6fdbe7fca85795846d67e9fd7f2d74954c8e78dda",
+          "native_layout_id": 0,
+          "qualification": false,
+          "runtime_snapshot": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/artifacts/paired-pilot-10-zero-call-recovery-development/0011-pickup-zero-call-rgb-loss-H0/simulation/selected-layout.snapshot.json",
+          "schema": "dsh-native-layout-selection/v1"
+        },
+        "artifact_directory": "0011-pickup-zero-call-rgb-loss-H0",
+        "native_terminal": {
+          "schema": "dsh-native-terminal-timing/v1",
+          "qualification": false,
+          "first_action_seconds": 23.581473053025547,
+          "native_terminal": null,
+          "includes_skill_cold_start": true,
+          "includes_evaluator_teardown": false
+        }
+      }
+    ],
+    "assigned_episodes": 12,
+    "source_version_count": 1,
+    "result_sha256": {
+      "0000-pickup-zero-call-normal-H1/result.json": "fa8a6327c9c9b6e8f15ab328bf89c251ff9690d5da25023b8a20b7c2de00372d",
+      "0001-pickup-zero-call-normal-H0/result.json": "d5009ed5a1cd749f8f392094b269f4cf5a30c76b4d6abd8ec1139b372011a616",
+      "0002-pickup-zero-call-normal-N/result.json": "e1333eee37798fe8bae236af676a22f08734cdfedb47188ad777621c6ba8d79d",
+      "0003-pickup-zero-call-hold4-N/result.json": "d13448dee11dd8f4c864238fe38d1e9adff6f5e997b63f51d40fad22cd7dcfb2",
+      "0004-pickup-zero-call-hold4-H0/result.json": "0c63828a8c0e576c79010f9a8091842c934fbb7fd09704381b7c0f1860477b7b",
+      "0005-pickup-zero-call-hold4-H1/result.json": "1d7a4ac39c7e494a435132a958f6af5de748ca310798ed4c7975af8add27e862",
+      "0006-pickup-zero-call-hold8-N/result.json": "c9d768add7f4236d8d0c01f28947a4e4aa17d70d73208f66266845cf53346112",
+      "0007-pickup-zero-call-hold8-H0/result.json": "70c20cdf337bdaf9b37c97625d196c71d67eda89eae640efc725351cea0c51a2",
+      "0008-pickup-zero-call-hold8-H1/result.json": "563812839a684f8a2a72f8a5bf45956eab354cbaaa604fd3a4f46966482d8d09",
+      "0009-pickup-zero-call-rgb-loss-N/result.json": "988ae7e457864ed2b7b5cdd95e951389d319360636eb34561c061afaba874fa9",
+      "0010-pickup-zero-call-rgb-loss-H1/result.json": "4de6331f32ba61a501fc4a79357f0b91005f276f41bfed3fc3fe979991638c3a",
+      "0011-pickup-zero-call-rgb-loss-H0/result.json": "a992fbe2f4b4e635da8043e960a4a8bc8249567f18d21c6fd447dd408d632d4d"
+    },
+    "arms": {
+      "N": {
+        "successes": 3,
+        "assigned": 4
+      },
+      "H0": {
+        "successes": 3,
+        "assigned": 4
+      },
+      "H1": {
+        "successes": 4,
+        "assigned": 4
+      }
+    }
+  },
+  "online_chains": [
+    {
+      "qualification": false,
+      "confirmed_successful_chain": true,
+      "actions": 110,
+      "replacements": 0,
+      "model_calls": 0,
+      "configured_plans": 1,
+      "session_count": 0,
+      "artifact_directory": "0000-pickup-zero-call-normal-H1"
+    },
+    {
+      "qualification": false,
+      "confirmed_successful_chain": true,
+      "actions": 110,
+      "replacements": 0,
+      "model_calls": 0,
+      "configured_plans": 1,
+      "session_count": 0,
+      "artifact_directory": "0005-pickup-zero-call-hold4-H1"
+    },
+    {
+      "qualification": false,
+      "confirmed_successful_chain": true,
+      "actions": 118,
+      "replacements": 1,
+      "model_calls": 1,
+      "configured_plans": 1,
+      "session_count": 1,
+      "artifact_directory": "0008-pickup-zero-call-hold8-H1"
+    },
+    {
+      "qualification": false,
+      "confirmed_successful_chain": true,
+      "actions": 113,
+      "replacements": 1,
+      "model_calls": 1,
+      "configured_plans": 1,
+      "session_count": 1,
+      "artifact_directory": "0010-pickup-zero-call-rgb-loss-H1"
+    }
+  ],
+  "auditor_sha256": "2fdfa05819cba840e2983400e7a89c06f6e62ab02d46dce35fef6ee6ca9c209f",
+  "configured_initial_plan": {
+    "composition": "memory-guided-program-library",
+    "operations": [
+      "instruction-grounded-pickup"
+    ],
+    "rationale": "Explicit deployment pickup plan shared by all comparison arms."
+  }
+}

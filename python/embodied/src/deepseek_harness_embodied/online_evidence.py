@@ -13,6 +13,7 @@ from pathlib import Path
 
 from .bridge import digest
 from .online_model import execution_key
+from .admission import validate_decision
 
 
 def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | None = None) -> dict:
@@ -83,12 +84,36 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
                 require(all(receipt[k]==request[k]==v for k, v in {
                     'episode_id':root.name,'request_id':request_id,
                     'reset_generation':revision['generation']}.items()), 'Model request identity mismatch')
-                require(receipt['status']=='completed' and receipt['plan']==row['plan'], 'Uncommitted model output')
+                if receipt.get('schema_version') == 'dsh-robodojo-plan/v2':
+                    saved = read(root/('decision-'+revision_id+'.json'))
+                    require(receipt['status']=='completed' and receipt['plan']==saved['decision'], 'Uncommitted model decision')
+                else:
+                    require(receipt['status']=='completed' and receipt['plan']==row['plan'], 'Uncommitted model output')
                 require(receipt['input_digest']==digest({'messages':request['messages'],
                     'mode':receipt['mode'],'schema':receipt['schema_version']}), 'Model input digest mismatch')
                 messages = request['messages']
                 sessions.add(receipt['session_id'])
                 model_calls += 1
+            decision_path = root/('decision-'+revision_id+'.json')
+            if decision_path.exists():
+                saved = read(decision_path)
+                snapshots = [read(path) for path in root.glob('candidates-*.json')]
+                snapshots = [value for value in snapshots if value['revision']==saved['candidate_set_revision']]
+                require(len(snapshots)==1, 'Missing or duplicate candidate snapshot')
+                snapshot = snapshots[0]
+                require(digest({key:value for key,value in snapshot.items() if key!='revision'})==snapshot['revision'],
+                        'Candidate snapshot was modified')
+                decision = validate_decision(saved['decision'], snapshot)
+                require(decision['kind']=='execute' and decision['observation_seq']==row['observation_seq']
+                        and decision['parent_revision']==row['parent_id'], 'Decision identity differs from commit')
+                candidate = next(value for value in snapshot['candidates'] if value['id']==decision['candidate_id'])
+                previous = None if current is None else {key:current['plan'].get(key) for key in candidate['selection']}
+                execution = 'bind' if current is None else ('restart' if previous==candidate['selection'] else 'switch')
+                require(row['plan']=={**candidate['selection'],'rationale':decision['rationale'],'execution':execution},
+                        'Committed plan differs from admitted candidate')
+                projection = json.loads(messages[1]['content'][0]['text'])['candidate_set']
+                require(projection=={key:value for key,value in snapshot.items() if key!='excluded'},
+                        'Model saw another candidate set')
             require(execution_key(row['plan'], messages)==row['execution_key'], 'Executable input digest mismatch')
             if current is not None:
                 require(waiting and ack and fresh, 'Replacement preceded stop and fresh observation')
@@ -116,6 +141,7 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
             diagnostic = read(root/('skill-failure-'+identifier(row['diagnostic_id'])+'.json'))
             require(all(diagnostic[k]==row[k] for k in (
                 'episode_id','generation','revision_id','diagnostic_id','kind','operation'))
+                and diagnostic.get('handling')==row.get('handling')
                 and diagnostic['kind']=='skill_inference_failed'
                 and diagnostic['inference_cleanup_confirmed'] is True
                 and diagnostic['diagnostic']['operation']==row['operation'],
@@ -130,7 +156,8 @@ def audit_online_episode(root: Path, model_root: Path, *, initial_plan: dict | N
         elif kind=='observed_event':
             if fault:
                 require(row['event_id']=='skill-'+fault['diagnostic_id'] and row['kind']=='skill_failed'
-                        and row['facts']=={'kind':fault['kind'],'operation':fault['operation']},
+                        and row['facts']=={'kind':fault['kind'],'operation':fault['operation'],
+                            **({'handling':fault['handling']} if 'handling' in fault else {})},
                         'Skill recovery trigger differs from confirmed fault')
             trigger = row
         elif kind=='stop_requested':

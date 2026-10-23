@@ -1,0 +1,71 @@
+{
+  "scope": "Keyless v2 admission decisions with synthetic observations; no physical task claim",
+  "expected": {
+    "requests": 2,
+    "one_session": true,
+    "phases": [
+      "initial",
+      "recovery"
+    ],
+    "observation_sequences": [
+      2,
+      3
+    ],
+    "candidate_ids": [
+      [
+        "lift"
+      ],
+      [
+        "lift"
+      ]
+    ],
+    "executions": [
+      "bind",
+      "restart"
+    ],
+    "history_roles": [
+      "system",
+      "user",
+      "assistant",
+      "user"
+    ],
+    "tool_calls": 0
+  },
+  "assembled_expected": {
+    "requests": 2,
+    "one_session": true,
+    "phases": [
+      "initial",
+      "recovery"
+    ],
+    "observation_sequences": [
+      1,
+      2
+    ],
+    "candidate_ids": [
+      [
+        "lift"
+      ],
+      [
+        "lift"
+      ]
+    ],
+    "executions": [
+      "bind",
+      "restart"
+    ],
+    "history_roles": [
+      "system",
+      "user",
+      "assistant",
+      "user"
+    ],
+    "tool_calls": 0,
+    "failure_handling": {
+      "reason": "transient",
+      "retry": "bounded_transient",
+      "predicates": [],
+      "effects": "none"
+    }
+  }
+}

@@ -1,0 +1,139 @@
+[
+  {
+    "roles": [
+      "system",
+      "user"
+    ],
+    "control": {
+      "candidate_set": {
+        "schema": "dsh-candidate-set/v1",
+        "subgoal_id": "lift-visible-target",
+        "observation_seq": 2,
+        "parent_revision": "d01fd6db78b04cc1bcd64bb3847d8e4a",
+        "phase": "recovery",
+        "candidates": [
+          {
+            "id": "registered-pickup",
+            "version": "68e33dad85d17c086cb549f8490e23dbc8ad157e8184aa4348c6fd50c2d94938",
+            "selection": {
+              "composition": "memory-guided-program-library",
+              "operations": [
+                "instruction-grounded-pickup"
+              ]
+            }
+          }
+        ],
+        "predicates": {
+          "registered-pickup": {
+            "scope_instruction": "Pick up the mint green scissors by 10 cm.",
+            "left_open": 1.0,
+            "right_open": 1.0
+          },
+          "visual-history-pickup": {
+            "scope_instruction": "Pick up the mint green scissors by 10 cm.",
+            "left_open": 1.0,
+            "right_open": 1.0
+          }
+        },
+        "failure_revision": "e6c864e540ac5e38f9301761def4c1ac529bfdff2f0610cc018b5940718211f1",
+        "revision": "babfd46e4806b0493f1dd99a76776c5c84963ad92bab269e494a9571b2cb7b73"
+      },
+      "response_schema": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "execute"
+              },
+              "candidate_set_revision": {
+                "type": "string",
+                "const": "babfd46e4806b0493f1dd99a76776c5c84963ad92bab269e494a9571b2cb7b73"
+              },
+              "observation_seq": {
+                "type": "integer",
+                "const": 2
+              },
+              "parent_revision": {
+                "type": "string",
+                "const": "d01fd6db78b04cc1bcd64bb3847d8e4a"
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              },
+              "candidate_id": {
+                "type": "string",
+                "enum": [
+                  "registered-pickup"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "candidate_set_revision",
+              "observation_seq",
+              "parent_revision",
+              "rationale",
+              "candidate_id"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "stop"
+              },
+              "candidate_set_revision": {
+                "type": "string",
+                "const": "babfd46e4806b0493f1dd99a76776c5c84963ad92bab269e494a9571b2cb7b73"
+              },
+              "observation_seq": {
+                "type": "integer",
+                "const": 2
+              },
+              "parent_revision": {
+                "type": "string",
+                "const": "d01fd6db78b04cc1bcd64bb3847d8e4a"
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "kind",
+              "candidate_set_revision",
+              "observation_seq",
+              "parent_revision",
+              "rationale",
+              "reason"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "current_observation_status": {
+        "observation_seq": 2,
+        "rgb_available": true,
+        "rgb_cameras": [
+          "cam_head",
+          "cam_left_wrist",
+          "cam_right_wrist"
+        ]
+      }
+    },
+    "model": "deepseek-flash",
+    "thinking": {
+      "type": "enabled"
+    },
+    "reasoning_effort": "high"
+  }
+]

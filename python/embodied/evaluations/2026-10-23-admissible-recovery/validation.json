@@ -1,0 +1,82 @@
+{
+  "schema": "dsh-admission-validation/v1",
+  "archive_payloads_verified": 1622,
+  "controlled_simulator_cases": 6,
+  "live_deepseek_cases": 1,
+  "successful_replacement_chains_independently_audited": 2,
+  "owned_live_processes": 0,
+  "remote_temporary_credential_removed": true,
+  "credential_bytes_absent_from_archive": true,
+  "formal_heldout_runs": 0,
+  "checks": [
+    {
+      "command": "PYTHONPATH=python/embodied/src:python/sdk/src:python/sdk-runtime/src DSH_EMBODIED_INTEGRATION=1 python/sdk/.venv/bin/python -m pytest python/embodied/tests",
+      "result": "334 passed in 17.43s",
+      "log": ".artifacts/embodied-live/2026-10-23-admissible-recovery/local-checks/dsh-B-final-tests.log",
+      "sha256": "f3bbb64a1a62622332e8de81e329ab5de86d5311fdb818b3951cd6b18f821b53"
+    },
+    {
+      "command": "pnpm run build:check",
+      "result": "2 aggregate checks passed",
+      "log": ".artifacts/embodied-live/2026-10-23-admissible-recovery/local-checks/dsh-B-build-check.log",
+      "sha256": "50108df28080c397a86e79c0151cdf382e1d8524a1c4b147aae4a4dda64e8ee7"
+    },
+    {
+      "command": "pnpm run lint",
+      "result": "Passed; existing unused-disable warning",
+      "log": ".artifacts/embodied-live/2026-10-23-admissible-recovery/local-checks/dsh-B-lint.log",
+      "sha256": "cca562dcd78702f328a3e76112495c78f22b814f12434ec4dfe5ac01474a6060"
+    },
+    {
+      "command": "pnpm run test:docs",
+      "result": "20 passed; 1 existing repository-reference failure",
+      "log": ".artifacts/embodied-live/2026-10-23-admissible-recovery/local-checks/dsh-B-test-docs.log",
+      "sha256": "f2e360e50a470bba24ff95e1d3fc362470d7882a14dd700ed1c82cad47f597f4"
+    },
+    {
+      "command": "pnpm run doc-sync",
+      "result": "42 passed; 1 existing repository-reference failure",
+      "log": ".artifacts/embodied-live/2026-10-23-admissible-recovery/local-checks/dsh-B-doc-sync-final.log",
+      "sha256": "4e4027a8d5a649d338a97032a88d9a7fb0e9c8ecb37b1aca9868366c8aa10a8b"
+    }
+  ],
+  "git_diff_check": "passed",
+  "preexisting_failure": {
+    "file": "python/sdk/uv.lock",
+    "line": 113,
+    "check": "repository references",
+    "unchanged_from_HEAD": true
+  },
+  "current_sources_match_retained_execution_and_auditor_snapshots": {
+    "python/embodied/scripts/paired_pilot.py": "7344177098609babe64fb4c6e64da6d51cf6b9fb64f0857a41d4d3ae70507227",
+    "python/embodied/src/deepseek_harness_embodied/layout_cohort.py": "3bd68ad5e3012ee678cd8e24641d18704b15a5a024c2e64bbb9d31be95429810",
+    "python/embodied/src/deepseek_harness_embodied/native_worker.py": "3c2cc5dc27d2f33eb91eba55048a72d4edbfbeaba6a0b83db025115b444abed4",
+    "python/embodied/src/deepseek_harness_embodied/recovery.py": "ca6a5149da75bf9814227a1875ba5310bf3c20d540de2ebc708610f6c7c76a83",
+    "python/embodied/src/deepseek_harness_embodied/online_model.py": "9f4d6496dc039b9b1b5b2e141a1cfa45d043ad9290635c77dcdff485c50a3e20",
+    "python/embodied/src/deepseek_harness_embodied/simulation_runtime.py": "565712f4f0a8ba5574917076b6619cc5ada3bb9d68160a8f4978678a91314c6b",
+    "python/embodied/src/deepseek_harness_embodied/budget.py": "5659ba633fbdb5671e9c70ed53cadbda806a46b32d034b32a7a4b146a6ed5ac5",
+    "python/embodied/src/deepseek_harness_embodied/thinking_comparison.py": "4c2c398d99727491c22394cc625549027c831822b168e0545c1054db2609dec6",
+    "python/embodied/src/deepseek_harness_embodied/provider_evidence.py": "0443cc6f6f10a2b7c2176716368f873f72ed18967312988216833a546e6154b1",
+    "python/embodied/src/deepseek_harness_embodied/evaluation.py": "b07a9476791c6f58e5421c8558a4a67ed10fb9041dbfec933c7ad49dfb2d1986",
+    "python/embodied/src/deepseek_harness_embodied/profile.py": "2b1858ab3676223bd5a076ce2e296acb5528bfa1935576048ad3ad1f542f5cdc",
+    "python/embodied/src/deepseek_harness_embodied/bridge.py": "05700463a1bf86c3e219553238538400ffce07ba6e4c5169fc3e1615cee4fff8",
+    "python/embodied/src/deepseek_harness_embodied/robodojo.py": "81524ea3ccabd66e136f4095a6d4aeef46d389e2ab645e3522ab7b9c2c6efb42",
+    "python/embodied/src/deepseek_harness_embodied/__init__.py": "126bdb95a4dd89c50bac174de07905154c52bccaf4dd175c75aa7378bdc223c0",
+    "python/embodied/src/deepseek_harness_embodied/online_config.py": "034c99cb11c32e83f91b3c30caddfe626fd67d3f1b91a87a140044d92a2fcd14",
+    "python/embodied/src/deepseek_harness_embodied/process_binding.py": "dd5b4e44c01aba2de06d4ab999156f7fc727fb643ed6029c77019d493de1b52d",
+    "python/embodied/src/deepseek_harness_embodied/capability.py": "ae05d1a7c23f747e57e00c943688d94a200be7be33d93b0c57af82d49e79d503",
+    "python/embodied/src/deepseek_harness_embodied/physicalrsi.py": "922317641de8b1eeb2e524ab2c2615bcd1166d81b78ae26f67a569160d752462",
+    "python/embodied/src/deepseek_harness_embodied/qualification.py": "094b092fba6ef32011104ad576ddc3db65aa20ff9c6ffb8956f5a926fda8a6f4",
+    "python/embodied/src/deepseek_harness_embodied/terminal_timing.py": "3854d43ef3f8692c42c88d89b556c25ad4b3885c674b09638b2fad98806e101a",
+    "python/embodied/src/deepseek_harness_embodied/policy_diagnostics.py": "de5bdf2812b7bbce0c2475f810221ed85a10d7403161ce352a01ad92d007f25a",
+    "python/embodied/src/deepseek_harness_embodied/native_binding.py": "eb94e14f2d289eed65c25296e05f3f5c8e7d3143d479ee9fc58edda76742ebf5",
+    "python/embodied/src/deepseek_harness_embodied/pilot_report.py": "8f59c9e077a200dab1346081e96250666ea180d526603739ee8626217cc2366d",
+    "python/embodied/src/deepseek_harness_embodied/admission.py": "4cd6a16de52cf6cb9f4629e862a1a96d0d430162415eecd0cf33961114f9a204",
+    "python/embodied/src/deepseek_harness_embodied/layouts.py": "b7339c4698d6e882332b1b7c1f825de7a4231e2dbfa0c73656feee2c79c0c9ab",
+    "python/embodied/src/deepseek_harness_embodied/skill_failure.py": "16dd4ecc0c8d067db085c451bed6a736a823176445fa57baf3206328f354624a",
+    "python/embodied/src/deepseek_harness_embodied/binding_probe.py": "73f16b46b2e0e70bea1277e718ec3c49ceaac0d1439544468da6ea6f460496cc",
+    "python/embodied/tests/support/admission_worker_boot.py": "8a0f0e1046c4a8466b691d5bb6bc92565dae5fede496cbcb8253ebe582a998ee",
+    "python/embodied/tests/support/admission_simulation_probe.py": "2dd922bdbc310eb96a39f68ecb059cb53776b2e827042788360195c3929db1e3",
+    "python/embodied/src/deepseek_harness_embodied/online_evidence.py": "cc4678015e3d3da6330739c59a9d22b9b2952ebe543c42378b7e58dbc3ecabab"
+  }
+}

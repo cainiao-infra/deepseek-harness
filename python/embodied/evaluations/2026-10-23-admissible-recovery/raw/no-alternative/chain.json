@@ -1,0 +1,122 @@
+[
+  {
+    "binding_revision": "f0028699d8c986acd8eff143aa1a33cedf49862a5a1cdbf97740388972bd4fef",
+    "catalog_revision": "c98d1709241afb4d351b5cbafde4bb63dcf1ed96e7628dac6d215dd38220e910",
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "execution_key": "9339592b42126266b9d2153d1754b717b3bc4ad06a454b4aa23aba6d91133745",
+    "generation": 0,
+    "observation_seq": 1,
+    "parent_id": "",
+    "plan": {
+      "composition": "memory-guided-visual-history",
+      "execution": "bind",
+      "operations": [],
+      "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+    },
+    "request_id": "837099006a004592985e45b6dca9622c",
+    "revision_id": "f7eff5a9666c42c78344851ae75bf3e5",
+    "time": 446602.943236617,
+    "type": "plan_committed"
+  },
+  {
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "generation": 0,
+    "revision_id": "f7eff5a9666c42c78344851ae75bf3e5",
+    "time": 446602.982068215,
+    "type": "binding_applied"
+  },
+  {
+    "diagnostic_id": "70b0266b983f48febb525aca4d8f62d1",
+    "discarded_runner_actions": 0,
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "generation": 0,
+    "handling": {
+      "effects": "none",
+      "predicates": [
+        "scope_instruction"
+      ],
+      "reason": "incompatible",
+      "retry": "never"
+    },
+    "kind": "skill_inference_failed",
+    "operation": "actions",
+    "revision_id": "f7eff5a9666c42c78344851ae75bf3e5",
+    "time": 446604.057060013,
+    "type": "skill_failure"
+  },
+  {
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "event_id": "skill-70b0266b983f48febb525aca4d8f62d1",
+    "facts": {
+      "handling": {
+        "effects": "none",
+        "predicates": [
+          "scope_instruction"
+        ],
+        "reason": "incompatible",
+        "retry": "never"
+      },
+      "kind": "skill_inference_failed",
+      "operation": "actions"
+    },
+    "generation": 0,
+    "kind": "skill_failed",
+    "observation_seq": 1,
+    "time": 446604.058182415,
+    "type": "observed_event"
+  },
+  {
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "event_id": "skill-70b0266b983f48febb525aca4d8f62d1",
+    "generation": 0,
+    "revision_id": "f7eff5a9666c42c78344851ae75bf3e5",
+    "time": 446604.058894345,
+    "type": "stop_requested"
+  },
+  {
+    "discarded_runner_actions": 0,
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "generation": 0,
+    "in_flight_actions": 0,
+    "observation_seq": 1,
+    "queued_actions": 0,
+    "stopped_at": 446604.06362016,
+    "time": 446604.06366552,
+    "type": "stop_acknowledged"
+  },
+  {
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "generation": 0,
+    "state": {
+      "binding_revision": "f0028699d8c986acd8eff143aa1a33cedf49862a5a1cdbf97740388972bd4fef",
+      "catalog_revision": "c98d1709241afb4d351b5cbafde4bb63dcf1ed96e7628dac6d215dd38220e910",
+      "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+      "facts": {
+        "executed_actions": 0
+      },
+      "generation": 0,
+      "native_success": false,
+      "observation_seq": 2,
+      "observed_at": 446604.116332321
+    },
+    "time": 446604.116409151,
+    "type": "fresh_observation"
+  },
+  {
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "generation": 0,
+    "reason": "no_admissible_candidate",
+    "subgoal_id": "lift-visible-target",
+    "time": 446604.125215609,
+    "type": "admission_stopped"
+  },
+  {
+    "actions": 0,
+    "detail": "Execution stopped: no_admissible_candidate",
+    "episode_id": "a1a7c26a112e4c208741e54d9ecfde6e",
+    "error_type": "AdmissionStopped",
+    "generation": 0,
+    "time": 446604.12589934,
+    "type": "execution_failed"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "elapsed_seconds": 0.02073864103294909,
+    "http_status": 200,
+    "response_sha256": "11bab8041321ff32de894b7daeaded27f115fa662766808c4fe1fd39890a6bf3",
+    "started": 446698.296658845,
+    "status": "completed",
+    "usage": {
+      "completion_tokens": 0,
+      "prompt_tokens": 0,
+      "total_tokens": 0
+    }
+  }
+]

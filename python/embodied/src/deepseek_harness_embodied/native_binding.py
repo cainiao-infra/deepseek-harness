@@ -6,9 +6,12 @@ worker cleanup. The online planner owns plan admission and episode history.
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
+from pathlib import Path
+import sys
 from typing import Protocol
 
-from .skill_failure import SkillInferenceFailure
+from .skill_failure import SkillInferenceFailure, SkillExecutionFault
 
 
 class NativeBinding(Protocol):
@@ -48,8 +51,16 @@ class CommittedPlanner:
 
 def metadata(model) -> dict:
     """Capture native capabilities and memory, excluding the per-instance output root."""
-    return deepcopy({'config':model.config, 'catalog':model.catalog,
-                     'operation_program':model.operation_program, 'memory':model.memory.read()})
+    result = deepcopy({'config':model.config, 'catalog':model.catalog,
+                       'operation_program':model.operation_program, 'memory':model.memory.read()})
+    owner = next((base for base in type(model).__mro__
+                  if base.__module__.startswith('PhysicalRSI_baselines.')), None)
+    module = None if owner is None else sys.modules.get(owner.__module__)
+    if module is not None:
+        directory = Path(module.__file__).parent/'skills'
+        result['execution_sources'] = {source.name: hashlib.sha256(source.read_bytes()).hexdigest()
+                                       for source in sorted(directory.glob('*.py'))}
+    return result
 
 
 def install_initial_plan(model, plan: dict) -> dict:
@@ -132,7 +143,8 @@ class OwnedModelBinding:
         except BaseException as error:
             self.close()
             if isinstance(error, Exception):
-                raise SkillInferenceFailure(operation, type(error).__name__, str(error)) from error
+                raise SkillInferenceFailure(operation, type(error).__name__, str(error),
+                    error.handling if isinstance(error, SkillExecutionFault) else None) from error
             raise
 
     def close(self) -> None:

@@ -1,0 +1,87 @@
+[
+  {
+    "candidates": [
+      {
+        "id": "registered-pickup",
+        "selection": {
+          "composition": "memory-guided-program-library",
+          "operations": [
+            "instruction-grounded-pickup"
+          ]
+        },
+        "version": "68e33dad85d17c086cb549f8490e23dbc8ad157e8184aa4348c6fd50c2d94938"
+      },
+      {
+        "id": "visual-history-pickup",
+        "selection": {
+          "composition": "memory-guided-visual-history",
+          "operations": []
+        },
+        "version": "5865e24ef655718e666a849c12604f9b3bf40090abfdc8a42c61fa3add0f55f8"
+      }
+    ],
+    "excluded": [],
+    "failure_revision": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "observation_seq": 1,
+    "parent_revision": "",
+    "phase": "initial",
+    "predicates": {
+      "registered-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm."
+      },
+      "visual-history-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm."
+      }
+    },
+    "revision": "d1800eea8f2581aeee6d9ec6581ba86b6b281cf865519e5c94f29b6cbd8a0a6c",
+    "schema": "dsh-candidate-set/v1",
+    "subgoal_id": "lift-visible-target"
+  },
+  {
+    "candidates": [
+      {
+        "id": "registered-pickup",
+        "selection": {
+          "composition": "memory-guided-program-library",
+          "operations": [
+            "instruction-grounded-pickup"
+          ]
+        },
+        "version": "68e33dad85d17c086cb549f8490e23dbc8ad157e8184aa4348c6fd50c2d94938"
+      }
+    ],
+    "excluded": [
+      {
+        "id": "visual-history-pickup",
+        "reasons": [
+          "persistent_failure"
+        ],
+        "status": "rejected",
+        "unknown": []
+      }
+    ],
+    "failure_revision": "e6c864e540ac5e38f9301761def4c1ac529bfdff2f0610cc018b5940718211f1",
+    "observation_seq": 2,
+    "parent_revision": "d01fd6db78b04cc1bcd64bb3847d8e4a",
+    "phase": "recovery",
+    "predicates": {
+      "registered-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm."
+      },
+      "visual-history-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm."
+      }
+    },
+    "revision": "babfd46e4806b0493f1dd99a76776c5c84963ad92bab269e494a9571b2cb7b73",
+    "schema": "dsh-candidate-set/v1",
+    "subgoal_id": "lift-visible-target"
+  }
+]

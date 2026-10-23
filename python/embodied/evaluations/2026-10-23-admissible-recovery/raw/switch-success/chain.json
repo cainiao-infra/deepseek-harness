@@ -1,0 +1,3668 @@
+[
+  {
+    "binding_revision": "e23502b1709ce98643394f11afb84aba91725678ed98068a0c2cbc49197dd3c2",
+    "catalog_revision": "bee4477e361fe70f19169dcd3c47d3105a4c03e92568d472fbfa2af261cfbd41",
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "execution_key": "f831a6601c2edf9549d507a211ad2f123a545b2d10fe2570eed0fbd0da9e2034",
+    "generation": 0,
+    "observation_seq": 1,
+    "parent_id": "",
+    "plan": {
+      "composition": "memory-guided-visual-history",
+      "execution": "bind",
+      "operations": [],
+      "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+    },
+    "request_id": "ac68b492dc5d420087335bef39c0e10f",
+    "revision_id": "27ca6ddc71eb470abb606967e4529fda",
+    "time": 446460.798769441,
+    "type": "plan_committed"
+  },
+  {
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "27ca6ddc71eb470abb606967e4529fda",
+    "time": 446460.836569457,
+    "type": "binding_applied"
+  },
+  {
+    "diagnostic_id": "26a27fbdd3da48c188fb41001e0c87b2",
+    "discarded_runner_actions": 0,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "handling": {
+      "effects": "none",
+      "predicates": [
+        "scope_instruction"
+      ],
+      "reason": "incompatible",
+      "retry": "never"
+    },
+    "kind": "skill_inference_failed",
+    "operation": "actions",
+    "revision_id": "27ca6ddc71eb470abb606967e4529fda",
+    "time": 446461.963407576,
+    "type": "skill_failure"
+  },
+  {
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "event_id": "skill-26a27fbdd3da48c188fb41001e0c87b2",
+    "facts": {
+      "handling": {
+        "effects": "none",
+        "predicates": [
+          "scope_instruction"
+        ],
+        "reason": "incompatible",
+        "retry": "never"
+      },
+      "kind": "skill_inference_failed",
+      "operation": "actions"
+    },
+    "generation": 0,
+    "kind": "skill_failed",
+    "observation_seq": 1,
+    "time": 446461.964388217,
+    "type": "observed_event"
+  },
+  {
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "event_id": "skill-26a27fbdd3da48c188fb41001e0c87b2",
+    "generation": 0,
+    "revision_id": "27ca6ddc71eb470abb606967e4529fda",
+    "time": 446461.965055488,
+    "type": "stop_requested"
+  },
+  {
+    "discarded_runner_actions": 0,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "in_flight_actions": 0,
+    "observation_seq": 1,
+    "queued_actions": 0,
+    "stopped_at": 446461.969720162,
+    "time": 446461.969757702,
+    "type": "stop_acknowledged"
+  },
+  {
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "state": {
+      "binding_revision": "e23502b1709ce98643394f11afb84aba91725678ed98068a0c2cbc49197dd3c2",
+      "catalog_revision": "bee4477e361fe70f19169dcd3c47d3105a4c03e92568d472fbfa2af261cfbd41",
+      "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+      "facts": {
+        "executed_actions": 0
+      },
+      "generation": 0,
+      "native_success": false,
+      "observation_seq": 2,
+      "observed_at": 446462.023213194
+    },
+    "time": 446462.023282554,
+    "type": "fresh_observation"
+  },
+  {
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "execution_key": "d199771e9447b8c11b47d0a0e2fa43b926ad004400f65050e2faf3468e4fb3dc",
+    "generation": 0,
+    "observation_seq": 2,
+    "parent_id": "27ca6ddc71eb470abb606967e4529fda",
+    "plan": {
+      "composition": "memory-guided-program-library",
+      "execution": "switch",
+      "operations": [
+        "instruction-grounded-pickup"
+      ],
+      "rationale": "Use the currently admitted candidate after confirmed stopping."
+    },
+    "request_id": "2c5e3165286e4e3090e287d2258f3940",
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446463.158551291,
+    "type": "plan_committed"
+  },
+  {
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.11171991,
+    "type": "binding_applied"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.115576473709027e-13,
+        -1.1561168578941706e-15,
+        1.7672687317415835e-17,
+        7.853411024860463e-16,
+        -9.987140238074121e-13,
+        2.5006567996865847e-12
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 0,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.121645189,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.887576249817724e-12,
+        -2.593699587787393e-15,
+        4.220113225496589e-16,
+        1.599754916820702e-15,
+        -2.6137093791372967e-12,
+        -9.192241585964656e-12
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 1,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.254582538,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.2636007611663853e-12,
+        -4.046217096727485e-15,
+        8.758645194107382e-16,
+        2.4276345433134512e-15,
+        -4.228560643998458e-12,
+        -2.0879638296111835e-11
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 2,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.381622961,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.6397421495092406e-12,
+        -5.498732488085209e-15,
+        1.3297550121912764e-15,
+        3.255498711454913e-15,
+        -5.843484984086045e-12,
+        -3.25670254652799e-11
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 3,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.503279788,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.015885706256441e-12,
+        -6.951250844058248e-15,
+        1.7836561458232144e-15,
+        4.0833679617940585e-15,
+        -7.458406288407549e-12,
+        -4.4254405695554055e-11
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 4,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.631940882,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.392027961961034e-12,
+        -8.403768776514813e-15,
+        2.237559291158402e-15,
+        4.911238059166151e-15,
+        -9.073331495856873e-12,
+        -5.5941803273062973e-11
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 5,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.753029779,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.768171085027365e-12,
+        -9.856285438421958e-15,
+        2.691461165944169e-15,
+        5.739109850604138e-15,
+        -1.0688253233859246e-11,
+        -6.762919391167799e-11
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 6,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446493.876487629,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0144314208093697e-11,
+        -1.1308808029559733e-14,
+        3.1453643112793568e-15,
+        6.5669795244597574e-15,
+        -1.2303175839223357e-11,
+        -7.931658801973995e-11
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 7,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.007276765,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.1520457331160028e-11,
+        -1.2761328926631614e-14,
+        3.5992687271639654e-15,
+        7.394852586447166e-15,
+        -1.3918096709863992e-11,
+        -9.100397518890802e-11
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 8,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.128326112,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.2896600454226359e-11,
+        -1.4213849823703495e-14,
+        4.053171237224443e-15,
+        8.222723107335732e-15,
+        -1.5533019315228103e-11,
+        -1.0269134848028827e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 9,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.247642547,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.427274357729269e-11,
+        -1.5666370720775376e-14,
+        4.5070754413508145e-15,
+        9.050591934158404e-15,
+        -1.7147939318507e-11,
+        -1.1437876340503195e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 10,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.373526459,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.5648884965635546e-11,
+        -1.7118889923781362e-14,
+        4.960979645477186e-15,
+        9.878458219882234e-15,
+        -1.8762864525956324e-11,
+        -1.260661575130939e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277999073266983,
+        2.202702522277832,
+        1.7743641138076782,
+        -1.1424590349197388,
+        -4.693593382398831e-06,
+        -0.7514952421188354
+      ],
+      "right_ee_joint_state": [
+        1.0
+      ]
+    },
+    "action_index": 11,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.49846113,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.702502722134014e-11,
+        -1.8571407432721454e-14,
+        5.4148834260870846e-15,
+        1.0706327893737853e-14,
+        -2.037778973340565e-11,
+        -1.3775354468226197e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779988932112852,
+        2.2086826165517173,
+        1.7668839246034622,
+        -1.128998763859272,
+        -4.72897990751638e-06,
+        -0.7514951998988787
+      ],
+      "right_ee_joint_state": [
+        0.96875
+      ]
+    },
+    "action_index": 12,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.644414561,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.8401169477044732e-11,
+        -2.002392324759565e-14,
+        5.868789324279351e-15,
+        1.1534200108692313e-14,
+        -2.1992714940854974e-11,
+        -1.4944091797364223e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779987131555876,
+        2.214662710825602,
+        1.7594037353992462,
+        -1.1155384927988052,
+        -4.76436643263393e-06,
+        -0.751495157678922
+      ],
+      "right_ee_joint_state": [
+        0.9375
+      ]
+    },
+    "action_index": 13,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.771219813,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.9777316936919753e-11,
+        -2.1476442450601638e-14,
+        6.322687599175092e-15,
+        1.236207062958088e-14,
+        -2.3607636678857347e-11,
+        -1.611283051428103e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779985330998898,
+        2.2206428050994873,
+        1.7519235461950302,
+        -1.1020782217383385,
+        -4.79975295775148e-06,
+        -0.7514951154589653
+      ],
+      "right_ee_joint_state": [
+        0.90625
+      ]
+    },
+    "action_index": 14,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446494.904386072,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        2.11534626620713e-11,
+        -2.2928965041739413e-14,
+        6.776590109235569e-15,
+        1.3189943691568288e-14,
+        -2.5222563621030147e-11,
+        -1.7281570618976616e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277998353044192,
+        2.2266228993733725,
+        1.7444433569908142,
+        -1.0886179506778717,
+        -4.835139482869029e-06,
+        -0.7514950732390085
+      ],
+      "right_ee_joint_state": [
+        0.875
+      ]
+    },
+    "action_index": 15,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.032209996,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        2.2529604917775892e-11,
+        -2.4381482550679505e-14,
+        7.230493466328994e-15,
+        1.4017815906522749e-14,
+        -2.6837488828479472e-11,
+        -1.8450310723672203e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779981729884943,
+        2.2326029936472573,
+        1.7369631677865982,
+        -1.075157679617405,
+        -4.870526007986579e-06,
+        -0.7514950310190519
+      ],
+      "right_ee_joint_state": [
+        0.84375
+      ]
+    },
+    "action_index": 16,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.158842348,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        2.390574890820396e-11,
+        -2.5834000059619597e-14,
+        7.684393858807103e-15,
+        1.4845687274444262e-14,
+        -2.8452410566481845e-11,
+        -1.961905082836779e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779979929327965,
+        2.2385830879211426,
+        1.7294829785823822,
+        -1.0616974085569382,
+        -4.905912533104129e-06,
+        -0.7514949887990952
+      ],
+      "right_ee_joint_state": [
+        0.8125
+      ]
+    },
+    "action_index": 17,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.291286006,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        2.5281894633355506e-11,
+        -2.7286519262625583e-14,
+        8.138293404252265e-15,
+        1.567355694829988e-14,
+        -3.0067334039207694e-11,
+        -2.0787789545284596e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779978128770986,
+        2.244563182195028,
+        1.7220027893781662,
+        -1.0482371374964714,
+        -4.941299058221678e-06,
+        -0.7514949465791384
+      ],
+      "right_ee_joint_state": [
+        0.78125
+      ]
+    },
+    "action_index": 18,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.42005742,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        2.6658035154336623e-11,
+        -2.873903168936799e-14,
+        8.592193796730374e-15,
+        1.650143001028729e-14,
+        -3.168225751193354e-11,
+        -2.1956528262201402e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277997632821401,
+        2.2505432764689126,
+        1.7145226001739502,
+        -1.0347768664360046,
+        -4.976685583339228e-06,
+        -0.7514949043591818
+      ],
+      "right_ee_joint_state": [
+        0.75
+      ]
+    },
+    "action_index": 19,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.544220521,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        2.8034179144764693e-11,
+        -3.019154750424219e-14,
+        9.046099271406167e-15,
+        1.7329299684142908e-14,
+        -3.329718098465939e-11,
+        -2.3125265591339428e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779974527657032,
+        2.256523370742798,
+        1.7070424109697342,
+        -1.0213165953755379,
+        -5.012072108456778e-06,
+        -0.751494862139225
+      ],
+      "right_ee_joint_state": [
+        0.71875
+      ]
+    },
+    "action_index": 20,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.666694389,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        2.9410321400469286e-11,
+        -3.1644063319116386e-14,
+        9.50000474608196e-15,
+        1.8157172746130316e-14,
+        -3.491210445738524e-11,
+        -2.4294005696035015e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779972727100053,
+        2.262503465016683,
+        1.6995622217655182,
+        -1.007856324315071,
+        -5.047458633574327e-06,
+        -0.7514948199192683
+      ],
+      "right_ee_joint_state": [
+        0.6875
+      ]
+    },
+    "action_index": 21,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.798029886,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.078646365617388e-11,
+        -3.3096575745858794e-14,
+        9.95390175042828e-15,
+        1.8985039031854146e-14,
+        -3.652702793011109e-11,
+        -2.546274302517304e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779970926543078,
+        2.268483559290568,
+        1.6920820325613022,
+        -0.9943960532546043,
+        -5.082845158691877e-06,
+        -0.7514947776993116
+      ],
+      "right_ee_joint_state": [
+        0.65625
+      ]
+    },
+    "action_index": 22,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446495.930815114,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.216260591187847e-11,
+        -3.454909156073299e-14,
+        1.0407801295873442e-14,
+        1.9812905317577977e-14,
+        -3.814195140283694e-11,
+        -2.6631480354311066e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.227799691259861,
+        2.274463653564453,
+        1.6846018433570862,
+        -0.9809357821941376,
+        -5.118231683809427e-06,
+        -0.7514947354793549
+      ],
+      "right_ee_joint_state": [
+        0.625
+      ]
+    },
+    "action_index": 23,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.064889734,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.3538744698136114e-11,
+        -3.600161076373898e-14,
+        1.0861699994285656e-14,
+        2.0640774991433596e-14,
+        -3.975687834500974e-11,
+        -2.780021768344909e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277996732542912,
+        2.2804437478383384,
+        1.6771216541528702,
+        -0.9674755111336708,
+        -5.153618208926976e-06,
+        -0.7514946932593981
+      ],
+      "right_ee_joint_state": [
+        0.59375
+      ]
+    },
+    "action_index": 24,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.189892155,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.4914883484393755e-11,
+        -3.7454129966744965e-14,
+        1.131560208082966e-14,
+        2.1468644665289215e-14,
+        -4.137180181773559e-11,
+        -2.896895778814468e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779965524872145,
+        2.286423842112223,
+        1.6696414649486542,
+        -0.954015240073204,
+        -5.189004734044526e-06,
+        -0.7514946510394415
+      ],
+      "right_ee_joint_state": [
+        0.5625
+      ]
+    },
+    "action_index": 25,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.320949322,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.6291022270651396e-11,
+        -3.890664578161916e-14,
+        1.17695084025384e-14,
+        2.2296514339144834e-14,
+        -4.2986721821014484e-11,
+        -3.0137695117282703e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779963724315166,
+        2.2924039363861084,
+        1.6621612757444382,
+        -0.9405549690127373,
+        -5.224391259162076e-06,
+        -0.7514946088194847
+      ],
+      "right_ee_joint_state": [
+        0.53125
+      ]
+    },
+    "action_index": 26,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.450907597,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.766716452635599e-11,
+        -4.035916159649336e-14,
+        1.2223409642049456e-14,
+        2.3124380624868664e-14,
+        -4.460164182429338e-11,
+        -3.130643244642073e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779961923758188,
+        2.2983840306599936,
+        1.6546810865402222,
+        -0.9270946979522705,
+        -5.259777784279625e-06,
+        -0.751494566599528
+      ],
+      "right_ee_joint_state": [
+        0.5
+      ]
+    },
+    "action_index": 27,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.584792577,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        3.904330678206058e-11,
+        -4.1811680799499346e-14,
+        1.2677310881560513e-14,
+        2.3952250298724283e-14,
+        -4.621656182757228e-11,
+        -3.2475172551116316e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779960123201212,
+        2.3043641249338784,
+        1.6472008973360062,
+        -0.9136344268918037,
+        -5.295164309397175e-06,
+        -0.7514945243795713
+      ],
+      "right_ee_joint_state": [
+        0.46875
+      ]
+    },
+    "action_index": 28,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.716139744,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.0419449037765176e-11,
+        -4.326420000250533e-14,
+        1.3131212968104516e-14,
+        2.4780119972579902e-14,
+        -4.7831485300298127e-11,
+        -3.364390988025434e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779958322644234,
+        2.3103442192077637,
+        1.6397207081317902,
+        -0.900174155831337,
+        -5.3305508345147246e-06,
+        -0.7514944821596146
+      ],
+      "right_ee_joint_state": [
+        0.4375
+      ]
+    },
+    "action_index": 29,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.843402576,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.179559129346977e-11,
+        -4.471671920551132e-14,
+        1.3585115901681467e-14,
+        2.560799303456731e-14,
+        -4.9446405303577023e-11,
+        -3.481264998494993e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779956522087255,
+        2.316324313481649,
+        1.6322405189275742,
+        -0.8867138847708702,
+        -5.365937359632274e-06,
+        -0.7514944399396578
+      ],
+      "right_ee_joint_state": [
+        0.40625
+      ]
+    },
+    "action_index": 30,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446496.970071659,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.317173007972741e-11,
+        -4.6169235020385516e-14,
+        1.4039017988225471e-14,
+        2.6435866096554718e-14,
+        -5.106132877630287e-11,
+        -3.5981390089645515e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277995472153028,
+        2.3223044077555337,
+        1.6247603297233582,
+        -0.8732536137104034,
+        -5.401323884749824e-06,
+        -0.7514943977197012
+      ],
+      "right_ee_joint_state": [
+        0.375
+      ]
+    },
+    "action_index": 31,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.098839143,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.4547872335432004e-11,
+        -4.762175083525971e-14,
+        1.449291838070358e-14,
+        2.726373746447623e-14,
+        -5.267624877958177e-11,
+        -3.715012741878354e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.227799529209733,
+        2.328284502029419,
+        1.6172801405191422,
+        -0.8597933426499367,
+        -5.4367104098673735e-06,
+        -0.7514943554997444
+      ],
+      "right_ee_joint_state": [
+        0.34375
+      ]
+    },
+    "action_index": 32,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.224785715,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.59240145911366e-11,
+        -4.907426665013391e-14,
+        1.4946817926148742e-14,
+        2.809161052646364e-14,
+        -5.429117572175457e-11,
+        -3.831887029903669e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779951120416322,
+        2.334264596303304,
+        1.6097999513149261,
+        -0.8463330715894699,
+        -5.472096934984923e-06,
+        -0.7514943132797877
+      ],
+      "right_ee_joint_state": [
+        0.3125
+      ]
+    },
+    "action_index": 33,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.355372811,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.730015337739424e-11,
+        -5.052678246500811e-14,
+        1.540071577752801e-14,
+        2.891947681218747e-14,
+        -5.590609919448042e-11,
+        -3.9487607628174715e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779949319859347,
+        2.340244690577189,
+        1.6023197621107101,
+        -0.8328728005290031,
+        -5.507483460102473e-06,
+        -0.751494271059831
+      ],
+      "right_ee_joint_state": [
+        0.28125
+      ]
+    },
+    "action_index": 34,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.482553374,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        4.867629216365188e-11,
+        -5.1979294891750516e-14,
+        1.5854617017039066e-14,
+        2.974734987417488e-14,
+        -5.752102266720627e-11,
+        -4.0656350508427863e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.25
+      ]
+    },
+    "action_index": 35,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.612155249,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.005243094990952e-11,
+        -5.3431810706624713e-14,
+        1.6308519950616017e-14,
+        3.0575222936162286e-14,
+        -5.913595307882602e-11,
+        -4.182509338868101e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 36,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.739716003,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.1428573205614114e-11,
+        -5.488432652149891e-14,
+        1.6762422884192968e-14,
+        3.1403089221886116e-14,
+        -6.075087655155187e-11,
+        -4.2993830717819037e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 37,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.864306613,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.280471893076566e-11,
+        -5.63368457245049e-14,
+        1.7216324123704024e-14,
+        3.2230962283873524e-14,
+        -6.236580002427772e-11,
+        -4.416256804695706e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 38,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446497.991891456,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.418086118647025e-11,
+        -5.778937170377446e-14,
+        1.767022875134687e-14,
+        3.305883873399272e-14,
+        -6.398071655810966e-11,
+        -4.5331302600537526e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 39,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446498.117366558,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.5557003442174846e-11,
+        -5.924189768304403e-14,
+        1.8124129990857926e-14,
+        3.388671179598013e-14,
+        -6.559563309194161e-11,
+        -4.650003715411799e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 40,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446498.247476413,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.693314916732639e-11,
+        -6.069443043857717e-14,
+        1.8578027842237194e-14,
+        3.4714588246099326e-14,
+        -6.721054962577355e-11,
+        -4.766876893214089e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 41,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446498.375163477,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.830928795358403e-11,
+        -6.214694964158315e-14,
+        1.9031918917352883e-14,
+        3.5542461308086734e-14,
+        -6.88254661596055e-11,
+        -4.883750071016379e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 42,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446498.50223865,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        5.968543020928863e-11,
+        -6.359947562085272e-14,
+        1.948581338060036e-14,
+        3.637033437007414e-14,
+        -7.044038269343744e-11,
+        -5.000623803930182e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 43,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446498.627549041,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.106157940388712e-11,
+        -6.505200160012228e-14,
+        1.9939712926045523e-14,
+        3.719820743206155e-14,
+        -7.205529922726939e-11,
+        -5.117496981732472e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 44,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446498.747944577,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.243772165959172e-11,
+        -6.650453435565543e-14,
+        2.0393615859622474e-14,
+        3.802608049404896e-14,
+        -7.367021576110133e-11,
+        -5.234370159534762e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 45,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446498.870763006,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.381387085419021e-11,
+        -6.795706033492499e-14,
+        2.084752387539711e-14,
+        3.8853953556036366e-14,
+        -7.528513229493328e-11,
+        -5.351243337337053e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 46,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.000453431,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.519002004878871e-11,
+        -6.940959309045813e-14,
+        2.1301428503039954e-14,
+        3.9681826618023774e-14,
+        -7.690004882876522e-11,
+        -5.468116515139343e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 47,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.143361889,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.656616924338721e-11,
+        -7.08621190697277e-14,
+        2.1755328048485116e-14,
+        4.050969968001118e-14,
+        -7.851496536259717e-11,
+        -5.584990248053145e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 48,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.274374106,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.79423184379857e-11,
+        -7.231465182526084e-14,
+        2.220923267612796e-14,
+        4.133757274199859e-14,
+        -8.012988189642911e-11,
+        -5.701863980966948e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 49,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.397682045,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        6.93184676325842e-11,
+        -7.376718458079398e-14,
+        2.2663135609704912e-14,
+        4.2165445803986e-14,
+        -8.174479843026106e-11,
+        -5.818737713880751e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 50,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.519993103,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.06946168271827e-11,
+        -7.521971733632712e-14,
+        2.3117040237347758e-14,
+        4.2993322254105196e-14,
+        -8.3359714964093e-11,
+        -5.935611446794553e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 51,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.641479751,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.20707660217812e-11,
+        -7.667224331559669e-14,
+        2.357094317092471e-14,
+        4.3821195316092604e-14,
+        -8.497463149792495e-11,
+        -6.052485179708356e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 52,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.772403887,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.344691521637969e-11,
+        -7.812476929486625e-14,
+        2.4024847798567554e-14,
+        4.46490717662118e-14,
+        -8.658954803175689e-11,
+        -6.169358912622158e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 53,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446499.893195754,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.482306441097819e-11,
+        -7.95773020503994e-14,
+        2.44787524262104e-14,
+        4.547694482819921e-14,
+        -8.820446456558884e-11,
+        -6.286232645535961e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 54,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.014264361,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.619921360557669e-11,
+        -8.102983480593254e-14,
+        2.493265535978735e-14,
+        4.630481450205483e-14,
+        -8.981938109942078e-11,
+        -6.403105823338251e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 55,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.141289994,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.757536280017518e-11,
+        -8.248236756146568e-14,
+        2.5386559987430196e-14,
+        4.713268417591045e-14,
+        -9.143429763325273e-11,
+        -6.519979556252053e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 56,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.272523831,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        7.895151199477368e-11,
+        -8.393490031699882e-14,
+        2.5840464615073042e-14,
+        4.7960557237897855e-14,
+        -9.304921416708467e-11,
+        -6.636853289165856e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 57,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.396964171,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.032766118937218e-11,
+        -8.538743307253197e-14,
+        2.629437093678178e-14,
+        4.8788426911753474e-14,
+        -9.466413070091662e-11,
+        -6.753727022079659e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 58,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.522703352,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.170381038397068e-11,
+        -8.683996582806511e-14,
+        2.6748275564424627e-14,
+        4.961629997374088e-14,
+        -9.627904723474856e-11,
+        -6.870600754993461e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 59,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.652531998,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.307995957856917e-11,
+        -8.829249858359825e-14,
+        2.7202176803935683e-14,
+        5.04441696475965e-14,
+        -9.78939637685805e-11,
+        -6.987474487907264e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 60,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.781573493,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.445610877316767e-11,
+        -8.974503133913139e-14,
+        2.7656084819710318e-14,
+        5.127204270958391e-14,
+        -9.950888030241245e-11,
+        -7.104348220821066e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 61,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446500.914729271,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.583225796776617e-11,
+        -9.119756409466453e-14,
+        2.8109994529550847e-14,
+        5.209991577157132e-14,
+        -1.011237968362444e-10,
+        -7.221221953734869e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 62,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.046352238,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.720840716236467e-11,
+        -9.265009685019768e-14,
+        2.856389915719369e-14,
+        5.2927788833558725e-14,
+        -1.0273871337007634e-10,
+        -7.338095686648671e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 63,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.164466283,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.858455635696316e-11,
+        -9.410262960573082e-14,
+        2.9017807172968327e-14,
+        5.3755661895546133e-14,
+        -1.0435362990390828e-10,
+        -7.454969419562474e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 64,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.289175713,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        8.996070555156166e-11,
+        -9.555516236126396e-14,
+        2.947171518874296e-14,
+        5.458353156940175e-14,
+        -1.0596854643774023e-10,
+        -7.571843152476276e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 65,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.422695242,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        9.133685474616016e-11,
+        -9.70076951167971e-14,
+        2.9925623204517596e-14,
+        5.541140463138916e-14,
+        -1.0758346297157217e-10,
+        -7.688716885390079e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 66,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.550753996,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        9.271300394075865e-11,
+        -9.846022787233025e-14,
+        3.037953122029223e-14,
+        5.623928108150836e-14,
+        -1.0919837950540412e-10,
+        -7.805590618303881e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 67,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.677108038,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        9.408915313535715e-11,
+        -9.991276062786339e-14,
+        3.0833442624198654e-14,
+        5.706715753162755e-14,
+        -1.1081329603923606e-10,
+        -7.922464351217684e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 68,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.806522623,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        9.546530232995565e-11,
+        -1.0136528660713295e-13,
+        3.128735063997329e-14,
+        5.789503398174675e-14,
+        -1.1242821257306801e-10,
+        -8.039338084131487e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 69,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446501.934612867,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        9.684145152455415e-11,
+        -1.0281781258640252e-13,
+        3.174125865574792e-14,
+        5.872290365560237e-14,
+        -1.1404312910689995e-10,
+        -8.156211817045289e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 70,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.055491584,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        9.821760071915264e-11,
+        -1.0427033856567208e-13,
+        3.219516667152256e-14,
+        5.955076655319441e-14,
+        -1.156580456407319e-10,
+        -8.273085549959092e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 71,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.179746944,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        9.959374297485724e-11,
+        -1.0572286454494165e-13,
+        3.264907468729719e-14,
+        6.037862267452287e-14,
+        -1.1727296911345775e-10,
+        -8.389959282872894e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 72,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.302508392,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0096989216945573e-10,
+        -1.0717539052421121e-13,
+        3.310297931494004e-14,
+        6.120648557211492e-14,
+        -1.1888792728065312e-10,
+        -8.506832460675184e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 73,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.427811624,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0234604136405423e-10,
+        -1.0862792327974435e-13,
+        3.355688394258288e-14,
+        6.203434169344338e-14,
+        -1.2050287157006068e-10,
+        -8.623706193588987e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 74,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.547018769,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0372219055865273e-10,
+        -1.100804560352775e-13,
+        3.401078518209394e-14,
+        6.2862211367299e-14,
+        -1.2211781585946824e-10,
+        -8.740579926502789e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 75,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.676511484,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0509833975325122e-10,
+        -1.1153298201454706e-13,
+        3.4464686421604995e-14,
+        6.369007426489104e-14,
+        -1.237327601488758e-10,
+        -8.857453659416592e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 76,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.800774954,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0647448894784972e-10,
+        -1.129855147700802e-13,
+        3.491859443737963e-14,
+        6.451793716248308e-14,
+        -1.2534770443828336e-10,
+        -8.974327392330395e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 77,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446502.929938299,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0785063814244822e-10,
+        -1.1443804074934977e-13,
+        3.5372499065022475e-14,
+        6.534579328381154e-14,
+        -1.2696264872769092e-10,
+        -9.091201125244197e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 78,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.057301572,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.0922678733704672e-10,
+        -1.158905735048829e-13,
+        3.582640369266532e-14,
+        6.617365618140358e-14,
+        -1.2857759301709848e-10,
+        -9.208075413269512e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 79,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.185516216,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.1060292959275131e-10,
+        -1.173430927078889e-13,
+        3.628030493217638e-14,
+        6.70015258552592e-14,
+        -1.3019253730650604e-10,
+        -9.324949701294827e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 80,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.309130715,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.119790787873498e-10,
+        -1.1879562546342204e-13,
+        3.6734202783555645e-14,
+        6.782938875285124e-14,
+        -1.318074815959136e-10,
+        -9.441823989320142e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 81,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.439820932,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.133552210430544e-10,
+        -1.2024814466642803e-13,
+        3.718810741119849e-14,
+        6.865725165044329e-14,
+        -1.3342242588532116e-10,
+        -9.558698277345457e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 82,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.56202182,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.1473136329875899e-10,
+        -1.21700663869434e-13,
+        3.764200187444597e-14,
+        6.948511454803533e-14,
+        -1.3503737017472872e-10,
+        -9.675572565370771e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 83,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.687956581,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.1610750555446359e-10,
+        -1.2315319662496715e-13,
+        3.8095906502088814e-14,
+        7.031297066936379e-14,
+        -1.3665231446413628e-10,
+        -9.792446853396086e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 84,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.818968648,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.1748363393238037e-10,
+        -1.2460571582797314e-13,
+        3.8549794189072714e-14,
+        7.114082679069225e-14,
+        -1.3826728650911946e-10,
+        -9.909322251644426e-10
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 85,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446503.940533186,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.1885976924919106e-10,
+        -1.2605823503097913e-13,
+        3.900369542858377e-14,
+        7.196868968828429e-14,
+        -1.3988223079852702e-10,
+        -1.002619653966974e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 86,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.075865866,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.2023590456600175e-10,
+        -1.2751074068145796e-13,
+        3.945759666809483e-14,
+        7.279654580961276e-14,
+        -1.4149717508793458e-10,
+        -1.0143070827695055e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 87,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.198995415,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.2161202600502463e-10,
+        -1.2896324633193679e-13,
+        3.991150129573767e-14,
+        7.362440193094122e-14,
+        -1.4311211937734214e-10,
+        -1.025994511572037e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 88,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.325876688,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.2298816132183532e-10,
+        -1.3041575198241562e-13,
+        4.036540931151231e-14,
+        7.445225805226968e-14,
+        -1.447270636667497e-10,
+        -1.0376819403745685e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 89,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.446011004,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.24364296638646e-10,
+        -1.3186825763289445e-13,
+        4.0819310551023363e-14,
+        7.528012094986172e-14,
+        -1.4634200795615726e-10,
+        -1.0493693691771e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 90,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.57598093,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.257404319554567e-10,
+        -1.3332076328337328e-13,
+        4.127320840240263e-14,
+        7.610797707119019e-14,
+        -1.4795695224556482e-10,
+        -1.0610567979796315e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 91,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.698252818,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.271165672722674e-10,
+        -1.3477328248637926e-13,
+        4.1727116418177265e-14,
+        7.693583319251865e-14,
+        -1.4957189653497238e-10,
+        -1.0727443378044654e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 92,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.835585551,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.2849270258907808e-10,
+        -1.362257881368581e-13,
+        4.218101765768832e-14,
+        7.776369609011069e-14,
+        -1.5118684082437994e-10,
+        -1.084431766606997e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 93,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446504.965243106,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.2986883790588877e-10,
+        -1.3767829378733693e-13,
+        4.263491889719938e-14,
+        7.859155898770273e-14,
+        -1.528017851137875e-10,
+        -1.0961191954095284e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 94,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446505.089410866,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.3124497322269946e-10,
+        -1.3913079943781576e-13,
+        4.3088820136710435e-14,
+        7.941942188529477e-14,
+        -1.5441672940319506e-10,
+        -1.1078066242120599e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779947519302368,
+        2.346224784851074,
+        1.5948395729064941,
+        -0.8194125294685364,
+        -5.5428699852200225e-06,
+        -0.7514942288398743
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 95,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446505.208436751,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.3262110853951015e-10,
+        -1.4058330508829459e-13,
+        4.354272137622149e-14,
+        8.024727800662323e-14,
+        -1.5603167369260262e-10,
+        -1.1194940530145914e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277995372811953,
+        2.332266390323639,
+        1.6232784390449524,
+        -0.8618097851673762,
+        -5.4627128823388676e-06,
+        -0.7514943530162176
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 96,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446505.336677065,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.3399724385632084e-10,
+        -1.4203581073877342e-13,
+        4.399662261573255e-14,
+        8.10751341279517e-14,
+        -1.5764661798201018e-10,
+        -1.1311815928394253e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779959936936697,
+        2.3183079957962036,
+        1.6517173051834106,
+        -0.9042070408662161,
+        -5.3825557794577134e-06,
+        -0.7514944771925608
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 97,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446505.469739363,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.3537337917313153e-10,
+        -1.434883299417794e-13,
+        4.4450523855243604e-14,
+        8.190299024928016e-14,
+        -1.5926156227141774e-10,
+        -1.1428690216419568e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277996614575386,
+        2.3043496012687683,
+        1.680156171321869,
+        -0.9466042965650558,
+        -5.3023986765765585e-06,
+        -0.7514946013689041
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 98,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446505.598159457,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.3674951448994221e-10,
+        -1.449408491447854e-13,
+        4.490442848288645e-14,
+        8.273084637060862e-14,
+        -1.608765065608253e-10,
+        -1.1545564504444883e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779972354571024,
+        2.290391206741333,
+        1.7085950374603271,
+        -0.9890015522638956,
+        -5.2222415736954036e-06,
+        -0.7514947255452474
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 99,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446505.731990007,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.381256498067529e-10,
+        -1.4639335479526422e-13,
+        4.5358326334265717e-14,
+        8.355870249193709e-14,
+        -1.6249145085023287e-10,
+        -1.1662438792470198e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.2277997856338819,
+        2.2764328122138977,
+        1.7370339035987854,
+        -1.0313988079627354,
+        -5.1420844708142495e-06,
+        -0.7514948497215906
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 100,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446505.872504373,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.395017851235636e-10,
+        -1.4784586044574305e-13,
+        4.581223096190856e-14,
+        8.438656538952913e-14,
+        -1.6410639513964043e-10,
+        -1.1779313080495513e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779984772205353,
+        2.2624744176864624,
+        1.7654727697372437,
+        -1.0737960636615753,
+        -5.0619273679330945e-06,
+        -0.751494973897934
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 101,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446506.006905033,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.4087792044037428e-10,
+        -1.4929836609622188e-13,
+        4.626613558955141e-14,
+        8.521442828712117e-14,
+        -1.6572133942904799e-10,
+        -1.1896188478743852e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779990981022516,
+        2.248516023159027,
+        1.793911635875702,
+        -1.1161933193604152,
+        -4.9817702650519396e-06,
+        -0.7514950980742773
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 102,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446506.13841374,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.4225405575718497e-10,
+        -1.507508717467007e-13,
+        4.6720033440930675e-14,
+        8.604228440844963e-14,
+        -1.6733628371845555e-10,
+        -1.2013062766769167e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22779997189839682,
+        2.234557628631592,
+        1.8223505020141602,
+        -1.158590575059255,
+        -4.9016131621707855e-06,
+        -0.7514952222506205
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 103,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446506.292517969,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.4363019107399566e-10,
+        -1.522033909497067e-13,
+        4.717393806857352e-14,
+        8.68701405297781e-14,
+        -1.689512280078631e-10,
+        -1.2129937054794482e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22780003398656845,
+        2.2205992341041565,
+        1.8507893681526184,
+        -1.2009878307580948,
+        -4.8214560592896305e-06,
+        -0.7514953464269638
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 104,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446506.431898763,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.4500632639080635e-10,
+        -1.5365589660018553e-13,
+        4.762783930808458e-14,
+        8.769799665110656e-14,
+        -1.7056617229727067e-10,
+        -1.2246811342819797e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22780009607474008,
+        2.206640839576721,
+        1.8792282342910767,
+        -1.2433850864569347,
+        -4.7412989564084756e-06,
+        -0.7514954706033071
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 105,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446506.577291054,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.4638246170761704e-10,
+        -1.5510840225066436e-13,
+        4.8081737159463844e-14,
+        8.852585277243502e-14,
+        -1.7218111658667823e-10,
+        -1.2363686741068136e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22780015816291174,
+        2.192682445049286,
+        1.907667100429535,
+        -1.2857823421557744,
+        -4.6611418535273215e-06,
+        -0.7514955947796503
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 106,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446506.724058456,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.4775859702442773e-10,
+        -1.5656090790114319e-13,
+        4.85356383989749e-14,
+        8.935370889376348e-14,
+        -1.737960608760858e-10,
+        -1.248056102909345e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22780022025108337,
+        2.1787240505218506,
+        1.9361059665679932,
+        -1.3281795978546143,
+        -4.5809847506461665e-06,
+        -0.7514957189559937
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 107,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446506.872195809,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.4913473234123842e-10,
+        -1.5801342710414917e-13,
+        4.898953963848596e-14,
+        9.018157179135552e-14,
+        -1.7541100516549335e-10,
+        -1.2597435317118766e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22780077159404755,
+        2.2135326067606607,
+        2.116767485936483,
+        -1.4740326404571533,
+        -4.793502284883289e-06,
+        -0.7514961163202921
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 108,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446507.015693598,
+    "type": "action_dispatched"
+  },
+  {
+    "action": {
+      "left_arm_joint_state": [
+        1.505108676580491e-10,
+        -1.59465932754628e-13,
+        4.9443440877997014e-14,
+        9.100942791268399e-14,
+        -1.770259494549009e-10,
+        -1.271430960514408e-09
+      ],
+      "left_ee_joint_state": [
+        1.0
+      ],
+      "right_arm_joint_state": [
+        -0.22780132293701172,
+        2.248341162999471,
+        2.297429005304972,
+        -1.6198856830596924,
+        -5.006019819120411e-06,
+        -0.7514965136845907
+      ],
+      "right_ee_joint_state": [
+        0.0
+      ]
+    },
+    "action_index": 109,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446507.16334328,
+    "type": "action_dispatched"
+  },
+  {
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "revision_id": "a80704b0ade140c6b7213721df0d0b8d",
+    "time": 446507.336260427,
+    "type": "native_success"
+  },
+  {
+    "actions": 110,
+    "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+    "generation": 0,
+    "status": "completed",
+    "success": true,
+    "terminal": true,
+    "time": 446507.337589329,
+    "type": "native_outcome"
+  }
+]

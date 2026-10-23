@@ -21,11 +21,12 @@ def provider(responses):
             if index >= len(responses):
                 self.send_error(500, 'Unexpected extra model request')
                 return
+            response = responses[index](requests[-1]) if callable(responses[index]) else responses[index]
             self.send_response(200)
             self.send_header('Content-Type', 'text/event-stream')
             self.end_headers()
             for frame in [
-                {'choices':[{'delta':{'role':'assistant','content':json.dumps(responses[index])},
+                {'choices':[{'delta':{'role':'assistant','content':json.dumps(response)},
                              'index':0,'finish_reason':None}]},
                 {'choices':[{'delta':{},'index':0,'finish_reason':'stop'}],
                  'usage':{'prompt_tokens':10,'completion_tokens':5,'total_tokens':15}},

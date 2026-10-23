@@ -1,0 +1,327 @@
+{
+  "schema": "dsh-admission-evidence-archive/v1",
+  "archive": "/root/.cache/dsh-physicalrsi-dev/admissible-recovery-20261023-08-evidence/evidence.tar.xz",
+  "sha256": "ca2963b95e5ea3744b557c5cfc473d2c873768b63c489df2c0a9e5b60628de63",
+  "size": 32418200,
+  "members": 1623,
+  "all_experiments_quiescent": true,
+  "local_archive": ".artifacts/embodied-live/2026-10-23-admissible-recovery/evidence.tar.xz",
+  "verified_payload_members": 1622,
+  "imports": [
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/admission-policy.json",
+      "path": "admission-policy.json",
+      "sha256": "bf74bbc7ff14875c860e43b84a2ab0b27fe1ffe1be9facfd2036324e82c6b7b7"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/qualified-code.manifest.json",
+      "path": "qualified-code.manifest.json",
+      "sha256": "f1dead9ed04f0b9fb58843aee58eeb4cd64bf8b1b7c18b870fd7347553282c41"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/qualified-code.capability.json",
+      "path": "qualified-code.capability.json",
+      "sha256": "2e92991d0e25fb1849c166850cf1aa4d7cf114a3e3d2e3d5249551d859edc7ab"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/admission-native-sources.json",
+      "path": "admission-native-sources.json",
+      "sha256": "b085b74e31721c1a8ca52a9e325133fcd61a1c083bff02b7d10ae619635cd939"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/restored-environment.json",
+      "path": "restored-environment.json",
+      "sha256": "d5c882e2c0596da463a79faccbade28937b332742e5883820f594f3cea3c79f5"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/restored-simulator-environment.json",
+      "path": "restored-simulator-environment.json",
+      "sha256": "ed6c2508f753ac593d32c4dda882105a51840b7e699ac61b1ed02f48411f9613"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/qualified-code.assignments.json",
+      "path": "qualified-code.assignments.json",
+      "sha256": "4d4be1ed2480518034dc3db3595761366e2dc6ae0fae03ba2fa1205ed85ef2a2"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/result.json",
+      "path": "raw/qualified-code/result.json",
+      "sha256": "41a1d8e55d034f57b1321ccf4559babde0e8d131d844f9d7cca5257c139de486"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/deployment.json",
+      "path": "raw/qualified-code/deployment.json",
+      "sha256": "070093a6c3c6960c0dda4e023d6d1dcbb9f93c39775722118fa50d287d23e4ce"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/configured_plan.json",
+      "path": "raw/qualified-code/configured_plan.json",
+      "sha256": "30e9747ada4161bc57fa51f7fa4d94b3192d7890bc6a971dfae82f74dd5e3fb6"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/native_binding.json",
+      "path": "raw/qualified-code/native_binding.json",
+      "sha256": "8c97cad63b0a0cfe745df53ad291c3216d47b821aba7330bbcd83f2e51d06505"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/native_result.json",
+      "path": "raw/qualified-code/native_result.json",
+      "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/timing.json",
+      "path": "raw/qualified-code/timing.json",
+      "sha256": "478a6fbc4d3e5ca327bc53aa989f1d091c3b73280d1fdc5a079d96faeb58f554"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/terminal.json",
+      "path": "raw/qualified-code/terminal.json",
+      "sha256": "157724f3d75c76c96bc0df81720fec35bb7cf9caca924a4185787d6d713fa535"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/initial_observation.json",
+      "path": "raw/qualified-code/initial_observation.json",
+      "sha256": "668bda3b0ad07daf532ac79724ad4b439b9a4dce65e01556173dc2af51e232b4"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/planner-audit.json",
+      "path": "raw/qualified-code/planner-audit.json",
+      "sha256": "49177a8fbb73f834242f340715ac4439472da4c8b717159be08a81f015d62947"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/qualified-code/provider/policy.json",
+      "path": "raw/qualified-code/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/admission-code-descriptor.json",
+      "path": "admission-code-descriptor.json",
+      "sha256": "16abd7e9062ccb515d5eeea2c02330ad8cbea5964a079dc455db9f2ce9d9dba9"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/admission-code-operation-plan.json",
+      "path": "admission-code-operation-plan.json",
+      "sha256": "0c3cbac5132189dabf3d7dbfd393acef54d548aaee2019a07286afb92d4deee0"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/restored-sparse-general-pickup-official-0-dev.manifest.json",
+      "path": "restored-sparse-general-pickup-official-0-dev.manifest.json",
+      "sha256": "cacd0acbe0d16b756dac2d3ac3028986f5644ea4344bb11142f25bc7d227e012"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/restored-sparse-general-pickup-official-0-dev.capability.json",
+      "path": "restored-sparse-general-pickup-official-0-dev.capability.json",
+      "sha256": "b1fc46c538c1c88c29124091506cbca9160cde61ca092e9a68e4f02510ddf930"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/restored-source-inventory.json",
+      "path": "restored-source-inventory.json",
+      "sha256": "e593b2a0f53dd9f2c8f5792ade087c90d6cbcc03ec570a210144c19f97c5ca7f"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/restored-sparse-general-pickup-official-0-dev.assignments.json",
+      "path": "restored-sparse-general-pickup-official-0-dev.assignments.json",
+      "sha256": "b00410cc9a6b2c5d73922847627ecaa255344dc075fe7be79171fe4379ae741f"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/result.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/result.json",
+      "sha256": "bf67676312f8cca7fd75bc2fb22e056dba7c1a34b06471a77aca0b006a17ed67"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/deployment.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/deployment.json",
+      "sha256": "94060188ed68e21815cb2d4197826707d3f96afdb7256c237c15ccfd69aaad2d"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/configured_plan.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/configured_plan.json",
+      "sha256": "050cac3daafd77e54c86e44c6bf13fc01ee06d4a71547f14a6ddebf181a8c1f7"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/native_binding.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/native_binding.json",
+      "sha256": "39965b7b04331d586c913882bcb889d838d639c16c351f5e7f7d2a2dee8701ab"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/native_result.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/native_result.json",
+      "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/timing.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/timing.json",
+      "sha256": "a59a04bc1ea8fe4b5f0960a865b6653f38b91c7656044cb41352881f28141c23"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/terminal.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/terminal.json",
+      "sha256": "cd71a5d868072f45b5e0ba2403086e05a14014451667c5202ff7020582a4643c"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/initial_observation.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/initial_observation.json",
+      "sha256": "0b54c9743c0a9e657fea53b7a80e18607a3332c2c2666f893f172d3cb1b5058a"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/planner-audit.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/planner-audit.json",
+      "sha256": "fe7b166fe0ac886e2dde7044df1036f2d547e9b73611407c74118b36d18dd8b3"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/raw/restored-sparse-general-pickup-official-0-dev/provider/policy.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/admission-sparse-descriptor.json",
+      "path": "admission-sparse-descriptor.json",
+      "sha256": "72559729b185cd9beafbadcfbe0d536c9e398616893c60aa92d907c2d708b487"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-02-original-code/bundle/qualified-code.report.json",
+      "path": "qualified-code.report.json",
+      "sha256": "f9aed14a5ba4daadabcbd8f69ef125318ff3f8961e1df8f838bda7d12506eeab"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/frozen-assignments.json",
+      "path": "06-controlled-assignments.json",
+      "sha256": "687ba9eba2458a4f60b2744f64a24508f5fc6944d961830b23327913fb99fbbc"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-explicit-stop-H1/result.json",
+      "path": "raw/explicit-stop/result.json",
+      "sha256": "8220ad7b445c7710d73ef495c5980f02c4b998dd464eb3be64f8f811d3107100"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-explicit-stop-H1/simulation/native-terminal.json",
+      "path": "raw/explicit-stop/native-terminal.json",
+      "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-explicit-stop-H1/simulation/initial-observation.json",
+      "path": "raw/explicit-stop/initial-observation.json",
+      "sha256": "47937cc3ab37a0aafb612611c193639f57b0f47ca0ca3ad967c76194fb683ed1"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-no-alternative-H1/result.json",
+      "path": "raw/no-alternative/result.json",
+      "sha256": "55aebfc3d3c8fee4994c4743620c55bc891b14c5b070be6c86f9a5f0266e634d"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-no-alternative-H1/simulation/native-terminal.json",
+      "path": "raw/no-alternative/native-terminal.json",
+      "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-no-alternative-H1/simulation/initial-observation.json",
+      "path": "raw/no-alternative/initial-observation.json",
+      "sha256": "7b13e20c945f71dd35f8989808aa784058e375a51550cdef175a0211bda2466a"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-stale-choice-H1/result.json",
+      "path": "raw/stale-choice/result.json",
+      "sha256": "0e5cfa6e8c1d3f30c13251c84a0b0d07938850a1c758bb4ffa42edc6135b2b21"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-stale-choice-H1/simulation/native-terminal.json",
+      "path": "raw/stale-choice/native-terminal.json",
+      "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-stale-choice-H1/simulation/initial-observation.json",
+      "path": "raw/stale-choice/initial-observation.json",
+      "sha256": "d5e680fbde5345f19ec727de86fc9737f4510c939a6e0074edc2738ad8dcecc9"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-switch-success-H1/result.json",
+      "path": "raw/switch-success/result.json",
+      "sha256": "73646ec3831729c22b1c86e817d2d9743d5727562c4b54ef4355814c92a8e5d5"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-switch-success-H1/simulation/native-terminal.json",
+      "path": "raw/switch-success/native-terminal.json",
+      "sha256": "9e4e1e2f52c1cd571ff6120f77c6d0d60a9159549fa64a9dc1d02a10ab6745d0"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-switch-success-H1/simulation/initial-observation.json",
+      "path": "raw/switch-success/initial-observation.json",
+      "sha256": "8b442736d21b8b697d3303313d4fde9a5205d6d67775a088d4caab2022a03a6b"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-switch-success-H1/simulation/eval_result/RoboDojo/general_pickup/physicalRSICodex/arx_x5/0_0000-switch-success-H1/0000-switch-success-H1/_result.json",
+      "path": "raw/switch-success/native-result.json",
+      "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/independent-chain-audit-v2.json",
+      "path": "raw/switch-success/chain-audit.json",
+      "sha256": "e43c19bcd7e7ac44b086287f53e5c7cfcd738b41fcced27f26754aba01cd61ec"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-unavailable-choice-H1/result.json",
+      "path": "raw/unavailable-choice/result.json",
+      "sha256": "1889d51316103ffa5a3f0b9efea13587eb403ac6bcebb0fe856d455446ba77a3"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-unavailable-choice-H1/simulation/native-terminal.json",
+      "path": "raw/unavailable-choice/native-terminal.json",
+      "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-unavailable-choice-H1/simulation/initial-observation.json",
+      "path": "raw/unavailable-choice/initial-observation.json",
+      "sha256": "a52547f99c989f08b6666d178c2fbfb4f86caf88929a4b5a1ba0bb728b7dd145"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-unknown-condition-H1/result.json",
+      "path": "raw/unknown-condition/result.json",
+      "sha256": "bcd7e94f2232bcc7c1c33f093ea124c0c1c4ce96f8172ef8b7977b8b8422132f"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-unknown-condition-H1/simulation/native-terminal.json",
+      "path": "raw/unknown-condition/native-terminal.json",
+      "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-06-controlled/runs/0000-unknown-condition-H1/simulation/initial-observation.json",
+      "path": "raw/unknown-condition/initial-observation.json",
+      "sha256": "8bcd6f592c9bfddcbba6efd01ddfc4161dbd27fccbd868405a4f5ccc04e1d124"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-07-live/frozen-assignments.json",
+      "path": "07-live-assignments.json",
+      "sha256": "d9ce6098524c0e752cc09448cc8a150fc66e51546258ba94d2a4c234a88639ed"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-07-live/runs/0000-live-deepseek-switch-H1/result.json",
+      "path": "raw/live-deepseek-switch/result.json",
+      "sha256": "9a4f9be664dd0e27c6b4256a6194ab189effbd379e7c5a2314d7ff836e26e655"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-07-live/runs/0000-live-deepseek-switch-H1/simulation/native-terminal.json",
+      "path": "raw/live-deepseek-switch/native-terminal.json",
+      "sha256": "ceb527d52068e429010bbca638e237c6d9f085987042093583af6e8c19fc3ef6"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-07-live/runs/0000-live-deepseek-switch-H1/simulation/initial-observation.json",
+      "path": "raw/live-deepseek-switch/initial-observation.json",
+      "sha256": "6880de90fb4b782def644100f8e5096714ac4c11756d8ddb0967cb5f28b2b643"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-07-live/runs/0000-live-deepseek-switch-H1/simulation/eval_result/RoboDojo/general_pickup/physicalRSICodex/arx_x5/0_0000-live-deepseek-switch-H1/0000-live-deepseek-switch-H1/_result.json",
+      "path": "raw/live-deepseek-switch/native-result.json",
+      "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+    },
+    {
+      "archive_member": "admissible-recovery-20261023-07-live/independent-chain-audit-v2.json",
+      "path": "raw/live-deepseek-switch/chain-audit.json",
+      "sha256": "a3ed292c69106bbba68bdf1af332cf7dbbf776df2f0913594f2b1002fd6c6dbe"
+    },
+    {
+      "archive_member": "inventory/A-provider-attribution.json",
+      "path": "A-provider-attribution.json",
+      "sha256": "f0f9511017d5e46b10930627126deaa1c80b182d5e2e9dd106fd58aa2d07ca71"
+    }
+  ]
+}

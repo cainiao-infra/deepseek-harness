@@ -1,0 +1,19 @@
+# Bilingual-pair consistency record for report.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write python/embodied/evaluations/2026-10-23-admissible-recovery/report.md
+/increment-b-admissible-recovery-verification:
+  en: 3677ea1be00fd0a0
+  zh: 82eb0158ab0e5886
+/increment-b-admissible-recovery-verification/outcome-and-supported-scope:
+  en: b54863adb33427d5
+  zh: 3579932681d62428
+/increment-b-admissible-recovery-verification/real-simulator-verification:
+  en: 3628378e1a021773
+  zh: b3df42f5897bd636
+/increment-b-admissible-recovery-verification/deployment-failures-and-attribution-correction:
+  en: 244960959359c692
+  zh: 94fcb49e367170a5
+/increment-b-admissible-recovery-verification/evidence-and-limits:
+  en: 7c769e8ebb3af874
+  zh: 32f3a344b66e57ff

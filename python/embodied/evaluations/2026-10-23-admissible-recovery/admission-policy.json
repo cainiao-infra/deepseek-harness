@@ -1,0 +1,106 @@
+{
+  "schema": "dsh-admission-policy/v1",
+  "subgoal_id": "lift-visible-target",
+  "required_effects": [
+    "task-complete"
+  ],
+  "control": {
+    "embodiment": "arx_x5",
+    "action_type": "joint",
+    "frame": "robot-joints",
+    "units": "arm radians; grippers normalized",
+    "semantics": "absolute",
+    "cadence": "observation after each simulator command; policy consumes native chunk cadence"
+  },
+  "max_transient_retries": 1,
+  "entries": [
+    {
+      "id": "registered-pickup",
+      "manifest": {
+        "path": "qualified-code.manifest.json",
+        "sha256": "f1dead9ed04f0b9fb58843aee58eeb4cd64bf8b1b7c18b870fd7347553282c41"
+      },
+      "descriptor": {
+        "path": "admission-code-descriptor.json",
+        "sha256": "16abd7e9062ccb515d5eeea2c02330ad8cbea5964a079dc455db9f2ce9d9dba9"
+      },
+      "sources": {
+        "path": "admission-native-sources.json",
+        "sha256": "b085b74e31721c1a8ca52a9e325133fcd61a1c083bff02b7d10ae619635cd939"
+      },
+      "predicates": [
+        {
+          "id": "scope_instruction",
+          "path": [
+            "instruction"
+          ],
+          "equals": "Pick up the mint green scissors by 10 cm."
+        },
+        {
+          "id": "left_open",
+          "path": [
+            "state",
+            "left_ee_joint_state"
+          ],
+          "minimum": 0.9,
+          "maximum": 1.01
+        },
+        {
+          "id": "right_open",
+          "path": [
+            "state",
+            "right_ee_joint_state"
+          ],
+          "minimum": 0.9,
+          "maximum": 1.01
+        }
+      ],
+      "operation_plan": {
+        "path": "admission-code-operation-plan.json",
+        "sha256": "0c3cbac5132189dabf3d7dbfd393acef54d548aaee2019a07286afb92d4deee0"
+      }
+    },
+    {
+      "id": "visual-history-pickup",
+      "manifest": {
+        "path": "restored-sparse-general-pickup-official-0-dev.manifest.json",
+        "sha256": "cacd0acbe0d16b756dac2d3ac3028986f5644ea4344bb11142f25bc7d227e012"
+      },
+      "descriptor": {
+        "path": "admission-sparse-descriptor.json",
+        "sha256": "72559729b185cd9beafbadcfbe0d536c9e398616893c60aa92d907c2d708b487"
+      },
+      "sources": {
+        "path": "admission-native-sources.json",
+        "sha256": "b085b74e31721c1a8ca52a9e325133fcd61a1c083bff02b7d10ae619635cd939"
+      },
+      "predicates": [
+        {
+          "id": "scope_instruction",
+          "path": [
+            "instruction"
+          ],
+          "equals": "Pick up the mint green scissors by 10 cm."
+        },
+        {
+          "id": "left_open",
+          "path": [
+            "state",
+            "left_ee_joint_state"
+          ],
+          "minimum": 0.9,
+          "maximum": 1.01
+        },
+        {
+          "id": "right_open",
+          "path": [
+            "state",
+            "right_ee_joint_state"
+          ],
+          "minimum": 0.9,
+          "maximum": 1.01
+        }
+      ]
+    }
+  ]
+}

@@ -200,7 +200,7 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str | None, input
             if 'initial_plan' in online:
                 deployment['initial_plan'] = deepcopy(online['initial_plan'])
             write_record(out/'deployment.json', deployment)
-            env = dict(os.environ, PYTHONPATH=':'.join(map(str, [dev/'PhysicalRSI', project/'RoboDojo',
+            env = dict(os.environ, PYTHONPATH=':'.join(map(str, [Path(spec['physicalrsi_root']) if 'physicalrsi_root' in spec else dev/'PhysicalRSI', project/'RoboDojo',
                 project/'RoboDojo/XPolicyLab', repo/'python/sdk/src', repo/'python/sdk-runtime/src', repo/'python/embodied/src'])),
                 PHYSICALRSI_SKILL_CONFIG=str(out/'skills.json'), PHYSICALRSI_DSH_CONFIG=str(out/'runtime.json'),
                 DSH_ROBODOJO_ONLINE_CONFIG=str(out/'online.json'), PHYSICALRSI_EVAL_OUTPUT=str(out/'native-model'),
@@ -276,6 +276,10 @@ def resolve_inputs(spec: dict) -> dict:
     hash identifies the executable, not its installed dependency environment.
     """
     simulation_environment(spec, {})
+    if 'physicalrsi_root' in spec and (not isinstance(spec['physicalrsi_root'],str)
+            or not Path(spec['physicalrsi_root']).is_absolute()
+            or not (Path(spec['physicalrsi_root'])/'PhysicalRSI_baselines/robodojo/skill_model.py').is_file()):
+        raise ValueError('PhysicalRSI source must be an absolute provider checkout')
     template = Path(spec['online_config']) if 'online_config' in spec else (
         Path(spec['checkout'])/'python/embodied/configs/robodojo-online.example.json')
     interpreter = Path(spec['policy_python']) if 'policy_python' in spec else (

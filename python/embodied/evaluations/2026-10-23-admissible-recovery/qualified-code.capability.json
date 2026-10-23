@@ -1,0 +1,75 @@
+{
+  "schema": "dsh-capability-spec/v1",
+  "capability_id": "registered-pickup",
+  "scope": "Registered pickup program in the fixed development setup.",
+  "catalog_sha256": "b16ee9b0ee88148235d97ebb677bbe06b65c2292158c7034cb66b949ae38c277",
+  "skill": {
+    "name": "general-pickup",
+    "revision": "c92d6388ab7734acb9df57bf8007b6516edae6211b6f24b831410829fffac8cf"
+  },
+  "selection": {
+    "composition": "memory-guided-program-library",
+    "operations": [
+      "instruction-grounded-pickup"
+    ]
+  },
+  "control": {
+    "embodiment": "arx_x5",
+    "action_type": "joint",
+    "frame": "robot-joints",
+    "units": "arm radians; grippers normalized",
+    "semantics": "absolute",
+    "cadence": "observation after each simulator command; policy consumes native chunk cadence"
+  },
+  "observations": [
+    [
+      "vision",
+      "cam_head",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_left_wrist",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_right_wrist",
+      "color"
+    ],
+    [
+      "state",
+      "left_arm_joint_state"
+    ],
+    [
+      "state",
+      "left_ee_joint_state"
+    ],
+    [
+      "state",
+      "right_arm_joint_state"
+    ],
+    [
+      "state",
+      "right_ee_joint_state"
+    ]
+  ],
+  "start_predicates": [],
+  "lifecycle": {
+    "interrupt": "unknown",
+    "restart": "unknown"
+  },
+  "effects": [
+    {
+      "id": "task-complete",
+      "implementation": "available",
+      "completion": "Independent native task evaluator success at termination.",
+      "evidence": [
+        {
+          "path": "admission-native-sources.json",
+          "sha256": "b085b74e31721c1a8ca52a9e325133fcd61a1c083bff02b7d10ae619635cd939"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "elapsed_seconds": 5.297125726996455,
+    "http_status": 200,
+    "response_sha256": "6a6eed27f7a97ae9b074502b2a0d107830b1f2255064dede79fb1a12a5267877",
+    "started": 447080.894144163,
+    "status": "completed",
+    "usage": {
+      "completion_tokens": 575,
+      "completion_tokens_details": {
+        "reasoning_tokens": 313
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 4179,
+      "prompt_tokens": 4179,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 4754
+    }
+  }
+]

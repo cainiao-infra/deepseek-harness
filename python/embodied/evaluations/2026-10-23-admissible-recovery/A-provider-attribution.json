@@ -1,0 +1,50 @@
+{
+  "loaded_source_records": {
+    "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/execution-diagnostics/policy.json": {
+      "PhysicalRSI_baselines.robodojo.skills.inference_configs": {
+        "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+        "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a"
+      }
+    },
+    "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/execution-diagnostics/policy.json": {
+      "PhysicalRSI_baselines.robodojo.skills.inference_configs": {
+        "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+        "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a"
+      }
+    },
+    "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/execution-diagnostics/policy.json": {
+      "PhysicalRSI_baselines.robodojo.skills.inference_configs": {
+        "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+        "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a"
+      }
+    },
+    "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/execution-diagnostics/policy.json": {
+      "PhysicalRSI_baselines.robodojo.skills.inference_configs": {
+        "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+        "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a"
+      }
+    },
+    "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/execution-diagnostics/policy.json": {
+      "PhysicalRSI_baselines.robodojo.skills.inference_configs": {
+        "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+        "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a"
+      }
+    },
+    "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/execution-diagnostics/policy.json": {
+      "PhysicalRSI_baselines.robodojo.skills.inference_configs": {
+        "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+        "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a"
+      }
+    },
+    "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/execution-diagnostics/policy.json": {
+      "PhysicalRSI_baselines.robodojo.skills.inference_configs": {
+        "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+        "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a"
+      }
+    }
+  },
+  "original_config_sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a",
+  "patched_config_sha256": "27a07108e79b15fdaceebc8d8228dda23580e2a358656c379b2d0cb531ac10d4",
+  "physical_trials_used": "original",
+  "patched_physical_qualification": "unverified"
+}

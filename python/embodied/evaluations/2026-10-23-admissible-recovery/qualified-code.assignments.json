@@ -1,0 +1,8 @@
+{
+  "schema": "dsh-execution-assignments/v1",
+  "scope": "Registered pickup program in the fixed development setup.",
+  "timing": "prospective",
+  "trial_ids": [
+    "code-pickup"
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "candidate_set_revision": "d1800eea8f2581aeee6d9ec6581ba86b6b281cf865519e5c94f29b6cbd8a0a6c",
+    "decision": {
+      "candidate_id": "visual-history-pickup",
+      "candidate_set_revision": "d1800eea8f2581aeee6d9ec6581ba86b6b281cf865519e5c94f29b6cbd8a0a6c",
+      "kind": "execute",
+      "observation_seq": 1,
+      "parent_revision": "",
+      "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+    },
+    "revision": {
+      "binding_revision": "2eb1b52aa683f132a107027d38c37bfe4b8ddf0bd76399d421a727be5d1eea8a",
+      "catalog_revision": "e7b2972968c1c16d27f6e78c2ce545dd54e743babba73ed7c8bf937fa8fe6154",
+      "episode_id": "4ee1314be8394c34950a6b5a30528e1b",
+      "execution_key": "e3471f1632e6ef2ed60f33dc49325755ccba83c6108651440738e9994f53c9ac",
+      "generation": 0,
+      "observation_seq": 1,
+      "parent_id": "",
+      "plan": {
+        "composition": "memory-guided-visual-history",
+        "execution": "bind",
+        "operations": [],
+        "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+      },
+      "request_id": "98214f23c4a3475b808f06146a1bb9dc",
+      "revision_id": "272084002b404201897c8e76e8bea437"
+    }
+  }
+]

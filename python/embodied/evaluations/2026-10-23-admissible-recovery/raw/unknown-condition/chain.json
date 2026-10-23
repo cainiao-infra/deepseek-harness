@@ -1,0 +1,19 @@
+[
+  {
+    "episode_id": "260de300ce8c42e09129580f9e446121",
+    "generation": 0,
+    "reason": "no_admissible_candidate",
+    "subgoal_id": "lift-visible-target",
+    "time": 446979.370461876,
+    "type": "admission_stopped"
+  },
+  {
+    "actions": 0,
+    "detail": "Execution stopped: no_admissible_candidate",
+    "episode_id": "260de300ce8c42e09129580f9e446121",
+    "error_type": "AdmissionStopped",
+    "generation": 0,
+    "time": 446979.371427187,
+    "type": "execution_failed"
+  }
+]

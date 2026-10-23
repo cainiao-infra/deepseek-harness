@@ -1,0 +1,201 @@
+{
+  "name": "general-pickup",
+  "implementation": "code-policy",
+  "configuration": {
+    "command": [
+      "/mnt/nas/qingning/projects/envs/robodojo-sim/bin/python",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/launch.py",
+      "--descriptor",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/descriptors/general_pickup.json",
+      "--assets",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills",
+      "--output",
+      "{output}",
+      "--framework-root",
+      "/mnt/nas/qingning/projects/RoboDojo/XPolicyLab",
+      "--python",
+      "/mnt/nas/qingning/projects/envs/robodojo-sim/bin/python",
+      "--port",
+      "{port}"
+    ],
+    "cwd": "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills",
+    "environment": {
+      "PHYSICALRSI_PROGRAM_ROOT": "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills",
+      "PHYSICALRSI_OPERATION_PLAN": "/root/.cache/dsh-physicalrsi-dev/admissible-recovery-20261023-02-original-code/runs/0000-code-pickup-N/native-model/4ab6df5aa6754f2787262c3e95ae6bd6/groups/e226965f671a46cdb11c13edfe5997a4/operation-plan.json",
+      "PHYSICALRSI_OPERATION_PLAN_SHA256": "909639b783f5b3cead3ed09e5db631e06c89a2618a2a664307149ba5765d31a0"
+    },
+    "files": {
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/implementations/rdj_rgb_adapters/15bdea06cf71ed2e/rdj_rgb_adapters/general_pickup.py": "c76014a08ed84f698e44da7abc71ff66231fab4b07129b73e95e7f6e77246e12",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/memory/9686404d0af9ff09ea63658da015f4920cc589e952d1c1647833f068711a03ed.json": "9686404d0af9ff09ea63658da015f4920cc589e952d1c1647833f068711a03ed",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/action_primitives.py": "10e49800aff04d463c7294563d7cad904d47ecc011460538e6373660abedad27",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/block_programs.py": "9780a4b0f22ee3737dee281bf7f5db173aaef1844a1d06caf04268800a96e3b6",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/cartesian_skills.py": "4b316aa686aff4cd642f23f3e1b0bb14668f17b0f8a1a77c38f6bdbccc67f646",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/joint_skills.py": "15ece715fad8e2f33bd8b32b71c8a531aa2519cca536a444d4b6a75cf5ff7cfb",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/manipulation_programs.py": "50e76c9f4524fd454b30a6ad570d5b652827e28b457af32fd00c65a15d174bfd",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/memory_runtime.py": "ca37148dac7ddd63aff35e6f3c343bf6afbc56ce7587709844397395c38ff431",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/pick_place.py": "7d8aaa87404ab3d8249e162a2b9b7e9b682f2aab1f4ed55090599616166a93fa",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/pose_skills.py": "53b5bffdc36b4560c92d01ed45d64859909f9704a650ac949d4c1a597451fdce",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/physicalrsi_skill_library/stage_programs.py": "2d41ab7e4e2b53aaa51615aa6bbee6a8e3fd2d86050b4a8a7d1c52ea9e90ac82",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/descriptors/general_pickup.json": "8f6d7b17da1e042cf869a667b81c1a5b87ce6ee907ebc7e9b3eed68edec3812e",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/launch.py": "ae751eca364a84f3e5270ef9c15f615008978618c99ec044d4556ee632106f86",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/__init__.py": "41dbaf99c5ffd8cc0cea09c8886f76e48d8834364d8f09bbf24c4b2f71b2304b",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/binding.py": "9244427666cbf4765400ac261768bebcc2aba0042883f4276219a4f56cd53c08",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/boundary.py": "9f0a72bc4b2062620125116cce48e9d039e846620a908b44373a2824c1543ba5",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/collision_init.py": "c55709b2eb85e94da23476e51909ee165a941014acdf5a86574c6d6ab88ada2f",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/collision_pairs.py": "c85b56c27c23722b205b7b17f135c2e4857fedfce6b58b5b522b1175afb4ba0f",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/isolation.py": "1e69b62ea2144b8a3ff0853efcf7efe5e36f3025849a1f91bd1a49c68e1558ab",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/startup_modes.py": "99a91d677e5a21ec5f9ea88dd5d9e6b1e0d4f73ad7cbb64b29e5e68135528175",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/transport/wire.py": "cfba783584d4b7f1830417a293f2e3c01520697ceffbb58d2b3889fac5c74fa4",
+      "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/code-skills/runtime/worker.py": "1a915349487e62eaebea5d7771398ae0d7f8ba51837a11feaaeb05e5f26f4e56"
+    },
+    "operation_memories": {
+      "ad3df47680d14146fc497a08fbe146efab884c00b23ecca5355a9c14f1fe3981": {
+        "bindings": {
+          "action-batch": [
+            {
+              "input": "requested-indices",
+              "operation": "motion.advance.batch",
+              "output": "actions"
+            }
+          ],
+          "action-single": [
+            {
+              "input": "unit",
+              "operation": "motion.advance.single",
+              "output": "actions"
+            }
+          ],
+          "bind-request": [
+            {
+              "input": "semantic-request",
+              "operation": "state.capture",
+              "output": "stateful-request"
+            },
+            {
+              "input": "stateful-request",
+              "operation": "motion.resolve",
+              "output": "joint-binding"
+            },
+            {
+              "input": "joint-binding",
+              "operation": "motion.bind",
+              "output": "unit"
+            }
+          ],
+          "observe-batch": [
+            {
+              "input": "observations",
+              "operation": "vision.observe.batch",
+              "output": "observed-batch"
+            },
+            {
+              "input": "observed-batch",
+              "operation": "memory.bind_pending.batch",
+              "output": "unit"
+            }
+          ],
+          "observe-single": [
+            {
+              "input": "observation",
+              "operation": "vision.observe.single",
+              "output": "observed"
+            },
+            {
+              "input": "observed",
+              "operation": "memory.bind_pending.single",
+              "output": "unit"
+            }
+          ],
+          "reset": [
+            {
+              "input": "unit",
+              "operation": "episode.reset.state",
+              "output": "unit"
+            },
+            {
+              "input": "unit",
+              "operation": "episode.reset.core",
+              "output": "unit"
+            }
+          ]
+        },
+        "programs": {
+          "action-batch": {
+            "steps": [
+              {
+                "operation": "motion.advance.batch",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              }
+            ]
+          },
+          "action-single": {
+            "steps": [
+              {
+                "operation": "motion.advance.single",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              }
+            ]
+          },
+          "bind-request": {
+            "steps": [
+              {
+                "operation": "state.capture",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              },
+              {
+                "operation": "motion.resolve",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              },
+              {
+                "operation": "motion.bind",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              }
+            ]
+          },
+          "observe-batch": {
+            "steps": [
+              {
+                "operation": "vision.observe.batch",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              },
+              {
+                "operation": "memory.bind_pending.batch",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              }
+            ]
+          },
+          "observe-single": {
+            "steps": [
+              {
+                "operation": "vision.observe.single",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              },
+              {
+                "operation": "memory.bind_pending.single",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              }
+            ]
+          },
+          "reset": {
+            "steps": [
+              {
+                "operation": "episode.reset.state",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              },
+              {
+                "operation": "episode.reset.core",
+                "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375"
+              }
+            ]
+          }
+        },
+        "revision": "9bbd615538b191266bd227c563893ab1303746ef46865c836967db4720c6c375",
+        "schema": "physicalrsi.skill-program-memory/v1"
+      }
+    },
+    "output": "/root/.cache/dsh-physicalrsi-dev/admissible-recovery-20261023-02-original-code/runs/0000-code-pickup-N/skills",
+    "request_timeout_s": 120,
+    "runtime": "frozen-program-service",
+    "startup_timeout_s": 300
+  }
+}

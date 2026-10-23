@@ -1,0 +1,12 @@
+{
+  "configuration": {
+    "checkpoint_num": 120000,
+    "model_path": "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/checkpoints/pi05-sparse-memory",
+    "output": "/root/.cache/dsh-physicalrsi-dev/execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/skills",
+    "repo_id": "robodojo_arx_x5_all35",
+    "request_timeout_s": 120,
+    "startup_timeout_s": 300,
+    "train_config_name": "pi05_sparse_mem_robodojo_all35_80k"
+  },
+  "name": "pi05-sparse-memory"
+}

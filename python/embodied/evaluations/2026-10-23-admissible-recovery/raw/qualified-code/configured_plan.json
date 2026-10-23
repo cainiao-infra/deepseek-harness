@@ -1,0 +1,1 @@
+{"model_calls": 0, "origin": "deployment", "plan": {"composition": "memory-guided-program-library", "operations": ["instruction-grounded-pickup"], "rationale": "Qualify the complete registered default code program."}}

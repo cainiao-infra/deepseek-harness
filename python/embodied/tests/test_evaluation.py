@@ -172,6 +172,40 @@ def test_pilot_captures_explicit_recovery_settings_before_model_calls(tmp_path):
         module['resolve_inputs'](spec)
 
 
+def test_pilot_launch_uses_the_explicit_provider_checkout(tmp_path,monkeypatch):
+    from types import SimpleNamespace
+    root=Path(__file__).parents[1]
+    module=runpy.run_path(str(root/'scripts/paired_pilot.py'))
+    spec=json.loads((root/'configs/paired-pilot.example.json').read_text())
+    provider=tmp_path/'selected-provider'
+    source=provider/'PhysicalRSI_baselines/robodojo/skill_model.py'
+    source.parent.mkdir(parents=True);source.write_text('# isolated provider\n')
+    skills=tmp_path/'skills.json';skills.write_text(json.dumps({'skills':{},'program_registry':{}}))
+    runtime=tmp_path/'runtime.json';runtime.write_text(json.dumps({'model_spec':{}}))
+    spec.update(physicalrsi_root=str(provider),checkout=str(root.parents[1]),
+        output=str(tmp_path/'runs'),skill_config=str(skills),runtime_config=str(runtime),
+        policy_python=sys.executable,online_config=str(root/'configs/robodojo-online.example.json'))
+    inputs=module['resolve_inputs'](spec)
+    captured=[]
+    class Relay:
+        url='http://127.0.0.1:1/v1';token='test-only';planning_forbidden=False
+        def __init__(self,*_):pass
+        def __enter__(self):return self
+        def __exit__(self,*_):pass
+    def launch(*args,**kwargs):
+        captured.append(kwargs['env']['PYTHONPATH'].split(':'))
+        raise RuntimeError('Stop before process creation')
+    monkeypatch.setitem(module['episode'].__globals__,'Gateway',Relay)
+    monkeypatch.setitem(module['episode'].__globals__,'subprocess',SimpleNamespace(
+        check_output=lambda *a,**k:'fixture-source',Popen=launch,DEVNULL=-3,STDOUT=-2))
+    result=module['episode'](spec,spec['cases'][0],'H1',0,'test-only',inputs)
+    assert result['error']['message']=='Stop before process creation'
+    assert captured[0][0]==str(provider)
+    assert str(Path(spec['deployment_root'])/'PhysicalRSI') not in captured[0]
+    spec['physicalrsi_root']=str(tmp_path/'missing')
+    with pytest.raises(ValueError,match='provider checkout'):module['resolve_inputs'](spec)
+
+
 def test_invalid_recovery_template_leaves_no_pilot_or_model_attempt(tmp_path, monkeypatch):
     root = Path(__file__).parents[1]
     module = runpy.run_path(str(root/'scripts/paired_pilot.py'))

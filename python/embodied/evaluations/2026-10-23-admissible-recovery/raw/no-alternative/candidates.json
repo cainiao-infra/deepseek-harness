@@ -1,0 +1,56 @@
+[
+  {
+    "candidates": [
+      {
+        "id": "visual-history-pickup",
+        "selection": {
+          "composition": "memory-guided-visual-history",
+          "operations": []
+        },
+        "version": "5865e24ef655718e666a849c12604f9b3bf40090abfdc8a42c61fa3add0f55f8"
+      }
+    ],
+    "excluded": [],
+    "failure_revision": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "observation_seq": 1,
+    "parent_revision": "",
+    "phase": "initial",
+    "predicates": {
+      "visual-history-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm."
+      }
+    },
+    "revision": "e512074a5462881004cba2f5e3a5bcd821cfbb824eb16cd8d0810af42310bbc3",
+    "schema": "dsh-candidate-set/v1",
+    "subgoal_id": "lift-visible-target"
+  },
+  {
+    "candidates": [],
+    "excluded": [
+      {
+        "id": "visual-history-pickup",
+        "reasons": [
+          "persistent_failure"
+        ],
+        "status": "rejected",
+        "unknown": []
+      }
+    ],
+    "failure_revision": "e6c864e540ac5e38f9301761def4c1ac529bfdff2f0610cc018b5940718211f1",
+    "observation_seq": 2,
+    "parent_revision": "f7eff5a9666c42c78344851ae75bf3e5",
+    "phase": "recovery",
+    "predicates": {
+      "visual-history-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm."
+      }
+    },
+    "revision": "a8ceecc7856cddddf6534487546b0f2dcaafc2b39c1c6d64340b4bbf0ff94bc6",
+    "schema": "dsh-candidate-set/v1",
+    "subgoal_id": "lift-visible-target"
+  }
+]

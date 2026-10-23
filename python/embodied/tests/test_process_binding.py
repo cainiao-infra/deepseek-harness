@@ -317,3 +317,20 @@ def test_execution_trace_is_opt_in_and_requires_a_boolean():
     assert resolve_worker({'python': sys.executable, 'capture_execution_diagnostics': True})['capture_execution_diagnostics']
     with pytest.raises(ValueError, match='must be boolean'):
         resolve_worker({'python': sys.executable, 'capture_execution_diagnostics': 1})
+
+
+@pytest.mark.parametrize('sources',[{'policy.py':'a'*64},{'policy.py':'wrong'},[]])
+def test_execution_source_metadata_is_optional_but_validated_at_the_worker_wire(worker,tmp_path,sources):
+    binding,children,clients,mode,info,commands=worker
+    binding.close()
+    info['execution_sources']=sources
+    if sources=={'policy.py':'a'*64}:
+        other=module.ProcessBinding({},binding.frozen,binding.settings,tmp_path/'new-workers',
+                                    client_factory=binding.client_factory)
+        try:
+            assert other.metadata['execution_sources']==sources
+        finally:other.close()
+    else:
+        with pytest.raises(ValueError,match='execution source'):
+            module.ProcessBinding({},binding.frozen,binding.settings,tmp_path/'new-workers',
+                                  client_factory=binding.client_factory)

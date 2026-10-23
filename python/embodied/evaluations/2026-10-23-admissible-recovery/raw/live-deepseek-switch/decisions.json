@@ -1,0 +1,60 @@
+[
+  {
+    "candidate_set_revision": "c4f26421c98d82801ab5a94ac1661a298f5e4d5fc1d4c636d9868fe50f19c47b",
+    "decision": {
+      "candidate_id": "registered-pickup",
+      "candidate_set_revision": "c4f26421c98d82801ab5a94ac1661a298f5e4d5fc1d4c636d9868fe50f19c47b",
+      "kind": "execute",
+      "observation_seq": 2,
+      "parent_revision": "a51d07f79fd449398b6c3ab176699f82",
+      "rationale": "Current observation shows RGB available on all three cameras, with the mint green scissors clearly visible on the right side of the table in cam_head and prominently in cam_right_wrist, so the instruction-referenced object is observable. Both grippers are open (left_open=1.0, right_open=1.0) and pose/state are present. The only candidate, registered-pickup, resolves to the available memory-guided-program-library composition via the instruction-grounded-pickup operation, whose observation/action contracts (observation-batch in, joint action-chunks out) match the current observation. The prior failure was a different composition (memory-guided-visual-history) marked incompatible and is no longer offered, so it is not a reason to stop on this admitted candidate."
+    },
+    "revision": {
+      "binding_revision": "9ad09b4ffd696d68acbdf558ba3df8466b9587663cd0752d950a1acccbf8cf61",
+      "catalog_revision": "077f94883935b0e052011557f5dae2bda7c6c1a3a356654b39e96569c029854d",
+      "episode_id": "1d76c8487eca446ab5fa5c126ab9481e",
+      "execution_key": "4ed90aa72abe44ec675917f9e4bc0182265ac2ce8e8404e4d4b23a2c14716f87",
+      "generation": 0,
+      "observation_seq": 2,
+      "parent_id": "a51d07f79fd449398b6c3ab176699f82",
+      "plan": {
+        "composition": "memory-guided-program-library",
+        "execution": "switch",
+        "operations": [
+          "instruction-grounded-pickup"
+        ],
+        "rationale": "Current observation shows RGB available on all three cameras, with the mint green scissors clearly visible on the right side of the table in cam_head and prominently in cam_right_wrist, so the instruction-referenced object is observable. Both grippers are open (left_open=1.0, right_open=1.0) and pose/state are present. The only candidate, registered-pickup, resolves to the available memory-guided-program-library composition via the instruction-grounded-pickup operation, whose observation/action contracts (observation-batch in, joint action-chunks out) match the current observation. The prior failure was a different composition (memory-guided-visual-history) marked incompatible and is no longer offered, so it is not a reason to stop on this admitted candidate."
+      },
+      "request_id": "09188237341e4baab013d557907cebc5",
+      "revision_id": "440cd9f9a9024760a7cb132af1d5107d"
+    }
+  },
+  {
+    "candidate_set_revision": "d1800eea8f2581aeee6d9ec6581ba86b6b281cf865519e5c94f29b6cbd8a0a6c",
+    "decision": {
+      "candidate_id": "visual-history-pickup",
+      "candidate_set_revision": "d1800eea8f2581aeee6d9ec6581ba86b6b281cf865519e5c94f29b6cbd8a0a6c",
+      "kind": "execute",
+      "observation_seq": 1,
+      "parent_revision": "",
+      "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+    },
+    "revision": {
+      "binding_revision": "9ad09b4ffd696d68acbdf558ba3df8466b9587663cd0752d950a1acccbf8cf61",
+      "catalog_revision": "077f94883935b0e052011557f5dae2bda7c6c1a3a356654b39e96569c029854d",
+      "episode_id": "1d76c8487eca446ab5fa5c126ab9481e",
+      "execution_key": "9adaf60b807134d4e798137711251307745fab5f4e3b8c034b895bb2a8f6082e",
+      "generation": 0,
+      "observation_seq": 1,
+      "parent_id": "",
+      "plan": {
+        "composition": "memory-guided-visual-history",
+        "execution": "bind",
+        "operations": [],
+        "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+      },
+      "request_id": "3bdb2804ca9e4c56acf13568c027ecef",
+      "revision_id": "a51d07f79fd449398b6c3ab176699f82"
+    }
+  }
+]

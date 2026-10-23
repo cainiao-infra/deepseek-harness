@@ -157,6 +157,8 @@ Version changed plan/failure/evidence protocols explicitly and update all consum
 
 Increment A’s execution checks and provider patches are recorded in the [initial execution record](../../../../python/embodied/evaluations/2026-10-23-execution-qualification/report.md); the [renderer restoration and physical trials](../../../../python/embodied/evaluations/2026-10-23-execution-qualification/renderer-restoration.md) complete the six assigned native trials. Capability support follows the scoped audited outcomes, including unsuccessful tasks; this does not qualify the remaining increments or formal G1–G4.
 
+The [increment B record](../../../../python/embodied/evaluations/2026-10-23-admissible-recovery/report.md) records qualified candidate resolution, failure-conditioned attempts and explicit stopping, with six controlled real-simulator cases and one live DeepSeek recovery. Both successful replacement chains use the fixed development pickup scene and a pre-action injected fault; they do not qualify partial-effect recovery, task progression or formal outcome targets. The record also corrects the actual pi05 provider configuration used in A.
+
 Engineering acceptance and outcome acceptance are separate. Use the following layers in order; reaching a later layer never excuses a failed earlier invariant. This document records proposed verification, not completed tests or simulator qualification.
 
 | Layer | Required evidence and negative cases |

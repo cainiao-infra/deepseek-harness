@@ -493,3 +493,17 @@ def test_repeated_skill_failure_exhausts_budget_before_another_model_call(tmp_pa
                 coordinator.recover(event)
     assert calls.count('online_plan')==1 and executed==[] and runtime.blocked
     assert coordinator.status=='failed'
+
+
+def test_runner_supplies_current_observation_sequence_when_binding_after_stopping(tmp_path):
+    runtime,coordinator,executed,calls,evidence=setup_runtime(tmp_path)
+    original=runtime.client.call
+    sequences=[]
+    def checked(*,func_name,obs):
+        if func_name=='online_bind':
+            assert obs['observation_seq']==runtime.seq
+            sequences.append(runtime.seq)
+        return original(func_name=func_name,obs=obs)
+    runtime.client.call=checked
+    coordinator.recover(ExecutionEvent('frame-lost',runtime.seq,'observation_lost',{'rgb_available':False}))
+    assert sequences and coordinator.status=='running'

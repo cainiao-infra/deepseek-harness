@@ -1,0 +1,90 @@
+{
+  "schema": "dsh-execution-qualification-report/v1",
+  "partition": "development",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "environment_complete": true,
+  "assignment_timing": "prospective",
+  "capability_id": "registered-pickup",
+  "scope": "Registered pickup program in the fixed development setup.",
+  "spec_revision": "fd72c4a70b30217ccf7e4bc66c6ac7d248ff19d193cab89f297dc18ce4f9d0b1",
+  "effects": [
+    {
+      "effect": "task-complete",
+      "status": "verified",
+      "reason": "all_assigned_execution_trials_passed",
+      "passed_trials": 1,
+      "assigned_trials": 1
+    }
+  ],
+  "covered": true,
+  "trials": [
+    {
+      "id": "code-pickup",
+      "eligible": true,
+      "effects": {
+        "task-complete": true
+      },
+      "native_success": true,
+      "planner_attempts": 0,
+      "planner_enforced": true,
+      "actions": 110,
+      "episode_error": null,
+      "launcher_error": null,
+      "artifact_digests": {
+        "result": {
+          "path": "raw/qualified-code/result.json",
+          "sha256": "41a1d8e55d034f57b1321ccf4559babde0e8d131d844f9d7cca5257c139de486"
+        },
+        "deployment": {
+          "path": "raw/qualified-code/deployment.json",
+          "sha256": "070093a6c3c6960c0dda4e023d6d1dcbb9f93c39775722118fa50d287d23e4ce"
+        },
+        "configured_plan": {
+          "path": "raw/qualified-code/configured_plan.json",
+          "sha256": "30e9747ada4161bc57fa51f7fa4d94b3192d7890bc6a971dfae82f74dd5e3fb6"
+        },
+        "native_binding": {
+          "path": "raw/qualified-code/native_binding.json",
+          "sha256": "8c97cad63b0a0cfe745df53ad291c3216d47b821aba7330bbcd83f2e51d06505"
+        },
+        "native_result": {
+          "path": "raw/qualified-code/native_result.json",
+          "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+        },
+        "timing": {
+          "path": "raw/qualified-code/timing.json",
+          "sha256": "478a6fbc4d3e5ca327bc53aa989f1d091c3b73280d1fdc5a079d96faeb58f554"
+        },
+        "terminal": {
+          "path": "raw/qualified-code/terminal.json",
+          "sha256": "157724f3d75c76c96bc0df81720fec35bb7cf9caca924a4185787d6d713fa535"
+        },
+        "initial_observation": {
+          "path": "raw/qualified-code/initial_observation.json",
+          "sha256": "668bda3b0ad07daf532ac79724ad4b439b9a4dce65e01556173dc2af51e232b4"
+        },
+        "planner_audit": {
+          "path": "raw/qualified-code/planner-audit.json",
+          "sha256": "49177a8fbb73f834242f340715ac4439472da4c8b717159be08a81f015d62947"
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "admission-native-sources.json",
+      "sha256": "b085b74e31721c1a8ca52a9e325133fcd61a1c083bff02b7d10ae619635cd939"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "restored-environment.json",
+      "sha256": "d5c882e2c0596da463a79faccbade28937b332742e5883820f594f3cea3c79f5"
+    },
+    {
+      "path": "restored-simulator-environment.json",
+      "sha256": "ed6c2508f753ac593d32c4dda882105a51840b7e699ac61b1ed02f48411f9613"
+    }
+  ]
+}

@@ -157,6 +157,8 @@ flowchart TB
 
 增量 A 的执行检查与提供方补丁记录在[初次执行记录](../../../../python/embodied/evaluations/2026-10-23-execution-qualification/report.zh.md)中；[渲染恢复与物理试验](../../../../python/embodied/evaluations/2026-10-23-execution-qualification/renderer-restoration.zh.md)完成六项已分配原生试验。能力支持以限定范围的审计结果为准，包含未成功任务，不代表其余增量或正式 G1–G4 通过。
 
+[增量 B 记录](../../../../python/embodied/evaluations/2026-10-23-admissible-recovery/report.zh.md)记录已验证候选解析、受失败条件约束的尝试和显式停止，包含六个受控真实仿真案例及一次真实 DeepSeek 恢复。两个成功替换链路均使用固定开发拾取场景及首动作前注入故障，不验证部分效果后的恢复、任务推进或正式结果目标。记录还更正 A 实际使用的 pi05 提供方配置。
+
 工程验收与效果验收分开。依次使用以下层次；到达后续层次不能豁免此前的不变量失败。本文记录计划开展的验证，不代表已完成测试或仿真验证。
 
 | 层次 | 必要证据与拒绝案例 |

@@ -13,6 +13,9 @@ def load_online_config(path: Path) -> dict:
     config = json.loads(path.read_text())
     if config.get('schema') != 'dsh-robodojo-online/v1':
         raise ValueError('Versioned online configuration required')
+    if 'admission_policy' in config:
+        from .admission import load_admission
+        load_admission(config['admission_policy'])
     config.setdefault('recovery_enabled', True)
     if type(config['recovery_enabled']) is not bool:
         raise ValueError('Recovery enablement must be a boolean')

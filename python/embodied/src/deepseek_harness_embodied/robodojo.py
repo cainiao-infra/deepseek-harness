@@ -18,6 +18,8 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .online_config import load_online_config
+from .admission import AdmissionStopped
+from .skill_failure import validate_handling
 from .bridge import write_record
 from .recovery import (
     ExecutionEvent, PlanRevision, RecoveryBudget, RecoveryCoordinator, RuntimeState, StopReceipt)
@@ -182,8 +184,11 @@ class RoboDojoRuntime:
         """Plan and commit the initial native binding before delivering any action."""
         state = self.capture()
         row = self.client.call(func_name='online_start', obs=self.packet(
-            observation=self.observation, observation_seq=self.seq, deadline=self.deadline,
+            observation=self.observation, observation_seq=self.seq, observed_at=state.observed_at, deadline=self.deadline,
             event=None, executed_actions=0))
+        if isinstance(row, dict) and set(row)=={'stopped'}:
+            self.record({'type':'admission_stopped', **row['stopped']})
+            raise AdmissionStopped(row['stopped']['reason'])
         revision = PlanRevision(**row)
         if revision.episode_id != self.episode or revision.observation_seq != self.seq or revision.parent_id:
             raise RuntimeError('Initial plan has an invalid episode or observation')
@@ -229,7 +234,7 @@ class RoboDojoRuntime:
         self._thread()
         if revision.episode_id != state.episode_id or revision.generation != state.generation:
             raise RuntimeError('Plan belongs to a different physical execution')
-        result = self.client.call(func_name='online_validate', obs=self.packet(revision=asdict(revision)))
+        result = self.client.call(func_name='online_validate', obs=self.packet(revision=asdict(revision), observation_seq=state.observation_seq))
         if result != {'validated': revision.revision_id}:
             raise RuntimeError('Native plan validation was not acknowledged')
 
@@ -238,7 +243,7 @@ class RoboDojoRuntime:
         self._thread()
         if not self.blocked or self.queue or self.in_flight:
             raise RuntimeError('Binding requires stopped dispatch with no old tail')
-        result = self.client.call(func_name='online_bind', obs=self.packet(revision=asdict(revision)))
+        result = self.client.call(func_name='online_bind', obs=self.packet(revision=asdict(revision), observation_seq=self.seq))
         self._thread()
         if self.accept_skill_failure(result, revision.revision_id, 'bind'):
             self.current = revision
@@ -254,14 +259,16 @@ class RoboDojoRuntime:
             return False
         self.blocked = True
         failure = result['skill_failure']
-        if (set(result)!={'skill_failure'} or not isinstance(failure, dict) or set(failure)!={
-                'kind','operation','diagnostic_id','episode_id','generation','revision_id'}
+        if (set(result)!={'skill_failure'} or not isinstance(failure, dict) or set(failure) not in ({'kind','operation','diagnostic_id','episode_id','generation','revision_id'},
+                    {'kind','operation','diagnostic_id','episode_id','generation','revision_id','handling'})
                 or any(failure[k]!=v for k,v in self.packet(revision_id=revision_id,
                     kind='skill_inference_failed',operation=operation).items())
                 or not isinstance(failure['diagnostic_id'],str)
                 or not re.fullmatch('[0-9a-f]{32}',failure['diagnostic_id'])
                 or self.in_flight or self.pending_fault is not None):
             raise ValueError('Malformed or stale native skill failure')
+        if 'handling' in failure:
+            validate_handling(failure['handling'])
         discarded = len(self.queue)
         self.queue.clear()
         self.record({'type':'skill_failure', **failure, 'discarded_runner_actions':discarded})
@@ -275,7 +282,8 @@ class RoboDojoRuntime:
             raise RuntimeError('No pending native skill failure')
         self.pending_fault = None
         return ExecutionEvent('skill-'+failure['diagnostic_id'],self.seq,'skill_failed',
-                              {'kind':failure['kind'],'operation':failure['operation']})
+                              {'kind':failure['kind'],'operation':failure['operation'],
+                               **({'handling':failure['handling']} if 'handling' in failure else {})})
 
     def actions(self, revision_id: str):
         """Execute at most one native action, retaining only revision-tagged cached tails."""
@@ -310,8 +318,11 @@ class RoboDojoRuntime:
         """Generate a replacement from fresh sensors in the same durable DSH Session."""
         self._thread()
         row = self.client.call(func_name='online_plan', obs=self.packet(
-            observation=self.observation, observation_seq=state.observation_seq, deadline=deadline,
+            observation=self.observation, observation_seq=state.observation_seq, observed_at=state.observed_at, deadline=deadline,
             executed_actions=self.executed, event=asdict(event)))
+        if isinstance(row, dict) and set(row)=={'stopped'}:
+            self.record({'type':'admission_stopped', **row['stopped']})
+            raise AdmissionStopped(row['stopped']['reason'])
         return PlanRevision(**row)
 
 

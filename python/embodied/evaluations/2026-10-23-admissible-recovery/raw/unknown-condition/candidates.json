@@ -1,0 +1,44 @@
+[
+  {
+    "candidates": [],
+    "excluded": [
+      {
+        "id": "registered-pickup",
+        "reasons": [],
+        "status": "undetermined",
+        "unknown": [
+          "unobserved"
+        ]
+      },
+      {
+        "id": "visual-history-pickup",
+        "reasons": [],
+        "status": "undetermined",
+        "unknown": [
+          "unobserved"
+        ]
+      }
+    ],
+    "failure_revision": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "observation_seq": 1,
+    "parent_revision": "",
+    "phase": "initial",
+    "predicates": {
+      "registered-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm.",
+        "unobserved": null
+      },
+      "visual-history-pickup": {
+        "left_open": 1.0,
+        "right_open": 1.0,
+        "scope_instruction": "Pick up the mint green scissors by 10 cm.",
+        "unobserved": null
+      }
+    },
+    "revision": "e0bda9bb0d75328f299aba7a87232b4fc27b676bddf0634a63f7b1c2135e4d6a",
+    "schema": "dsh-candidate-set/v1",
+    "subgoal_id": "lift-visible-target"
+  }
+]

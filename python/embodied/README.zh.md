@@ -37,6 +37,16 @@ python -m deepseek_harness_embodied.profile --dsh-home /absolute/path/to/home --
 
 `ModelSpec.deepseek_reasoning` 通过 DSH 现有 DeepSeek 兼容配置显式选择 `off`、`low`、`high` 或 `max`。不提供该值时保留 provider 默认行为，不代表关闭思考。`off` 发送 `thinking.type=disabled`，且不发送 `reasoning_effort`。对照的每个实验组必须固定相同设置；[官方思考模式指南](https://api-docs.deepseek.com/guides/thinking_mode/)说明了对应 wire 语义。
 
+## 可准入恢复
+
+在线配置的可选 `admission_policy` 包含证据绝对目录 `root`、相对 `path` 及其 `sha256`。其 `dsh-admission-policy/v1` 文档声明一个子目标、必要效果、控制约定、瞬态重试上限和已验证条目。每个条目固定资格 manifest、实测执行描述及提供方源码摘要；范围谓词仅读取指令、状态或视觉字段。加载时重新计算资格。目录、源码、检查点配置、执行参数、观测和必要效果匹配后，条目才能成为候选。身份比较排除证据输出路径；生成的固定程序启动路径只有在保留的 operation plan 与已验证程序一致后才能排除。
+
+解析器区分首次绑定与恢复，替换还要求经审核的 `restart_guards`。缺失的必要条件保持未确定。候选集为空时直接返回停止结果，模型调用为零。增强协议 `dsh-robodojo-plan/v2` 选择已准入候选 ID 或停止；两种结果均关联候选集版本、观测序号和父计划。提示词字段定义与校验共享同一 schema。提交和绑定时重新检查选择及观测时效，包含推理耗时。省略该设置时兼容请求保持原行为。
+
+提供方可抛出 `SkillExecutionFault`，携带已校验的原因、重试条件、相关谓词 ID，以及已知、部分或未知效果。只有清理成功后，这些字段才进入恢复流程。未分类失败默认未知且不重试。持久失败在本 episode 内保持排除；条件重试要求已注册且已知的相关事实变化，瞬态重试同时消耗 `max_transient_retries` 和既有共享调用、时间及修订预算。仅图像或序号更新不允许重试。停止或清理结果未知时仍禁止继续。
+
+[增量 B 记录](evaluations/2026-10-23-admissible-recovery/report.zh.md)区分受控决策和真实 DeepSeek 决策，将支持范围限制在实测的开发拾取场景。候选快照与决策纳入独立 episode 审计；原始诊断和离线资格分数不会进入模型输入。不生成任意观测动作或未支持的操作。
+
 ## 在线恢复执行端
 
 `recovery.py` 定义 `PhysicalRuntime`、`RuntimeState`、`StopReceipt`、`PlanRevision` 和 `RecoveryCoordinator`。使用方必须将每个动作块经过协调器。观测触发异常后先禁止派发，在时限内等待队列和在途动作为零的确认，再获取更新的观测，并根据固定标识和当前前置条件校验替换计划。绑定前记录提交，替换计划必须改变由能力及可执行参数生成、经执行端校验的 `execution_key`，说明文字不参与该摘要。异常后保持禁止派发，只有原生结果才能标记成功。
@@ -89,7 +99,7 @@ pilot 报告依据冻结的模型控制参数和收到的输入，重新计算�
 
 `native-terminal.json` 单独记录首次既有原生终止检查及首次动作派发。它不增加环境查询，忽略终止前的 success 标志，并将评测收尾排除在完成时间外。冷启动仍计入；仅此记录不能完成要求中的预热或资源控制验收。
 
-可选的绝对路径 `online_config` 和 `policy_python` 为所有组选择经审查的恢复模板和策略解释器。省略时保留仓库示例和原有策略环境。启动器在创建分配或预留模型调用前验证两者，将模板一次性保存在 `resolved-inputs.json`，并记录模板及解释器文件的 SHA-256。每个 episode 的证据路径和统一期限替换模板中的占位值。检测阈值与重启条件保持为已捕获配置。可执行文件哈希不代表已安装依赖，也不能证明学习策略可用。
+可选的绝对路径 `online_config` 和 `policy_python` 为所有组选择经审查的恢复模板和策略解释器。省略时保留仓库示例和原有策略环境。可选的 `physicalrsi_root` 在构造 `PYTHONPATH` 前显式选择提供方源码目录；省略时使用 `deployment_root/PhysicalRSI`。缺失提供方源码文件时拒绝解析。启动器在创建分配或预留模型调用前验证这些输入，将模板一次性保存在 `resolved-inputs.json`，并记录模板及解释器文件的 SHA-256。每个 episode 的证据路径和统一期限替换模板中的占位值。检测阈值与重启条件保持为已捕获配置。可执行文件哈希不代表已安装依赖，也不能证明学习策略可用。
 
 case 可同时固定 `layout_id` 和 `layout_sha256`。该索引选择 CLI seed 目录中按数字排序的原生布局；仅更改 `--seed` 不会选择目录内其他文件。客户端验证原文件，保留逐字节相同的不可覆盖快照，并让原生加载器读取快照；保留原生恢复排除规则。报告按 case 检查所选索引和快照摘要；缺失选择证据不能支持固定布局 case 成功。布局文件和标识不进入模型输入。
 

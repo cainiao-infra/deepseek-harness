@@ -1,0 +1,644 @@
+{
+  "schema": "dsh-admissible-recovery-summary/v1",
+  "qualification": false,
+  "partition": "development",
+  "formal_heldout_runs": 0,
+  "scope": "Fixed general_pickup seed 0 layout 0; injected pre-action persistent sparse failure.",
+  "qualified_entries": [
+    "registered-pickup",
+    "visual-history-pickup"
+  ],
+  "cases": [
+    {
+      "id": "explicit-stop",
+      "decision_source": "controlled",
+      "actions": 0,
+      "elapsed_seconds": 2.431529816996772,
+      "error": {
+        "message": "Execution stopped: Controlled stop decision.",
+        "type": "AdmissionStopped"
+      },
+      "provider_calls": 1,
+      "native_success": false,
+      "evidence": {
+        "result": {
+          "path": "raw/explicit-stop/result.json",
+          "sha256": "8220ad7b445c7710d73ef495c5980f02c4b998dd464eb3be64f8f811d3107100"
+        },
+        "chain": {
+          "path": "raw/explicit-stop/chain.json",
+          "sha256": "335fa99314705cbc4f665753320ab598348c544e2d514e5142902858a5f6f12d"
+        },
+        "candidates": {
+          "path": "raw/explicit-stop/candidates.json",
+          "sha256": "ac55a6df142c59d8780c43cd3b846ea7b609f6a0b0f03d6ec587b2be83600247"
+        },
+        "decisions": {
+          "path": "raw/explicit-stop/decisions.json",
+          "sha256": "b04bca1022e791c2e7aad019c45494948288e67c857b73ae6491d7f022cf3ecd"
+        },
+        "model_projection": {
+          "path": "raw/explicit-stop/model-projection.json",
+          "sha256": "d0980bfaae35990b62ef70dde3e92da605651279f8ad04e567f46de78ae4f367"
+        },
+        "native-terminal": {
+          "path": "raw/explicit-stop/native-terminal.json",
+          "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+        },
+        "initial-observation": {
+          "path": "raw/explicit-stop/initial-observation.json",
+          "sha256": "47937cc3ab37a0aafb612611c193639f57b0f47ca0ca3ad967c76194fb683ed1"
+        },
+        "provider_receipts": {
+          "path": "raw/explicit-stop/provider-receipts.json",
+          "sha256": "1cdf627a8934005dc0ca2617439c7146e399385f5e681b1dc63ebb2a77717165"
+        }
+      }
+    },
+    {
+      "id": "no-alternative",
+      "decision_source": "controlled",
+      "actions": 0,
+      "elapsed_seconds": 1.5723696289933287,
+      "error": {
+        "message": "Execution stopped: no_admissible_candidate",
+        "type": "AdmissionStopped"
+      },
+      "provider_calls": 0,
+      "native_success": false,
+      "evidence": {
+        "result": {
+          "path": "raw/no-alternative/result.json",
+          "sha256": "55aebfc3d3c8fee4994c4743620c55bc891b14c5b070be6c86f9a5f0266e634d"
+        },
+        "chain": {
+          "path": "raw/no-alternative/chain.json",
+          "sha256": "946cef3a3fafc6dd8974c8d0d370c8f0d27f10402f8947e196d704d3b6b73ff4"
+        },
+        "candidates": {
+          "path": "raw/no-alternative/candidates.json",
+          "sha256": "33a7b08459f496fded5c94ad7fa88a75acfa56bde3358a753559f8acaf8f83ad"
+        },
+        "decisions": {
+          "path": "raw/no-alternative/decisions.json",
+          "sha256": "99315da88ffe1178b573973a7203af0d175903317e2a9b477c53f4536efe91e9"
+        },
+        "model_projection": {
+          "path": "raw/no-alternative/model-projection.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "native-terminal": {
+          "path": "raw/no-alternative/native-terminal.json",
+          "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+        },
+        "initial-observation": {
+          "path": "raw/no-alternative/initial-observation.json",
+          "sha256": "7b13e20c945f71dd35f8989808aa784058e375a51550cdef175a0211bda2466a"
+        },
+        "provider_receipts": {
+          "path": "raw/no-alternative/provider-receipts.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        }
+      }
+    },
+    {
+      "id": "stale-choice",
+      "decision_source": "controlled",
+      "actions": 0,
+      "elapsed_seconds": 2.589770924008917,
+      "error": {
+        "message": "Stale or inadmissible decision field: observation_seq",
+        "type": "WsError"
+      },
+      "provider_calls": 1,
+      "native_success": false,
+      "evidence": {
+        "result": {
+          "path": "raw/stale-choice/result.json",
+          "sha256": "0e5cfa6e8c1d3f30c13251c84a0b0d07938850a1c758bb4ffa42edc6135b2b21"
+        },
+        "chain": {
+          "path": "raw/stale-choice/chain.json",
+          "sha256": "d8f61bf8f4b6ef08743fbdecd915c9b7874ba4921dd7134dc27e373afac8153d"
+        },
+        "candidates": {
+          "path": "raw/stale-choice/candidates.json",
+          "sha256": "acf414e77196004402ef608d4acb955314db341c92a3b931090bb40c98319459"
+        },
+        "decisions": {
+          "path": "raw/stale-choice/decisions.json",
+          "sha256": "aee3d27b75f75496c980687590c7704d0cb79ec6a41e9e95fedc20cd5bb298c7"
+        },
+        "model_projection": {
+          "path": "raw/stale-choice/model-projection.json",
+          "sha256": "94af7f6d45db6e91ca8b77ac237aaf5ec9fcdfbba95b2460a3558bbf54db6286"
+        },
+        "native-terminal": {
+          "path": "raw/stale-choice/native-terminal.json",
+          "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+        },
+        "initial-observation": {
+          "path": "raw/stale-choice/initial-observation.json",
+          "sha256": "d5e680fbde5345f19ec727de86fc9737f4510c939a6e0074edc2738ad8dcecc9"
+        },
+        "provider_receipts": {
+          "path": "raw/stale-choice/provider-receipts.json",
+          "sha256": "565500f8a71817c8d2181b8d80ec1c795475d66e5179cc951586da51815d7b71"
+        }
+      }
+    },
+    {
+      "id": "switch-success",
+      "decision_source": "controlled",
+      "actions": 110,
+      "elapsed_seconds": 48.95834618702065,
+      "error": null,
+      "provider_calls": 1,
+      "native_success": true,
+      "evidence": {
+        "result": {
+          "path": "raw/switch-success/result.json",
+          "sha256": "73646ec3831729c22b1c86e817d2d9743d5727562c4b54ef4355814c92a8e5d5"
+        },
+        "chain": {
+          "path": "raw/switch-success/chain.json",
+          "sha256": "60fb6d4ad9a487e8d08f8af843782e4b35920ddd19f7ca73558f0c541d3e2ac3"
+        },
+        "candidates": {
+          "path": "raw/switch-success/candidates.json",
+          "sha256": "155bef51dbc5462ed087c3e43cf2c40f8bdd367f5915e875aea6707a9666b2c1"
+        },
+        "decisions": {
+          "path": "raw/switch-success/decisions.json",
+          "sha256": "1d26b179808d706a52f2900fd5cc5b622db2ff1880b173f25ef0c85eeb826eda"
+        },
+        "model_projection": {
+          "path": "raw/switch-success/model-projection.json",
+          "sha256": "514f8b646ab5ca9401efeaf791872ca42e8da3199d056c3be0aa1b83c069e0b9"
+        },
+        "native-terminal": {
+          "path": "raw/switch-success/native-terminal.json",
+          "sha256": "9e4e1e2f52c1cd571ff6120f77c6d0d60a9159549fa64a9dc1d02a10ab6745d0"
+        },
+        "initial-observation": {
+          "path": "raw/switch-success/initial-observation.json",
+          "sha256": "8b442736d21b8b697d3303313d4fde9a5205d6d67775a088d4caab2022a03a6b"
+        },
+        "native_result": {
+          "path": "raw/switch-success/native-result.json",
+          "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+        },
+        "provider_receipts": {
+          "path": "raw/switch-success/provider-receipts.json",
+          "sha256": "ea4d4512dafc3548dd697ca1458ce75cdb57e7016211e4be43358c2e32c813e6"
+        }
+      },
+      "audit": {
+        "path": "raw/switch-success/chain-audit.json",
+        "sha256": "e43c19bcd7e7ac44b086287f53e5c7cfcd738b41fcced27f26754aba01cd61ec"
+      }
+    },
+    {
+      "id": "unavailable-choice",
+      "decision_source": "controlled",
+      "actions": 0,
+      "elapsed_seconds": 2.485055502038449,
+      "error": {
+        "message": "Stale or inadmissible decision field: candidate_id",
+        "type": "WsError"
+      },
+      "provider_calls": 1,
+      "native_success": false,
+      "evidence": {
+        "result": {
+          "path": "raw/unavailable-choice/result.json",
+          "sha256": "1889d51316103ffa5a3f0b9efea13587eb403ac6bcebb0fe856d455446ba77a3"
+        },
+        "chain": {
+          "path": "raw/unavailable-choice/chain.json",
+          "sha256": "d46a0dc6f31dc938994fe03ce05f4fba11ab55be5850bc27623078466cb8b4fd"
+        },
+        "candidates": {
+          "path": "raw/unavailable-choice/candidates.json",
+          "sha256": "e21a346d4460e7cdcc8b5229200c2442ae531bd3f4dd55d2d5a8fbd7a9488f10"
+        },
+        "decisions": {
+          "path": "raw/unavailable-choice/decisions.json",
+          "sha256": "40db692d4693bd26c1a8695e690f3c2f24c21c3830d6808adad424eb489e2528"
+        },
+        "model_projection": {
+          "path": "raw/unavailable-choice/model-projection.json",
+          "sha256": "24b6c28127140312b5aefb3298b8d37204dccef100201d56d9babcd06beb3f7b"
+        },
+        "native-terminal": {
+          "path": "raw/unavailable-choice/native-terminal.json",
+          "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+        },
+        "initial-observation": {
+          "path": "raw/unavailable-choice/initial-observation.json",
+          "sha256": "a52547f99c989f08b6666d178c2fbfb4f86caf88929a4b5a1ba0bb728b7dd145"
+        },
+        "provider_receipts": {
+          "path": "raw/unavailable-choice/provider-receipts.json",
+          "sha256": "66bd45c683434caa9546c2f46557d3adfeb0803e0cb55af454a3034e2e113cd9"
+        }
+      }
+    },
+    {
+      "id": "unknown-condition",
+      "decision_source": "controlled",
+      "actions": 0,
+      "elapsed_seconds": 1.2566974959918298,
+      "error": {
+        "message": "Execution stopped: no_admissible_candidate",
+        "type": "AdmissionStopped"
+      },
+      "provider_calls": 0,
+      "native_success": false,
+      "evidence": {
+        "result": {
+          "path": "raw/unknown-condition/result.json",
+          "sha256": "bcd7e94f2232bcc7c1c33f093ea124c0c1c4ce96f8172ef8b7977b8b8422132f"
+        },
+        "chain": {
+          "path": "raw/unknown-condition/chain.json",
+          "sha256": "727d75e58cd45b54350cf3770ae9f58e3ca410f26c3fd92056dc013f60edb8e1"
+        },
+        "candidates": {
+          "path": "raw/unknown-condition/candidates.json",
+          "sha256": "58f6a3c61fa387c56ea79b8323b9650797666fa29c0b01767edcc64d80032b9a"
+        },
+        "decisions": {
+          "path": "raw/unknown-condition/decisions.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "model_projection": {
+          "path": "raw/unknown-condition/model-projection.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        },
+        "native-terminal": {
+          "path": "raw/unknown-condition/native-terminal.json",
+          "sha256": "3a7f7ff6cb1b7b801123a978e5fa99992035e4dc3819c44051ba690e0c5646c9"
+        },
+        "initial-observation": {
+          "path": "raw/unknown-condition/initial-observation.json",
+          "sha256": "8bcd6f592c9bfddcbba6efd01ddfc4161dbd27fccbd868405a4f5ccc04e1d124"
+        },
+        "provider_receipts": {
+          "path": "raw/unknown-condition/provider-receipts.json",
+          "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+        }
+      }
+    },
+    {
+      "id": "live-deepseek-switch",
+      "decision_source": "live-deepseek",
+      "actions": 110,
+      "elapsed_seconds": 54.27569223300088,
+      "error": null,
+      "provider_calls": 1,
+      "native_success": true,
+      "evidence": {
+        "result": {
+          "path": "raw/live-deepseek-switch/result.json",
+          "sha256": "9a4f9be664dd0e27c6b4256a6194ab189effbd379e7c5a2314d7ff836e26e655"
+        },
+        "chain": {
+          "path": "raw/live-deepseek-switch/chain.json",
+          "sha256": "1de6c602c6c7b276ac57602ca6cfa1fe5934a70118874c3c0c5fa9799d79bf1e"
+        },
+        "candidates": {
+          "path": "raw/live-deepseek-switch/candidates.json",
+          "sha256": "1710febdc80fdff2c054716440a1f0e99faee5fec1175089e0b58c7c29e3ff76"
+        },
+        "decisions": {
+          "path": "raw/live-deepseek-switch/decisions.json",
+          "sha256": "ea752d401f3ed76e5aab7a79b258d4d936f13e629355cadd4a1c786aa7726d54"
+        },
+        "model_projection": {
+          "path": "raw/live-deepseek-switch/model-projection.json",
+          "sha256": "d4195399ef754399cf7a1218cfeff18892b415e1b6621cfc811ccdb3593281a9"
+        },
+        "native-terminal": {
+          "path": "raw/live-deepseek-switch/native-terminal.json",
+          "sha256": "ceb527d52068e429010bbca638e237c6d9f085987042093583af6e8c19fc3ef6"
+        },
+        "initial-observation": {
+          "path": "raw/live-deepseek-switch/initial-observation.json",
+          "sha256": "6880de90fb4b782def644100f8e5096714ac4c11756d8ddb0967cb5f28b2b643"
+        },
+        "native_result": {
+          "path": "raw/live-deepseek-switch/native-result.json",
+          "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+        },
+        "provider_receipts": {
+          "path": "raw/live-deepseek-switch/provider-receipts.json",
+          "sha256": "ddc7343b7f2ed08e176e0ba1a6287354d76d513f3568c5cf6e708b7907290284"
+        }
+      },
+      "audit": {
+        "path": "raw/live-deepseek-switch/chain-audit.json",
+        "sha256": "a3ed292c69106bbba68bdf1af332cf7dbbf776df2f0913594f2b1002fd6c6dbe"
+      }
+    }
+  ],
+  "prior_batches": [
+    {
+      "batch": "01-qualification",
+      "assigned": 2,
+      "completed_result_files": 2,
+      "results": [
+        {
+          "id": "code-pickup",
+          "error": null,
+          "timings": [
+            {
+              "actions": 110,
+              "elapsed_seconds": 39.19883673498407,
+              "error": null,
+              "includes_skill_cold_start": true,
+              "mode": "native",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 444999.892180695
+            }
+          ],
+          "native_success": true
+        },
+        {
+          "id": "sparse-pickup",
+          "error": null,
+          "timings": [
+            {
+              "actions": 200,
+              "elapsed_seconds": 37.03310192300705,
+              "error": null,
+              "includes_skill_cold_start": true,
+              "mode": "native",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 445128.409876257
+            }
+          ],
+          "native_success": false
+        }
+      ],
+      "exit": {
+        "exit": 0
+      },
+      "retained_in_archive": true
+    },
+    {
+      "batch": "02-original-code",
+      "assigned": 1,
+      "completed_result_files": 1,
+      "results": [
+        {
+          "id": "code-pickup",
+          "error": null,
+          "timings": [
+            {
+              "actions": 110,
+              "elapsed_seconds": 38.68549179000547,
+              "error": null,
+              "includes_skill_cold_start": true,
+              "mode": "native",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 445370.569200976
+            }
+          ],
+          "native_success": true
+        }
+      ],
+      "exit": {
+        "exit": 0
+      },
+      "retained_in_archive": true
+    },
+    {
+      "batch": "03-controlled",
+      "assigned": 6,
+      "completed_result_files": 6,
+      "results": [
+        {
+          "id": "explicit-stop",
+          "error": {
+            "message": "Policy exited before readiness",
+            "type": "RuntimeError"
+          },
+          "timings": [],
+          "native_success": false
+        },
+        {
+          "id": "no-alternative",
+          "error": {
+            "message": "Policy exited before readiness",
+            "type": "RuntimeError"
+          },
+          "timings": [],
+          "native_success": false
+        },
+        {
+          "id": "stale-choice",
+          "error": {
+            "message": "Policy exited before readiness",
+            "type": "RuntimeError"
+          },
+          "timings": [],
+          "native_success": false
+        },
+        {
+          "id": "switch-success",
+          "error": {
+            "message": "Policy exited before readiness",
+            "type": "RuntimeError"
+          },
+          "timings": [],
+          "native_success": false
+        },
+        {
+          "id": "unavailable-choice",
+          "error": {
+            "message": "Policy exited before readiness",
+            "type": "RuntimeError"
+          },
+          "timings": [],
+          "native_success": false
+        },
+        {
+          "id": "unknown-condition",
+          "error": {
+            "message": "Policy exited before readiness",
+            "type": "RuntimeError"
+          },
+          "timings": [],
+          "native_success": false
+        }
+      ],
+      "exit": {
+        "trials": [
+          {
+            "id": "switch-success",
+            "exit": 0
+          },
+          {
+            "id": "no-alternative",
+            "exit": 0
+          },
+          {
+            "id": "unavailable-choice",
+            "exit": 0
+          },
+          {
+            "id": "stale-choice",
+            "exit": 0
+          },
+          {
+            "id": "explicit-stop",
+            "exit": 0
+          },
+          {
+            "id": "unknown-condition",
+            "exit": 0
+          }
+        ]
+      },
+      "retained_in_archive": true
+    },
+    {
+      "batch": "04-controlled",
+      "assigned": 6,
+      "completed_result_files": 2,
+      "results": [
+        {
+          "id": "no-alternative",
+          "error": null,
+          "timings": [
+            {
+              "actions": 0,
+              "elapsed_seconds": 1.4086790609871969,
+              "error": {
+                "message": "Stale admission observation",
+                "type": "WsError"
+              },
+              "includes_skill_cold_start": true,
+              "mode": "online",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 445943.496270206
+            }
+          ],
+          "native_success": false
+        },
+        {
+          "id": "switch-success",
+          "error": null,
+          "timings": [
+            {
+              "actions": 0,
+              "elapsed_seconds": 1.4654040460009128,
+              "error": {
+                "message": "Stale admission observation",
+                "type": "WsError"
+              },
+              "includes_skill_cold_start": true,
+              "mode": "online",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 445848.256121991
+            }
+          ],
+          "native_success": false
+        }
+      ],
+      "exit": {
+        "interrupted": true
+      },
+      "retained_in_archive": true
+    },
+    {
+      "batch": "05-controlled",
+      "assigned": 6,
+      "completed_result_files": 3,
+      "results": [
+        {
+          "id": "no-alternative",
+          "error": null,
+          "timings": [
+            {
+              "actions": 0,
+              "elapsed_seconds": 1.6651091399835423,
+              "error": {
+                "message": "Execution stopped: no_admissible_candidate",
+                "type": "AdmissionStopped"
+              },
+              "includes_skill_cold_start": true,
+              "mode": "online",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 446170.842218376
+            }
+          ],
+          "native_success": false
+        },
+        {
+          "id": "switch-success",
+          "error": null,
+          "timings": [
+            {
+              "actions": 0,
+              "elapsed_seconds": 1.810650899016764,
+              "error": {
+                "message": "DeepSeek Harness runtime stdout closed\nexit code: 127\nstderr tail:\n/usr/bin/env: \"node\": \u6ca1\u6709\u90a3\u4e2a\u6587\u4ef6\u6216\u76ee\u5f55",
+                "type": "WsError"
+              },
+              "includes_skill_cold_start": true,
+              "mode": "online",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 446077.058523259
+            }
+          ],
+          "native_success": false
+        },
+        {
+          "id": "unavailable-choice",
+          "error": null,
+          "timings": [
+            {
+              "actions": 0,
+              "elapsed_seconds": 1.9073757529840805,
+              "error": {
+                "message": "DeepSeek Harness runtime stdout closed\nexit code: 127\nstderr tail:\n/usr/bin/env: \"node\": \u6ca1\u6709\u90a3\u4e2a\u6587\u4ef6\u6216\u76ee\u5f55",
+                "type": "WsError"
+              },
+              "includes_skill_cold_start": true,
+              "mode": "online",
+              "qualification": false,
+              "schema": "dsh-robodojo-pilot-timing/v1",
+              "started": 446260.563416981
+            }
+          ],
+          "native_success": false
+        }
+      ],
+      "exit": {
+        "interrupted": true
+      },
+      "retained_in_archive": true
+    }
+  ],
+  "archive_sha256": "ca2963b95e5ea3744b557c5cfc473d2c873768b63c489df2c0a9e5b60628de63",
+  "cleanup": {
+    "all_experiments_quiescent": true,
+    "owned_live_processes": [],
+    "sessions": [
+      "embodied-12d0c2cc9d3c460b882f9a94cf7d5046",
+      "embodied-2930eadb852b4661acf306288f35387a",
+      "embodied-349688f9a47f427eb2317ad9531caed8",
+      "embodied-41b5814d97a04d03a7f3e865e91b2bc5",
+      "embodied-fd2902e79fe14abbbcff24a2d9f1a14a"
+    ]
+  }
+}

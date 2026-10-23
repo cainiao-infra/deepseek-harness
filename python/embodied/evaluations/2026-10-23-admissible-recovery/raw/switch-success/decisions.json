@@ -1,0 +1,60 @@
+[
+  {
+    "candidate_set_revision": "d1800eea8f2581aeee6d9ec6581ba86b6b281cf865519e5c94f29b6cbd8a0a6c",
+    "decision": {
+      "candidate_id": "visual-history-pickup",
+      "candidate_set_revision": "d1800eea8f2581aeee6d9ec6581ba86b6b281cf865519e5c94f29b6cbd8a0a6c",
+      "kind": "execute",
+      "observation_seq": 1,
+      "parent_revision": "",
+      "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+    },
+    "revision": {
+      "binding_revision": "e23502b1709ce98643394f11afb84aba91725678ed98068a0c2cbc49197dd3c2",
+      "catalog_revision": "bee4477e361fe70f19169dcd3c47d3105a4c03e92568d472fbfa2af261cfbd41",
+      "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+      "execution_key": "f831a6601c2edf9549d507a211ad2f123a545b2d10fe2570eed0fbd0da9e2034",
+      "generation": 0,
+      "observation_seq": 1,
+      "parent_id": "",
+      "plan": {
+        "composition": "memory-guided-visual-history",
+        "execution": "bind",
+        "operations": [],
+        "rationale": "Bind the qualified visual-history candidate before the controlled fault."
+      },
+      "request_id": "ac68b492dc5d420087335bef39c0e10f",
+      "revision_id": "27ca6ddc71eb470abb606967e4529fda"
+    }
+  },
+  {
+    "candidate_set_revision": "16a8cdb4b2e129099323280683692c300380fa87640a030b675398fbc845c181",
+    "decision": {
+      "candidate_id": "registered-pickup",
+      "candidate_set_revision": "16a8cdb4b2e129099323280683692c300380fa87640a030b675398fbc845c181",
+      "kind": "execute",
+      "observation_seq": 2,
+      "parent_revision": "27ca6ddc71eb470abb606967e4529fda",
+      "rationale": "Use the currently admitted candidate after confirmed stopping."
+    },
+    "revision": {
+      "binding_revision": "e23502b1709ce98643394f11afb84aba91725678ed98068a0c2cbc49197dd3c2",
+      "catalog_revision": "bee4477e361fe70f19169dcd3c47d3105a4c03e92568d472fbfa2af261cfbd41",
+      "episode_id": "e931521b6fad4a7186a56c7ddd2e60f1",
+      "execution_key": "d199771e9447b8c11b47d0a0e2fa43b926ad004400f65050e2faf3468e4fb3dc",
+      "generation": 0,
+      "observation_seq": 2,
+      "parent_id": "27ca6ddc71eb470abb606967e4529fda",
+      "plan": {
+        "composition": "memory-guided-program-library",
+        "execution": "switch",
+        "operations": [
+          "instruction-grounded-pickup"
+        ],
+        "rationale": "Use the currently admitted candidate after confirmed stopping."
+      },
+      "request_id": "2c5e3165286e4e3090e287d2258f3940",
+      "revision_id": "a80704b0ade140c6b7213721df0d0b8d"
+    }
+  }
+]

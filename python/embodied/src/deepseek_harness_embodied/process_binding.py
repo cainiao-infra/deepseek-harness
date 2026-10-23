@@ -7,6 +7,7 @@ import hashlib
 import json
 import math
 import os
+import re
 from pathlib import Path
 import signal
 import subprocess
@@ -128,9 +129,16 @@ class ProcessBinding:
                 close_timeout_s=cfg['client_close_timeout_seconds'])
             info = self.client.call(func_name='binding_metadata')
             if (not isinstance(info,dict) or info.get('protocol')!='dsh-native-binding/v2'
-                    or not isinstance(info.get('metadata'),dict) or set(info['metadata']) != {
-                    'config','catalog','operation_program','memory'}):
+                    or not isinstance(info.get('metadata'),dict) or set(info['metadata']) not in ({'config','catalog','operation_program','memory'},
+                    {'config','catalog','operation_program','memory','execution_sources'})):
                 raise ValueError('Native worker metadata fields are invalid')
+            if 'execution_sources' in info['metadata']:
+                sources = info['metadata']['execution_sources']
+                if (not isinstance(sources,dict) or not sources or any(
+                        not isinstance(name,str) or not name or Path(name).name!=name
+                        or not isinstance(value,str) or re.fullmatch('[0-9a-f]{64}',value) is None
+                        for name,value in sources.items())):
+                    raise ValueError('Invalid native execution source identities')
             if info['pid'] != self.process.pid or info['metadata']['config'] != self.frozen:
                 raise ValueError('Native worker returned a different identity or configuration')
             if self.metadata is not None and self.metadata != info['metadata']:

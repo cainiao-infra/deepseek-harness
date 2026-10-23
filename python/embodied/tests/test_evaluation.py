@@ -100,6 +100,33 @@ def test_gateway_records_attempts_usage_and_reaps_listener(tmp_path):
     assert receipt['status'] == 'completed' and receipt['usage']['total_tokens'] == 12
 
 
+def test_forbidden_planning_records_every_attempt_without_provider_contact(tmp_path):
+    gateway_class = runpy.run_path(str(Path(__file__).parents[1]/'scripts/paired_pilot.py'))['Gateway']
+    spec = {'planner_mode': 'forbidden', 'calls_per_episode': 1, 'provider_timeout_seconds': 5}
+    gateway = gateway_class(tmp_path, spec, None)
+    class ForbiddenOpener:
+        def open(self, *_args, **_kwargs):
+            pytest.fail('Zero-planner execution must never contact the provider')
+    gateway.opener = ForbiddenOpener()
+    with gateway:
+        connection = http.client.HTTPConnection('127.0.0.1', gateway.server.server_port, timeout=10)
+        try:
+            for _ in range(2):
+                connection.request('POST', '/v1/chat/completions', json.dumps(request()),
+                                   {'Authorization': 'Bearer '+gateway.token})
+                response = connection.getresponse()
+                assert response.status == 403
+                response.read()
+        finally:
+            connection.close()
+    assert gateway.forbidden_attempts == 2
+    assert not gateway.thread.is_alive() and gateway.server.socket.fileno() == -1
+    assert len(list(tmp_path.glob('forbidden-*.json'))) == 2
+    assert not list(tmp_path.glob('http-*'))
+    assert not list((tmp_path/'attempts').glob('call-*.json'))
+    assert json.loads((tmp_path/'policy.json').read_text())['planner_mode'] == 'forbidden'
+
+
 @pytest.mark.parametrize('change', [
     {'partition': 'test'}, {'provider_timeout_seconds': float('inf')},
     {'calls_per_episode': True}, {'output': 'relative-output'},
@@ -107,6 +134,7 @@ def test_gateway_records_attempts_usage_and_reaps_listener(tmp_path):
     {'cases': [{'case_id': '../escape', 'order': ['N', 'H0', 'H1']}]},
     {'cases': [{'case_id': 'valid', 'order': ['N', 'N', 'H1']}]},
     {'deepseek_reasoning':'unsupported'},
+    {'planner_mode': 'sometimes'},
     {'online_config':'relative.json'}, {'policy_python':None},
     {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':1}]},
     {'cases': [{'case_id':'valid','order':['N','H0','H1'],'layout_id':True,'layout_sha256':'0'*64}]},
@@ -161,3 +189,19 @@ def test_invalid_recovery_template_leaves_no_pilot_or_model_attempt(tmp_path, mo
     with pytest.raises(ValueError, match='window'):
         module['main']()
     assert not output.exists()
+
+
+@pytest.mark.parametrize('initial,recovery', [(None, False), ({'composition': 'pick'}, True)])
+def test_forbidden_planning_requires_pinned_start_and_no_recovery(tmp_path, initial, recovery):
+    root = Path(__file__).parents[1]
+    module = runpy.run_path(str(root/'scripts/paired_pilot.py'))
+    spec = json.loads((root/'configs/paired-pilot.example.json').read_text())
+    online = json.loads((root/'configs/robodojo-online.example.json').read_text())
+    online['recovery_enabled'] = recovery
+    if initial is not None:
+        online['initial_plan'] = initial
+    template = tmp_path/'online.json'
+    template.write_text(json.dumps(online))
+    spec.update(planner_mode='forbidden', online_config=str(template), policy_python=sys.executable)
+    with pytest.raises(ValueError, match='explicit initial plan'):
+        module['resolve_inputs'](spec)

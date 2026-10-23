@@ -50,16 +50,19 @@ def resolve_worker(value: dict) -> dict:
     """Resolve bounded worker controls before acquiring resources or loading policies."""
     fields = {'python','startup_timeout_seconds','request_timeout_seconds',
               'exit_timeout_seconds','kill_timeout_seconds','connect_timeout_seconds',
-              'client_close_timeout_seconds','poll_interval_seconds'}
+              'client_close_timeout_seconds','poll_interval_seconds','capture_execution_diagnostics'}
     if not isinstance(value, dict) or set(value)-fields:
         raise ValueError('Unknown native worker configuration')
     result = {'startup_timeout_seconds':300,'request_timeout_seconds':120,
               'exit_timeout_seconds':10,'kill_timeout_seconds':5,'connect_timeout_seconds':10,
-              'client_close_timeout_seconds':5,'poll_interval_seconds':0.05, **value}
+              'client_close_timeout_seconds':5,'poll_interval_seconds':0.05,
+              'capture_execution_diagnostics':False, **value}
     executable = Path(result['python'])
     if not executable.is_absolute() or not executable.is_file() or not os.access(executable, os.X_OK):
         raise ValueError('Native worker Python must be an absolute executable path')
-    for name in fields-{'python'}:
+    if type(result['capture_execution_diagnostics']) is not bool:
+        raise ValueError('Execution diagnostic capture must be boolean')
+    for name in fields-{'python', 'capture_execution_diagnostics'}:
         number = result[name]
         if isinstance(number, bool) or not isinstance(number, (int,float)) or not math.isfinite(number) or number <= 0:
             raise ValueError('Positive finite native worker timeouts required')
@@ -93,7 +96,8 @@ class ProcessBinding:
         directory.mkdir(parents=True, mode=0o700, exist_ok=False)
         ready = directory/'ready.json'
         deployment = directory/'deployment.json'
-        write_record(deployment, {'ready_file':str(ready),'model':self.deployment})
+        write_record(deployment, {'ready_file':str(ready),'model':self.deployment,
+                     'capture_execution_diagnostics':self.settings['capture_execution_diagnostics']})
         env = {k:v for k,v in os.environ.items()
                if not any(word in k.upper() for word in ('KEY','SECRET','TOKEN','PASSWORD'))}
         env.update(PHYSICALRSI_AGENT_API_KEY='owned-worker-no-inference', PHYSICALRSI_PLANNER_BACKEND='api',
@@ -191,6 +195,19 @@ class ProcessBinding:
             raise
         if self.failure is not None:
             raise RuntimeError('Native cleanup outcome is unconfirmed; replace the owning service') from self.failure
+
+    def diagnostics(self) -> dict:
+        """Read opt-in policy diagnostics; normal online execution does not call this RPC."""
+        if not self.bound:
+            raise RuntimeError('Policy diagnostics require a live bound worker')
+        result = self._rpc('binding_diagnostics')
+        if (not isinstance(result, dict) or result.get('schema') != 'dsh-policy-diagnostics/v1'
+                or not isinstance(result.get('versions'), dict) or not isinstance(result.get('loaded_sources'), dict)):
+            error = ValueError('Invalid policy diagnostics response')
+            self.failure, self.bound = error, False
+            self._dispose(cooperative=False)
+            raise error
+        return result
 
     def _dispose(self, *, cooperative: bool) -> None:
         process, client = self.process, self.client

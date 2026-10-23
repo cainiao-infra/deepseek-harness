@@ -1,0 +1,52 @@
+# Bilingual-pair consistency record for 2026-10-23-embodied-domain-harness-optimization.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/proposed/architecture/2026-10-23-embodied-domain-harness-optimization.md
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design:
+  en: d6e5c63dab08845f
+  zh: 56258f156f0f13f2
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/problem:
+  en: b88ddef3875110e8
+  zh: 89ac1e3a1a150bce
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal:
+  en: 6b059eccd07db3f6
+  zh: 2469fb72f9ec234e
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/optimization-goals:
+  en: f99ba94dc3f131d5
+  zh: 0aa05ef90308c198
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/responsibilities-and-existing-implementation-points:
+  en: e2ee9feed27296ad
+  zh: f6f99a4900c9ab3a
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/1-qualify-executable-capabilities:
+  en: d95480ab3697dabf
+  zh: 3bf7f0a6750d7d83
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/2-execute-and-verify-subgoals:
+  en: dd789662cb2a1b5e
+  zh: 320aa26e17032837
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/3-resolve-admissible-decisions-before-inference:
+  en: d30ec855d29ca526
+  zh: 9099cd9a3329b5ad
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/4-make-failures-useful-to-recovery:
+  en: 8e10291f31430000
+  zh: 3ddf82cb72d27c1d
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/5-monitor-semantic-progress-and-control-time:
+  en: 23c822ca937f350e
+  zh: 82a563b39a7b68fb
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/6-allocate-reasoning-and-reduce-measured-overhead:
+  en: 3976c37eb4fc34c3
+  zh: e95dd6accf8adced
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/7-link-experience-to-independently-evaluated-improvements:
+  en: 744ab79056e8c134
+  zh: a41f3f6a486e98ae
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/proposal/delivery-sequence-and-compatibility:
+  en: 907a6366991f460a
+  zh: 4a991724fff42104
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/alternatives-considered:
+  en: 9bd6f6c90ddaa90c
+  zh: 53a70b064195b1bc
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/acceptance-criteria:
+  en: 0606375723cdb412
+  zh: 60afba3ef3c4c921
+/agent-note-embodied-domain-harness-optimization-goals-and-technical-design/risks:
+  en: d1c8b3ecfa6cd537
+  zh: e886a70e6a48fb6e

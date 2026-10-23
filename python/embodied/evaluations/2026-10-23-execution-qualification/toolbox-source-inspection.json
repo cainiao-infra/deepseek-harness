@@ -1,0 +1,38 @@
+{
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "scope": "Source inspection of frozen capability coverage; benchmark evaluation code is used only for offline validation, never planner input.",
+  "source_files": [
+    {
+      "file": "model.py",
+      "sha256": "aa30544c987b5a89a24d7d8b8478cd76d2e8470f4354c48807c2268b8da79325",
+      "bytes": 20786
+    },
+    {
+      "file": "perception.py",
+      "sha256": "43902bbded2a17d32f47f7a40b4e67dc21ef1dfedf118ac10a0cf84a42f7cdc3",
+      "bytes": 4440
+    },
+    {
+      "file": "store_tools_in_toolbox.py",
+      "sha256": "2969fc3eb171560b3c0bcea62b9f38b8b35f3aecc9bcc7085c3b1cec365b48fc",
+      "bytes": 4692
+    }
+  ],
+  "observed_instruction": "Place each tool into its matching position in the toolbox, then reset the robot arm.",
+  "required_items": [
+    "pliers",
+    "hammer",
+    "tape_measure",
+    "wrench"
+  ],
+  "native_success_additionally_requires": "Toolbox containment, required orientation and robot return to origin.",
+  "code_perception_items": [
+    "tape_measure",
+    "pliers"
+  ],
+  "code_execution": "Build stages only for moves[:1]; the first item is tape_measure. Numeric grasp and placement constraints are specific to that item.",
+  "known_scene": "All four items are visibly outside the toolbox in the retained development camera image.",
+  "inference": "Selecting oriented-container-placement alone cannot complete the whole four-item task from that scene. Repeating that selection does not add the other item capabilities.",
+  "limitation": "No claim about every checkpoint or every PhysicalRSI release; this describes the inspected frozen implementation."
+}

@@ -12,6 +12,8 @@ PhysicalRSI already has runtime planning and development-time System 2. DSH supp
 
 ## Proposal
 
+The [domain harness optimization design](2026-10-23-embodied-domain-harness-optimization.md) supplements this proposal with capability qualification, subgoal execution, admissible planning and failure-aware recovery derived from the Thinking diagnostic. This proposal retains ownership of compatibility behavior, G1–G4 outcome acceptance and F1–F4 offline admission.
+
 Keep observation filtering, domain rules, skill execution, physical state, and task judgments in PhysicalRSI, connected to DSH through its public Python SDK. Provide separate compatibility and enhanced paths: the compatibility path preserves native behavior for non-inferiority testing; the enhanced path invokes DSH replanning on domain events, with PhysicalRSI validating and executing the result.
 
 This delivery requires phase-one compatibility comparison and phase-two online replanning, recovery, and outcome acceptance. Phase zero freezes baselines and evaluation protocols. Phase-three offline skill development may be prepared in parallel but is not a prerequisite for online gains. Basic tasks retain the existing execution path without extra planning calls when no domain trigger occurs.

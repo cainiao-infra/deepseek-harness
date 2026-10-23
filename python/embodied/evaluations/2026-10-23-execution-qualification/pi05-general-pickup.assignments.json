@@ -1,0 +1,8 @@
+{
+  "schema": "dsh-execution-assignments/v1",
+  "scope": "Previously explored official development scene: general_pickup, seed 0, layout 0.",
+  "timing": "retrospective",
+  "trial_ids": [
+    "general-pickup-official-0-dev-N"
+  ]
+}

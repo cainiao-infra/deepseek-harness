@@ -1,0 +1,129 @@
+{
+  "schema": "dsh-retained-execution-import/v1",
+  "archive_sha256": "dc2e0f6b8977843bdf5512477281b0e3356737c9a4b653e81df050be44547ec9",
+  "archive_files_verified": 1805,
+  "imports": [
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/result.json",
+      "path": "raw/pi05-general-pickup/result.json",
+      "sha256": "d0ad472a67f3d9c55e559db9ee12fa9e10f01ed0175da25aaad536e5e3cafd5a"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/deployment.json",
+      "path": "raw/pi05-general-pickup/deployment.json",
+      "sha256": "90a6781027f8d68609d9e1eccaf3925ce28508f7f22df6b1501627a2af445024"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/pi05-general-pickup/configured_plan.json",
+      "sha256": "6a865af83a3e39888190dc4e47b237689c680ec6ecabd5ad9c58401d18f891a5"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/native-model/13642bf12c0347269edba1bee9aa9313/episodes/ba7e51a4637c4bd585af5087b09375db/episode.json",
+      "path": "raw/pi05-general-pickup/native_binding.json",
+      "sha256": "4abaa497db1c0e7e3171524c9baed15294666839deac57f87ec0078867497825"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/simulation/eval_result/RoboDojo/general_pickup/physicalRSICodex/arx_x5/0_0000-general-pickup-official-0-dev-N/0000-general-pickup-official-0-dev-N/_result.json",
+      "path": "raw/pi05-general-pickup/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/pi05-general-pickup/timing.json",
+      "sha256": "e43d51c4f4e676f937d3c3d115a99412cedf3cc6a74742c22625f59b0392d4ab"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/pi05-general-pickup/terminal.json",
+      "sha256": "08e29e116d3b80fbe6f2c7ec7ded60ac975546def037ecaebfee21ebf6028ea1"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/pi05-general-pickup/initial_observation.json",
+      "sha256": "0b348204f95ba48987c6c221f3c231f7c98b18a379210eb7a69e1448a5dab566"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/result.json",
+      "path": "raw/pi05-stack-blocks-by-language/result.json",
+      "sha256": "12e7556c0f2f8314c721c0f7ca5b8a5e12ea1c227e640cc9dd0785226ff32a45"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/deployment.json",
+      "path": "raw/pi05-stack-blocks-by-language/deployment.json",
+      "sha256": "15978e38c33220f113aad6e1979aa3ec06d1fb21e14a2967c325eca66a5f5114"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/pi05-stack-blocks-by-language/configured_plan.json",
+      "sha256": "6a865af83a3e39888190dc4e47b237689c680ec6ecabd5ad9c58401d18f891a5"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/native-model/9ac2c1d7e72a46b88112d4de5047213c/episodes/4cdf1a600ff64c3aad4e8fd593913419/episode.json",
+      "path": "raw/pi05-stack-blocks-by-language/native_binding.json",
+      "sha256": "4011dc724edc26c70c686cfef9f4330fd101e9c8b94e30c3e62667d6139dfce4"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/simulation/eval_result/RoboDojo/stack_blocks_by_language/physicalRSICodex/arx_x5/0_0003-stack-blocks-by-language-official-0-dev-N/0003-stack-blocks-by-language-official-0-dev-N/_result.json",
+      "path": "raw/pi05-stack-blocks-by-language/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/pi05-stack-blocks-by-language/timing.json",
+      "sha256": "925a793bbc4447cd8086f7c3eec465d4e796314e00d996578ab26eb2435e556e"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/pi05-stack-blocks-by-language/terminal.json",
+      "sha256": "7b6f8d8ca67599472c682b513f151a56e944896590da2172a467503b25c8a1b5"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0003-stack-blocks-by-language-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/pi05-stack-blocks-by-language/initial_observation.json",
+      "sha256": "2c66dfb18fc656ec3fabbeecfbe4b5a13421e666d551d1e9ee147fa6c3f302a9"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/result.json",
+      "path": "raw/pi05-store-tools-in-toolbox/result.json",
+      "sha256": "5bdc4da16057a4eb13c1f89e97d0c84db1ea70aea0c32f62568d323d1f7a9f33"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/deployment.json",
+      "path": "raw/pi05-store-tools-in-toolbox/deployment.json",
+      "sha256": "d1c6ff7edda5a53508c13753e66d462f1bb9a8061fe9693907a2f7a4821ce98c"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/pi05-store-tools-in-toolbox/configured_plan.json",
+      "sha256": "6a865af83a3e39888190dc4e47b237689c680ec6ecabd5ad9c58401d18f891a5"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/native-model/d356f3190a7f4f3a861db574285a5736/episodes/c8d56a827c734764a830d2cb95d9a979/episode.json",
+      "path": "raw/pi05-store-tools-in-toolbox/native_binding.json",
+      "sha256": "e90555702e58a89987e1598a053249228eb93bb8de911b0fe55cae96ada1f776"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/simulation/eval_result/RoboDojo/store_tools_in_toolbox/physicalRSICodex/arx_x5/0_0008-store-tools-in-toolbox-official-0-dev-N/0008-store-tools-in-toolbox-official-0-dev-N/_result.json",
+      "path": "raw/pi05-store-tools-in-toolbox/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/pi05-store-tools-in-toolbox/timing.json",
+      "sha256": "07582bbdc92197201ed7c18d436136614b0f8cbc2470da0648b423c7f9414736"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/pi05-store-tools-in-toolbox/terminal.json",
+      "sha256": "446586eb5aa99e1fa6c15e8c1766f2451a0f9083005905a18a5ad54583d944f8"
+    },
+    {
+      "archive_member": "batches/paired-pilot-12-learned-policy-development/0008-store-tools-in-toolbox-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/pi05-store-tools-in-toolbox/initial_observation.json",
+      "sha256": "63c49243149a15f73a9edcd8317672c74f2bcc3eb6c0b33bc8fb3da5285af931"
+    }
+  ],
+  "new_simulator_episodes": 0,
+  "scope": "Retrospective audit of retained native N runs only. Original nine assigned N/H0/H1 failures remain in the Thinking diagnostic."
+}

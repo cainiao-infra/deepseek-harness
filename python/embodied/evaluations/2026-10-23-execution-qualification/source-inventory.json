@@ -1,0 +1,16 @@
+{
+  "archive_sha256": "dc2e0f6b8977843bdf5512477281b0e3356737c9a4b653e81df050be44547ec9",
+  "files": [
+    {
+      "bytes": 4782080,
+      "sha256": "f945d27b079e7174961522035d2d1bda2f9f295dd6d8c0bb490d175df9007454",
+      "role": "physicalrsi-source"
+    },
+    {
+      "bytes": 1024000,
+      "sha256": "fd890293370af8cddb007f8050bbc4b37f1fdf75f169189d0b0fdb49184ebe06",
+      "role": "adapter-source"
+    }
+  ],
+  "scope": "Retained source archives; loaded runtime module identities were not recorded by this historical run."
+}

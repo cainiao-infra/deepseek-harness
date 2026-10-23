@@ -1,0 +1,37 @@
+{
+  "schema": "dsh-restored-validation/v1",
+  "archive_payloads_verified": 434,
+  "simulation_trials": 7,
+  "restored_assignments": 6,
+  "owned_live_processes": 0,
+  "formal_heldout_runs": 0,
+  "checks": [
+    {
+      "command": "PYTHONPATH=python/embodied/src:python/sdk/src:python/sdk-runtime/src DSH_EMBODIED_INTEGRATION=1 python/sdk/.venv/bin/python -m pytest python/embodied/tests",
+      "result": "285 passed",
+      "log": ".artifacts/embodied-live/2026-10-23-renderer-restored/local-checks/tests-final.log",
+      "sha256": "9f48685c8f4414519e7f992f9a47b23d9c9946bbb1b7dfb7f22d2c66be086a09"
+    },
+    {
+      "command": "pnpm run doc-sync",
+      "result": "42 passed; 1 existing repository-reference failure",
+      "log": ".artifacts/embodied-live/2026-10-23-renderer-restored/local-checks/doc-sync-final.log",
+      "sha256": "ddfb4ca5ba1a9a4d1fffb83d768d54910fe4c175e506a9af054e690948fd5330"
+    },
+    {
+      "command": "pnpm run lint",
+      "result": "Passed; existing unused-disable warning",
+      "log": ".artifacts/embodied-live/2026-10-23-renderer-restored/local-checks/lint.log",
+      "sha256": "48ff6635513c8e2e31d478134e0a49bd7b120cc493f4e06aebd378c09ad48b40"
+    }
+  ],
+  "preexisting_failure": {
+    "file": "python/sdk/uv.lock",
+    "line": 113,
+    "check": "repository references",
+    "unchanged_from_HEAD": true
+  },
+  "restored_successful_cases": 1,
+  "restored_failed_cases": 5,
+  "git_diff_check": "passed"
+}

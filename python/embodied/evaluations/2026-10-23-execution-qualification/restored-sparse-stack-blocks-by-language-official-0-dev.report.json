@@ -1,0 +1,90 @@
+{
+  "schema": "dsh-execution-qualification-report/v1",
+  "partition": "development",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "environment_complete": true,
+  "assignment_timing": "prospective",
+  "capability_id": "restored-sparse-stack-blocks-by-language-official-0-dev",
+  "scope": "Restored renderer development case: stack_blocks_by_language, seed 0, layout 0.",
+  "spec_revision": "9a29b8b6bdfb493c72781d56251fc5a7ad1126d54dba8d6fc93d938532dc3f4c",
+  "effects": [
+    {
+      "effect": "task-complete",
+      "status": "unverified",
+      "reason": "execution_not_verified",
+      "passed_trials": 0,
+      "assigned_trials": 1
+    }
+  ],
+  "covered": false,
+  "trials": [
+    {
+      "id": "sparse-stack-blocks-by-language-official-0-dev",
+      "eligible": false,
+      "effects": {
+        "task-complete": false
+      },
+      "native_success": false,
+      "planner_attempts": 0,
+      "planner_enforced": true,
+      "actions": 400,
+      "episode_error": null,
+      "launcher_error": null,
+      "artifact_digests": {
+        "result": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/result.json",
+          "sha256": "a37f558f6dbf7f503a056d4b5892a9dbf8066b0c860a057e75419704c3e4460a"
+        },
+        "deployment": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/deployment.json",
+          "sha256": "be4a6c12021e24ef8b8fe5f4d18a0b8f158092bd0558ad4c05e83c2b270e44a8"
+        },
+        "configured_plan": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/configured_plan.json",
+          "sha256": "050cac3daafd77e54c86e44c6bf13fc01ee06d4a71547f14a6ddebf181a8c1f7"
+        },
+        "native_binding": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/native_binding.json",
+          "sha256": "87d2a3389fec2391451fc148e42e890eda0c034c33f758ee93fb327b8ffc5cc5"
+        },
+        "native_result": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/native_result.json",
+          "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+        },
+        "timing": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/timing.json",
+          "sha256": "2cf3ea3e3fc545c861a4f2ddffd9484f88bbcbf63c3070bfd0caaeb9743658d4"
+        },
+        "terminal": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/terminal.json",
+          "sha256": "418518c3de6e691cba0324a0097ff53b20ec4a89098d1a9a327660a68b3b1a7b"
+        },
+        "initial_observation": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/initial_observation.json",
+          "sha256": "e63c92a785a74add2037380934a2f15ccd2469f0ff3dcd34e06e399cdaeaed81"
+        },
+        "planner_audit": {
+          "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/planner-audit.json",
+          "sha256": "3d8d9d0d10a2fa3a7b9174d2119d2d54d5e26cdc682c13ce5fb24060a9964f67"
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "restored-source-inventory.json",
+      "sha256": "e593b2a0f53dd9f2c8f5792ade087c90d6cbcc03ec570a210144c19f97c5ca7f"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "restored-environment.json",
+      "sha256": "d5c882e2c0596da463a79faccbade28937b332742e5883820f594f3cea3c79f5"
+    },
+    {
+      "path": "restored-simulator-environment.json",
+      "sha256": "ed6c2508f753ac593d32c4dda882105a51840b7e699ac61b1ed02f48411f9613"
+    }
+  ]
+}

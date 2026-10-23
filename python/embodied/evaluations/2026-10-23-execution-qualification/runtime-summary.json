@@ -1,0 +1,435 @@
+{
+  "schema": "dsh-execution-runtime-summary/v1",
+  "partition": "development",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "probes": [
+    {
+      "id": "pi05-before",
+      "result": {
+        "binding_succeeded": true,
+        "cleanup_confirmed": true,
+        "cleanup_error": null,
+        "error": null,
+        "generated_actions": 50,
+        "inference_succeeded": true,
+        "issues": [],
+        "passed": true,
+        "qualification": false,
+        "robot_actions_dispatched": 0,
+        "schema": "dsh-binding-probe/v1",
+        "spec_revision": "49d71a0b3fb852591c6cd63f2ae27330bd2a7f850aac7df3af1e113db01be38a"
+      },
+      "trace_audit": {
+        "schema": "dsh-policy-trace-audit/v1",
+        "camera_encoding": true,
+        "state_ordering": true,
+        "tensor_integrity": true,
+        "action_conversion": true,
+        "actions": 50,
+        "qualification": false
+      },
+      "raw_observation": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/pi05-before/workers/b3ae58bba37a4a39a0fadf14ec893d87/execution-diagnostics/raw-observation.json",
+        "size": 14119784,
+        "sha256": "6ac5b5e7496b1ce5567b0389f590549e8334314425094552804285007f2180a1"
+      },
+      "normalized_grippers": [
+        0.8916820395408345,
+        0.8916820395408345
+      ],
+      "input": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/pi05-before/input.json",
+        "size": 14120042,
+        "sha256": "5d8bbf80dba66f3e631871c03efad3eb64f944c5b1d62f386d10c69f826b5a99"
+      },
+      "config": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/pi05-before.config.json",
+        "size": 700,
+        "sha256": "6f1dbebe5ce8b038c2792e42e5b5bc903a02cf4101e289590d7f266531826d71"
+      }
+    },
+    {
+      "id": "pi05-after",
+      "result": {
+        "binding_succeeded": true,
+        "cleanup_confirmed": true,
+        "cleanup_error": null,
+        "error": null,
+        "generated_actions": 50,
+        "inference_succeeded": true,
+        "issues": [],
+        "passed": true,
+        "qualification": false,
+        "robot_actions_dispatched": 0,
+        "schema": "dsh-binding-probe/v1",
+        "spec_revision": "933f79c167ff2c117903d302381f0fd2c3e6b11937886c250f5f3bf4340d6b31"
+      },
+      "trace_audit": {
+        "schema": "dsh-policy-trace-audit/v1",
+        "camera_encoding": true,
+        "state_ordering": true,
+        "tensor_integrity": true,
+        "action_conversion": true,
+        "actions": 50,
+        "qualification": false
+      },
+      "raw_observation": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/pi05-after/workers/de1f48bcf58f48b2b725518afbbfb39d/execution-diagnostics/raw-observation.json",
+        "size": 14119784,
+        "sha256": "6ac5b5e7496b1ce5567b0389f590549e8334314425094552804285007f2180a1"
+      },
+      "normalized_grippers": [
+        1.000398079217764,
+        1.000398079217764
+      ],
+      "input": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/pi05-after/input.json",
+        "size": 14120042,
+        "sha256": "5d8bbf80dba66f3e631871c03efad3eb64f944c5b1d62f386d10c69f826b5a99"
+      },
+      "config": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/pi05-after.config.json",
+        "size": 699,
+        "sha256": "da3b2f0740a22e5b5917fe4e7749dbe00a587fafb598e62d1811d21b0c5980df"
+      }
+    },
+    {
+      "id": "sparse",
+      "result": {
+        "binding_succeeded": true,
+        "cleanup_confirmed": true,
+        "cleanup_error": null,
+        "error": null,
+        "generated_actions": 50,
+        "inference_succeeded": true,
+        "issues": [],
+        "passed": true,
+        "qualification": false,
+        "robot_actions_dispatched": 0,
+        "schema": "dsh-binding-probe/v1",
+        "spec_revision": "78f2a471fb4770572ffb1b1758cc54e84673f2e4c778a010cdfeee1a2df7754e"
+      },
+      "trace_audit": {
+        "schema": "dsh-policy-trace-audit/v1",
+        "camera_encoding": true,
+        "state_ordering": true,
+        "tensor_integrity": true,
+        "action_conversion": true,
+        "actions": 50,
+        "qualification": false
+      },
+      "raw_observation": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/sparse/workers/ed7a0d0c539c44b2a243b03e56a29624/execution-diagnostics/raw-observation.json",
+        "size": 14119784,
+        "sha256": "6ac5b5e7496b1ce5567b0389f590549e8334314425094552804285007f2180a1"
+      },
+      "normalized_grippers": [
+        1.000398079217764,
+        1.000398079217764
+      ],
+      "input": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/sparse/input.json",
+        "size": 14120042,
+        "sha256": "5d8bbf80dba66f3e631871c03efad3eb64f944c5b1d62f386d10c69f826b5a99"
+      },
+      "config": {
+        "archive_member": "execution-qualification-20261023-06-binding-probes/sparse.config.json",
+        "size": 695,
+        "sha256": "d0be3e821f93385e7c87218dbbbe6d8a5e3af61ea0eee70a7f6fbe6aa040778b"
+      }
+    }
+  ],
+  "experiments": [
+    {
+      "id": "01",
+      "assigned_trials": 6,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-01/spec.json",
+        "size": 4794,
+        "sha256": "dcfb8b38eda2128d658262b9ce41b9faf7f3d10ff255e5e9d8cc8b94e9a7ceb8"
+      },
+      "result_files": [],
+      "planning_attempts": 0,
+      "interrupted": {
+        "reason": "First camera frame blocked in CPU Warp kernel before model observation; retain original assignment and start independent cache-isolated batch.",
+        "active_trial": 0,
+        "pending_trials": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "stack": "simulator-first-frame-full-stack.txt"
+      },
+      "interrupted-cleanup": {
+        "owned_pids": [
+          979562,
+          979571,
+          979812,
+          980362
+        ],
+        "remaining_live_pids": [],
+        "cleanup_confirmed": true
+      },
+      "exit": {
+        "exit": -15
+      },
+      "started_trials": 1
+    },
+    {
+      "id": "02-pi05",
+      "assigned_trials": 3,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-02-pi05/spec.json",
+        "size": 3911,
+        "sha256": "17cbd0ffe68a52c25ff03827943843411a6b0b2184b3eaab609660c9eea58726"
+      },
+      "result_files": [],
+      "planning_attempts": 0,
+      "interrupted": {
+        "reason": "Baseline first camera frame blocked in CPU Warp kernel; candidate not started.",
+        "executed_trials": 0,
+        "assigned_trials": 3
+      },
+      "started_trials": 0
+    },
+    {
+      "id": "03-cache",
+      "assigned_trials": 6,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-03-cache/spec.json",
+        "size": 4800,
+        "sha256": "925267c8eac20c758d635dda68e2ca77e73039770cb8839d3aa700f6bc492d56"
+      },
+      "result_files": [],
+      "planning_attempts": 0,
+      "interrupted": {
+        "reason": "First camera frame remains blocked with isolated cache; test bundled Warp import isolation.",
+        "active_trial": 0,
+        "pending_trials": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "interrupted-cleanup": {
+        "owned_pids": [
+          983993,
+          983998,
+          984228,
+          984708
+        ],
+        "cleanup_confirmed": true
+      },
+      "exit": {
+        "exit": -15
+      },
+      "started_trials": 1
+    },
+    {
+      "id": "04-pi05-cache",
+      "assigned_trials": 3,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-04-pi05-cache/spec.json",
+        "size": 3917,
+        "sha256": "7079c8ecd9f89abc5359b15b4b04927c6fd7bc556833593db903a149a0ecb0f3"
+      },
+      "result_files": [],
+      "planning_attempts": 0,
+      "interrupted": {
+        "reason": "Cache isolation did not unblock first camera frame; candidate not started.",
+        "executed_trials": 0,
+        "assigned_trials": 3
+      },
+      "started_trials": 0
+    },
+    {
+      "id": "05-warp-preflight",
+      "assigned_trials": 1,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-05-warp-preflight/spec.json",
+        "size": 3344,
+        "sha256": "89e1dfeaccbc94b6fc8b38e4c09cd89b06fc4a11d615555364ea577683170313"
+      },
+      "result_files": [
+        {
+          "path": "raw/runtime-05-warp-preflight-0/result.json",
+          "client_exit": null,
+          "process_timeout": true,
+          "native_result_count": 0,
+          "timings": []
+        }
+      ],
+      "planning_attempts": 0,
+      "exit": {
+        "exit": 0
+      },
+      "started_trials": 1
+    },
+    {
+      "id": "07-camera-buffer",
+      "assigned_trials": 1,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-07-camera-buffer/spec.json",
+        "size": 3342,
+        "sha256": "0218ad3a92a15b99b6844c9e97756215cff22756d6e6214438b61953dfc6d658"
+      },
+      "result_files": [
+        {
+          "path": "raw/runtime-07-camera-buffer-0/result.json",
+          "client_exit": 1,
+          "process_timeout": false,
+          "native_result_count": 0,
+          "timings": []
+        }
+      ],
+      "planning_attempts": 0,
+      "exit": {
+        "exit": 0
+      },
+      "started_trials": 1
+    },
+    {
+      "id": "08-camera-buffer",
+      "assigned_trials": 1,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-08-camera-buffer/spec.json",
+        "size": 3342,
+        "sha256": "e22ad6e0e74b9a2a6e93b92ff5691ada8b112a3684ce4019939aecf5e1ea07c6"
+      },
+      "result_files": [
+        {
+          "path": "raw/runtime-08-camera-buffer-0/result.json",
+          "client_exit": 0,
+          "process_timeout": false,
+          "native_result_count": 0,
+          "timings": []
+        }
+      ],
+      "planning_attempts": 0,
+      "exit": {
+        "exit": 0
+      },
+      "started_trials": 1
+    },
+    {
+      "id": "09-camera-guard",
+      "assigned_trials": 1,
+      "spec": {
+        "archive_member": "execution-qualification-20261023-09-camera-guard/spec.json",
+        "size": 3340,
+        "sha256": "adef487cff72dd88e519df8fd3f6a72dd85cc2d771c2bf91668980a975232665"
+      },
+      "result_files": [
+        {
+          "path": "raw/runtime-09-camera-guard-0/result.json",
+          "client_exit": 0,
+          "process_timeout": false,
+          "native_result_count": 0,
+          "timings": []
+        }
+      ],
+      "planning_attempts": 0,
+      "exit": {
+        "exit": 0
+      },
+      "camera-source": {
+        "before_sha256": "364cd10dfd2be164efb4adf7a52adf2e7b38e49f4da90e70575d2ceaa7a6cada",
+        "after_sha256": "2b3c1734c0e31ac828070c12a89be1f0dc5f551168b425bcb9fe0bb239b1957f"
+      },
+      "started_trials": 1
+    }
+  ],
+  "assigned_simulation_trials": 22,
+  "started_simulation_trials": 6,
+  "cleanup": {
+    "owned_live_processes": [],
+    "all_experiments_quiescent": true
+  },
+  "source_and_dependency_evidence": [
+    {
+      "archive_member": "execution-qualification-20261023-01/checkpoint-inventory.json",
+      "size": 12357,
+      "sha256": "a6e02ee9c271d9ed888c5b32b8abc0813c20ee9ea9f2fd0e95f8080b211620b9"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-01/dependencies.json",
+      "size": 5335,
+      "sha256": "ae152c2ebceba82bfed633b7d75242a979e320b00cc663acfe28dc96ace3ac9c"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-01/source-inventory.json",
+      "size": 1118866,
+      "sha256": "d99181a7a0b0e447039158e66329915b2b543b23e90e8275c191225d61b56a06"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-03-cache/dependencies.json",
+      "size": 5335,
+      "sha256": "ae152c2ebceba82bfed633b7d75242a979e320b00cc663acfe28dc96ace3ac9c"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-03-cache/source-inventory.json",
+      "size": 115188,
+      "sha256": "91abfdf86df9d56f7f0e1c842ae4ed3619f7cff8510f36c11546bbb5f30e1573"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-05-warp-preflight/dependencies.json",
+      "size": 5335,
+      "sha256": "ae152c2ebceba82bfed633b7d75242a979e320b00cc663acfe28dc96ace3ac9c"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-05-warp-preflight/source-inventory.json",
+      "size": 115188,
+      "sha256": "91abfdf86df9d56f7f0e1c842ae4ed3619f7cff8510f36c11546bbb5f30e1573"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-07-camera-buffer/dependencies.json",
+      "size": 5335,
+      "sha256": "ae152c2ebceba82bfed633b7d75242a979e320b00cc663acfe28dc96ace3ac9c"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-07-camera-buffer/source-inventory.json",
+      "size": 115188,
+      "sha256": "91abfdf86df9d56f7f0e1c842ae4ed3619f7cff8510f36c11546bbb5f30e1573"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-08-camera-buffer/dependencies.json",
+      "size": 5335,
+      "sha256": "ae152c2ebceba82bfed633b7d75242a979e320b00cc663acfe28dc96ace3ac9c"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-08-camera-buffer/source-inventory.json",
+      "size": 115188,
+      "sha256": "91abfdf86df9d56f7f0e1c842ae4ed3619f7cff8510f36c11546bbb5f30e1573"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-09-camera-guard/dependencies.json",
+      "size": 5335,
+      "sha256": "ae152c2ebceba82bfed633b7d75242a979e320b00cc663acfe28dc96ace3ac9c"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-09-camera-guard/source-inventory.json",
+      "size": 115188,
+      "sha256": "91abfdf86df9d56f7f0e1c842ae4ed3619f7cff8510f36c11546bbb5f30e1573"
+    },
+    {
+      "archive_member": "inventory/loaded-source-index.json",
+      "size": 83172,
+      "sha256": "3c5b85fc79ee5a17e83517d8dff2b1765c6c3195fad5c0f810745a81a73b3130"
+    },
+    {
+      "archive_member": "inventory/policy-environment.json",
+      "size": 4577,
+      "sha256": "d5c882e2c0596da463a79faccbade28937b332742e5883820f594f3cea3c79f5"
+    },
+    {
+      "archive_member": "inventory/simulator-environment.json",
+      "size": 7393,
+      "sha256": "ed6c2508f753ac593d32c4dda882105a51840b7e699ac61b1ed02f48411f9613"
+    }
+  ]
+}

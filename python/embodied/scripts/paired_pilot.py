@@ -29,6 +29,7 @@ from deepseek_harness_embodied.bridge import write_record
 from deepseek_harness_embodied.budget import CallBudget
 from deepseek_harness_embodied.evaluation import provider_request, response_usage
 from deepseek_harness_embodied.online_config import load_online_config
+from deepseek_harness_embodied.simulation_runtime import simulation_environment
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -39,9 +40,15 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 class Gateway:
     """Own a loopback-only, bounded, recorded relay to the official DeepSeek API."""
-    def __init__(self, root: Path, spec: dict, key: str) -> None:
+    def __init__(self, root: Path, spec: dict, key: str | None) -> None:
         self.root, self.spec, self.key = root, spec, key
+        self.planning_forbidden = spec.get('planner_mode', 'enabled') == 'forbidden'
+        if not self.planning_forbidden and not key:
+            raise ValueError('Enabled planning requires a provider credential')
+        write_record(root/'policy.json', {'schema': 'dsh-planner-policy/v1',
+                                        'planner_mode': 'forbidden' if self.planning_forbidden else 'enabled'})
         self.token = secrets.token_urlsafe(32)
+        self.forbidden_attempts = 0
         self.budget = CallBudget(root/'attempts', spec['calls_per_episode'])
         self.lock = threading.Lock()
         self.opener = urllib.request.build_opener(NoRedirect())
@@ -65,6 +72,12 @@ class Gateway:
                 response_started = False
                 captured = bytearray()
                 try:
+                    if owner.planning_forbidden:
+                        write_record(root/f'forbidden-{owner.forbidden_attempts:04d}.json',
+                                     {'status': 'forbidden', 'provider_contacted': False})
+                        owner.forbidden_attempts += 1
+                        self.send_error(403, 'Execution qualification forbids planner requests')
+                        return
                     size = int(self.headers['Content-Length'])
                     if not 0 < size <= spec['max_request_bytes']:
                         raise ValueError('Provider request size exceeds pilot cap')
@@ -113,6 +126,7 @@ class Gateway:
                         owner.lock.release()
 
         self.server = ThreadingHTTPServer(('127.0.0.1', 0), Handler)
+        self.server.daemon_threads = False
         self.thread = threading.Thread(target=self.server.serve_forever)
 
     def __enter__(self):
@@ -143,7 +157,7 @@ def stop(process: subprocess.Popen, grace: float) -> None:
         pass  # No descendant remains in this owned process group.
 
 
-def episode(spec: dict, case: dict, arm: str, index: int, key: str, inputs: dict) -> dict:
+def episode(spec: dict, case: dict, arm: str, index: int, key: str | None, inputs: dict) -> dict:
     """Retain one attempt, including launch failures; never retry a failed episode."""
     project, dev, repo = (Path(spec[name]) for name in ('project_root', 'deployment_root', 'checkout'))
     out = Path(spec['output'])/f'{index:04d}-{case["case_id"]}-{arm}'
@@ -171,13 +185,18 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str, inputs: dict
             write_record(out/'runtime.json', runtime)
             online = deepcopy(inputs['online'])
             online.update(evidence_root=str(out/'runner'),
-                call_budget={'root': str(out/'turn-reservations'), 'limit': spec['calls_per_episode']},
+                call_budget={'root': str(out/'turn-reservations'),
+                             'limit': 0 if gateway.planning_forbidden else spec['calls_per_episode']},
                 episode_timeout_seconds=spec['episode_timeout_seconds'],
                 rpc_timeout_seconds=spec['rpc_timeout_seconds'])
             online['recovery']['observation_max_age_seconds'] = spec['rpc_timeout_seconds']
             write_record(out/'online.json', online)
             deployment = {'port': 0, 'ready_file': str(out/'ready.json'),
                           'model': {'task_name': case['task'], 'env_cfg_type': spec['embodiment'], 'action_type': 'joint'}}
+            if spec.get('capture_execution_diagnostics', False):
+                if arm != 'N':
+                    raise ValueError('Execution diagnostics require a native-only execution trial')
+                deployment['execution_diagnostics'] = str(out/'execution-diagnostics')
             if 'initial_plan' in online:
                 deployment['initial_plan'] = deepcopy(online['initial_plan'])
             write_record(out/'deployment.json', deployment)
@@ -224,7 +243,7 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str, inputs: dict
                     '--fresh-layout-manifest-sha256',cohort['manifest_sha256'],
                     '--fresh-layout-index',str(cohort['index']),'--fresh-layout-split',cohort['split']])
             write_record(out/'launch.json', {'argv': command, 'mode': mode})
-            client = subprocess.Popen(command, env=env, stdin=subprocess.DEVNULL,
+            client = subprocess.Popen(command, env=simulation_environment(spec, env), stdin=subprocess.DEVNULL,
                                       stdout=client_log, stderr=subprocess.STDOUT, start_new_session=True)
             stack.callback(stop, client, spec['cleanup_grace_seconds'])
             try:
@@ -232,6 +251,8 @@ def episode(spec: dict, case: dict, arm: str, index: int, key: str, inputs: dict
             except subprocess.TimeoutExpired:
                 result['process_timeout'] = True
                 raise
+            if gateway.forbidden_attempts:
+                raise RuntimeError('Forbidden planner requests occurred; execution is not qualified')
     except Exception as error:
         result['error'] = {'type': type(error).__name__, 'message': str(error)}
     finally:
@@ -254,6 +275,7 @@ def resolve_inputs(spec: dict) -> dict:
     Every arm uses the same policy interpreter and captured template. Its file
     hash identifies the executable, not its installed dependency environment.
     """
+    simulation_environment(spec, {})
     template = Path(spec['online_config']) if 'online_config' in spec else (
         Path(spec['checkout'])/'python/embodied/configs/robodojo-online.example.json')
     interpreter = Path(spec['policy_python']) if 'policy_python' in spec else (
@@ -262,6 +284,9 @@ def resolve_inputs(spec: dict) -> dict:
         raise ValueError('Pilot policy interpreter must be an executable file')
     raw = template.read_bytes()
     online = load_online_config(template)
+    if spec.get('planner_mode', 'enabled') == 'forbidden':
+        if 'initial_plan' not in online or online['recovery_enabled']:
+            raise ValueError('Forbidden planning requires an explicit initial plan and disabled recovery')
     if template.read_bytes() != raw:
         raise ValueError('Online configuration changed during resolution')
     return {'online':online, 'online_config':str(template),
@@ -282,7 +307,7 @@ def main() -> None:
     output.mkdir(parents=True, exist_ok=False)
     write_record(output/'spec.json', spec)
     write_record(output/'resolved-inputs.json', inputs)
-    key = os.environ['PHYSICALRSI_AGENT_API_KEY']
+    key = None if spec.get('planner_mode', 'enabled') == 'forbidden' else os.environ['PHYSICALRSI_AGENT_API_KEY']
     index = 0
     for case in spec['cases']:
         for arm in case['order']:
@@ -297,6 +322,8 @@ def validate_spec(spec: dict) -> None:
     """Reject incomplete development assignments and unbounded controls before launch."""
     if spec['schema'] != 'dsh-paired-pilot/v1' or spec['partition'] != 'development':
         raise ValueError('Only versioned development pilot specifications are accepted')
+    if spec.get('planner_mode', 'enabled') not in {'enabled', 'forbidden'}:
+        raise ValueError('Unsupported planner mode')
     if spec.get('deepseek_reasoning', 'off') not in {'off', 'low', 'high', 'max'}:
         raise ValueError('Unsupported DeepSeek pilot reasoning setting')
     for name in ('project_root', 'deployment_root', 'checkout', 'output', 'skill_config', 'runtime_config'):

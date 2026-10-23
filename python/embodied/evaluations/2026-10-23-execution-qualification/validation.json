@@ -1,0 +1,67 @@
+{
+  "schema": "dsh-execution-validation/v1",
+  "checks": [
+    {
+      "command": "PYTHONPATH=python/embodied/src:python/sdk/src:python/sdk-runtime/src DSH_EMBODIED_INTEGRATION=1 python/sdk/.venv/bin/python -m pytest python/embodied/tests",
+      "result": "277 passed",
+      "log": ".artifacts/embodied-live/2026-10-23-execution-qualification/local-checks/pytest-final.log",
+      "sha256": "3f2c0df7058e5552bf0d17a62b0d557f85f6378983746d9b6e142c6b0d983a58"
+    },
+    {
+      "command": "pnpm run build",
+      "result": "passed",
+      "log": ".artifacts/embodied-live/2026-10-23-execution-qualification/local-checks/build.log",
+      "sha256": "d4679d360b2588dc6c759c5663bbec7a044db5407bc909ab53048407a78c4255"
+    },
+    {
+      "command": "pnpm run build:check",
+      "result": "passed",
+      "log": ".artifacts/embodied-live/2026-10-23-execution-qualification/local-checks/build-check.log",
+      "sha256": "59e3a6cc81c1ef1789a78daa05169ca72083eac83df3fade78505f9ed7dd7a0d"
+    },
+    {
+      "command": "pnpm run lint",
+      "result": "passed with existing unused-disable warning",
+      "log": ".artifacts/embodied-live/2026-10-23-execution-qualification/local-checks/lint-final.log",
+      "sha256": "cca562dcd78702f328a3e76112495c78f22b814f12434ec4dfe5ac01474a6060"
+    },
+    {
+      "command": "pnpm run doc-sync",
+      "result": "42 passed; 1 pre-existing failure",
+      "log": ".artifacts/embodied-live/2026-10-23-execution-qualification/local-checks/doc-sync-final.log",
+      "sha256": "07667f29cafb9c36a4deadaa1aefd602125faa171694fb6981401e036608837a"
+    },
+    {
+      "command": "pnpm run test:docs",
+      "result": "20 passed; same pre-existing repository-reference failure; final translation pairing and links passed",
+      "log": ".artifacts/embodied-live/2026-10-23-execution-qualification/local-checks/doc-quick-final.log",
+      "sha256": "77553c343652656672646691928f4292b350638f008389edc5472d5e6396b3f3"
+    }
+  ],
+  "additional_completed_checks": [
+    {
+      "scope": "scripts/verify-repository-references.spec.ts",
+      "result": "19 passed"
+    },
+    {
+      "scope": "runtime archive integrity",
+      "result": "Archive SHA-256 and all 386 payload members verified; 387 members including manifest"
+    },
+    {
+      "scope": "real GPU trace replay",
+      "result": "All 3 audits reproduced locally; every imported evidence digest matched"
+    },
+    {
+      "scope": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "preexisting_failure": {
+    "file": "python/sdk/uv.lock",
+    "line": 113,
+    "check": "repository references",
+    "unchanged_from_HEAD": true
+  },
+  "physical_acceptance_complete": false,
+  "new_verified_task_effects": 0
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "dsh-capability-spec/v1",
+  "capability_id": "pi05-store-tools-in-toolbox",
+  "scope": "Previously explored official development scene: store_tools_in_toolbox, seed 0, layout 0.",
+  "catalog_sha256": "b16ee9b0ee88148235d97ebb677bbe06b65c2292158c7034cb66b949ae38c277",
+  "skill": {
+    "name": "pi05",
+    "revision": "df716f31146643c4a67588fb5111a8153a69112559a3e19d57934eed4fa143bb"
+  },
+  "selection": {
+    "composition": "memory-guided-manipulation",
+    "operations": []
+  },
+  "control": {
+    "embodiment": "arx_x5",
+    "action_type": "joint",
+    "frame": "robot-joints",
+    "units": "arm radians; grippers normalized",
+    "semantics": "absolute",
+    "cadence": "observation after each simulator command; policy consumes native chunk cadence"
+  },
+  "observations": [
+    [
+      "vision",
+      "cam_head",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_left_wrist",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_right_wrist",
+      "color"
+    ],
+    [
+      "state",
+      "left_arm_joint_state"
+    ],
+    [
+      "state",
+      "left_ee_joint_state"
+    ],
+    [
+      "state",
+      "right_arm_joint_state"
+    ],
+    [
+      "state",
+      "right_ee_joint_state"
+    ]
+  ],
+  "start_predicates": [],
+  "lifecycle": {
+    "interrupt": "unknown",
+    "restart": "unknown"
+  },
+  "effects": [
+    {
+      "id": "task-complete",
+      "implementation": "available",
+      "completion": "Independent native task evaluator success at termination.",
+      "evidence": [
+        {
+          "path": "source-inventory.json",
+          "sha256": "1f6a204ce464309dbe42e767cea91026c6163bc3d47b68c00d04cc46de3348f6"
+        }
+      ]
+    }
+  ]
+}

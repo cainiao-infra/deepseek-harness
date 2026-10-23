@@ -1,0 +1,10 @@
+{
+  "schema": "dsh-execution-planner-audit/v1",
+  "origin": "forbidden-gateway",
+  "attempts": 0,
+  "attempt_files": [],
+  "policy": {
+    "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/provider/policy.json",
+    "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+  }
+}

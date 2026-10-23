@@ -1,0 +1,9 @@
+{
+  "schema": "dsh-policy-trace-audit/v1",
+  "camera_encoding": true,
+  "state_ordering": true,
+  "tensor_integrity": true,
+  "action_conversion": true,
+  "actions": 50,
+  "qualification": false
+}

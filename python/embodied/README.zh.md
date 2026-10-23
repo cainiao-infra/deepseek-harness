@@ -4,6 +4,8 @@
 
 本适配器将 PhysicalRSI 的共享领域规划器连接到 DSH 公共 Python SDK。兼容规划保留原生消息和校验，执行仍由 PhysicalRSI 负责。RoboDojo 在线执行端在同步动作检查点丢弃缓存尾部，并通过原生 PhysicalRSI 技能绑定模型选择的恢复方案。目前尚未完成任务成功率或延迟对等性验收。
 
+[领域 harness 优化提案](../../.agents/notes/proposed/architecture/2026-10-23-embodied-domain-harness-optimization.zh.md)定义能力验证、任务执行、恢复与性能目标。下文的执行记录说明已实现的检查及测得的能力支持范围。
+
 ## 安装与启动
 
 PhysicalRSI 需要 Python 3.11 或更高版本，Node 版本须符合仓库要求。使用构建后的 CLI 和 bundle 前先构建 DSH。以下命令从 DSH 仓库根目录执行；绝对路径需替换为自己的隔离检出目录和 Harness home。
@@ -96,6 +98,26 @@ case 可同时固定 `layout_id` 和 `layout_sha256`。该索引选择 CLI seed 
 `scripts/paired_pilot_report.py /absolute/path/to/pilot-output` 在全部指定组结束后输出描述性报告。缺失或重复分配、源码版本混用会拒绝生成报告。原生结果、异常、共同期限及提供方预留名额分别检查；退出码为零的失败仍计入分母，缺失提供方回执使其用量保持未知。结果文件摘要支持与保留证据核验。报告始终将统计验收标记为证据不足。
 
 [验收记录](evaluations/2026-10-21-acceptance/report.zh.md)包含固定 case 的开发结果、证据摘要及尚未完成的正式验收条件。
+
+## 执行验证
+
+可选的 [pi05 变换补丁](integrations/physicalrsi-pi05-transforms.patch)显式保留检查点训练配置：`adapt_to_pi=false` 和 `use_delta_joint_actions=true`。否则，已安装 OpenPI 的默认值会引入原始 ARX 训练配置未使用的 ALOHA 关节符号和夹爪转换。仅在隔离提供方副本中，对[清单](integrations/physicalrsi-pi05-transforms.sources.json)匹配的源码应用。稀疏记忆配置保留自身显式变换。物理任务结果由执行记录负责；变换一致本身不能验证策略能力。
+
+试验配置的 `simulation_library_dirs` 是有序的现有绝对目录列表，前置到仿真进程的 `LD_LIBRARY_PATH`；省略时保留继承配置。目录无效时在输入解析阶段失败。仅仿真进程接收这些新增路径。Isaac Sim 渲染器需要 `libGLU.so.1` 等原生依赖；即使物理引擎启动成功，渲染依赖缺失仍会导致 annotator 返回空帧。执行证据应保留依赖文件及摘要。
+
+可选的 [RoboDojo 相机补丁](integrations/robodojo-camera-frame.patch)在图像重排或内核派发前拒绝缺失或不完整的 annotator 缓冲区。仅应用于匹配[源码清单](integrations/robodojo-camera-frame.sources.json)的隔离副本。补丁明确报告帧不可用，不重试或构造替代观测；恢复渲染器输出仍是部署要求。
+
+`CapabilitySpec` 将版本化部署范围、控制约定、必要观测字段、可观测启动谓词和各效果的实现证据关联到现有原生目录与 skill 版本。版本未知、必要观测缺失、谓词为假或未知，以及单位、坐标系或动作语义不匹配时，显式绑定探针在创建工作进程前拒绝执行。这是离线评测元数据，不重复注册原生能力，也不增加模型上下文。
+
+`scripts/probe_binding.py --config /absolute/path/to/probe.json --output /absolute/path/to/new-output` 消费 `dsh-binding-probe-config/v1`：相对配置目录、固定摘要的 `capability`、`input` 和 `skills` 引用，以及显式 `worker` 设置和原生 `deployment`。输入包含 `observation`、`control` 和 `predicates`；记录的 RGB 为 HWC uint8，状态向量为有限 float32。探针绑定声明的计划，校验实际目录与 skill 版本，记录工作进程诊断和一个生成动作块，然后关闭工作进程。探针派发零个动作。推理和清理分别报告结果，均不能代表任务成功。
+
+`scripts/execution_trials.py --spec /absolute/path/to/trials.json` 运行 `dsh-execution-trials/v1`，其中包含通过校验且设置 `planner_mode=forbidden` 的配对开发 `pilot` 部署，以及带有 `id`、已有 `case_id` 和显式原生 `plan` 的有序 `trials`。恢复必须关闭，并配置初始计划。所有分配在执行前写入。只运行 N；每次试验独立重置、分配输出目录和策略进程。网关不持有提供方凭据，拒绝并记录每次规划尝试；尝试规划会使 episode 失败。普通配对试验保持 N/H0/H1 行为。
+
+原生执行诊断保留首次原始观测、实际加载 Python 源码摘要和依赖版本、编码后的相机与状态张量、实际首次 OpenPI 输入输出变换以及转换后的动作块。变换包装器仅调用提供方一次并返回原结果，不重复观测交付、归一化或推理。记录失败会停止执行。稀疏历史图像保留张量摘要和掩码。这些诊断运行不测量未插桩时延。 工作进程的 `capture_execution_diagnostics` 为布尔值，默认为 false，记录写入工作进程的 `execution-diagnostics` 目录；仅原生试验运行器显式开启。`policy_diagnostics.audit_trace` 检查记录的相机通道排列、ARX-X5 状态顺序、张量摘要及原生和 RPC 动作转换，不认证训练统计量或物理效果。
+
+`scripts/qualify_execution.py --manifest /absolute/path/to/manifest.json --output /absolute/path/to/new-report.json` 根据固定摘要的源码与依赖清单、全部声明分配、显式部署与绑定身份、原始任务结果、计时及规划尝试，校验 `dsh-execution-qualification/v1`。引用缺失或被修改时审计失败；失败阶段明确缺少的产物继续计为失败。效果区分为 `verified`、`unsupported` 和 `unverified`。验证通过要求每个已分配试验正常结束且独立效果检查成功；完整任务评测器只能支持 `task-complete`，不能替代各件工具放置的中间结果检查。依赖清单不完整时不能通过。必要效果未覆盖时命令以状态 2 退出。正式留出验收始终为假。
+
+[增量 A 执行记录](evaluations/2026-10-23-execution-qualification/report.zh.md)负责测量结果、仍不支持的效果、复现命令及用户确认的远端部署引用。
 
 ## 固定输入 Thinking 对照
 

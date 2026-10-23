@@ -1,0 +1,173 @@
+{
+  "schema": "dsh-restored-execution-summary/v1",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "trials": [
+    {
+      "id": "control-pi05-general-pickup-official-0-dev",
+      "batch": "11-render-libs",
+      "task": "general_pickup",
+      "report": "control-pi05-general-pickup-official-0-dev.report.json",
+      "covered": false,
+      "actions": 200,
+      "native_success": false,
+      "planner_attempts": 0,
+      "eligible": false,
+      "timing": [
+        {
+          "actions": 200,
+          "elapsed_seconds": 33.74434839200694,
+          "error": null,
+          "includes_skill_cold_start": true,
+          "mode": "native",
+          "qualification": false,
+          "schema": "dsh-robodojo-pilot-timing/v1",
+          "started": 403807.825851795
+        }
+      ]
+    },
+    {
+      "id": "restored-pi05-general-pickup-official-0-dev",
+      "batch": "12-restored",
+      "task": "general_pickup",
+      "report": "restored-pi05-general-pickup-official-0-dev.report.json",
+      "covered": false,
+      "actions": 200,
+      "native_success": false,
+      "planner_attempts": 0,
+      "eligible": false,
+      "timing": [
+        {
+          "actions": 200,
+          "elapsed_seconds": 34.16209890303435,
+          "error": null,
+          "includes_skill_cold_start": true,
+          "mode": "native",
+          "qualification": false,
+          "schema": "dsh-robodojo-pilot-timing/v1",
+          "started": 403931.030591356
+        }
+      ]
+    },
+    {
+      "id": "restored-pi05-stack-blocks-by-language-official-0-dev",
+      "batch": "12-restored",
+      "task": "stack_blocks_by_language",
+      "report": "restored-pi05-stack-blocks-by-language-official-0-dev.report.json",
+      "covered": false,
+      "actions": 400,
+      "native_success": false,
+      "planner_attempts": 0,
+      "eligible": false,
+      "timing": [
+        {
+          "actions": 400,
+          "elapsed_seconds": 53.22475293005118,
+          "error": null,
+          "includes_skill_cold_start": true,
+          "mode": "native",
+          "qualification": false,
+          "schema": "dsh-robodojo-pilot-timing/v1",
+          "started": 404051.917165574
+        }
+      ]
+    },
+    {
+      "id": "restored-pi05-store-tools-in-toolbox-official-0-dev",
+      "batch": "12-restored",
+      "task": "store_tools_in_toolbox",
+      "report": "restored-pi05-store-tools-in-toolbox-official-0-dev.report.json",
+      "covered": false,
+      "actions": 900,
+      "native_success": false,
+      "planner_attempts": 0,
+      "eligible": false,
+      "timing": [
+        {
+          "actions": 900,
+          "elapsed_seconds": 113.26591423002537,
+          "error": null,
+          "includes_skill_cold_start": true,
+          "mode": "native",
+          "qualification": false,
+          "schema": "dsh-robodojo-pilot-timing/v1",
+          "started": 404189.987189564
+        }
+      ]
+    },
+    {
+      "id": "restored-sparse-general-pickup-official-0-dev",
+      "batch": "12-restored",
+      "task": "general_pickup",
+      "report": "restored-sparse-general-pickup-official-0-dev.report.json",
+      "covered": true,
+      "actions": 76,
+      "native_success": true,
+      "planner_attempts": 0,
+      "eligible": true,
+      "timing": [
+        {
+          "actions": 76,
+          "elapsed_seconds": 22.37702180800261,
+          "error": null,
+          "includes_skill_cold_start": true,
+          "mode": "native",
+          "qualification": false,
+          "schema": "dsh-robodojo-pilot-timing/v1",
+          "started": 404390.969358688
+        }
+      ]
+    },
+    {
+      "id": "restored-sparse-stack-blocks-by-language-official-0-dev",
+      "batch": "12-restored",
+      "task": "stack_blocks_by_language",
+      "report": "restored-sparse-stack-blocks-by-language-official-0-dev.report.json",
+      "covered": false,
+      "actions": 400,
+      "native_success": false,
+      "planner_attempts": 0,
+      "eligible": false,
+      "timing": [
+        {
+          "actions": 400,
+          "elapsed_seconds": 58.453451859008055,
+          "error": null,
+          "includes_skill_cold_start": true,
+          "mode": "native",
+          "qualification": false,
+          "schema": "dsh-robodojo-pilot-timing/v1",
+          "started": 404499.346416726
+        }
+      ]
+    },
+    {
+      "id": "restored-sparse-store-tools-in-toolbox-official-0-dev",
+      "batch": "12-restored",
+      "task": "store_tools_in_toolbox",
+      "report": "restored-sparse-store-tools-in-toolbox-official-0-dev.report.json",
+      "covered": false,
+      "actions": 900,
+      "native_success": false,
+      "planner_attempts": 0,
+      "eligible": false,
+      "timing": [
+        {
+          "actions": 900,
+          "elapsed_seconds": 124.20820306497626,
+          "error": null,
+          "includes_skill_cold_start": true,
+          "mode": "native",
+          "qualification": false,
+          "schema": "dsh-robodojo-pilot-timing/v1",
+          "started": 404645.55164581
+        }
+      ]
+    }
+  ],
+  "archive_sha256": "d0511656fcec44435928e635e3cf6319e7f015c5ef2a71af0cd80dd360316e17",
+  "cleanup": {
+    "owned_live_processes": [],
+    "all_experiments_quiescent": true
+  }
+}

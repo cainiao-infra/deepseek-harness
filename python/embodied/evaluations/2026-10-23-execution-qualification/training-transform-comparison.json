@@ -1,0 +1,27 @@
+{
+  "schema": "dsh-training-transform-comparison/v1",
+  "pi05": {
+    "training": {
+      "path": "/mnt/nas/qingning/projects/RoboDojo/XPolicyLab/policy/Pi_05/openpi/src/openpi/training/config.py",
+      "sha256": "9d4d131807ebcdc91845288f6012124ca3fc43f5faf9d79ee1f4d681a4e0eff9",
+      "defaults": {
+        "use_delta_joint_actions": true,
+        "adapt_to_pi": false
+      }
+    },
+    "installed": {
+      "path": "/mnt/nas/qingning/projects/physicalrsi-assets/skill-assets/implementations/openpi/src/openpi/training/config.py",
+      "sha256": "0125318148371b134cbd0514000ed486d558774804cc7a884b1cb0a674ebc348",
+      "defaults": {
+        "use_delta_joint_actions": true,
+        "adapt_to_pi": true
+      }
+    },
+    "ported": {
+      "path": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev/PhysicalRSI/PhysicalRSI_baselines/robodojo/skills/inference_configs.py",
+      "sha256": "51381edc08753f728a0b4ec20ce8fce63e0dffae98bc803b1cf19a9f16f67f4a",
+      "explicit_transform_fields": []
+    }
+  },
+  "scope": "Source defaults, not a task-success assertion."
+}

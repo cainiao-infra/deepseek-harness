@@ -1,0 +1,23 @@
+--- a/env/camera_manager/capture/camera_view.py
++++ b/env/camera_manager/capture/camera_view.py
+@@ -280,6 +280,7 @@
+             to the requested annotator/sensor type.
+
+         Raises:
++            RuntimeError: If the annotator has not produced a complete frame.
+             ValueError: If the specified annotator type is not supported.
+             ValueError: If the specified annotator type is not configured when instantiating the object.
+         """
+@@ -308,6 +309,12 @@
+         else:
+             tiled_data: wp.array = data
+             info = {}
++        expected_size = self.tiled_resolution[0] * self.tiled_resolution[1] * spec["channels"]
++        if tiled_data.size != expected_size:
++            raise RuntimeError(
++                f"Camera {annotator_type} frame unavailable: expected {expected_size} values, "
++                f"received {tiled_data.size} on {tiled_data.device}"
++            )
+         # tiled image
+         if tiled:
+             shape = (*self.tiled_resolution, spec["channels"])

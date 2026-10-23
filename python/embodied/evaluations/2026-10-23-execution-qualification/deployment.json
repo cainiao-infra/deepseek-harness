@@ -1,0 +1,21 @@
+{
+  "schema": "dsh-execution-deployment/v1",
+  "source": "User-confirmed SSH connection for the existing RoboDojo development environment",
+  "ssh": {
+    "host": "8.130.160.135",
+    "port": 2009,
+    "user": "root",
+    "identity_file": "~/.ssh/id_ed25519_gitlab",
+    "identities_only": true
+  },
+  "project_root": "/mnt/nas/qingning/projects",
+  "deployment_root": "/mnt/nas/qingning/projects/dsh-physicalrsi-dev",
+  "policy_python": "/root/.cache/dsh-physicalrsi-dev/native-policy-env/bin/python",
+  "simulation_python": "/mnt/nas/qingning/projects/envs/robodojo-sim/bin/python",
+  "artifact_root": "/root/.cache/dsh-physicalrsi-dev/artifacts",
+  "credential_policy": "Only the local identity-file path is recorded; no private key or API credential is stored.",
+  "simulation_library_dirs": [
+    "/root/.cache/dsh-physicalrsi-dev/system-libs/usr/lib/x86_64-linux-gnu"
+  ],
+  "restored_execution_root": "/root/.cache/dsh-physicalrsi-dev/execution-qualification-20261023-12-restored"
+}

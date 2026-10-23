@@ -1,0 +1,86 @@
+{
+  "schema": "dsh-execution-qualification-report/v1",
+  "partition": "development",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "environment_complete": false,
+  "assignment_timing": "retrospective",
+  "capability_id": "pi05-store-tools-in-toolbox",
+  "scope": "Previously explored official development scene: store_tools_in_toolbox, seed 0, layout 0.",
+  "spec_revision": "8ab783304719a2790205329f8643f781ccdb406ab67b8bae83db7a6377fe5aaf",
+  "effects": [
+    {
+      "effect": "task-complete",
+      "status": "unverified",
+      "reason": "execution_not_verified",
+      "passed_trials": 0,
+      "assigned_trials": 1
+    }
+  ],
+  "covered": false,
+  "trials": [
+    {
+      "id": "store-tools-in-toolbox-official-0-dev-N",
+      "eligible": false,
+      "effects": {
+        "task-complete": false
+      },
+      "native_success": false,
+      "planner_attempts": 0,
+      "planner_enforced": false,
+      "actions": 900,
+      "episode_error": null,
+      "launcher_error": null,
+      "artifact_digests": {
+        "result": {
+          "path": "raw/pi05-store-tools-in-toolbox/result.json",
+          "sha256": "5bdc4da16057a4eb13c1f89e97d0c84db1ea70aea0c32f62568d323d1f7a9f33"
+        },
+        "deployment": {
+          "path": "raw/pi05-store-tools-in-toolbox/deployment.json",
+          "sha256": "d1c6ff7edda5a53508c13753e66d462f1bb9a8061fe9693907a2f7a4821ce98c"
+        },
+        "configured_plan": {
+          "path": "raw/pi05-store-tools-in-toolbox/configured_plan.json",
+          "sha256": "6a865af83a3e39888190dc4e47b237689c680ec6ecabd5ad9c58401d18f891a5"
+        },
+        "native_binding": {
+          "path": "raw/pi05-store-tools-in-toolbox/native_binding.json",
+          "sha256": "e90555702e58a89987e1598a053249228eb93bb8de911b0fe55cae96ada1f776"
+        },
+        "native_result": {
+          "path": "raw/pi05-store-tools-in-toolbox/native_result.json",
+          "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+        },
+        "timing": {
+          "path": "raw/pi05-store-tools-in-toolbox/timing.json",
+          "sha256": "07582bbdc92197201ed7c18d436136614b0f8cbc2470da0648b423c7f9414736"
+        },
+        "terminal": {
+          "path": "raw/pi05-store-tools-in-toolbox/terminal.json",
+          "sha256": "446586eb5aa99e1fa6c15e8c1766f2451a0f9083005905a18a5ad54583d944f8"
+        },
+        "initial_observation": {
+          "path": "raw/pi05-store-tools-in-toolbox/initial_observation.json",
+          "sha256": "63c49243149a15f73a9edcd8317672c74f2bcc3eb6c0b33bc8fb3da5285af931"
+        },
+        "planner_audit": {
+          "path": "raw/pi05-store-tools-in-toolbox/planner-audit.json",
+          "sha256": "cfd6991cf49b20c07e9307aa352c57623825cdf9636862cc279c75ddc7b02442"
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "source-inventory.json",
+      "sha256": "1f6a204ce464309dbe42e767cea91026c6163bc3d47b68c00d04cc46de3348f6"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "environment.json",
+      "sha256": "ec78e9efca6b89251fdb545f7a55456617c21a37f2774d36a24ec1f0c4991a4c"
+    }
+  ]
+}

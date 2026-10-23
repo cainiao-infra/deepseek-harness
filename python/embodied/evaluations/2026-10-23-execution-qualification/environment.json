@@ -1,0 +1,6 @@
+{
+  "schema": "dsh-execution-environment/v1",
+  "status": "incomplete",
+  "versions": {},
+  "reason": "The retained episode archive does not identify every installed dependency or loaded policy module. No complete execution environment is inferred from a Python executable hash."
+}

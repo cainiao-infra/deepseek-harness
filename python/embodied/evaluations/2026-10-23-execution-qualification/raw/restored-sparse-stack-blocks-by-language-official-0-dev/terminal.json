@@ -1,0 +1,1 @@
+{"schema": "dsh-native-terminal-timing/v1", "qualification": false, "first_action_seconds": 13.522967536991928, "native_terminal": {"elapsed_seconds": 58.453123188985046, "success": false}, "includes_skill_cold_start": true, "includes_evaluator_teardown": false}

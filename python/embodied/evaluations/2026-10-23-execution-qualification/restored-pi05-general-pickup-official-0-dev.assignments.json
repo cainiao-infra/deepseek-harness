@@ -1,0 +1,8 @@
+{
+  "schema": "dsh-execution-assignments/v1",
+  "scope": "Restored renderer development case: general_pickup, seed 0, layout 0.",
+  "timing": "prospective",
+  "trial_ids": [
+    "pi05-general-pickup-official-0-dev"
+  ]
+}

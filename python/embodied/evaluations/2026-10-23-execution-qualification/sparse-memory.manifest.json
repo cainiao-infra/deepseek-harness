@@ -1,0 +1,28 @@
+{
+  "schema": "dsh-execution-qualification/v1",
+  "partition": "development",
+  "capability": {
+    "path": "sparse-memory.capability.json",
+    "sha256": "281fadb4aa54ec14df3121aab05d7fa5b3f25b1b336929d06bb3461e051b1123"
+  },
+  "required_effects": [
+    "task-complete"
+  ],
+  "sources": [
+    {
+      "path": "sparse-binding-inference.json",
+      "sha256": "efb448af9f19ef4762c7eb054d245bd9db447b9af645045ec4d49f089b724b2b"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "environment.json",
+      "sha256": "ec78e9efca6b89251fdb545f7a55456617c21a37f2774d36a24ec1f0c4991a4c"
+    }
+  ],
+  "trials": [],
+  "assignments": {
+    "path": "sparse-memory.assignments.json",
+    "sha256": "920aa560ae10d81542740cdf8c5f265b17ddc747eefc97df34f7db58ad4b7e4e"
+  }
+}

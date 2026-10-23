@@ -1,0 +1,10 @@
+{
+  "schema": "dsh-source-patch/v1",
+  "files": {
+    "env/camera_manager/capture/camera_view.py": {
+      "before_sha256": "364cd10dfd2be164efb4adf7a52adf2e7b38e49f4da90e70575d2ceaa7a6cada",
+      "after_sha256": "2b3c1734c0e31ac828070c12a89be1f0dc5f551168b425bcb9fe0bb239b1957f"
+    }
+  },
+  "scope": "Reject absent or incomplete annotator frames before buffer allocation, reshape or kernel dispatch. No retry, synthetic frame or device fallback."
+}

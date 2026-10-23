@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for report.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write python/embodied/evaluations/2026-10-23-execution-qualification/report.md
+/execution-qualification-native-skills-and-control-transforms:
+  en: 17b52fc31b811ec1
+  zh: d2d7569ca09c6f56
+/execution-qualification-native-skills-and-control-transforms/scope-and-status:
+  en: 900d78e73fccfb81
+  zh: aa3a0ed80be04af6
+/execution-qualification-native-skills-and-control-transforms/confirmed-defects-and-fixes:
+  en: e135a60f627381f0
+  zh: bade3c54587f4304
+/execution-qualification-native-skills-and-control-transforms/measured-execution-evidence:
+  en: 13b8623987c3d32e
+  zh: 194706eeefdf736b
+/execution-qualification-native-skills-and-control-transforms/retained-earlier-evidence:
+  en: 8f30408f9185bd06
+  zh: 84537254ac876c81
+/execution-qualification-native-skills-and-control-transforms/reproduction-and-checks:
+  en: 7c00113c9d1062c2
+  zh: bd68990f1856c24c

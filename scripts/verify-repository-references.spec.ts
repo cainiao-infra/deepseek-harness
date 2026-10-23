@@ -72,6 +72,26 @@ describe('unique object-name prefix search', () => {
 })
 
 describe('maintained repository reference policy', () => {
+  it('retains immutable execution IDs while checking other evidence fields and prose', () => {
+    const commit = 'a'.repeat(40)
+    const commits = new Set([commit])
+    const file = 'python/embodied/evaluations/2026-10-23-execution-qualification/raw/pi05/result.json'
+    const record = { schema: 'dsh-paired-pilot-episode/v1', qualification: false, source_commit: commit }
+    expect(findRepositoryReferences(file, JSON.stringify(record), commits)).toEqual([])
+    for (const source of [
+      JSON.stringify({ ...record, note: commit }),
+      JSON.stringify({ ...record, qualification: true }),
+      JSON.stringify({ ...record, schema: 'unrecognized' }),
+      JSON.stringify({ ...record, source_commit: commit.slice(0, 10) }),
+      `{"source_commit":"${commit}","source_commit":"${commit}"}`,
+      `${commit} invalid JSON`,
+      JSON.stringify({ ...record, note: organizationUrl }),
+    ]) expect(findRepositoryReferences(file, source, new Set([commit, commit.slice(0, 10)]))).toHaveLength(1)
+    for (const other of ['docs/example.json', file.replace('result.json', 'README.md')]) {
+      expect(findRepositoryReferences(other, JSON.stringify(record), commits)).toHaveLength(1)
+    }
+  })
+
   it('permits only the independent kit repository and its source URLs', () => {
     for (const suffix of ['', '.git', '/tree/main/packages/entry']) {
       expect(findRepositoryReferences('package.json', `${organizationUrl}/libreoffice-kit${suffix}`, new Set())).toEqual([])

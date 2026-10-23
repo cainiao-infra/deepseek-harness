@@ -1,0 +1,81 @@
+{
+  "schema": "dsh-execution-qualification/v1",
+  "partition": "development",
+  "capability": {
+    "path": "control-pi05-general-pickup-official-0-dev.capability.json",
+    "sha256": "ecbad7f8a7939277970258e9e5082818f6c1c0e62b43ebdaf2a8a45cc020340f"
+  },
+  "required_effects": [
+    "task-complete"
+  ],
+  "sources": [
+    {
+      "path": "restored-source-inventory.json",
+      "sha256": "e593b2a0f53dd9f2c8f5792ade087c90d6cbcc03ec570a210144c19f97c5ca7f"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "restored-environment.json",
+      "sha256": "d5c882e2c0596da463a79faccbade28937b332742e5883820f594f3cea3c79f5"
+    },
+    {
+      "path": "restored-simulator-environment.json",
+      "sha256": "ed6c2508f753ac593d32c4dda882105a51840b7e699ac61b1ed02f48411f9613"
+    }
+  ],
+  "assignments": {
+    "path": "control-pi05-general-pickup-official-0-dev.assignments.json",
+    "sha256": "c1a6705ff4463a738813077cd087b103ca086cdd100dcc0acfab35cfdf7b1518"
+  },
+  "trials": [
+    {
+      "id": "pi05-general-pickup-official-0-dev",
+      "scope": "Restored renderer development case: general_pickup, seed 0, layout 0.",
+      "episode_timeout_seconds": 900,
+      "artifacts": {
+        "result": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/result.json",
+          "sha256": "a85b456267d5ca3bc9d11d1f605f34d8aa19a337aee763f6a7d56b3529de2f17"
+        },
+        "deployment": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/deployment.json",
+          "sha256": "9cd773e80f9c01b04396b8b96b8cae29a53a6d02f0280cdf5de5383b01956be4"
+        },
+        "configured_plan": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/configured_plan.json",
+          "sha256": "6c4a1958ed8b5860b8138e93d88a7eb731ade3950792f36869841b600ad79670"
+        },
+        "native_binding": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/native_binding.json",
+          "sha256": "cf910a5f64253b0ceaa224b506d14ddba0494505c267265f679312e65b09dad2"
+        },
+        "native_result": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/native_result.json",
+          "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+        },
+        "timing": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/timing.json",
+          "sha256": "1756baeaf7b33fd069c6c9bf4c08950c5871e74544d623fbe113c032d03bdd52"
+        },
+        "terminal": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/terminal.json",
+          "sha256": "10fd6f253802a5c3061edcb5e4a5af22223dae76e05482cd9558e74949fc9cf0"
+        },
+        "initial_observation": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/initial_observation.json",
+          "sha256": "f3f7b4bb3ca08784a58c9996bca54cd242626c21a26fed2be356f705d907e7e2"
+        },
+        "planner_audit": {
+          "path": "raw/control-pi05-general-pickup-official-0-dev/planner-audit.json",
+          "sha256": "0e774c5685a5b4cacaa3ab2d4f3b4ccf8d27887916d7ada5c45d9453b2aa3591"
+        }
+      },
+      "effect_checks": {
+        "task-complete": {
+          "kind": "native_task_success"
+        }
+      }
+    }
+  ]
+}

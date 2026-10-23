@@ -48,6 +48,13 @@ class WorkerModel:
         """Return native action arrays through the existing numerical wire codec."""
         return self._reply(self.binding.actions)
 
+    def binding_diagnostics(self) -> dict:
+        """Inspect the bound policy for an explicit qualification probe without inference."""
+        if self.closed or not self.binding.bound:
+            raise RuntimeError('Policy diagnostics require a live bound worker')
+        from .policy_diagnostics import inspect_policy
+        return inspect_policy(self.binding.model)
+
     def binding_close(self) -> dict:
         """Close native skills; the parent must additionally await this process exit."""
         self.closed = True
@@ -59,6 +66,9 @@ async def serve(deployment: dict) -> None:
     """Serve one owned worker until the parent requests termination."""
     from PhysicalRSI_baselines.robodojo.skill_model import Model
     from client_server.ws.model_server import PolicyServer, PolicyServerConfig
+    if deployment.get('capture_execution_diagnostics', False):
+        from .policy_diagnostics import diagnostic_model_type
+        Model = diagnostic_model_type(Model, Path(deployment['ready_file']).parent/'execution-diagnostics')
     stopped = asyncio.Event()
     loop = asyncio.get_running_loop()
     loop.add_signal_handler(signal.SIGTERM, stopped.set)

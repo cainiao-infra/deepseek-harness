@@ -1,0 +1,8 @@
+{
+  "schema": "dsh-execution-assignments/v1",
+  "scope": "Restored renderer development case: store_tools_in_toolbox, seed 0, layout 0.",
+  "timing": "prospective",
+  "trial_ids": [
+    "pi05-store-tools-in-toolbox-official-0-dev"
+  ]
+}

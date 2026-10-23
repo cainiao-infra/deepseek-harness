@@ -31,6 +31,26 @@ function isMaintained(file: string): boolean {
   return !excludedPrefixes.some(prefix => file.startsWith(prefix))
 }
 
+function executionEvidenceText(file: string, source: string): string {
+  if (!/^python\/embodied\/evaluations\/[a-z0-9-]+\/raw\/[a-z0-9-]+\/result\.json$/.test(file)) return source
+  let record: unknown
+  try {
+    record = JSON.parse(source)
+  } catch (_invalidJson) {
+    // Malformed evidence retains ordinary reference checks.
+    return source
+  }
+  if (typeof record !== 'object' || record === null
+    || !('schema' in record) || record.schema !== 'dsh-paired-pilot-episode/v1'
+    || !('qualification' in record) || record.qualification !== false
+    || !('source_commit' in record)) return source
+  const fields = [...source.matchAll(/"source_commit"\s*:\s*"([a-f0-9]{40})"/g)]
+  const field = fields[0]
+  if (fields.length !== 1 || field === undefined || record.source_commit !== field[1]) return source
+  // Immutable execution identity is data; prose and every other field stay checked.
+  return source.replace(field[0], field[0].replace(/[a-f0-9]{40}/, 'execution-source-id'))
+}
+
 /**
  * Inspect a maintained source file against known commit identifiers.
  * @param file - Repository-relative path used in diagnostics and exclusions.
@@ -45,7 +65,7 @@ export function findRepositoryReferences(
 ): RepositoryReference[] {
   if (!isMaintained(file)) return []
   const references: RepositoryReference[] = []
-  for (const [index, line] of source.split('\n').entries()) {
+  for (const [index, line] of executionEvidenceText(file, source).split('\n').entries()) {
     if (organizationUrl.test(canonicalReferenceText(line).replace(kitRepositoryUrl, ''))) {
       references.push({ file, line: index + 1, kind: 'organization-url' })
     }

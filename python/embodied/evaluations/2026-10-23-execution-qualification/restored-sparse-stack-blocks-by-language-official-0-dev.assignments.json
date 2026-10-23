@@ -1,0 +1,8 @@
+{
+  "schema": "dsh-execution-assignments/v1",
+  "scope": "Restored renderer development case: stack_blocks_by_language, seed 0, layout 0.",
+  "timing": "prospective",
+  "trial_ids": [
+    "sparse-stack-blocks-by-language-official-0-dev"
+  ]
+}

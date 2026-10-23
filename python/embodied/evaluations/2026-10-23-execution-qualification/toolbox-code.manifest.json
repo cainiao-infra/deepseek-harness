@@ -1,0 +1,32 @@
+{
+  "schema": "dsh-execution-qualification/v1",
+  "partition": "development",
+  "capability": {
+    "path": "toolbox-code.capability.json",
+    "sha256": "75b0fbf6c7af00f4e8e2201dab668c75eb26414a409964a22d808312bf66f239"
+  },
+  "required_effects": [
+    "pliers",
+    "hammer",
+    "tape-measure",
+    "wrench",
+    "robot-return"
+  ],
+  "sources": [
+    {
+      "path": "toolbox-source-inspection.json",
+      "sha256": "e482d98e63623a235e0ce09686b58b28cb50b128b858b25a23835eae23f37252"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "environment.json",
+      "sha256": "ec78e9efca6b89251fdb545f7a55456617c21a37f2774d36a24ec1f0c4991a4c"
+    }
+  ],
+  "trials": [],
+  "assignments": {
+    "path": "toolbox-code.assignments.json",
+    "sha256": "c70158e36e81e5595e799be4415474a6fc95291ca42d2fda662dd7e1d1e598bd"
+  }
+}

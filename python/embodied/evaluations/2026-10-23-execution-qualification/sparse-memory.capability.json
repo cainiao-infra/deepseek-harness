@@ -1,0 +1,73 @@
+{
+  "schema": "dsh-capability-spec/v1",
+  "capability_id": "sparse-memory-coverage",
+  "scope": "Learned sparse-memory manipulation; task execution not yet qualified.",
+  "catalog_sha256": null,
+  "skill": {
+    "name": "pi05-sparse-memory",
+    "revision": null
+  },
+  "selection": {
+    "composition": "memory-guided-visual-history",
+    "operations": []
+  },
+  "control": {
+    "embodiment": "arx_x5",
+    "action_type": "joint",
+    "frame": "robot-joints",
+    "units": "arm radians; grippers normalized",
+    "semantics": "absolute",
+    "cadence": "observation after each simulator command; policy consumes native chunk cadence"
+  },
+  "observations": [
+    [
+      "vision",
+      "cam_head",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_left_wrist",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_right_wrist",
+      "color"
+    ],
+    [
+      "state",
+      "left_arm_joint_state"
+    ],
+    [
+      "state",
+      "left_ee_joint_state"
+    ],
+    [
+      "state",
+      "right_arm_joint_state"
+    ],
+    [
+      "state",
+      "right_ee_joint_state"
+    ]
+  ],
+  "start_predicates": [],
+  "lifecycle": {
+    "interrupt": "unknown",
+    "restart": "unknown"
+  },
+  "effects": [
+    {
+      "id": "task-complete",
+      "implementation": "unknown",
+      "completion": "Independent native task evaluator success at termination.",
+      "evidence": [
+        {
+          "path": "sparse-binding-inference.json",
+          "sha256": "efb448af9f19ef4762c7eb054d245bd9db447b9af645045ec4d49f089b724b2b"
+        }
+      ]
+    }
+  ]
+}

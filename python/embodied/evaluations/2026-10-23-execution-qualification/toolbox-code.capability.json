@@ -1,0 +1,119 @@
+{
+  "schema": "dsh-capability-spec/v1",
+  "capability_id": "toolbox-code-coverage",
+  "scope": "Inspected four-tool development task with all items initially outside the toolbox.",
+  "catalog_sha256": null,
+  "skill": {
+    "name": "store-tools-in-toolbox",
+    "revision": null
+  },
+  "selection": {
+    "composition": "memory-guided-program-library",
+    "operations": [
+      "oriented-container-placement"
+    ]
+  },
+  "control": {
+    "embodiment": "arx_x5",
+    "action_type": "ee",
+    "frame": "world",
+    "units": "position metres; quaternion wxyz; grippers normalized",
+    "semantics": "absolute",
+    "cadence": "observation after each simulator command; policy consumes native chunk cadence"
+  },
+  "observations": [
+    [
+      "vision",
+      "cam_head",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_left_wrist",
+      "color"
+    ],
+    [
+      "vision",
+      "cam_right_wrist",
+      "color"
+    ],
+    [
+      "state",
+      "left_arm_joint_state"
+    ],
+    [
+      "state",
+      "left_ee_joint_state"
+    ],
+    [
+      "state",
+      "right_arm_joint_state"
+    ],
+    [
+      "state",
+      "right_ee_joint_state"
+    ]
+  ],
+  "start_predicates": [],
+  "lifecycle": {
+    "interrupt": "unknown",
+    "restart": "unknown"
+  },
+  "effects": [
+    {
+      "id": "pliers",
+      "implementation": "unsupported",
+      "completion": "Tool containment and required orientation verified independently.",
+      "evidence": [
+        {
+          "path": "toolbox-source-inspection.json",
+          "sha256": "e482d98e63623a235e0ce09686b58b28cb50b128b858b25a23835eae23f37252"
+        }
+      ]
+    },
+    {
+      "id": "hammer",
+      "implementation": "unsupported",
+      "completion": "Tool containment and required orientation verified independently.",
+      "evidence": [
+        {
+          "path": "toolbox-source-inspection.json",
+          "sha256": "e482d98e63623a235e0ce09686b58b28cb50b128b858b25a23835eae23f37252"
+        }
+      ]
+    },
+    {
+      "id": "tape-measure",
+      "implementation": "unknown",
+      "completion": "Tool containment and required orientation verified independently.",
+      "evidence": [
+        {
+          "path": "toolbox-source-inspection.json",
+          "sha256": "e482d98e63623a235e0ce09686b58b28cb50b128b858b25a23835eae23f37252"
+        }
+      ]
+    },
+    {
+      "id": "wrench",
+      "implementation": "unsupported",
+      "completion": "Tool containment and required orientation verified independently.",
+      "evidence": [
+        {
+          "path": "toolbox-source-inspection.json",
+          "sha256": "e482d98e63623a235e0ce09686b58b28cb50b128b858b25a23835eae23f37252"
+        }
+      ]
+    },
+    {
+      "id": "robot-return",
+      "implementation": "unknown",
+      "completion": "Robot returned to origin.",
+      "evidence": [
+        {
+          "path": "toolbox-source-inspection.json",
+          "sha256": "e482d98e63623a235e0ce09686b58b28cb50b128b858b25a23835eae23f37252"
+        }
+      ]
+    }
+  ]
+}

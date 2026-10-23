@@ -1,0 +1,62 @@
+{
+  "schema": "dsh-execution-qualification-report/v1",
+  "partition": "development",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "environment_complete": false,
+  "assignment_timing": "retrospective",
+  "capability_id": "toolbox-code-coverage",
+  "scope": "Inspected four-tool development task with all items initially outside the toolbox.",
+  "spec_revision": "b3295cddb236b7defc4fbc69b9976eab8ff7d380f7dd15efebce38ffe4872c8c",
+  "effects": [
+    {
+      "effect": "pliers",
+      "status": "unsupported",
+      "reason": "implementation_unavailable",
+      "passed_trials": 0,
+      "assigned_trials": 0
+    },
+    {
+      "effect": "hammer",
+      "status": "unsupported",
+      "reason": "implementation_unavailable",
+      "passed_trials": 0,
+      "assigned_trials": 0
+    },
+    {
+      "effect": "tape-measure",
+      "status": "unverified",
+      "reason": "execution_not_verified",
+      "passed_trials": 0,
+      "assigned_trials": 0
+    },
+    {
+      "effect": "wrench",
+      "status": "unsupported",
+      "reason": "implementation_unavailable",
+      "passed_trials": 0,
+      "assigned_trials": 0
+    },
+    {
+      "effect": "robot-return",
+      "status": "unverified",
+      "reason": "execution_not_verified",
+      "passed_trials": 0,
+      "assigned_trials": 0
+    }
+  ],
+  "covered": false,
+  "trials": [],
+  "sources": [
+    {
+      "path": "toolbox-source-inspection.json",
+      "sha256": "e482d98e63623a235e0ce09686b58b28cb50b128b858b25a23835eae23f37252"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "environment.json",
+      "sha256": "ec78e9efca6b89251fdb545f7a55456617c21a37f2774d36a24ec1f0c4991a4c"
+    }
+  ]
+}

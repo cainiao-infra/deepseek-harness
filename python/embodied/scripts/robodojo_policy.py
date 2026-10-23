@@ -15,6 +15,9 @@ args = parser.parse_args()
 config = json.loads(args.deployment.read_text())
 if args.mode == 'native':
     from PhysicalRSI_baselines.robodojo.skill_model import Model
+    if 'execution_diagnostics' in config:
+        from deepseek_harness_embodied.policy_diagnostics import diagnostic_model_type
+        Model = diagnostic_model_type(Model, Path(config['execution_diagnostics']))
     model = Model(config['model'])
     try:
         if 'initial_plan' in config:

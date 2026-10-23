@@ -122,6 +122,44 @@ def test_worker_consumes_admitted_plan_and_close_is_terminal():
         worker.binding_apply({'plan':plan,'observation':{}})
 
 
+def test_diagnostics_are_opt_in_and_require_a_live_binding(worker):
+    binding, children, clients, mode, *_ = worker
+    with pytest.raises(RuntimeError, match='live bound'):
+        binding.diagnostics()
+    binding.bind({}, {})
+    mode.update(reply_for='binding_diagnostics', reply={'schema': 'dsh-policy-diagnostics/v1',
+                'encoded_observation': {}, 'versions': {}, 'loaded_sources': {}})
+    assert binding.diagnostics()['schema'] == 'dsh-policy-diagnostics/v1'
+    mode['fault'] = 'binding_diagnostics'
+    with pytest.raises(TimeoutError):
+        binding.diagnostics()
+    assert children[0].poll() is not None and clients[0].closed
+
+
+def test_invalid_diagnostics_cannot_leave_provider_available(worker):
+    binding, children, clients, mode, *_ = worker
+    binding.bind({}, {})
+    mode.update(reply_for='binding_diagnostics', reply=None)
+    with pytest.raises(ValueError, match='Invalid policy diagnostics'):
+        binding.diagnostics()
+    assert children[0].poll() is not None and clients[0].closed and not binding.bound
+
+
+def test_worker_diagnostics_do_not_deliver_another_observation(monkeypatch):
+    from deepseek_harness_embodied import policy_diagnostics
+    models = []
+    worker = WorkerModel(factory(models), {})
+    with pytest.raises(RuntimeError, match='live bound'):
+        worker.binding_diagnostics()
+    worker.binding_apply({'plan': {'composition': 'pick'}, 'observation': {'instruction': 'pick'}})
+    original = models[0].observed
+    monkeypatch.setattr(policy_diagnostics, 'inspect_policy', lambda model: {'same_model': model is models[0]})
+    assert worker.binding_diagnostics() == {'same_model': True} and models[0].observed is original
+    worker.binding_close()
+    with pytest.raises(RuntimeError, match='live bound'):
+        worker.binding_diagnostics()
+
+
 @pytest.mark.parametrize('change',[{'python':'relative-python'}, {'startup_timeout_seconds':0},
     {'request_timeout_seconds':True},{'poll_interval_seconds':float('nan')},{'unknown':1}])
 def test_worker_configuration_rejects_unbounded_or_implicit_launch(change):
@@ -269,3 +307,13 @@ def test_legacy_worker_protocol_is_rejected_before_binding(worker):
     with pytest.raises(ValueError,match='metadata fields'):
         binding.bind({}, {})
     assert binding.failure is not None and all(p.poll() is not None for p in children)
+
+
+def test_execution_trace_is_opt_in_and_requires_a_boolean():
+    import sys
+    from deepseek_harness_embodied.process_binding import resolve_worker
+    settings = resolve_worker({'python': sys.executable})
+    assert settings['capture_execution_diagnostics'] is False
+    assert resolve_worker({'python': sys.executable, 'capture_execution_diagnostics': True})['capture_execution_diagnostics']
+    with pytest.raises(ValueError, match='must be boolean'):
+        resolve_worker({'python': sys.executable, 'capture_execution_diagnostics': 1})

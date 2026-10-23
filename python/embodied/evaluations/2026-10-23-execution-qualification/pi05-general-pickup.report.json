@@ -1,0 +1,86 @@
+{
+  "schema": "dsh-execution-qualification-report/v1",
+  "partition": "development",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "environment_complete": false,
+  "assignment_timing": "retrospective",
+  "capability_id": "pi05-general-pickup",
+  "scope": "Previously explored official development scene: general_pickup, seed 0, layout 0.",
+  "spec_revision": "1a490966b58e41e98a8d6f095d6e10c1ae50cde5943ecc5f2ae1c307b32fe213",
+  "effects": [
+    {
+      "effect": "task-complete",
+      "status": "unverified",
+      "reason": "execution_not_verified",
+      "passed_trials": 0,
+      "assigned_trials": 1
+    }
+  ],
+  "covered": false,
+  "trials": [
+    {
+      "id": "general-pickup-official-0-dev-N",
+      "eligible": false,
+      "effects": {
+        "task-complete": false
+      },
+      "native_success": false,
+      "planner_attempts": 0,
+      "planner_enforced": false,
+      "actions": 200,
+      "episode_error": null,
+      "launcher_error": null,
+      "artifact_digests": {
+        "result": {
+          "path": "raw/pi05-general-pickup/result.json",
+          "sha256": "d0ad472a67f3d9c55e559db9ee12fa9e10f01ed0175da25aaad536e5e3cafd5a"
+        },
+        "deployment": {
+          "path": "raw/pi05-general-pickup/deployment.json",
+          "sha256": "90a6781027f8d68609d9e1eccaf3925ce28508f7f22df6b1501627a2af445024"
+        },
+        "configured_plan": {
+          "path": "raw/pi05-general-pickup/configured_plan.json",
+          "sha256": "6a865af83a3e39888190dc4e47b237689c680ec6ecabd5ad9c58401d18f891a5"
+        },
+        "native_binding": {
+          "path": "raw/pi05-general-pickup/native_binding.json",
+          "sha256": "4abaa497db1c0e7e3171524c9baed15294666839deac57f87ec0078867497825"
+        },
+        "native_result": {
+          "path": "raw/pi05-general-pickup/native_result.json",
+          "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+        },
+        "timing": {
+          "path": "raw/pi05-general-pickup/timing.json",
+          "sha256": "e43d51c4f4e676f937d3c3d115a99412cedf3cc6a74742c22625f59b0392d4ab"
+        },
+        "terminal": {
+          "path": "raw/pi05-general-pickup/terminal.json",
+          "sha256": "08e29e116d3b80fbe6f2c7ec7ded60ac975546def037ecaebfee21ebf6028ea1"
+        },
+        "initial_observation": {
+          "path": "raw/pi05-general-pickup/initial_observation.json",
+          "sha256": "0b348204f95ba48987c6c221f3c231f7c98b18a379210eb7a69e1448a5dab566"
+        },
+        "planner_audit": {
+          "path": "raw/pi05-general-pickup/planner-audit.json",
+          "sha256": "82d4547cd868b3cd2c0d0b3932c918ffdcb14f3a0f5846a56dad1a6e6e026224"
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "source-inventory.json",
+      "sha256": "1f6a204ce464309dbe42e767cea91026c6163bc3d47b68c00d04cc46de3348f6"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "environment.json",
+      "sha256": "ec78e9efca6b89251fdb545f7a55456617c21a37f2774d36a24ec1f0c4991a4c"
+    }
+  ]
+}

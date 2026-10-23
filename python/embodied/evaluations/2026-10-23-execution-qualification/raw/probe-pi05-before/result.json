@@ -1,0 +1,1 @@
+{"binding_succeeded": true, "cleanup_confirmed": true, "cleanup_error": null, "error": null, "generated_actions": 50, "inference_succeeded": true, "issues": [], "passed": true, "qualification": false, "robot_actions_dispatched": 0, "schema": "dsh-binding-probe/v1", "spec_revision": "49d71a0b3fb852591c6cd63f2ae27330bd2a7f850aac7df3af1e113db01be38a"}

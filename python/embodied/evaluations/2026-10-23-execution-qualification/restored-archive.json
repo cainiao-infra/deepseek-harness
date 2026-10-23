@@ -1,0 +1,352 @@
+{
+  "schema": "dsh-execution-evidence-archive/v1",
+  "archive": "/root/.cache/dsh-physicalrsi-dev/execution-qualification-20261023-13-restored-evidence/evidence.tar.xz",
+  "sha256": "d0511656fcec44435928e635e3cf6319e7f015c5ef2a71af0cd80dd360316e17",
+  "size": 15807668,
+  "members": 435,
+  "all_experiments_quiescent": true,
+  "local_archive": ".artifacts/embodied-live/2026-10-23-renderer-restored/evidence.tar.xz",
+  "verified_payload_members": 434,
+  "imports": [
+    {
+      "archive_member": "inventory/policy-environment.json",
+      "path": "restored-environment.json",
+      "sha256": "d5c882e2c0596da463a79faccbade28937b332742e5883820f594f3cea3c79f5"
+    },
+    {
+      "archive_member": "inventory/simulator-environment.json",
+      "path": "restored-simulator-environment.json",
+      "sha256": "ed6c2508f753ac593d32c4dda882105a51840b7e699ac61b1ed02f48411f9613"
+    },
+    {
+      "archive_member": "inventory/graphics-runtime.json",
+      "path": "restored-graphics-runtime.json",
+      "sha256": "9ccdbb0a23ad14ca295e1d1a06698a7d4214418afb66eddd4cfcf86f7343502b"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/result.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/result.json",
+      "sha256": "a85b456267d5ca3bc9d11d1f605f34d8aa19a337aee763f6a7d56b3529de2f17"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/deployment.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/deployment.json",
+      "sha256": "9cd773e80f9c01b04396b8b96b8cae29a53a6d02f0280cdf5de5383b01956be4"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/configured_plan.json",
+      "sha256": "6c4a1958ed8b5860b8138e93d88a7eb731ade3950792f36869841b600ad79670"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/native-model/e6e28e3ed867441a8901064870e93d0e/episodes/85c6d0e081d1490bab541f56e3ec58b2/episode.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/native_binding.json",
+      "sha256": "cf910a5f64253b0ceaa224b506d14ddba0494505c267265f679312e65b09dad2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/eval_result/RoboDojo/general_pickup/physicalRSICodex/arx_x5/0_0000-pi05-general-pickup-official-0-dev-N/0000-pi05-general-pickup-official-0-dev-N/_result.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/timing.json",
+      "sha256": "1756baeaf7b33fd069c6c9bf4c08950c5871e74544d623fbe113c032d03bdd52"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/terminal.json",
+      "sha256": "10fd6f253802a5c3061edcb5e4a5af22223dae76e05482cd9558e74949fc9cf0"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/initial_observation.json",
+      "sha256": "f3f7b4bb3ca08784a58c9996bca54cd242626c21a26fed2be356f705d907e7e2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-11-render-libs/runs/0000-pi05-general-pickup-official-0-dev-N/provider/policy.json",
+      "path": "raw/control-pi05-general-pickup-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/result.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/result.json",
+      "sha256": "d1d42ef6557f9635441d0327851c5e2a2ac8ce1dce9877b33474a4d8021c52a2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/deployment.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/deployment.json",
+      "sha256": "c77742365b06a5ad4402293767865b4f3a5c44cb7a8277ac2b12a0d0e7ba5686"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/configured_plan.json",
+      "sha256": "6c4a1958ed8b5860b8138e93d88a7eb731ade3950792f36869841b600ad79670"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/native-model/f52a82cf963d467984813f637590c453/episodes/a3e43bd960364f26b2c0dad2081ea11e/episode.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/native_binding.json",
+      "sha256": "6b64631dc887cb6e86e07041b7eb3a23568df4982193c0b2646dd9e13fca6190"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/eval_result/RoboDojo/general_pickup/physicalRSICodex/arx_x5/0_0000-pi05-general-pickup-official-0-dev-N/0000-pi05-general-pickup-official-0-dev-N/_result.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/timing.json",
+      "sha256": "334466fab3867f9a2105758d9bf0bef673c38db1fced69ee07610167f8b88c9b"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/terminal.json",
+      "sha256": "2b15787723201473748ca1c851a5b422cf4f7dc760d6e5ededdcb254565e07cb"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/initial_observation.json",
+      "sha256": "3a9dcfe364d7da16f20b43119a101ec7363509e9dcce2e28e6017108b3de3479"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0000-pi05-general-pickup-official-0-dev-N/provider/policy.json",
+      "path": "raw/restored-pi05-general-pickup-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/result.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/result.json",
+      "sha256": "9fb0c604dc11532d15d35d74b55d7245de49d0c9f4da8fb63dd3e892865bb3b3"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/deployment.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/deployment.json",
+      "sha256": "bee570dd5f12b3468e7790b79c349a115b62613e5bd4ee56e4557accda17705e"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/configured_plan.json",
+      "sha256": "6c4a1958ed8b5860b8138e93d88a7eb731ade3950792f36869841b600ad79670"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/native-model/757020c30d0d4e8da29119453f14424a/episodes/2ad8a9cd0b4341198e1bab47f6fae65c/episode.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/native_binding.json",
+      "sha256": "dad8c9fba54f5d45926b96ae619666116ad3a4ec4b65d358c14c8d6c55e016eb"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/simulation/eval_result/RoboDojo/stack_blocks_by_language/physicalRSICodex/arx_x5/0_0001-pi05-stack-blocks-by-language-official-0-dev-N/0001-pi05-stack-blocks-by-language-official-0-dev-N/_result.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/timing.json",
+      "sha256": "689ee6b1038cf9fe2e251ac22196768f285fa789b24ad91fef0a0ae564b849d8"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/terminal.json",
+      "sha256": "692d40dc0fb0fd65fe41534242a356b6fc1af08e033da9fb71663e5d844ba062"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/initial_observation.json",
+      "sha256": "dfc0f09c8770ad500c68540cd10bfc2945465213ec0c334a3408991c20d1f9cb"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0001-pi05-stack-blocks-by-language-official-0-dev-N/provider/policy.json",
+      "path": "raw/restored-pi05-stack-blocks-by-language-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/result.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/result.json",
+      "sha256": "b3a05e5fdab1c068c9da3572f5810c003d1d46836bb2e16b15899000e052e760"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/deployment.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/deployment.json",
+      "sha256": "83873774dc6c424614efb807f0d2d7fcd29d1f3ee0841b3a5a58176a77365667"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/configured_plan.json",
+      "sha256": "6c4a1958ed8b5860b8138e93d88a7eb731ade3950792f36869841b600ad79670"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/native-model/ee18463b6f454281b6453c21dcb4ad7c/episodes/91347c8e33824e49951db18287af543b/episode.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/native_binding.json",
+      "sha256": "34090268e1a4c179fe5632f4bfec54f59c6496833cd4e6d02be89e85ccf07b27"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/simulation/eval_result/RoboDojo/store_tools_in_toolbox/physicalRSICodex/arx_x5/0_0002-pi05-store-tools-in-toolbox-official-0-dev-N/0002-pi05-store-tools-in-toolbox-official-0-dev-N/_result.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/timing.json",
+      "sha256": "2da53593495077e02b787bd96ebd1dae0517d0df67d93ed5cbf7232320c9236a"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/terminal.json",
+      "sha256": "27ea3df8be0e44c41648a80a439b8f6db2c5d4a2fcf85063d23b2fe02db9939d"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/initial_observation.json",
+      "sha256": "cbcfadbc009874a8ce9d5ed80f30d18562434e5c7ca32a5aa20f4ae76b924ea5"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0002-pi05-store-tools-in-toolbox-official-0-dev-N/provider/policy.json",
+      "path": "raw/restored-pi05-store-tools-in-toolbox-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/result.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/result.json",
+      "sha256": "bf67676312f8cca7fd75bc2fb22e056dba7c1a34b06471a77aca0b006a17ed67"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/deployment.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/deployment.json",
+      "sha256": "94060188ed68e21815cb2d4197826707d3f96afdb7256c237c15ccfd69aaad2d"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/configured_plan.json",
+      "sha256": "050cac3daafd77e54c86e44c6bf13fc01ee06d4a71547f14a6ddebf181a8c1f7"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/native-model/28276bdebd0f46018564a3b0583dac17/episodes/f87829b2c2414af8bdec80b81d83e68e/episode.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/native_binding.json",
+      "sha256": "39965b7b04331d586c913882bcb889d838d639c16c351f5e7f7d2a2dee8701ab"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/simulation/eval_result/RoboDojo/general_pickup/physicalRSICodex/arx_x5/0_0003-sparse-general-pickup-official-0-dev-N/0003-sparse-general-pickup-official-0-dev-N/_result.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/native_result.json",
+      "sha256": "117b7aac5c033705b64fc53e97b00912e1fec4f50cff9869aee75b750b3529a6"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/timing.json",
+      "sha256": "a59a04bc1ea8fe4b5f0960a865b6653f38b91c7656044cb41352881f28141c23"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/terminal.json",
+      "sha256": "cd71a5d868072f45b5e0ba2403086e05a14014451667c5202ff7020582a4643c"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/initial_observation.json",
+      "sha256": "0b54c9743c0a9e657fea53b7a80e18607a3332c2c2666f893f172d3cb1b5058a"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0003-sparse-general-pickup-official-0-dev-N/provider/policy.json",
+      "path": "raw/restored-sparse-general-pickup-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/result.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/result.json",
+      "sha256": "a37f558f6dbf7f503a056d4b5892a9dbf8066b0c860a057e75419704c3e4460a"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/deployment.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/deployment.json",
+      "sha256": "be4a6c12021e24ef8b8fe5f4d18a0b8f158092bd0558ad4c05e83c2b270e44a8"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/configured_plan.json",
+      "sha256": "050cac3daafd77e54c86e44c6bf13fc01ee06d4a71547f14a6ddebf181a8c1f7"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/native-model/cb49d2be15ea4ef19d5f71e73f8375df/episodes/3bfedf2c5c3f4325829099752bf28065/episode.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/native_binding.json",
+      "sha256": "87d2a3389fec2391451fc148e42e890eda0c034c33f758ee93fb327b8ffc5cc5"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/simulation/eval_result/RoboDojo/stack_blocks_by_language/physicalRSICodex/arx_x5/0_0004-sparse-stack-blocks-by-language-official-0-dev-N/0004-sparse-stack-blocks-by-language-official-0-dev-N/_result.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/timing.json",
+      "sha256": "2cf3ea3e3fc545c861a4f2ddffd9484f88bbcbf63c3070bfd0caaeb9743658d4"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/terminal.json",
+      "sha256": "418518c3de6e691cba0324a0097ff53b20ec4a89098d1a9a327660a68b3b1a7b"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/initial_observation.json",
+      "sha256": "e63c92a785a74add2037380934a2f15ccd2469f0ff3dcd34e06e399cdaeaed81"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0004-sparse-stack-blocks-by-language-official-0-dev-N/provider/policy.json",
+      "path": "raw/restored-sparse-stack-blocks-by-language-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/result.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/result.json",
+      "sha256": "083298dc7d88429fe395f5914b1311a85941c02ebca0e8b533c50c4dec393eb1"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/deployment.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/deployment.json",
+      "sha256": "9daea2ecb83c516e38b8f4cc5d9c04097f3a70b6fc638e11d4c9a586b5fb6789"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/configured-initial-plan.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/configured_plan.json",
+      "sha256": "050cac3daafd77e54c86e44c6bf13fc01ee06d4a71547f14a6ddebf181a8c1f7"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/native-model/45d123a02fb54fd4a4d138e27fdf8225/episodes/a6471d180c8547cb9c53b558e8504fe7/episode.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/native_binding.json",
+      "sha256": "f85f3088d195aae8999d5ddb3e8ed6d3060026acce26e48a356e9f7de3e3c353"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/simulation/eval_result/RoboDojo/store_tools_in_toolbox/physicalRSICodex/arx_x5/0_0005-sparse-store-tools-in-toolbox-official-0-dev-N/0005-sparse-store-tools-in-toolbox-official-0-dev-N/_result.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/native_result.json",
+      "sha256": "99b780f4e1842dfa81b413ccd2e5302e5827cc349fea4edf978e1bd847986ed3"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/simulation/episode-timing.jsonl",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/timing.json",
+      "sha256": "62f77cd425fd7738518e29183b7511c63e672c38e6b3c13b1db0719d27a40447"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/simulation/native-terminal.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/terminal.json",
+      "sha256": "b77f9e5c98b68a0955fc20e1882f27098cc3c0749100fc54e8cee6324a3d02da"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/simulation/initial-observation.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/initial_observation.json",
+      "sha256": "9c65aa32551087e6b9ccca5f7038191d4c66cd96669fba9966816c5c461bba64"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/0005-sparse-store-tools-in-toolbox-official-0-dev-N/provider/policy.json",
+      "path": "raw/restored-sparse-store-tools-in-toolbox-official-0-dev/provider/policy.json",
+      "sha256": "0582fbc31352d49048d3e2422f90c3ddd861b85668aa7a0f7507cf36d037c3c2"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/assignments.json",
+      "path": "restored-assignments.json",
+      "sha256": "cb904fca72b6380447b33b05deb014d229d8d0b24870e8d93b6a000a2ca86e61"
+    },
+    {
+      "archive_member": "execution-qualification-20261023-12-restored/runs/resolved-inputs.json",
+      "path": "restored-resolved-inputs.json",
+      "sha256": "b70da0a78aea28ed2a63f644ec516103a72850e1a757596d370c80cb8c823640"
+    }
+  ]
+}

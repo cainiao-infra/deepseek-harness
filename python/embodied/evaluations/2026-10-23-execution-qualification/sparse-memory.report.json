@@ -1,0 +1,34 @@
+{
+  "schema": "dsh-execution-qualification-report/v1",
+  "partition": "development",
+  "qualification": false,
+  "formal_heldout_runs": 0,
+  "environment_complete": false,
+  "assignment_timing": "retrospective",
+  "capability_id": "sparse-memory-coverage",
+  "scope": "Learned sparse-memory manipulation; task execution not yet qualified.",
+  "spec_revision": "e00002a586e86f74235e74b775fd389f9ad1950fae69d9aea0aab8484a1bec82",
+  "effects": [
+    {
+      "effect": "task-complete",
+      "status": "unverified",
+      "reason": "execution_not_verified",
+      "passed_trials": 0,
+      "assigned_trials": 0
+    }
+  ],
+  "covered": false,
+  "trials": [],
+  "sources": [
+    {
+      "path": "sparse-binding-inference.json",
+      "sha256": "efb448af9f19ef4762c7eb054d245bd9db447b9af645045ec4d49f089b724b2b"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "environment.json",
+      "sha256": "ec78e9efca6b89251fdb545f7a55456617c21a37f2774d36a24ec1f0c4991a4c"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "schema": "dsh-execution-planner-audit/v1",
+  "origin": "retained-pilot-audit",
+  "attempts": 0,
+  "attempt_files": [],
+  "archive_sha256": "dc2e0f6b8977843bdf5512477281b0e3356737c9a4b653e81df050be44547ec9",
+  "archive_episode": "batches/paired-pilot-12-learned-policy-development/0000-general-pickup-official-0-dev-N"
+}

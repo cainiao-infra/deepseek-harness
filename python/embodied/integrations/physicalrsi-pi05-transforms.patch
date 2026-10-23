@@ -1,0 +1,11 @@
+--- a/PhysicalRSI_baselines/robodojo/skills/inference_configs.py
++++ b/PhysicalRSI_baselines/robodojo/skills/inference_configs.py
+@@ -22,6 +22,8 @@
+         model=pi0_config.Pi0Config(pi05=True),
+         data=config.LeRobotAlohaDataConfig(
+             repo_id='RoboDojo_sim_arx-x5_v30',
++            adapt_to_pi=False,
++            use_delta_joint_actions=True,
+             assets=config.AssetsConfig(assets_dir=str(Path(checkpoint) / 'assets'), asset_id='arx_x5_sim'),
+             repack_transforms=transforms.Group(inputs=[transforms.RepackTransform({
+                 'images': {'cam_high': 'observation.images.cam_high',

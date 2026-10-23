@@ -1,0 +1,1 @@
+{"model_calls": 0, "origin": "deployment", "plan": {"composition": "memory-guided-manipulation", "operations": [], "rationale": "Explicit general learned-policy preflight shared by all comparison arms."}}

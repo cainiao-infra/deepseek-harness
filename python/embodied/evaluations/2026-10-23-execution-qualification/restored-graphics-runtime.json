@@ -1,0 +1,8 @@
+{
+  "libGLU": {
+    "path": "/root/.cache/dsh-physicalrsi-dev/system-libs/usr/lib/x86_64-linux-gnu/libGLU.so.1",
+    "resolved": "/root/.cache/dsh-physicalrsi-dev/system-libs/usr/lib/x86_64-linux-gnu/libGLU.so.1.3.1",
+    "sha256": "e283fb89621e48b40e435ecea59cec40f646b5e0c15ba9e85b4df2d131cea924"
+  },
+  "ldd": "\tlinux-vdso.so.1 (0x00007ffcd97cd000)\n\tlibOpenGL.so.0 => not found\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fe17e685000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fe17e59e000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fe17e57e000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fe17e200000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fe17e915000)\n"
+}
